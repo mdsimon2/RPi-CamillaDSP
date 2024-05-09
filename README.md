@@ -271,6 +271,8 @@ Screenshot 2023-12-15 083736.png
 
 Congratulations, you now have CamillaDSP up and running!
 
+### 11) Upgrading to future versions
+
 If you would like to upgrade to a new version of CamillaDSP simply remove your old CamillaDSP binary and tar and download and extract a new one.
 
 <pre>
