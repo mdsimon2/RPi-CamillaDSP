@@ -197,37 +197,25 @@ sudo service camilladsp start
 
 ### 11) Install python and dependencies
 
-Rich (BB code):
+<pre>
 sudo apt install python3 python3-pip python3-websocket python3-aiohttp python3-jsonschema python3-numpy python3-matplotlib unzip
-
-If you are using Ubuntu Server 22.04 LTS, upgrade pip3. This is not required for Ubuntu Server 23.10.
-
-Rich (BB code):
-sudo pip3 install --upgrade pip
+</pre>
 
 ### 12) Install pycamilladsp
 
-Download pycamilladsp and install. If you are using Ubuntu 22.04 LTS use the command below.
+Download pycamilladsp and install. 
 
-Rich (BB code):
-sudo pip3 install git+https://github.com/HEnquist/pycamilladsp.git
-
-If using Ubuntu 23.10 add "--break-system-packages" to install packages not contained in the system repository. Note, adding "--break-system-packages" will cause the installation to fail if used on Ubuntu 22.04 LTS.
-
-Rich (BB code):
+<pre>
 sudo pip3 install git+https://github.com/HEnquist/pycamilladsp.git --break-system-packages
+</pre>
 
 ### 13) Install pycamilladsp-plot
 
-Download pyamilladsp-plot and install. If you are using Ubuntu 22.04 LTS use the command below.
+Download pyamilladsp-plot and install. 
 
-Rich (BB code):
-sudo pip3 install git+https://github.com/HEnquist/pycamilladsp-plot.git
-
-If using Ubuntu 23.10 add "--break-system-packages" to install packages not contained in the system repository. Note, adding "--break-system-packages" will cause the installation to fail if used on Ubuntu 22.04 LTS.
-
-Rich (BB code):
+<pre>
 sudo pip3 install git+https://github.com/HEnquist/pycamilladsp-plot.git --break-system-packages
+</pre>
 
 ### 14) Install GUI server
 
