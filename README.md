@@ -77,7 +77,7 @@ This part describes how to get a working CamillaDSP setup. Values in bold are us
 
 For reference, a complete install should take just under 1 hour (including display and FLIRC IR receiver setup), most of that time is waiting for things to download / install.
 
-1-4) Write Raspberry Pi OS Lite (recommended) or Ubuntu Server 64 bit to micro SD card using Raspberry Pi Imager and login via SSH
+### 1-4) Write Raspberry Pi OS Lite (recommended) or Ubuntu Server 64 bit to micro SD card using Raspberry Pi Imager and login via SSH
 
 Download and install Raspberry Pi Imager from the links below for your OS.
 
@@ -112,7 +112,7 @@ Ubuntu.png
 
 Before we get started a few notes about using copy / paste in terminal and/or nano. On Mac this is straight forward you can use cmd + v or right click + Paste likely you normally would. On Windows running WSL it is a little weird, I have not found a keyboard shortcut that works but if you right click it will paste what is in your clipboard.
 
-5) Update / upgrade RPi
+### 5) Update / upgrade RPi
 
 Open terminal and log in to RPi remotely via SSH.
 
@@ -125,7 +125,7 @@ sudo apt full-upgrade
 
 Say yes to any prompts asking if you want to upgrade. You may be prompted about restarting services, if so just hit enter.
 
-6) Install CamillaDSP
+### 6) Install CamillaDSP
 
 Make a camilladsp folder as well as folders for CamillaDSP to reference stored coefficients and configurations.
 
@@ -143,7 +143,7 @@ Rich (BB code):
 wget https://github.com/HEnquist/camilladsp/releases/download/v2.0.3/camilladsp-linux-aarch64.tar.gz -P ~/camilladsp/
 sudo tar -xvf ~/camilladsp/camilladsp-linux-aarch64.tar.gz -C /usr/local/bin/
 
-7) Create CamillaDSP yml configuration file
+### 7) Create CamillaDSP yml configuration file
 
 Assuming you are using one of the DACs listed in this tutorial, see Part 3 for configuration files for a variety of use cases. Download the appropriate configuration file from the end of Part 3, for example for a MOTU Ultralite Mk5 streamer setup using a 44 kHz capture rate and a 96 kHz playback rate use "ultralitemk5_streamer_44c_96p_v2_12142023.yml". In Windows open this file up with notepad or wordpad, in Mac use textedit.
 
@@ -163,7 +163,7 @@ If you have a local copy of the file you are trying to get on the RPi you can us
 
 As a reference for those using WSL you can navigate to the home directory of your WSL Ubuntu installation by going to \\wsl.localhost\Ubuntu\home in Windows Explorer and drag and drop the files you want to transfer there so they can easily be referenced in WSL.
 
-8) Set up ALSA loopback
+### 8) Set up ALSA loopback
 
 If you are using a physical input (AES, TOSLINK, SPDIF, analog) you can skip this step.
 
@@ -194,7 +194,7 @@ Log back in to RPi.
 Rich (BB code):
 ssh username@hostname
 
-9) Try starting CamillaDSP
+### 9) Try starting CamillaDSP
 
 We will eventually install a service to automatically start CamillaDSP, but first try to start directly from terminal to make sure everything is working as expected. This example assumes a configuration file called ultralitemk5_streamer.yml, please update to the name of your configuration file.
 
@@ -263,7 +263,7 @@ username@hostname:~$ camilladsp -g-40 -p 1234 ~/camilladsp/configs/ultralitemk5_
 2023-12-15 14:07:07.461344 DEBUG [src/countertimer.rs:240] Number of values changed. New 10, prev 2. Clearing history.
 2023-12-15 14:07:08.577701 DEBUG [src/countertimer.rs:42] Pausing processing
 
-10) Create CamillaDSP service
+### 10) Create CamillaDSP service
 
 There is a significant change between CamillaDSP V1 and V2 in that V2 no longer uses the active_config.yml symlink. If upgrading to V2 please update your service.
 
@@ -312,7 +312,7 @@ Start camilladsp service.
 Rich (BB code):
 sudo service camilladsp start
 
-11) Install python and dependencies
+### 11) Install python and dependencies
 
 Rich (BB code):
 sudo apt install python3 python3-pip python3-websocket python3-aiohttp python3-jsonschema python3-numpy python3-matplotlib unzip
@@ -322,7 +322,7 @@ If you are using Ubuntu Server 22.04 LTS, upgrade pip3. This is not required for
 Rich (BB code):
 sudo pip3 install --upgrade pip
 
-12) Install pycamilladsp
+### 12) Install pycamilladsp
 
 Download pycamilladsp and install. If you are using Ubuntu 22.04 LTS use the command below.
 
@@ -334,7 +334,7 @@ If using Ubuntu 23.10 add "--break-system-packages" to install packages not cont
 Rich (BB code):
 sudo pip3 install git+https://github.com/HEnquist/pycamilladsp.git --break-system-packages
 
-13) Install pycamilladsp-plot
+### 13) Install pycamilladsp-plot
 
 Download pyamilladsp-plot and install. If you are using Ubuntu 22.04 LTS use the command below.
 
@@ -346,7 +346,7 @@ If using Ubuntu 23.10 add "--break-system-packages" to install packages not cont
 Rich (BB code):
 sudo pip3 install git+https://github.com/HEnquist/pycamilladsp-plot.git --break-system-packages
 
-14) Install GUI server
+### 14) Install GUI server
 
 Commands below will install V2.1.0 of the GUI.
 
@@ -354,7 +354,7 @@ Rich (BB code):
 wget https://github.com/HEnquist/camillagui-backend/releases/download/v2.1.0/camillagui.zip -P ~/camilladsp/
 unzip ~/camilladsp/camillagui.zip -d ~/camilladsp/camillagui
 
-15) Try starting GUI
+### 15) Try starting GUI
 
 As with CamillaDSP itself it is good practice to start the GUI directly from terminal before proceeding to creating service.
 
@@ -370,7 +370,7 @@ username@hostname:~$ python3 ~/camilladsp/camillagui/main.py
 ======== Running on http://0.0.0.0:5005 ========
 (Press CTRL+C to quit)
 
-16) Create service to start GUI
+### 16) Create service to start GUI
 
 Rich (BB code):
 sudo nano /lib/systemd/system/camillagui.service
@@ -401,7 +401,7 @@ Start camillagui service.
 Rich (BB code):
 sudo service camillagui start
 
-17) Assign active configuration in GUI
+### 17) Assign active configuration in GUI
 
 On a computer that is on the same network as your RPi navigate your browser to http://hostname:5005.
 
