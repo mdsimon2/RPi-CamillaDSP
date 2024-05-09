@@ -174,7 +174,7 @@ Enable camilladsp service.
 
 <pre>
 sudo systemctl enable camilladsp
-<pre>
+</pre>
 
 Start camilladsp service.
 
