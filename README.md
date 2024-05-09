@@ -442,8 +442,8 @@ Once you have channel routing setup in Cuemix this DAC is very similar to the Ok
 
 - Set clock source to SPDIF via Ultralite Mk5 front panel. 
 - No rate adjust is enabled as the Ultralite Mk5 is clocked by SPDIF input in this mode. 
-- All configurations use the same input and output sample rate as it is not possible to use different sample rates. 
-- Configurations are provided for 48 and 96 kHz sample rates, note that at 176/192 kHz optical and SPDIF I/O are disabled.
+- It is not possible to use different input and output sample rates. 
+- Configurations are provided for 48 and 96 kHz, note that at 176/192 kHz optical and SPDIF I/O are disabled.
 
 #### ultralitemk5_analog.yml
 
