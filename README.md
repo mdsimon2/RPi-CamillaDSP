@@ -148,9 +148,10 @@ sudo nano /lib/systemd/system/camilladsp.service
 
 Paste text below in to nano and modify username to reflect your username. 
 
-When done, enter 'ctrl + x' to exit nano, when prompted with Save modified buffer? enter 'Y', when prompted with File Name to Write: /lib/systemd/system/camilladsp.service hit Enter key. You will do the same when editing files in nano elsewhere in this tutorial.
+When done, enter 'ctrl + x' to exit nano, when prompted with Save modified buffer? enter 'Y' and when prompted with File Name to Write: /lib/systemd/system/camilladsp.service hit Enter key. You will do the same when editing files in nano elsewhere in this tutorial.
 
 <pre>
+<i>
 [Unit]
 After=syslog.target
 StartLimitIntervalSec=10
@@ -171,6 +172,7 @@ CPUSchedulingPriority=10
 
 [Install]
 WantedBy=multi-user.target
+</i>
 </pre>
 
 Enable camilladsp service.
