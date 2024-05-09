@@ -1,0 +1,215 @@
+description: null
+devices:
+  adjust_period: 10
+  capture:
+    channels: 2
+    device: hw:Loopback,0
+    format: S32LE
+    type: Alsa
+  capture_samplerate: 44100
+  chunksize: 64
+  enable_rate_adjust: true
+  playback:
+    channels: 22
+    device: hw:UltraLitemk5
+    format: S24LE3
+    type: Alsa
+  queuelimit: 4
+  rate_measure_interval: 1
+  samplerate: 44100
+  silence_threshold: -100
+  silence_timeout: 5
+  stop_on_rate_change: false
+  target_level: 192
+  volume_ramp_time: null
+filters: null
+mixers:
+  2x22:
+    channels:
+      in: 2
+      out: 22
+    description: null
+    mapping:
+    - dest: 0
+      mute: false
+      sources:
+      - channel: 0
+        gain: 0
+        inverted: false
+        mute: false
+        scale: null
+    - dest: 1
+      mute: false
+      sources:
+      - channel: 1
+        gain: 0
+        inverted: false
+        mute: false
+        scale: null
+    - dest: 2
+      mute: false
+      sources:
+      - channel: 0
+        gain: 0
+        inverted: false
+        mute: false
+        scale: null
+    - dest: 3
+      mute: false
+      sources:
+      - channel: 1
+        gain: 0
+        inverted: false
+        mute: false
+        scale: null
+    - dest: 4
+      mute: false
+      sources:
+      - channel: 0
+        gain: 0
+        inverted: false
+        mute: false
+        scale: null
+    - dest: 5
+      mute: false
+      sources:
+      - channel: 1
+        gain: 0
+        inverted: false
+        mute: false
+        scale: null
+    - dest: 6
+      mute: false
+      sources:
+      - channel: 0
+        gain: 0
+        inverted: false
+        mute: false
+        scale: null
+    - dest: 7
+      mute: false
+      sources:
+      - channel: 1
+        gain: 0
+        inverted: false
+        mute: false
+        scale: null
+    - dest: 8
+      mute: false
+      sources:
+      - channel: 0
+        gain: 0
+        inverted: false
+        mute: false
+        scale: null
+    - dest: 9
+      mute: false
+      sources:
+      - channel: 1
+        gain: 0
+        inverted: false
+        mute: false
+        scale: null
+    - dest: 10
+      mute: false
+      sources:
+      - channel: 0
+        gain: 0
+        inverted: false
+        mute: false
+        scale: null
+    - dest: 11
+      mute: false
+      sources:
+      - channel: 1
+        gain: 0
+        inverted: false
+        mute: false
+        scale: null
+    - dest: 12
+      mute: false
+      sources:
+      - channel: 0
+        gain: 0
+        inverted: false
+        mute: false
+        scale: null
+    - dest: 13
+      mute: false
+      sources:
+      - channel: 1
+        gain: 0
+        inverted: false
+        mute: false
+        scale: null
+    - dest: 14
+      mute: false
+      sources:
+      - channel: 0
+        gain: 0
+        inverted: false
+        mute: false
+        scale: null
+    - dest: 15
+      mute: false
+      sources:
+      - channel: 1
+        gain: 0
+        inverted: false
+        mute: false
+        scale: null
+    - dest: 16
+      mute: false
+      sources:
+      - channel: 0
+        gain: 0
+        inverted: false
+        mute: false
+        scale: null
+    - dest: 17
+      mute: false
+      sources:
+      - channel: 1
+        gain: 0
+        inverted: false
+        mute: false
+        scale: null
+    - dest: 18
+      mute: false
+      sources:
+      - channel: 0
+        gain: 0
+        inverted: false
+        mute: false
+        scale: null
+    - dest: 19
+      mute: false
+      sources:
+      - channel: 1
+        gain: 0
+        inverted: false
+        mute: false
+        scale: null
+    - dest: 20
+      mute: false
+      sources:
+      - channel: 0
+        gain: 0
+        inverted: false
+        mute: false
+        scale: null
+    - dest: 21
+      mute: false
+      sources:
+      - channel: 1
+        gain: 0
+        inverted: false
+        mute: false
+        scale: null
+pipeline:
+- bypassed: null
+  description: null
+  name: 2x22
+  type: Mixer
+processors: null
+title: Streamer

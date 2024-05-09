@@ -1,0 +1,103 @@
+description: null
+devices:
+  adjust_period: 10
+  capture:
+    channels: 8
+    device: hw:DAC8PRO
+    format: S32LE
+    type: Alsa
+  capture_samplerate: 192000
+  chunksize: 256
+  enable_rate_adjust: false
+  playback:
+    channels: 8
+    device: hw:DAC8PRO
+    format: S32LE
+    type: Alsa
+  queuelimit: 4
+  rate_measure_interval: 1
+  samplerate: 192000
+  silence_threshold: -100
+  silence_timeout: 5
+  stop_on_rate_change: false
+  target_level: 256
+  volume_ramp_time: null
+filters: null
+mixers:
+  8x8:
+    channels:
+      in: 8
+      out: 8
+    description: null
+    mapping:
+    - dest: 0
+      mute: false
+      sources:
+      - channel: 0
+        gain: -1
+        inverted: false
+        mute: false
+        scale: null
+    - dest: 1
+      mute: false
+      sources:
+      - channel: 1
+        gain: -1
+        inverted: false
+        mute: false
+        scale: null
+    - dest: 2
+      mute: false
+      sources:
+      - channel: 0
+        gain: -1
+        inverted: false
+        mute: false
+        scale: null
+    - dest: 3
+      mute: false
+      sources:
+      - channel: 1
+        gain: -1
+        inverted: false
+        mute: false
+        scale: null
+    - dest: 4
+      mute: false
+      sources:
+      - channel: 0
+        gain: -1
+        inverted: false
+        mute: false
+        scale: null
+    - dest: 5
+      mute: false
+      sources:
+      - channel: 1
+        gain: -1
+        inverted: false
+        mute: false
+        scale: null
+    - dest: 6
+      mute: false
+      sources:
+      - channel: 0
+        gain: -1
+        inverted: false
+        mute: false
+        scale: null
+    - dest: 7
+      mute: false
+      sources:
+      - channel: 1
+        gain: -1
+        inverted: false
+        mute: false
+        scale: null
+pipeline:
+- bypassed: null
+  description: null
+  name: 8x8
+  type: Mixer
+processors: null
+title: null

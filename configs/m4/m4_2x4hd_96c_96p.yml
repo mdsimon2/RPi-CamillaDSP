@@ -1,0 +1,74 @@
+description: null
+devices:
+  adjust_period: 10
+  capture:
+    channels: 4
+    device: hw:m2x4HD
+    format: S32LE
+    type: Alsa
+  capture_samplerate: 96000
+  chunksize: 128
+  enable_rate_adjust: true
+  playback:
+    channels: 4
+    device: hw:M4
+    format: S32LE
+    type: Alsa
+  queuelimit: 4
+  rate_measure_interval: 1
+  resampler:
+    profile: Balanced
+    type: AsyncSinc
+  samplerate: 96000
+  silence_threshold: -100
+  silence_timeout: 5
+  stop_on_rate_change: false
+  target_level: 384
+  volume_ramp_time: null
+filters: null
+mixers:
+  4x4:
+    channels:
+      in: 4
+      out: 4
+    description: null
+    mapping:
+    - dest: 0
+      mute: false
+      sources:
+      - channel: 0
+        gain: 0
+        inverted: false
+        mute: false
+        scale: null
+    - dest: 1
+      mute: false
+      sources:
+      - channel: 1
+        gain: 0
+        inverted: false
+        mute: false
+        scale: null
+    - dest: 2
+      mute: false
+      sources:
+      - channel: 0
+        gain: 0
+        inverted: false
+        mute: false
+        scale: null
+    - dest: 3
+      mute: false
+      sources:
+      - channel: 1
+        gain: 0
+        inverted: false
+        mute: false
+        scale: null
+pipeline:
+- bypassed: null
+  description: null
+  name: 4x4
+  type: Mixer
+processors: null
+title: 2x4HD / M4
