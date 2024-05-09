@@ -6,8 +6,6 @@ I realize this tutorial is long and looks daunting. I felt the same way when try
 
 I would like to especially thank @HenrikEnquist for developing CamillaDSP. I’ve long been skeptical of computer-based DSP but CamillaDSP is a game changer. It runs on minimal hardware, is easy to interface with a variety of devices and is exceptionally well designed. I’ve replaced all of my miniDSP systems with RPi4s running CamillaDSP and could not be happier.
 
-The tutorial is divided in to 4 parts, Part 1 talks through CamillaDSP background, Part 2 covers initial CamillaDSP setup, Part 3 documents specific CamillaDSP configuration files for various multichannel DACs and Part 4 talks covers advanced topics such as the GUI, displays, IR receivers, trigger output options and cases.
-
 I am not a programmer or DSP expert, my primary motivation is finding better ways to implement DIY active speakers. If you see a better way of doing something or want further explanation please speak up! These instructions have been developed as I learned how to implement CamillaDSP and found better ways to set it up but I am always learning.
 
 Prior to GitHub, I archived older versions of the tutorial at the links below.
