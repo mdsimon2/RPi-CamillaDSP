@@ -71,7 +71,7 @@ This part describes how to get a working CamillaDSP setup. Values in bold are us
 
 For reference, a complete install should take just under 1 hour (including display and FLIRC IR receiver setup), most of that time is waiting for things to download / install.
 
-### 1-4) Write Raspberry Pi OS Lite (recommended) or Ubuntu Server 64 bit to micro SD card using Raspberry Pi Imager and login via SSH
+### 1) Write Raspberry Pi OS Lite (recommended) or Ubuntu Server 64 bit to micro SD card using Raspberry Pi Imager and login via SSH
 
 Download and install Raspberry Pi Imager from the links below for your OS.
 
@@ -103,7 +103,7 @@ Ubuntu.png
 
 Before we get started a few notes about using copy / paste in terminal and/or nano. On Mac this is straight forward you can use cmd + v or right click + Paste likely you normally would. On Windows running WSL it is a little weird, I have not found a keyboard shortcut that works but if you right click it will paste what is in your clipboard.
 
-### 5) Update / upgrade RPi
+### 2) Update / upgrade RPi
 
 Open terminal and log in to RPi remotely via 
 <pre>
@@ -117,7 +117,7 @@ sudo apt full-upgrade
 
 Say yes to any prompts asking if you want to upgrade. You may be prompted about restarting services, if so just hit enter.
 
-### 6) Install CamillaDSP
+### 3) Install CamillaDSP
 
 Make a camilladsp folder as well as folders for CamillaDSP to reference stored coefficients and configurations.
 
@@ -138,9 +138,7 @@ wget https://github.com/HEnquist/camilladsp/releases/download/v2.0.3/camilladsp-
 sudo tar -xvf ~/camilladsp/camilladsp-linux-aarch64.tar.gz -C /usr/local/bin/
 </pre>
 
-### 7-9) Steps removed for simplicity
-
-### 10) Create CamillaDSP service
+### 4) Create CamillaDSP service
 
 <pre>
 sudo nano /lib/systemd/system/camilladsp.service
@@ -195,13 +193,13 @@ sudo service camilladsp start
 
 "-o camilladsp/camilladsp.log" will create a log file that you can view in the GUI for troubleshooting. You can increase the verbosity of this log by adding "-l debug".
 
-### 11) Install python and dependencies
+### 5) Install python and dependencies
 
 <pre>
 sudo apt install python3 python3-pip python3-websocket python3-aiohttp python3-jsonschema python3-numpy python3-matplotlib unzip
 </pre>
 
-### 12) Install pycamilladsp
+### 6) Install pycamilladsp
 
 Download pycamilladsp and install. 
 
@@ -209,7 +207,7 @@ Download pycamilladsp and install.
 sudo pip3 install git+https://github.com/HEnquist/pycamilladsp.git --break-system-packages
 </pre>
 
-### 13) Install pycamilladsp-plot
+### 7) Install pycamilladsp-plot
 
 Download pyamilladsp-plot and install. 
 
@@ -217,66 +215,57 @@ Download pyamilladsp-plot and install.
 sudo pip3 install git+https://github.com/HEnquist/pycamilladsp-plot.git --break-system-packages
 </pre>
 
-### 14) Install GUI server
+### 8) Install GUI server
 
-Commands below will install V2.1.0 of the GUI.
+Commands below will install V2.1.1 of the GUI.
 
-Rich (BB code):
-wget https://github.com/HEnquist/camillagui-backend/releases/download/v2.1.0/camillagui.zip -P ~/camilladsp/
+<pre>
+wget https://github.com/HEnquist/camillagui-backend/releases/download/v2.1.1/camillagui.zip -P ~/camilladsp/
 unzip ~/camilladsp/camillagui.zip -d ~/camilladsp/camillagui
+</pre>
 
-### 15) Try starting GUI
+### 9) Create service to start GUI
 
-As with CamillaDSP itself it is good practice to start the GUI directly from terminal before proceeding to creating service.
-
-Rich (BB code):
-python3 ~/camilladsp/camillagui/main.py
-
-If all goes well you will see the following output. GUI is accessed via http://hostname:5005 from any web browser on your network. Note V1 used port 5000 and v2 now uses port 5005.
-
-Again, use crtl + c to exit.
-
-Rich (BB code):
-username@hostname:~$ python3 ~/camilladsp/camillagui/main.py
-======== Running on http://0.0.0.0:5005 ========
-(Press CTRL+C to quit)
-
-### 16) Create service to start GUI
-
-Rich (BB code):
+<pre>
 sudo nano /lib/systemd/system/camillagui.service
+</pre>
 
-Update the User field to reflect your username.
+Update the username to reflect your username.
 
-Rich (BB code):
+<pre>
+<i>
 [Unit]
 Description=CamillaDSP Backend and GUI
 After=multi-user.target
 
 [Service]
 Type=idle
-User=username
+User=<b>username</b>
 WorkingDirectory=~
 ExecStart=python3 camilladsp/camillagui/main.py
 
 [Install]
 WantedBy=multi-user.target
+</i>
+</pre>
 
 Enable camillagui service.
 
-Rich (BB code):
+<pre>
 sudo systemctl enable camillagui
+</pre>
 
 Start camillagui service.
 
-Rich (BB code):
+<pre>
 sudo service camillagui start
+</pre>
 
 ### 17) Assign active configuration in GUI
 
 On a computer that is on the same network as your RPi navigate your browser to http://hostname:5005.
 
-Navigate to Files tab of GUI and set your desired configuration as active by pressing the "star" next to the configuration you want. From now on CamillaDSP and the GUI will start with this configuration loaded. Click the "Apply and Save" button in the lower left to load the configuration to DSP.
+Navigate to Files tab of GUI and upload your desired configuration. Set this configuration as active by pressing the "star" next to the configuration. From now on CamillaDSP and the GUI will start with this configuration loaded. Click the "Apply and Save" button in the lower left to load the configuration to DSP.
 
 Screenshot 2023-12-15 083736.png
 
@@ -284,32 +273,27 @@ Congratulations, you now have CamillaDSP up and running!
 
 If you would like to upgrade to a new version of CamillaDSP simply remove your old CamillaDSP binary and tar and download and extract a new one.
 
-Code:
-rm ~/camilladsp/camilladsp ~/camilladsp/camilladsp-linux-aarch64.tar.gz
+<pre>
+rm ~/camilladsp/camilladsp-linux-aarch64.tar.gz
 wget https://github.com/HEnquist/camilladsp/releases/download/v2.0.3/camilladsp-linux-aarch64.tar.gz -P ~/camilladsp/
 sudo tar -xvf ~/camilladsp/camilladsp-linux-aarch64.tar.gz -C /usr/local/bin/
 sudo service camilladsp restart
+</pre>
 
 Upgrading the GUI is a similar process.
 
-Code:
+<pre>
 rm -r ~/camilladsp/camillagui ~/camilladsp/camillagui.zip
-wget https://github.com/HEnquist/camillagui-backend/releases/download/v2.1.0/camillagui.zip -P ~/camilladsp/
+wget https://github.com/HEnquist/camillagui-backend/releases/download/v2.1.1/camillagui.zip -P ~/camilladsp/
 unzip ~/camilladsp/camillagui.zip -d ~/camilladsp/camillagui
 sudo service camilladsp restart
 sudo service camillagui restart
+</pre>
 
-For upgrades to pycamilladsp and pycamilladsp-plot, re-run the original install commands to get the new versions. For example, running the following will give the most recent versions on Ubuntu 22.04 LTS.
+For upgrades to pycamilladsp and pycamilladsp-plot, re-run the original install commands to get the new versions. 
 
-Code:
-sudo pip3 install git+https://github.com/HEnquist/pycamilladsp.git
-sudo pip3 install git+https://github.com/HEnquist/pycamilladsp-plot.git
-sudo service camillagui restart
-
-For upgrades on Ubuntu 23.10 you need to add "--break-system-packages".
-
-Code:
+<pre>
 sudo pip3 install git+https://github.com/HEnquist/pycamilladsp.git --break-system-packages
 sudo pip3 install git+https://github.com/HEnquist/pycamilladsp-plot.git --break-system-packages
 sudo service camillagui restart
-
+</pre>
