@@ -293,7 +293,7 @@ sudo pip3 install git+https://github.com/HEnquist/pycamilladsp-plot.git --break-
 sudo service camillagui restart
 ```
 
-## CamillaDSP Configurations
+## Streamer Applications
 
 There are two basic ways to use CamillaDSP, either use RPi as a streamer (AirPlay, squeezelite, spotify, bluetooth, etc) or use an external physical input like TOSLINK, SPDIF, AES or analog. I will document configuration files for both streamer and external inputs for each of the recommended DACs in this tutorial. The configurations are simple and route 2 channel input to all available outputs.
 
@@ -353,7 +353,7 @@ sudo service squeezelite restart
 
 These changes set your ALSA loopback device 1 as squeezelite playback device, resample all files to 44.1 kHz using a high quality resampling algorithm and stop squeezelite after 5 seconds of inactivity.
 
-OK, time to jump in to the configuration files.
+## CamillaDSP Configurations
 
 All configurations use maximum amount of output channels for a given device. If you do not need an output channel remove it from the mixer as each extra channel requires additional processing resource. Configuration files can be found in the [configs](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/configs) folder of this repository.
 
