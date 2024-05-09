@@ -427,13 +427,13 @@ Outputs:
 
 Once you have channel routing setup in Cuemix this DAC is very similar to the Okto in terms of setup just with more inputs / output options. Although it has a volume knob, I like to use CamillaDSP for volume control with the Mk5 as it does not have an IR receiver. I use a FLIRC USB IR receiver and separate display for volume indication as described in Part 4.
 
-#### ultralitemk5_streamer.yml
+- ultralitemk5_streamer.yml
 
-Set clock source to internal via Ultralite Mk5 front panel. All streamer configurations expect 44.1 kHz input. As the ALSA loopback has a different clock from the Ultralite Mk5 these configurations have rate adjust enabled to allow CamillaDSP to adjust the ALSA loopback to match the Ultralite Mk5 clock and avoid buffer under/over runs. I have also included configurations that upsample to 96 kHz and 192 kHz.
+* Set clock source to internal via Ultralite Mk5 front panel. All streamer configurations expect 44.1 kHz input. As the ALSA loopback has a different clock from the Ultralite Mk5 these configurations have rate adjust enabled to allow CamillaDSP to adjust the ALSA loopback to match the Ultralite Mk5 clock and avoid buffer under/over runs. I have also included configurations that upsample to 96 kHz and 192 kHz.
 
-#### ultralitemk5_toslink.yml
+- ultralitemk5_toslink.yml
 
-Set clock source to optical and change optical input setting to TOSLINK via Ultralite Mk5 front panel. No rate adjust is enabled as the Ultralite Mk5 is clocked by TOSLINK input in this mode. All configurations use the same input and output sample rate as it is not possible to use different sample rates. Configurations are provided for 48 and 96 kHz sample rates, note that at 176.4/192 kHz optical and SPDIF I/O are disabled.
+* Set clock source to optical and change optical input setting to TOSLINK via Ultralite Mk5 front panel. No rate adjust is enabled as the Ultralite Mk5 is clocked by TOSLINK input in this mode. All configurations use the same input and output sample rate as it is not possible to use different sample rates. Configurations are provided for 48 and 96 kHz sample rates, note that at 176.4/192 kHz optical and SPDIF I/O are disabled.
 
 #### ultralitemk5_spdif.yml
 
