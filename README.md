@@ -97,7 +97,7 @@ Run wsl --install in PowerShell and restart.
 
 Once you restart open Ubuntu which will give you a terminal to enter commands.
 
-Ubuntu.png
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/Ubuntu.png" alt="Ubuntu" width="500"/>
 
 Before we get started a few notes about using copy / paste in terminal and/or nano. On Mac this is straight forward you can use cmd + v or right click + Paste likely you normally would. On Windows running WSL it is a little weird, I have not found a keyboard shortcut that works but if you right click it will paste what is in your clipboard.
 
