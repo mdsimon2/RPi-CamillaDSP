@@ -299,9 +299,8 @@ There are two basic ways to use CamillaDSP, either use RPi as a streamer (AirPla
 
 For streamer applications I am assuming your player is outputting 44.1 kHz and resampling everything that is not 44.1 kHz to accomplish this. Before we get started I will show you how to install shairport-sync (Airplay) and squeezelite as these are the players that I use in my streamer setup and how to best configure them.
 
-### Install shairport-sync
+### shairport-sync
 
-From here on out and I am going to assume you know how to SSH in to your RPi so you won’t see that step.
 
 ```
 sudo apt install shairport-sync libsoxr-dev
@@ -328,7 +327,7 @@ Restart shairport-sync service to reflect changes in shairport-sync.conf
 sudo service shairport-sync restart
 ```
 
-### Install squeezelite
+### squeezelite
 
 ```
 sudo apt install squeezelite
