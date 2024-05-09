@@ -292,3 +292,172 @@ sudo pip3 install git+https://github.com/HEnquist/pycamilladsp.git --break-syste
 sudo pip3 install git+https://github.com/HEnquist/pycamilladsp-plot.git --break-system-packages
 sudo service camillagui restart
 ```
+
+## CamillaDSP Configurations
+
+There are two basic ways to use CamillaDSP, either use RPi as a streamer (AirPlay, squeezelite, spotify, bluetooth, etc) or use an external physical input like TOSLINK, SPDIF, AES or analog. I will document configuration files for both streamer and external inputs for each of the recommended DACs in this tutorial. The configurations are simple and route 2 channel input to all available outputs.
+
+For streamer applications I am assuming your player is outputting 44.1 kHz and resampling everything that is not 44.1 kHz to accomplish this. Before we get started I will show you how to install shairport-sync (Airplay) and squeezelite as these are the players that I use in my streamer setup and how to best configure them.
+
+### Install shairport-sync
+
+From here on out and I am going to assume you know how to SSH in to your RPi so you won’t see that step.
+
+```
+sudo apt install shairport-sync libsoxr-dev
+```
+
+After you install there are some configuration items we will need to change.
+
+```
+sudo nano /etc/shairport-sync.conf
+```
+
+Uncomment the following lines (delete // from start of line) and make changes shown below.
+
+```
+interpolation = "soxr";
+output_device = "hw:Loopback,1";
+```
+
+Using SOX for interpolation should avoid audible artifacts from clock syncing. The last line sets the output device to your ALSA loopback device 1. Airplay will automatically resample to 44.1 kHz sample rate by default.
+
+Restart shairport-sync service to reflect changes in shairport-sync.conf
+
+```
+sudo service shairport-sync restart
+```
+
+### Install squeezelite
+
+```
+sudo apt install squeezelite
+```
+
+Like shairport-sync we need to make a few changes to the squeezelite configuration. Copy and paste the lines shown below to the end of the file using nano.
+
+```
+sudo nano /etc/default/squeezelite
+```
+
+```
+SL_SOUNDCARD="hw:Loopback,1"
+SB_EXTRA_ARGS="-W -C 5 -r 44100-44100 -R hLE:::28"
+```
+
+Restart squeezelite service to reflect changes.
+
+```
+sudo service squeezelite restart
+```
+
+These changes set your ALSA loopback device 1 as squeezelite playback device, resample all files to 44.1 kHz using a high quality resampling algorithm and stop squeezelite after 5 seconds of inactivity.
+
+OK, time to jump in to the configuration files.
+
+All configurations use maximum amount of output channels for a given device. If you do not need an output channel remove it from the mixer as each extra channel requires additional processing resource. Configuration files can be found in the [configs](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/configs) folder of this repository.
+
+The naming convention for my configuration files is dac_input_capturerate_playbackrate. For example, a configuration for a MOTU Ultralite Mk5, TOSLINK input with 96 kHz capture and 96 kHz playback rates is ultralitemk5_toslink_96c_96p.
+
+CamillaDSP expects a constant capture sample rate and cannot accommodate rate changes without a restart. If you have a variable sample rate physical digital source like TOSLINK, AES or SPDIF or have multiple physical digital sources with different rates, a good option is to add a device that has an ASRC to convert to a consistent rate. miniDSP offer many devices with this capability which are summarized summarized below.
+
+- [nanoDIGI](https://www.minidsp.com/images/documents/nanoDIGI%202x8%20User%20Manual.pdf) - $170, discontinued in 2021 but possible to find used, SPDIF / TOSLINK input, SPDIF output, 96 kHz
+- [2x4HD](https://www.minidsp.com/products/minidsp-in-a-box/minidsp-2x4-hd) - $225, TOSLINK / analog input, USB output, 96 kHz
+[miniDSP OpenDRC-DI](https://www.minidsp.com/products/opendrc-series/opendrc-di) - $325, AES / SPDIF / TOSLINK input and output, 48 or 96 kHz
+[Flex Digital](https://www.minidsp.com/products/minidsp-in-a-box/flex) - $495, SPDIF / TOSLINK / USB / analog / bluetooth input, SPDIF / TOSLINK / USB output, 96 kHz
+[Flex Analog](https://www.minidsp.com/products/minidsp-in-a-box/flex) $495-470, SPDIF / TOSLINK / analog / bluetooth input, USB Output, 96 kHz
+[SHD Studio](https://www.minidsp.com/products/streaming-hd-series/shd-studio) - $900, AES / SPDIF / TOSLINK / USB / streamer input, SPDIF / AES / USB output, 96 kHz
+[SHD])https://www.minidsp.com/products/streaming-hd-series/shd) - $1250, AES / SPDIF / TOSLINK / USB / streamer / analog input, SPDIF / AES / USB output, 96 kHz
+
+All of these devices can do IR volume control, although not all have displays for volume / input identification.
+
+For 2x4HD and Flex you can also use Dirac upgraded versions but sample rate will change from 96 kHz to 48 kHz.
+
+In order to use USB output of devices like 2x4HD, Flex and SHD you need to set them as the CamillaDSP capture device. Unfortunately this ties up the USB input and makes it unusable. Still, this is a good approach to add extra input functionality to basic USB DACs like the MOTU M4 or Topping DM7 which only have USB input.
+
+If you have a constant sample rate digital source the following devices work well. Compared to other solutions like the HiFiBerry Digi+ I/O they handle signal interruptions gracefully. These devices are used in a similar way to the miniDSPs with USB outputs, the device is set as the CamillaDSP capture device. Note that although the S2 digi also has a TOSLINK output I have found that it does not work well if both the TOSLINK input and output are used with CamillaDSP.
+
+hifime S2 digi (SA9227) - $40, TOSLINK input, USB output, sample rates up to 192 kHz
+hifime UR23 - $25, TOSLINK input, USB output, sample rates up to 96 kHz
+
+Okto dac8 PRO
+
+These configurations assume that you are NOT using CamillaDSP volume control as the Okto has a nice volume display with knob and IR control. As volume control is downstream of CamillaDSP, digital clipping in CamillaDSP is more of an issue. As a result I have added 1 dB attenuation on all output channels to help avoid clipping, in general if you add boost in your configuration you will want to offset that boost by attenuating the output further. Use the CamillaDSP clipping indicator to gauge if you have enough attenuation to avoid digital clipping.
+
+okto_streamer.yml
+
+Set Okto to “Pure USB” mode. As mentioned previously all streamer configurations expect 44.1 kHz input. As the ALSA loopback has a different clock from the Okto these configurations have rate adjust enabled to allow CamillaDSP to adjust the ALSA loopback to match the Okto clock and avoid buffer under/over runs, you will see this approach in all further streamer configurations. I have also included configurations that upsample to 96 kHz and 192 kHz.
+
+okto_aes.yml
+
+Set Okto to “USB / AES” mode. This configuration assumes you are using 2 channel input with 8 channel output. If you would like to use more input channels you can modify the mixer to do so. No rate adjust is enabled as the Okto is clocked by AES input in this mode. All configurations use the same input and output sample rate as it is not possible to use different sample rates. Configurations are provided for 48, 96 and 192 kHz sample rates.
+
+MOTU Ultralite Mk5
+
+This DAC requires a small amount of setup while connected to a Mac or Windows computer prior to use with CamillaDSP. Install Cuemix 5 and set up channel routing such that USB 1-2 are routed to analog output 1-2, USB 3-4 to analog output 3-4, etc. Make sure no other channel routing is in place as we will do all channel routing in CamillaDSP. Check your levels in the Output tab as my Ultralite Mk5 came with all channels set to -20 dB by default. If you want to use the Mk5 volume knob then select which analog channels (knob will only work on analog channels) you want controlled by the knob in the Output tab. See screenshots below for what this should look like.
+
+CueMix Main 1-2.png CueMix Main 3-4.png CueMix Output.png
+
+It is a good idea to update the firmware at this time. After you do this initial setup in Cuemix you will not need to use it again in the future unless you want to upgrade the firmware.
+
+Input / output channels are described below, however not all channels are present at all sample rates. At 44.1/48 kHz all channels are available, at 88.2/96 kHz only inputs 0-15 and outputs 0-17 are available and at 176.4/192 kHz only inputs 0-9 and outputs 0-9 are available.
+
+Inputs:
+0-7: analog 1-8
+8-9: loopback 1-2
+10-11: SPDIF 1-2
+12-13: TOSLINK/ADAT 1-2
+14-15: ADAT 3-4
+16-17: ADAT 5-6
+18-19: ADAT 7-8
+
+Outputs:
+0-9: analog 1-10
+10-11: headphone 1-2
+12-13: SPDIF 1-2
+14-15: TOSLINK/ADAT 1-2
+16-17: ADAT 3-4
+18-19: ADAT 5-6
+20-21: ADAT 7-8
+
+Once you have channel routing setup in Cuemix this DAC is very similar to the Okto in terms of setup just with more inputs / output options. Although it has a volume knob, I like to use CamillaDSP for volume control with the Mk5 as it does not have an IR receiver. I use a FLIRC USB IR receiver and separate display for volume indication as described in Part 4.
+
+ultralitemk5_streamer.yml
+
+Set clock source to internal via Ultralite Mk5 front panel. All streamer configurations expect 44.1 kHz input. As the ALSA loopback has a different clock from the Ultralite Mk5 these configurations have rate adjust enabled to allow CamillaDSP to adjust the ALSA loopback to match the Ultralite Mk5 clock and avoid buffer under/over runs. I have also included configurations that upsample to 96 kHz and 192 kHz.
+
+ultralitemk5_toslink.yml
+
+Set clock source to optical and change optical input setting to TOSLINK via Ultralite Mk5 front panel. No rate adjust is enabled as the Ultralite Mk5 is clocked by TOSLINK input in this mode. All configurations use the same input and output sample rate as it is not possible to use different sample rates. Configurations are provided for 48 and 96 kHz sample rates, note that at 176.4/192 kHz optical and SPDIF I/O are disabled.
+
+ultralitemk5_spdif.yml
+
+Set clock source to SPDIF via Ultralite Mk5 front panel. No rate adjust is enabled as the Ultralite Mk5 is clocked by SPDIF input in this mode. All configurations use the same input and output sample rate as it is not possible to use different sample rates. Configurations are provided for 48 and 96 kHz sample rates, note that at 176/192 kHz optical and SPDIF I/O are disabled.
+
+ultralitemk5_analog.yml
+
+Set the clock source to internal via Ultralite Mk5 front panel. This configuration uses analog 3 and 4 as inputs but you can add/change to other inputs as needed. All configurations use the same input and output sample rate as it is not possible to use different sample rates. Configurations are provided for 48, 96 and 192 kHz sample rates.
+
+MOTU M4
+
+This is the easiest of the bunch to setup as it has limited I/O functionality. Like the Ultralite Mk5 I use CamillaDSP volume control with this DAC.
+
+m4_streamer.yml
+
+All streamer configurations expect 44.1 kHz input. As the ALSA loopback has a different clock from the M4 these configurations have rate adjust enabled to allow CamillaDSP to adjust the ALSA loopback to match the M4 clock and avoid buffer under/over runs. I have also included configurations that upsample to 96 kHz and 192 kHz.
+
+m4_analog.yml
+
+This configuration uses analog inputs 3 and 4 but you can use others if needed. All configurations use the same input and output sample rate as it is not possible to use different sample rates. Configurations are provided for 48, 96 and 192 kHz sample rates.
+
+m4_2x4hd.yml
+
+This configuration uses a miniDSP 2x4HD as capture device. Rate adjust and asynchronous resampling are enabled to prevent buffer under/over runs as the 2x4HD and M4 have separate clocks and unlike an ALSA Loopback CamillaDSP has no ability to adjust the 2x4HD clock. Capture sample rate is set to 96 kHz to match the miniDSP 2x4HD sample rate. Only a 96 kHz playback sample rate configuration is provided but this can be changed to any sample rate supported by the M4 as the capture and playback devices are separate.
+
+m4_sa9227.yml
+
+This configuration uses a hifime S2 digi (SA9227) as capture device. Rate adjust and asynchronous resampling are enabled to prevent buffer under/over runs as the S2 digi (SA9227) and M4 have separate clocks and unlike an ALSA Loopback CamillaDSP has no ability to adjust the S2 digi (SA9227) clock. Capture sample rate is set to device maximum of 96 kHz but this can also be set to lower rates to match your source. Configurations are provided with 96 kHz and 192 kHz playback sample rates.
+
+m4_ur23.yml
+
+This configuration uses a hifime UR23 as capture device. Rate adjust and asynchronous resampling are enabled to prevent buffer under/over runs as the UR23 and M4 have separate clocks and unlike an ALSA Loopback CamillaDSP has no ability to adjust the UR23 clock. Configurations are provided for 44.1 kHz and 192 kHz capture sample rates but this can be changed to match your source. Both provided configurations use a 192 kHz playback sample rate but this can be changed as desired as capture and playback devices are separate.
