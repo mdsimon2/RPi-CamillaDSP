@@ -408,22 +408,22 @@ It is a good idea to update the firmware at this time. After you do this initial
 Input / output channels are described below, however not all channels are present at all sample rates. At 44.1/48 kHz all channels are available, at 88.2/96 kHz only inputs 0-15 and outputs 0-17 are available and at 176.4/192 kHz only inputs 0-9 and outputs 0-9 are available.
 
 Inputs:
-0-7: analog 1-8
-8-9: loopback 1-2
-10-11: SPDIF 1-2
-12-13: TOSLINK/ADAT 1-2
-14-15: ADAT 3-4
-16-17: ADAT 5-6
-18-19: ADAT 7-8
+- 0-7: analog 1-8
+- 8-9: loopback 1-2
+- 10-11: SPDIF 1-2
+- 12-13: TOSLINK/ADAT 1-2
+- 14-15: ADAT 3-4
+- 16-17: ADAT 5-6
+- 18-19: ADAT 7-8
 
 Outputs:
-0-9: analog 1-10
-10-11: headphone 1-2
-12-13: SPDIF 1-2
-14-15: TOSLINK/ADAT 1-2
-16-17: ADAT 3-4
-18-19: ADAT 5-6
-20-21: ADAT 7-8
+- 0-9: analog 1-10
+- 10-11: headphone 1-2
+- 12-13: SPDIF 1-2
+- 14-15: TOSLINK/ADAT 1-2
+- 16-17: ADAT 3-4
+- 18-19: ADAT 5-6
+- 20-21: ADAT 7-8
 
 Once you have channel routing setup in Cuemix this DAC is very similar to the Okto in terms of setup just with more inputs / output options. Although it has a volume knob, I like to use CamillaDSP for volume control with the Mk5 as it does not have an IR receiver. I use a FLIRC USB IR receiver and separate display for volume indication as described in Part 4.
 
