@@ -108,10 +108,10 @@ Open terminal and log in to RPi remotely via
 ssh <b>username</b>@<b>hostname</b>
 </pre>
 
-<pre>
+```
 sudo apt update
 sudo apt full-upgrade
-</pre>
+```
 
 Say yes to any prompts asking if you want to upgrade. You may be prompted about restarting services, if so just hit enter.
 
