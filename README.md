@@ -138,144 +138,16 @@ wget https://github.com/HEnquist/camilladsp/releases/download/v2.0.3/camilladsp-
 sudo tar -xvf ~/camilladsp/camilladsp-linux-aarch64.tar.gz -C /usr/local/bin/
 </pre>
 
-### 7) Create CamillaDSP yml configuration file
-
-Assuming you are using one of the DACs listed in this tutorial, see Part 3 for configuration files for a variety of use cases. Download the appropriate configuration file from the end of Part 3, for example for a MOTU Ultralite Mk5 streamer setup using a 44 kHz capture rate and a 96 kHz playback rate use "ultralitemk5_streamer_44c_96p_v2_12142023.yml". In Windows open this file up with notepad or wordpad, in Mac use textedit.
-
-Copy the text in the configuration file and use nano to create an yml configuration file on your RPi. Paste the text from your configuration file in to nano and save the yml configuration file. Here is an example of creating a configuration file called ultralitemk5_streamer.yml but you can name the configuration file anything you like, it just needs to end in .yml.
-
-Rich (BB code):
-nano ~/camilladsp/configs/ultralitemk5_streamer.yml
-
-As an alternative to using copy / paste in nano you can directly transfer the files to the RPi using scp. To do this you need to be in terminal on your local machine and NOT logged in to the RPi via SSH.
-
-As an example for the Ultralite Mk5:
-
-Rich (BB code):
-sudo scp /path/to/configuration/on/local/machine/ultralitemk5_streamer_44c_96p_v2_12142023.yml username@hostname:/home/username/camilladsp/configs/ultralitemk5_streamer.yml
-
-If you have a local copy of the file you are trying to get on the RPi you can use scp as an alternative to copy / pasting in nano anywhere in this tutorial. Many find nano difficult to use while text editors on Mac and PC are in general more user friendly and you have the benefit of a mouse.
-
-As a reference for those using WSL you can navigate to the home directory of your WSL Ubuntu installation by going to \\wsl.localhost\Ubuntu\home in Windows Explorer and drag and drop the files you want to transfer there so they can easily be referenced in WSL.
-
-### 8) Set up ALSA loopback
-
-If you are using a physical input (AES, TOSLINK, SPDIF, analog) you can skip this step.
-
-An ALSA loopback is a virtual soundcard that has two devices (0 and 1). A software player can be directed to play to Loopback device 1 which will then be rerouted to Loopback device 0, in this case Loopback device 0 now acts as a source that can be used as a CamillaDSP capture device.
-
-By default, ALSA loopback is not installed on Ubuntu Server 64 bit. Run command below to install it.
-
-Rich (BB code):
-sudo apt install linux-modules-extra-raspi
-
-Use nano to create snd-aloop.conf.
-
-Rich (BB code):
-sudo nano /etc/modules-load.d/snd-aloop.conf
-
-Add line below to snd-aloop.conf and save.
-
-Rich (BB code):
-snd-aloop
-
-Reboot RPi.
-
-Rich (BB code):
-sudo reboot
-
-Log back in to RPi.
-
-Rich (BB code):
-ssh username@hostname
-
-### 9) Try starting CamillaDSP
-
-We will eventually install a service to automatically start CamillaDSP, but first try to start directly from terminal to make sure everything is working as expected. This example assumes a configuration file called ultralitemk5_streamer.yml, please update to the name of your configuration file.
-
-Rich (BB code):
-camilladsp -g-40 -p 1234 ~/camilladsp/configs/ultralitemk5_streamer.yml -v
-
-You should see an output similar to what is shown below in terminal. As we added "-v" there will be a lot of good debugging information that can help you troubleshoot in case of an error. To exit enter crtl + c.
-
-Rich (BB code):
-username@hostname:~$ camilladsp -g-40 -p 1234 ~/camilladsp/configs/ultralitemk5_streamer.yml -v
-2023-12-15 14:07:07.225478 INFO [src/bin.rs:683] CamillaDSP version 2.0.0
-2023-12-15 14:07:07.225541 INFO [src/bin.rs:684] Running on linux, aarch64
-2023-12-15 14:07:07.225656 DEBUG [src/bin.rs:728] Loaded state: None
-2023-12-15 14:07:07.225678 DEBUG [src/bin.rs:732] Using command line argument for initial volume
-2023-12-15 14:07:07.225691 DEBUG [src/bin.rs:755] Using default initial mute
-2023-12-15 14:07:07.225702 DEBUG [src/bin.rs:765] Initial mute: [false, false, false, false, false]
-2023-12-15 14:07:07.225716 DEBUG [src/bin.rs:766] Initial volume: [-40.0, -40.0, -40.0, -40.0, -40.0]
-2023-12-15 14:07:07.225734 DEBUG [src/bin.rs:768] Read config file Some("/home/michael5/camilladsp/configs/ultralitemk5_streamer.yml")
-2023-12-15 14:07:07.265438 DEBUG [src/bin.rs:808] Config is valid
-2023-12-15 14:07:07.266044 DEBUG [src/socketserver.rs:432] Start websocket server on 127.0.0.1:1234
-2023-12-15 14:07:07.266382 DEBUG [src/bin.rs:994] Wait for config
-2023-12-15 14:07:07.266410 DEBUG [src/bin.rs:1010] Waiting to receive a command
-2023-12-15 14:07:07.266426 DEBUG [src/bin.rs:1013] Config change command received
-2023-12-15 14:07:07.266440 DEBUG [src/bin.rs:999] New config is available and there are no queued commands, continuing
-2023-12-15 14:07:07.266453 DEBUG [src/bin.rs:1036] Config ready, start processing
-2023-12-15 14:07:07.267173 DEBUG [src/bin.rs:157] Using channels [true, true]
-2023-12-15 14:07:07.269284 DEBUG [src/filters.rs:488] Build new pipeline
-2023-12-15 14:07:07.272542 DEBUG [src/processing.rs:19] build filters, waiting to start processing loop
-2023-12-15 14:07:07.383996 DEBUG [src/alsadevice.rs:334] Available Playback devices: [("hw:Loopback,0,0", "Loopback, Loopback PCM, subdevice #0"), ("hw:Loopback,0,1", "Loopback, Loopback PCM, subdevice #1"), ("hw:Loopback,0,2", "Loopback, Loopback PCM, subdevice #2"), ("hw:Loopback,0,3", "Loopback, Loopback PCM, subdevice #3"), ("hw:Loopback,0,4", "Loopback, Loopback PCM, subdevice #4"), ("hw:Loopback,0,5", "Loopback, Loopback PCM, subdevice #5"), ("hw:Loopback,0,6", "Loopback, Loopback PCM, subdevice #6"), ("hw:Loopback,0,7", "Loopback, Loopback PCM, subdevice #7"), ("hw:Loopback,1,0", "Loopback, Loopback PCM, subdevice #0"), ("hw:Loopback,1,1", "Loopback, Loopback PCM, subdevice #1"), ("hw:Loopback,1,2", "Loopback, Loopback PCM, subdevice #2"), ("hw:Loopback,1,3", "Loopback, Loopback PCM, subdevice #3"), ("hw:Loopback,1,4", "Loopback, Loopback PCM, subdevice #4"), ("hw:Loopback,1,5", "Loopback, Loopback PCM, subdevice #5"), ("hw:Loopback,1,6", "Loopback, Loopback PCM, subdevice #6"), ("hw:Loopback,1,7", "Loopback, Loopback PCM, subdevice #7"), ("hw:Headphones,0,0", "bcm2835 Headphones, bcm2835 Headphones, subdevice #0"), ("hw:Headphones,0,1", "bcm2835 Headphones, bcm2835 Headphones, subdevice #1"), ("hw:Headphones,0,2", "bcm2835 Headphones, bcm2835 Headphones, subdevice #2"), ("hw:Headphones,0,3", "bcm2835 Headphones, bcm2835 Headphones, subdevice #3"), ("hw:Headphones,0,4", "bcm2835 Headphones, bcm2835 Headphones, subdevice #4"), ("hw:Headphones,0,5", "bcm2835 Headphones, bcm2835 Headphones, subdevice #5"), ("hw:Headphones,0,6", "bcm2835 Headphones, bcm2835 Headphones, subdevice #6"), ("hw:Headphones,0,7", "bcm2835 Headphones, bcm2835 Headphones, subdevice #7"), ("hw:UltraLitemk5,0,0", "UltraLite-mk5, USB Audio, subdevice #0"), ("null", "Discard all samples (playback) or generate zero samples (capture)"), ("hw:CARD=Loopback,DEV=0", "Loopback, Loopback PCM\nDirect hardware device without any conversions"), ("hw:CARD=Loopback,DEV=1", "Loopback, Loopback PCM\nDirect hardware device without any conversions"), ("plughw:CARD=Loopback,DEV=0", "Loopback, Loopback PCM\nHardware device with all software conversions"), ("plughw:CARD=Loopback,DEV=1", "Loopback, Loopback PCM\nHardware device with all software conversions"), ("default:CARD=Loopback", "Loopback, Loopback PCM\nDefault Audio Device"), ("sysdefault:CARD=Loopback", "Loopback, Loopback PCM\nDefault Audio Device"), ("front:CARD=Loopback,DEV=0", "Loopback, Loopback PCM\nFront output / input"), ("surround21:CARD=Loopback,DEV=0", "Loopback, Loopback PCM\n2.1 Surround output to Front and Subwoofer speakers"), ("surround40:CARD=Loopback,DEV=0", "Loopback, Loopback PCM\n4.0 Surround output to Front and Rear speakers"), ("surround41:CARD=Loopback,DEV=0", "Loopback, Loopback PCM\n4.1 Surround output to Front, Rear and Subwoofer speakers"), ("surround50:CARD=Loopback,DEV=0", "Loopback, Loopback PCM\n5.0 Surround output to Front, Center and Rear speakers"), ("surround51:CARD=Loopback,DEV=0", "Loopback, Loopback PCM\n5.1 Surround output to Front, Center, Rear and Subwoofer speakers"), ("surround71:CARD=Loopback,DEV=0", "Loopback, Loopback PCM\n7.1 Surround output to Front, Center, Side, Rear and Woofer speakers"), ("dmix:CARD=Loopback,DEV=0", "Loopback, Loopback PCM\nDirect sample mixing device"), ("dmix:CARD=Loopback,DEV=1", "Loopback, Loopback PCM\nDirect sample mixing device"), ("hw:CARD=Headphones,DEV=0", "bcm2835 Headphones, bcm2835 Headphones\nDirect hardware device without any conversions"), ("plughw:CARD=Headphones,DEV=0", "bcm2835 Headphones, bcm2835 Headphones\nHardware device with all software conversions"), ("default:CARD=Headphones", "bcm2835 Headphones, bcm2835 Headphones\nDefault Audio Device"), ("sysdefault:CARD=Headphones", "bcm2835 Headphones, bcm2835 Headphones\nDefault Audio Device"), ("dmix:CARD=Headphones,DEV=0", "bcm2835 Headphones, bcm2835 Headphones\nDirect sample mixing device"), ("hw:CARD=UltraLitemk5,DEV=0", "UltraLite-mk5, USB Audio\nDirect hardware device without any conversions"), ("plughw:CARD=UltraLitemk5,DEV=0", "UltraLite-mk5, USB Audio\nHardware device with all software conversions"), ("default:CARD=UltraLitemk5", "UltraLite-mk5, USB Audio\nDefault Audio Device"), ("sysdefault:CARD=UltraLitemk5", "UltraLite-mk5, USB Audio\nDefault Audio Device"), ("front:CARD=UltraLitemk5,DEV=0", "UltraLite-mk5, USB Audio\nFront output / input"), ("surround21:CARD=UltraLitemk5,DEV=0", "UltraLite-mk5, USB Audio\n2.1 Surround output to Front and Subwoofer speakers"), ("surround40:CARD=UltraLitemk5,DEV=0", "UltraLite-mk5, USB Audio\n4.0 Surround output to Front and Rear speakers"), ("surround41:CARD=UltraLitemk5,DEV=0", "UltraLite-mk5, USB Audio\n4.1 Surround output to Front, Rear and Subwoofer speakers"), ("surround50:CARD=UltraLitemk5,DEV=0", "UltraLite-mk5, USB Audio\n5.0 Surround output to Front, Center and Rear speakers"), ("surround51:CARD=UltraLitemk5,DEV=0", "UltraLite-mk5, USB Audio\n5.1 Surround output to Front, Center, Rear and Subwoofer speakers"), ("surround71:CARD=UltraLitemk5,DEV=0", "UltraLite-mk5, USB Audio\n7.1 Surround output to Front, Center, Side, Rear and Woofer speakers"), ("iec958:CARD=UltraLitemk5,DEV=0", "UltraLite-mk5, USB Audio\nIEC958 (S/PDIF) Digital Audio Output"), ("dmix:CARD=UltraLitemk5,DEV=0", "UltraLite-mk5, USB Audio\nDirect sample mixing device")]
-2023-12-15 14:07:07.390260 DEBUG [src/alsadevice.rs:352] Playback: supported channels, min: 10, max: 22, list: [10, 18, 22]
-2023-12-15 14:07:07.390303 DEBUG [src/alsadevice.rs:353] Playback: setting channels to 10
-2023-12-15 14:07:07.390405 DEBUG [src/alsadevice.rs:357] Playback: supported samplerates: Discrete([176400, 192000])
-2023-12-15 14:07:07.390417 DEBUG [src/alsadevice.rs:358] Playback: setting rate to 192000
-2023-12-15 14:07:07.390491 DEBUG [src/alsadevice.rs:362] Playback: supported sample formats: [S24LE3]
-2023-12-15 14:07:07.390510 DEBUG [src/alsadevice.rs:363] Playback: setting format to S24LE3
-2023-12-15 14:07:07.390592 DEBUG [src/alsadevice_buffermanager.rs:43] Setting buffer size to 8192 frames
-2023-12-15 14:07:07.390643 DEBUG [src/alsadevice_buffermanager.rs:57] Device is using a buffer size of 8192 frames
-2023-12-15 14:07:07.390654 DEBUG [src/alsadevice_buffermanager.rs:65] Setting period size to 1024 frames
-2023-12-15 14:07:07.394799 DEBUG [src/alsadevice.rs:387] Opening Playback device "hw:UltraLitemk5" with parameters: HwParams { channels: Ok(10), rate: "Ok(192000) Hz", format: Ok(S243LE), access: Ok(RWInterleaved), period_size: "Ok(1024) frames", buffer_size: "Ok(8192) frames" }, SwParams(avail_min: Ok(4096) frames, start_threshold: Ok(1) frames, stop_threshold: Ok(8192) frames)
-2023-12-15 14:07:07.394887 DEBUG [src/alsadevice.rs:392] Playback device "hw:UltraLitemk5" successfully opened
-2023-12-15 14:07:07.395058 DEBUG [src/bin.rs:265] Playback thread ready to start
-2023-12-15 14:07:07.394857 DEBUG [src/alsadevice.rs:334] Available Capture devices: [("hw:Loopback,0,0", "Loopback, Loopback PCM, subdevice #0"), ("hw:Loopback,0,1", "Loopback, Loopback PCM, subdevice #1"), ("hw:Loopback,0,2", "Loopback, Loopback PCM, subdevice #2"), ("hw:Loopback,0,3", "Loopback, Loopback PCM, subdevice #3"), ("hw:Loopback,0,4", "Loopback, Loopback PCM, subdevice #4"), ("hw:Loopback,0,5", "Loopback, Loopback PCM, subdevice #5"), ("hw:Loopback,0,6", "Loopback, Loopback PCM, subdevice #6"), ("hw:Loopback,0,7", "Loopback, Loopback PCM, subdevice #7"), ("hw:Loopback,1,0", "Loopback, Loopback PCM, subdevice #0"), ("hw:Loopback,1,1", "Loopback, Loopback PCM, subdevice #1"), ("hw:Loopback,1,2", "Loopback, Loopback PCM, subdevice #2"), ("hw:Loopback,1,3", "Loopback, Loopback PCM, subdevice #3"), ("hw:Loopback,1,4", "Loopback, Loopback PCM, subdevice #4"), ("hw:Loopback,1,5", "Loopback, Loopback PCM, subdevice #5"), ("hw:Loopback,1,6", "Loopback, Loopback PCM, subdevice #6"), ("hw:Loopback,1,7", "Loopback, Loopback PCM, subdevice #7"), ("hw:UltraLitemk5,0,0", "UltraLite-mk5, USB Audio, subdevice #0"), ("null", "Discard all samples (playback) or generate zero samples (capture)"), ("hw:CARD=Loopback,DEV=0", "Loopback, Loopback PCM\nDirect hardware device without any conversions"), ("hw:CARD=Loopback,DEV=1", "Loopback, Loopback PCM\nDirect hardware device without any conversions"), ("plughw:CARD=Loopback,DEV=0", "Loopback, Loopback PCM\nHardware device with all software conversions"), ("plughw:CARD=Loopback,DEV=1", "Loopback, Loopback PCM\nHardware device with all software conversions"), ("default:CARD=Loopback", "Loopback, Loopback PCM\nDefault Audio Device"), ("sysdefault:CARD=Loopback", "Loopback, Loopback PCM\nDefault Audio Device"), ("front:CARD=Loopback,DEV=0", "Loopback, Loopback PCM\nFront output / input"), ("dsnoop:CARD=Loopback,DEV=0", "Loopback, Loopback PCM\nDirect sample snooping device"), ("dsnoop:CARD=Loopback,DEV=1", "Loopback, Loopback PCM\nDirect sample snooping device"), ("hw:CARD=UltraLitemk5,DEV=0", "UltraLite-mk5, USB Audio\nDirect hardware device without any conversions"), ("plughw:CARD=UltraLitemk5,DEV=0", "UltraLite-mk5, USB Audio\nHardware device with all software conversions"), ("default:CARD=UltraLitemk5", "UltraLite-mk5, USB Audio\nDefault Audio Device"), ("sysdefault:CARD=UltraLitemk5", "UltraLite-mk5, USB Audio\nDefault Audio Device"), ("front:CARD=UltraLitemk5,DEV=0", "UltraLite-mk5, USB Audio\nFront output / input"), ("dsnoop:CARD=UltraLitemk5,DEV=0", "UltraLite-mk5, USB Audio\nDirect sample snooping device")]
-2023-12-15 14:07:07.396101 DEBUG [src/alsadevice.rs:352] Capture: supported channels, min: 1, max: 32, list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
-2023-12-15 14:07:07.396129 DEBUG [src/alsadevice.rs:353] Capture: setting channels to 2
-2023-12-15 14:07:07.396167 DEBUG [src/alsadevice.rs:357] Capture: supported samplerates: Range(8000, 192000)
-2023-12-15 14:07:07.396176 DEBUG [src/alsadevice.rs:358] Capture: setting rate to 44100
-2023-12-15 14:07:07.396202 DEBUG [src/alsadevice.rs:362] Capture: supported sample formats: [S16LE, S24LE, S24LE3, S32LE, FLOAT32LE]
-2023-12-15 14:07:07.396210 DEBUG [src/alsadevice.rs:363] Capture: setting format to S32LE
-2023-12-15 14:07:07.396243 DEBUG [src/alsadevice_buffermanager.rs:43] Setting buffer size to 2048 frames
-2023-12-15 14:07:07.396277 DEBUG [src/alsadevice_buffermanager.rs:57] Device is using a buffer size of 2048 frames
-2023-12-15 14:07:07.396286 DEBUG [src/alsadevice_buffermanager.rs:65] Setting period size to 256 frames
-2023-12-15 14:07:07.396476 DEBUG [src/alsadevice.rs:387] Opening Capture device "hw:Loopback,0" with parameters: HwParams { channels: Ok(2), rate: "Ok(44100) Hz", format: Ok(S32LE), access: Ok(RWInterleaved), period_size: "Ok(256) frames", buffer_size: "Ok(2048) frames" }, SwParams(avail_min: Ok(940) frames, start_threshold: Ok(0) frames, stop_threshold: Ok(2048) frames)
-2023-12-15 14:07:07.396531 DEBUG [src/alsadevice.rs:392] Capture device "hw:Loopback,0" successfully opened
-2023-12-15 14:07:07.396725 DEBUG [src/bin.rs:275] Capture thread ready to start
-2023-12-15 14:07:07.396749 DEBUG [src/bin.rs:278] Both capture and playback ready, release barrier
-2023-12-15 14:07:07.396770 DEBUG [src/bin.rs:280] Supervisor loop starts now!
-2023-12-15 14:07:07.396792 DEBUG [src/alsadevice.rs:951] Starting playback loop
-2023-12-15 14:07:07.396810 DEBUG [src/alsadevice.rs:415] Playback loop uses a buffer of 4096 frames
-2023-12-15 14:07:07.396808 DEBUG [src/processing.rs:21] Processing loop starts now!
-2023-12-15 14:07:07.396918 DEBUG [src/alsadevice.rs:1037] Starting captureloop
-2023-12-15 14:07:07.397451 INFO [src/alsadevice.rs:648] Capture device supports rate adjust
-2023-12-15 14:07:07.397475 DEBUG [src/alsadevice.rs:657] Capture loop uses a buffer of 2048 frames
-2023-12-15 14:07:07.397524 DEBUG [src/alsadevice.rs:253] Starting capture from state: SND_PCM_STATE_PREPARED, Ready to start
-2023-12-15 14:07:07.439499 INFO [src/alsadevice.rs:142] PB: Starting playback from Prepared state
-2023-12-15 14:07:07.461259 DEBUG [src/countertimer.rs:240] Number of values changed. New 10, prev 2. Clearing history.
-2023-12-15 14:07:07.461344 DEBUG [src/countertimer.rs:240] Number of values changed. New 10, prev 2. Clearing history.
-2023-12-15 14:07:08.577701 DEBUG [src/countertimer.rs:42] Pausing processing
+### 7-9) Steps removed for simplicity
 
 ### 10) Create CamillaDSP service
 
-There is a significant change between CamillaDSP V1 and V2 in that V2 no longer uses the active_config.yml symlink. If upgrading to V2 please update your service.
 
-Change the User field to reflect your username, as of V2 this service no longer runs as root. If run as root, CamillaDSP will create a statefile with root as owner and the GUI will NOT be able to modify it, running as a normal user prevents this.
-
-"-s camilladsp/statefile.yml" tells CamillaDSP you are specifying a configuration via the GUI. You must also add "-w" to tell CamillaDSP to wait for a configuration to be applied via web socket if using the GUI.
-
-“-g-40” sets CamillaDSP volume control to -40 dB every time it starts to avoid accidentally playing something really loud after a system restart. If you are NOT using CamillaDSP volume control please delete “-g-40”.
-
-"-p 1234" is only necessary if you are using the GUI.
-
-"-o camilladsp/camilladsp.log" will create a log file that you can view in the GUI for troubleshooting. You can increase the verbosity of this log by adding "-l debug".
-
-Rich (BB code):
 sudo nano /lib/systemd/system/camilladsp.service
 
-Rich (BB code):
+Paste text below in to nano, modify username to reflect your username. When done, enter 'ctrl + x' to exit nano, enter 'Y' when prompted to Save modified buffer?, hit Enter key when prompted with File Name to Write: /lib/systemd/system/camilladsp.service. You will do the same when editing files in nano elsewhere in this tutorial.
+
+<pre>
 [Unit]
 After=syslog.target
 StartLimitIntervalSec=10
@@ -283,7 +155,7 @@ StartLimitBurst=10
 
 [Service]
 Type=simple
-User=username
+User=<b>username</b>
 WorkingDirectory=~
 ExecStart=camilladsp -s camilladsp/statefile.yml -w -g-40 -o camilladsp/camilladsp.log -p 1234
 Restart=always
@@ -296,16 +168,27 @@ CPUSchedulingPriority=10
 
 [Install]
 WantedBy=multi-user.target
+</pre>
 
 Enable camilladsp service.
 
-Rich (BB code):
+<pre>
 sudo systemctl enable camilladsp
+<pre>
 
 Start camilladsp service.
 
-Rich (BB code):
+<pre>
 sudo service camilladsp start
+</pre>
+
+"-s camilladsp/statefile.yml" tells CamillaDSP you are specifying a configuration via the GUI. You must also add "-w" to tell CamillaDSP to wait for a configuration to be applied via web socket if using the GUI.
+
+“-g-40” sets CamillaDSP volume control to -40 dB every time it starts to avoid accidentally playing something really loud after a system restart. If you are NOT using CamillaDSP volume control please delete “-g-40”.
+
+"-p 1234" is only necessary if you are using the GUI.
+
+"-o camilladsp/camilladsp.log" will create a log file that you can view in the GUI for troubleshooting. You can increase the verbosity of this log by adding "-l debug".
 
 ### 11) Install python and dependencies
 
