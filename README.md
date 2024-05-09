@@ -149,7 +149,7 @@ StartLimitBurst=10
 
 [Service]
 Type=simple
-User=usernam
+User=username
 WorkingDirectory=~
 ExecStart=camilladsp -s camilladsp/statefile.yml -w -g-40 -o camilladsp/camilladsp.log -p 1234
 Restart=always
@@ -256,9 +256,9 @@ sudo service camillagui start
 
 On a computer that is on the same network as your RPi navigate your browser to http://hostname:5005.
 
-Navigate to Files tab of GUI and upload your desired configuration. Set this configuration as active by pressing the "star" next to the configuration. From now on CamillaDSP and the GUI will start with this configuration loaded. Click the "Apply and Save" button in the lower left to load the configuration to DSP.
+Navigate to Files tab of GUI and upload your desired configuration using the up arrow in the Configs section. Set this configuration as active by pressing the "star" next to the configuration. From now on CamillaDSP and the GUI will start with this configuration loaded. Click the "Apply and Save" button in the lower left to load the configuration to DSP.
 
-Screenshot 2023-12-15 083736.png
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/configs.png" alt="configs" width="500"/>
 
 Congratulations, you now have CamillaDSP up and running!
 
