@@ -359,6 +359,7 @@ All configurations use maximum amount of output channels for a given device. If 
 
 The naming convention for my configuration files is dac_input_capturerate_playbackrate. For example, a configuration for a MOTU Ultralite Mk5, TOSLINK input with 96 kHz capture and 96 kHz playback rates is ultralitemk5_toslink_96c_96p.
 
+### ASRC Options
 CamillaDSP expects a constant capture sample rate and cannot accommodate rate changes without a restart. If you have a variable sample rate physical digital source like TOSLINK, AES or SPDIF or have multiple physical digital sources with different rates, a good option is to add a device that has an ASRC to convert to a consistent rate. miniDSP offer many devices with this capability which are summarized summarized below.
 
 - [nanoDIGI](https://www.minidsp.com/images/documents/nanoDIGI%202x8%20User%20Manual.pdf) - $170, discontinued in 2021 but possible to find used, SPDIF / TOSLINK input, SPDIF output, 96 kHz
@@ -382,9 +383,9 @@ hifime UR23 - $25, TOSLINK input, USB output, sample rates up to 96 kHz
 
 ### Okto dac8 PRO
 
-These configurations assume that you are NOT using CamillaDSP volume control as the Okto has a nice volume display with knob and IR control. As volume control is downstream of CamillaDSP, digital clipping in CamillaDSP is more of an issue. As a result I have added 1 dB attenuation on all output channels to help avoid clipping, in general if you add boost in your configuration you will want to offset that boost by attenuating the output further. Use the CamillaDSP clipping indicator to gauge if you have enough attenuation to avoid digital clipping.
+These configurations assume that you are NOT using CamillaDSP volume control as the Okto has a nice volume display with knob and IR control. As volume control is downstream of CamillaDSP, digital clipping in CamillaDSP is more of an issue. As a result I have added 1 dB attenuation on all output channels of configurations that implement resampling to help avoid clipping, in general if you add boost in your configuration you will want to offset that boost by attenuating the output further. Use the CamillaDSP clipping indicator to gauge if you have enough attenuation to avoid digital clipping.
 
-okto_streamer.yml
+#### okto_streamer.yml
 
 Set Okto to “Pure USB” mode. As mentioned previously all streamer configurations expect 44.1 kHz input. As the ALSA loopback has a different clock from the Okto these configurations have rate adjust enabled to allow CamillaDSP to adjust the ALSA loopback to match the Okto clock and avoid buffer under/over runs, you will see this approach in all further streamer configurations. I have also included configurations that upsample to 96 kHz and 192 kHz.
 
