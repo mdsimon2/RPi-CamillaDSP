@@ -433,15 +433,23 @@ Once you have channel routing setup in Cuemix this DAC is very similar to the Ok
 
 #### ultralitemk5_toslink.yml
 
-- Set clock source to optical and change optical input setting to TOSLINK via Ultralite Mk5 front panel. No rate adjust is enabled as the Ultralite Mk5 is clocked by TOSLINK input in this mode. All configurations use the same input and output sample rate as it is not possible to use different sample rates. Configurations are provided for 48 and 96 kHz sample rates, note that at 176.4/192 kHz optical and SPDIF I/O are disabled.
+- Set clock source to optical and change optical input setting to TOSLINK via Ultralite Mk5 front panel. 
+- No rate adjust is enabled as the Ultralite Mk5 is clocked by TOSLINK input in this mode.
+- All configurations use the same input and output sample rate as it is not possible to use different sample rates. 
+- Configurations are provided for 48 and 96 kHz sample rates, note that at 176.4/192 kHz optical and SPDIF I/O are disabled.
 
 #### ultralitemk5_spdif.yml
 
-Set clock source to SPDIF via Ultralite Mk5 front panel. No rate adjust is enabled as the Ultralite Mk5 is clocked by SPDIF input in this mode. All configurations use the same input and output sample rate as it is not possible to use different sample rates. Configurations are provided for 48 and 96 kHz sample rates, note that at 176/192 kHz optical and SPDIF I/O are disabled.
+- Set clock source to SPDIF via Ultralite Mk5 front panel. 
+- No rate adjust is enabled as the Ultralite Mk5 is clocked by SPDIF input in this mode. 
+- All configurations use the same input and output sample rate as it is not possible to use different sample rates. 
+- Configurations are provided for 48 and 96 kHz sample rates, note that at 176/192 kHz optical and SPDIF I/O are disabled.
 
 #### ultralitemk5_analog.yml
 
-Set the clock source to internal via Ultralite Mk5 front panel. This configuration uses analog 3 and 4 as inputs but you can add/change to other inputs as needed. All configurations use the same input and output sample rate as it is not possible to use different sample rates. Configurations are provided for 48, 96 and 192 kHz sample rates.
+- Set the clock source to internal via Ultralite Mk5 front panel. 
+- This configuration uses analog 3 and 4 as inputs but you can add/change to other inputs as needed. - All configurations use the same input and output sample rate as it is not possible to use different sample rates. 
+- Configurations are provided for 48, 96 and 192 kHz sample rates.
 
 ### MOTU M4
 
