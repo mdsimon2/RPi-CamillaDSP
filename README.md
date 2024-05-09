@@ -261,7 +261,7 @@ Start camillagui service.
 sudo service camillagui start
 </pre>
 
-### 17) Assign active configuration in GUI
+### 10) Assign active configuration in GUI
 
 On a computer that is on the same network as your RPi navigate your browser to http://hostname:5005.
 
