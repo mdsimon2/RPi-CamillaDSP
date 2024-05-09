@@ -93,7 +93,7 @@ Open PowerShell as administrator as shown below.
 
 Run wsl --install in PowerShell and restart.
 
-wsl install.png
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/wsl_install.png" alt="wsl_install" width="500"/>
 
 Once you restart open Ubuntu which will give you a terminal to enter commands.
 
