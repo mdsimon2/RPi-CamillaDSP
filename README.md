@@ -450,7 +450,8 @@ Once you have channel routing setup in Cuemix this DAC is very similar to the Ok
 #### ultralitemk5_analog.yml
 
 - Set clock source to Internal via Ultralite Mk5 front panel.
-- This configuration uses analog 3 and 4 as inputs but you can add/change to other inputs as needed. - It is not possible to use different input and output sample rates.  
+- This configuration uses analog 3 and 4 as inputs but you can add/change to other inputs as needed.
+- It is not possible to use different input and output sample rates.  
 - Configurations provided for 48, 96 and 192 kHz sample rates.
 
 ### MOTU M4
