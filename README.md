@@ -10,6 +10,5 @@ I am not a programmer or DSP expert, my primary motivation is finding better way
 
 Prior to GitHub, I archived older versions of the tutorial at the links below.
 
-Old Versions
 - [10/20/2022 Archive](https://drive.google.com/file/d/1y-vULEbXNjza7W4X1vQyIIH1r1GOCVpN/view?usp=sharing)
 - [12/12/2023 Archive](https://drive.google.com/file/d/1MbB300dAJUEtBld14Qd4loA6hD94v67B/view?usp=share_link)
