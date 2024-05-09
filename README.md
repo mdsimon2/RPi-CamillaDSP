@@ -75,9 +75,9 @@ For reference, a complete install should take just under 1 hour (including displ
 
 Download and install Raspberry Pi Imager from the links below for your OS.
 
-Raspberry Pi Imager for Ubuntu
-Raspberry Pi Imager for Windows
-Raspberry Pi Imager for macOS
+- [Raspberry Pi Imager for Ubuntu](https://downloads.raspberrypi.org/imager/imager_latest_amd64.deb)
+- [Raspberry Pi Imager for Windows](https://downloads.raspberrypi.org/imager/imager_latest.exe)
+- [Raspberry Pi Imager for macOS](https://downloads.raspberrypi.org/imager/imager_latest.dmg)
 
 A brief note on micro SD cards, I've been using a 32 GB Sandisk Extreme Pro, others have mentioned they have had good experience with 32 GB Sandisk Ultras. I do not think the specific micro SD card is super important but if things seem slow or you have data corruption issues you might try one of the cards mentioned above. I've also had good luck with USB SSDs but prefer SD cards as they keep everything tidier.
 
