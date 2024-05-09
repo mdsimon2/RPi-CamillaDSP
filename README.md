@@ -65,9 +65,7 @@ Below are other good sources of information related to CamillaDSP.
 
 ## CamillaDSP Setup
 
-This part describes how to get a working CamillaDSP setup. Values in bold are user defined such as desired hostname and/or username for your RPi, everything else is universal and can be copy / pasted as-is. Items entered in code snippets are intended to be entered in terminal unless they are in italics in which case they are meant to be copy / pasted in to the file being edited in nano.
-
-For reference, a complete install should take just under 1 hour (including display and FLIRC IR receiver setup), most of that time is waiting for things to download / install.
+This part describes how to get a working CamillaDSP setup. For reference, a complete install should take just under 1 hour (including display and FLIRC IR receiver setup), most of that time is waiting for things to download / install.
 
 ### 1) Write Raspberry Pi OS Lite (recommended) or Ubuntu Server 64 bit to micro SD card using Raspberry Pi Imager and login via SSH
 
@@ -99,13 +97,13 @@ Once you restart open Ubuntu which will give you a terminal to enter commands.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/Ubuntu.png" alt="Ubuntu" width="500"/>
 
-Before we get started a few notes about using copy / paste in terminal and/or nano. On Mac this is straight forward you can use cmd + v or right click + Paste likely you normally would. On Windows running WSL it is a little weird, I have not found a keyboard shortcut that works but if you right click it will paste what is in your clipboard.
-
 ### 2) Update / upgrade RPi
 
-Open terminal and log in to RPi remotely via 
+Open terminal and log in to RPi using your username and hostname.
 
-`ssh`**`username`**`@`**`hostname`**
+```
+ssh username@hostname
+```
 
 ```
 sudo apt update
@@ -118,35 +116,32 @@ Say yes to any prompts asking if you want to upgrade. You may be prompted about 
 
 Make a camilladsp folder as well as folders for CamillaDSP to reference stored coefficients and configurations.
 
-<pre>
+```
 mkdir ~/camilladsp ~/camilladsp/coeffs ~/camilladsp/configs
-</pre>
+```
 
-Install alsa-utils and git. This will give you access to helpful ALSA tools like aplay and amixer, it will also install libasound2 as a dependency which is required by CamillaDSP.
+Install alsa-utils and git. This will give you access to helpful ALSA tools like aplay and amixer, it will also install libasound2 as a dependency which is required by CamillaDSP. git is useful for downloading files from GitHub.
 
-<pre>
+```
 sudo apt install alsa-utils git
-</pre>
+```
 
 Download and unpack CamillaDSP. The commands below will install V2.0.3 in /usr/local/bin/.
 
-<pre>
+```
 wget https://github.com/HEnquist/camilladsp/releases/download/v2.0.3/camilladsp-linux-aarch64.tar.gz -P ~/camilladsp/
 sudo tar -xvf ~/camilladsp/camilladsp-linux-aarch64.tar.gz -C /usr/local/bin/
-</pre>
+```
 
 ### 4) Create CamillaDSP service
 
-<pre>
+```
 sudo nano /lib/systemd/system/camilladsp.service
-</pre>
+```
 
-Paste text below in to nano and modify username to reflect your username. 
+Paste text below in to nano, modify username to reflect your username. 
 
-When done, enter 'ctrl + x' to exit nano, when prompted with Save modified buffer? enter 'Y' and when prompted with File Name to Write: /lib/systemd/system/camilladsp.service hit Enter key. You will do the same when editing files in nano elsewhere in this tutorial.
-
-<pre>
-<i>
+```
 [Unit]
 After=syslog.target
 StartLimitIntervalSec=10
@@ -154,7 +149,7 @@ StartLimitBurst=10
 
 [Service]
 Type=simple
-User=<b>username</b>
+User=usernam
 WorkingDirectory=~
 ExecStart=camilladsp -s camilladsp/statefile.yml -w -g-40 -o camilladsp/camilladsp.log -p 1234
 Restart=always
@@ -167,20 +162,21 @@ CPUSchedulingPriority=10
 
 [Install]
 WantedBy=multi-user.target
-</i>
-</pre>
+```
+
+When done, enter 'ctrl + x' to exit nano, when prompted with Save modified buffer? enter 'Y' and when prompted with File Name to Write: /lib/systemd/system/camilladsp.service hit Enter key. You will do the same when editing files in nano elsewhere in this tutorial.
 
 Enable camilladsp service.
 
-<pre>
+```
 sudo systemctl enable camilladsp
-</pre>
+```
 
 Start camilladsp service.
 
-<pre>
+```
 sudo service camilladsp start
-</pre>
+```
 
 "-s camilladsp/statefile.yml" tells CamillaDSP you are specifying a configuration via the GUI. You must also add "-w" to tell CamillaDSP to wait for a configuration to be applied via web socket if using the GUI.
 
@@ -192,71 +188,69 @@ sudo service camilladsp start
 
 ### 5) Install python and dependencies
 
-<pre>
+```
 sudo apt install python3 python3-pip python3-websocket python3-aiohttp python3-jsonschema python3-numpy python3-matplotlib unzip
-</pre>
+```
 
 ### 6) Install pycamilladsp
 
 Download pycamilladsp and install. 
 
-<pre>
+```
 sudo pip3 install git+https://github.com/HEnquist/pycamilladsp.git --break-system-packages
-</pre>
+```
 
 ### 7) Install pycamilladsp-plot
 
 Download pyamilladsp-plot and install. 
 
-<pre>
+```
 sudo pip3 install git+https://github.com/HEnquist/pycamilladsp-plot.git --break-system-packages
-</pre>
+```
 
 ### 8) Install GUI server
 
 Commands below will install V2.1.1 of the GUI.
 
-<pre>
+```
 wget https://github.com/HEnquist/camillagui-backend/releases/download/v2.1.1/camillagui.zip -P ~/camilladsp/
 unzip ~/camilladsp/camillagui.zip -d ~/camilladsp/camillagui
-</pre>
+```
 
 ### 9) Create service to start GUI
 
-<pre>
+```
 sudo nano /lib/systemd/system/camillagui.service
-</pre>
+```
 
-Update the username to reflect your username.
+Past text below in to nano, modify username to reflect your username.
 
-<pre>
-<i>
+```
 [Unit]
 Description=CamillaDSP Backend and GUI
 After=multi-user.target
 
 [Service]
 Type=idle
-User=<b>username</b>
+User=username
 WorkingDirectory=~
 ExecStart=python3 camilladsp/camillagui/main.py
 
 [Install]
 WantedBy=multi-user.target
-</i>
-</pre>
+```
 
 Enable camillagui service.
 
-<pre>
+```
 sudo systemctl enable camillagui
-</pre>
+```
 
 Start camillagui service.
 
-<pre>
+```
 sudo service camillagui start
-</pre>
+```
 
 ### 10) Assign active configuration in GUI
 
@@ -272,27 +266,27 @@ Congratulations, you now have CamillaDSP up and running!
 
 If you would like to upgrade to a new version of CamillaDSP simply remove your old CamillaDSP binary and tar and download and extract a new one.
 
-<pre>
+```
 rm ~/camilladsp/camilladsp-linux-aarch64.tar.gz
 wget https://github.com/HEnquist/camilladsp/releases/download/v2.0.3/camilladsp-linux-aarch64.tar.gz -P ~/camilladsp/
 sudo tar -xvf ~/camilladsp/camilladsp-linux-aarch64.tar.gz -C /usr/local/bin/
 sudo service camilladsp restart
-</pre>
+```
 
 Upgrading the GUI is a similar process.
 
-<pre>
+```
 rm -r ~/camilladsp/camillagui ~/camilladsp/camillagui.zip
 wget https://github.com/HEnquist/camillagui-backend/releases/download/v2.1.1/camillagui.zip -P ~/camilladsp/
 unzip ~/camilladsp/camillagui.zip -d ~/camilladsp/camillagui
 sudo service camilladsp restart
 sudo service camillagui restart
-</pre>
+```
 
 For upgrades to pycamilladsp and pycamilladsp-plot, re-run the original install commands to get the new versions. 
 
-<pre>
+```
 sudo pip3 install git+https://github.com/HEnquist/pycamilladsp.git --break-system-packages
 sudo pip3 install git+https://github.com/HEnquist/pycamilladsp-plot.git --break-system-packages
 sudo service camillagui restart
-</pre>
+```
