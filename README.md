@@ -1,2 +1,2 @@
 # RPi-CamillaDSP
-Guidance on setting up CamillaDSP on a RPi
+Guidance on setting up CamillaDSP on a Raspberry Pi
