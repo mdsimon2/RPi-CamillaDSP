@@ -107,7 +107,7 @@ Before we get started a few notes about using copy / paste in terminal and/or na
 
 Open terminal and log in to RPi remotely via 
 <pre>
-ssh username@hostname**
+ssh <b>username</b>@hostname
 </pre>
 
 ```
