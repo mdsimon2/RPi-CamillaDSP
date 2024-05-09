@@ -19,9 +19,9 @@ Old Versions
 Similarly, revision log prior to GitHub is shown below.
 
 Revision Log
--01/18/2022: Fixed error with quotation mark in squeezelite configuration instructions.
--01/19/2022: Added 1 dB attenuation to all output channels of Okto configuration to avoid digital clipping. Added further discussion about digital clipping when using downstream volume control. Added dates to configuration files.
--01/20/2022: Revised instructions for ALSA loopback to run sudo apt install linux-modules-extra-raspi instead of sudo apt install linux-modules-extra-$(uname -r). This should allow the loopback to persist through kernel updates without running any additional commands.
+- 01/18/2022: Fixed error with quotation mark in squeezelite configuration instructions.
+- 01/19/2022: Added 1 dB attenuation to all output channels of Okto configuration to avoid digital clipping. Added further discussion about digital clipping when using downstream volume control. Added dates to configuration files.
+- 01/20/2022: Revised instructions for ALSA loopback to run sudo apt install linux-modules-extra-raspi instead of sudo apt install linux-modules-extra-$(uname -r). This should allow the loopback to persist through kernel updates without running any additional commands.
 -01/26/2022: Added brief notes on specific micro SD card models.
 -01/27/2022: Small editorial changes, thanks @Wirrunna for the feedback.
 -02/01/2022: Updated case pictures to match attached drawings.
