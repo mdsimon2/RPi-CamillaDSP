@@ -148,7 +148,7 @@ sudo nano /lib/systemd/system/camilladsp.service
 
 Paste text below in to nano and modify username to reflect your username. 
 
-When done, enter 'ctrl + x' to exit nano, enter 'Y' when prompted to Save modified buffer?, hit Enter key when prompted with File Name to Write: /lib/systemd/system/camilladsp.service. You will do the same when editing files in nano elsewhere in this tutorial.
+When done, enter 'ctrl + x' to exit nano, when prompted with Save modified buffer? enter 'Y', when prompted with File Name to Write: /lib/systemd/system/camilladsp.service hit Enter key. You will do the same when editing files in nano elsewhere in this tutorial.
 
 <pre>
 [Unit]
