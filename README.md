@@ -376,18 +376,18 @@ All of these devices can do IR volume control, although not all have displays fo
 
 In order to use USB output of devices like 2x4HD, Flex and SHD you need to set them as the CamillaDSP capture device. Unfortunately this ties up the USB input and makes it unusable. Still, this is a good approach to add extra input functionality to basic USB DACs like the MOTU M4 or Topping DM7 which only have USB input.
 
-If you have a constant sample rate digital source the following devices work well. Compared to other solutions like the HiFiBerry Digi+ I/O they handle signal interruptions gracefully. These devices are used in a similar way to the miniDSPs with USB outputs, the device is set as the CamillaDSP capture device. Note that although the S2 digi also has a TOSLINK output I have found that it does not work well if both the TOSLINK input and output are used with CamillaDSP.
+If you have a constant sample rate digital source the following devices work well. Compared to other solutions like the HiFiBerry Digi+ I/O they handle signal interruptions gracefully. These devices are used in a similar way to the miniDSPs with USB outputs, the device is set as the CamillaDSP capture device. Note, that although the S2 digi also has a TOSLINK output, I don't recommend using I've experienced audible dropouts when using it as an output.
 
-hifime S2 digi (SA9227) - $40, TOSLINK input, USB output, sample rates up to 192 kHz
-hifime UR23 - $25, TOSLINK input, USB output, sample rates up to 96 kHz
+- [hifime S2 digi (SA9227)](https://hifimediy.com/product/s2-digi/) - $40, TOSLINK input, USB output, sample rates up to 192 kHz
+- [hifime UR23](https://hifimediy.com/product/hifime-ur23-spdif-optical-to-usb-converter/) - $25, TOSLINK input, USB output, does NOT work with RPi5, sample rates up to 96 kHz
 
 ### Okto dac8 PRO
 
-These configurations assume that you are NOT using CamillaDSP volume control as the Okto has a nice volume display with knob and IR control. As volume control is downstream of CamillaDSP, digital clipping in CamillaDSP is more of an issue. As a result I have added 1 dB attenuation on all output channels of configurations that implement resampling to help avoid clipping, in general if you add boost in your configuration you will want to offset that boost by attenuating the output further. Use the CamillaDSP clipping indicator to gauge if you have enough attenuation to avoid digital clipping.
+These configurations assume you are NOT using CamillaDSP volume control as the Okto has a nice volume display with knob and IR control. As volume control is downstream of CamillaDSP, digital clipping in CamillaDSP is more of an issue. As a result, I have added 1 dB attenuation on all output channels of configurations that implement resampling to help avoid clipping. In general, if you add boost in your configuration you will want to offset that boost by attenuating the output further. Use the CamillaDSP clipping indicator to gauge if you have enough attenuation to avoid digital clipping.
 
 #### okto_streamer.yml
 
-Set Okto to “Pure USB” mode. As mentioned previously all streamer configurations expect 44.1 kHz input. As the ALSA loopback has a different clock from the Okto these configurations have rate adjust enabled to allow CamillaDSP to adjust the ALSA loopback to match the Okto clock and avoid buffer under/over runs, you will see this approach in all further streamer configurations. I have also included configurations that upsample to 96 kHz and 192 kHz.
+Set Okto to “Pure USB” mode. As mentioned previously all streamer configurations expect 44.1 kHz input. As the ALSA loopback has a different clock from the Okto, these configurations have rate adjust enabled to allow CamillaDSP to adjust the ALSA loopback to match the Okto clock and avoid buffer under/over runs, you will see this approach in all further streamer configurations. I have also included configurations that upsample to 96 kHz and 192 kHz.
 
 #### okto_aes.yml
 
