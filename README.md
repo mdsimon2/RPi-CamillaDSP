@@ -107,13 +107,13 @@ Before we get started a few notes about using copy / paste in terminal and/or na
 
 Open terminal and log in to RPi remotely via 
 <pre>
-ssh <b>username</b>@hostname
+ssh <b>username</b>@<b>hostname</b>
 </pre>
 
-```
+<pre>
 sudo apt update
 sudo apt full-upgrade
-```
+</pre>
 
 Say yes to any prompts asking if you want to upgrade. You may be prompted about restarting services, if so just hit enter.
 
@@ -121,19 +121,22 @@ Say yes to any prompts asking if you want to upgrade. You may be prompted about 
 
 Make a camilladsp folder as well as folders for CamillaDSP to reference stored coefficients and configurations.
 
-Rich (BB code):
+<pre>
 mkdir ~/camilladsp ~/camilladsp/coeffs ~/camilladsp/configs
+</pre>
 
 Install alsa-utils and git. This will give you access to helpful ALSA tools like aplay and amixer, it will also install libasound2 as a dependency which is required by CamillaDSP.
 
-Rich (BB code):
+<pre>
 sudo apt install alsa-utils git
+</pre>
 
 Download and unpack CamillaDSP. The commands below will install V2.0.3 in /usr/local/bin/.
 
-Rich (BB code):
+<pre>
 wget https://github.com/HEnquist/camilladsp/releases/download/v2.0.3/camilladsp-linux-aarch64.tar.gz -P ~/camilladsp/
 sudo tar -xvf ~/camilladsp/camilladsp-linux-aarch64.tar.gz -C /usr/local/bin/
+</pre>
 
 ### 7) Create CamillaDSP yml configuration file
 
