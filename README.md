@@ -89,7 +89,7 @@ If you are running Windows 10 or 11 I recommend installing Windows Subsystem for
 
 Open PowerShell as administrator as shown below.
 
-PowerShell.png
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/powershell.png" alt="powershell" width="300"/>
 
 Run wsl --install in PowerShell and restart.
 
