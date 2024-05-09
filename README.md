@@ -16,13 +16,11 @@ Prior to GitHub, I archived older versions of the tutorial at the links below.
 
 ### Why would I want to use CamillaDSP on a RPi?
 
-This tutorial is geared towards 2 channel audio as it is somewhat difficult to get multichannel audio in to a RPi. Typical applications are DIY active speakers / subwoofers such as Directiva R1 (4+ channels), LXmini + sub(s) or LX 521.4 (8+ channels). Another good application is passive stereo speakers with 3+ subwoofers. Although it is possible to use other hardware with CamillaDSP, a RPi offers GPIO pins which are useful for integrating a display and has the ability to be used as a USB gadget.
+This tutorial is geared towards 2 channel audio as it is somewhat difficult to get multichannel audio in to a RPi. Typical applications are DIY active speakers / subwoofers such as Directiva R1 (4+ channels), LXmini + sub(s) or LX 521.4 (8+ channels). Another good application is passive stereo speakers with 3+ subwoofers. Although it is possible to use other hardware with CamillaDSP, a RPi4 offers GPIO pins which are useful for integrating a display and has the ability to be used as a USB gadget.
 
 ### At a high level how does this work?
 
-Starting point is a RPi4 or RPi5 running either Ubuntu Server 64 bit or Raspberry Pi OS Lite. I recommend a RPi4 due to lower cost and better thermal performance unless you are using the HifiBerry DAC8x which is only supported by the RPi5.
-
-Originally this tutorial used Ubuntu Server as it offered a newer kernel and better compatibility with multichannel DACs (notable the MOTU Ultralite Mk5). However, as of Bookworm Raspberry Pi OS works with all DACs in this tutorial. Currently Ubuntu 24.04 does NOT work with the RPi5 + HifiBerry DAC8x, and Raspberry Pi OS must be used.
+Starting point is a RPi4 or RPi5 running either Raspberry Pi OS Lite or Ubuntu Server 64 bit. I recommend the RPi4 over the RPi5 due to lower cost and better thermal performance. However, a RPi5 is required for multichannel I2S applications such as the HifiBerry DAC8x.
 
 We will set up CamillaDSP such that it is always running on the RPi as a service. A web browser based GUI is available to configure CamillaDSP after initial setup. 
 
