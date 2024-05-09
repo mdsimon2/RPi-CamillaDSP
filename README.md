@@ -107,12 +107,14 @@ Before we get started a few notes about using copy / paste in terminal and/or na
 
 Open terminal and log in to RPi remotely via SSH.
 
-Rich (BB code):
-ssh username@hostname
+...
+ssh **username**@**hostname**
+...
 
-Rich (BB code):
+...
 sudo apt update
 sudo apt full-upgrade
+...
 
 Say yes to any prompts asking if you want to upgrade. You may be prompted about restarting services, if so just hit enter.
 
