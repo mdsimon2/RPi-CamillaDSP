@@ -59,7 +59,7 @@ Henrik has done a great job with the GitHub and it is an excellent reference. Al
 [CamillaDSP DIYAudio Thread](https://www.diyaudio.com/community/threads/camilladsp-cross-platform-iir-and-fir-engine-for-crossovers-room-correction-etc.349818/)
 If you want to ask a question about CamillaDSP this is where I would ask it. A good thread to search if you have questions on a particular topic.
 
-[RPi4 + CamillaDSP Tutorial ASR Thread]https://www.audiosciencereview.com/forum/index.php?threads/rpi4-camilladsp-tutorial.29656/
+[RPi4 + CamillaDSP Tutorial ASR Thread](https://www.audiosciencereview.com/forum/index.php?threads/rpi4-camilladsp-tutorial.29656/)
 This tutorial originally lived in this thread. It is a good place to discuss using CamillaDSP on a RPi as well as display / remote control integrations.
 
 [Pi4 + CamillaDSP + MOTU M4 ASR Thread](https://www.audiosciencereview.com/forum/index.php?threads/pi4-camilladsp-audio-interface-motu-m4-phenomal-dsp-streamer.24493/)
