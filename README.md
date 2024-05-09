@@ -8,31 +8,31 @@ I would like to especially thank @HenrikEnquist for developing CamillaDSP. I’v
 
 The tutorial is divided in to 4 parts, Part 1 talks through CamillaDSP background, Part 2 covers initial CamillaDSP setup, Part 3 documents specific CamillaDSP configuration files for various multichannel DACs and Part 4 talks covers advanced topics such as the GUI, displays, IR receivers, trigger output options and cases.
 
-This thread started from the ASR Open Source Streamer thread. I would like to thank everyone that participated in that thread as it pushed me to explore computer-based DSP. As this thread is more about how to use CamillaDSP rather than how to build a streamer (although that will also be covered!) I decided it was better to start a new thread.
-
 I am not a programmer or DSP expert, my primary motivation is finding better ways to implement DIY active speakers. If you see a better way of doing something or want further explanation please speak up! These instructions have been developed as I learned how to implement CamillaDSP and found better ways to set it up but I am always learning.
 
-As of 10/20/2022 I am now linking old versions of this tutorial in zip form with all screenshots and attachments to this post for future reference. I only plan to save the old versions when there are major revisions. In general I am attempting to maintain the existing step numbering to ensure that the discussion makes sense for updated versions of the tutorial. I am also switching to more generic username / hostname nomenclature instead of the previous michael3 / raspberrypi3 examples.
+Prior to GitHub, I archived older versions of the tutorial at the links below.
 
 Old Versions
 10/20/2022 Archive
 12/12/2023 Archive
 
+Similarly, revision log prior to GitHub is shown below.
+
 Revision Log
-01/18/2022: Fixed error with quotation mark in squeezelite configuration instructions.
-01/19/2022: Added 1 dB attenuation to all output channels of Okto configuration to avoid digital clipping. Added further discussion about digital clipping when using downstream volume control. Added dates to configuration files.
-01/20/2022: Revised instructions for ALSA loopback to run sudo apt install linux-modules-extra-raspi instead of sudo apt install linux-modules-extra-$(uname -r). This should allow the loopback to persist through kernel updates without running any additional commands.
-01/26/2022: Added brief notes on specific micro SD card models.
-01/27/2022: Small editorial changes, thanks @Wirrunna for the feedback.
-02/01/2022: Updated case pictures to match attached drawings.
-03/29/2022: Updated following:
-+Added more detail on how to install and use WSL
-+Added guidance on how to copy / paste in to terminal
-+Added guidance on how to use scp to copy files to RPi
-+Added steps for starting camilladsp and camillagui from terminal before implementing service
-+Added logging to camilladsp service
-+Updated flirc.py and oled.py with source switching functionality
-+Added video of display
+-01/18/2022: Fixed error with quotation mark in squeezelite configuration instructions.
+-01/19/2022: Added 1 dB attenuation to all output channels of Okto configuration to avoid digital clipping. Added further discussion about digital clipping when using downstream volume control. Added dates to configuration files.
+-01/20/2022: Revised instructions for ALSA loopback to run sudo apt install linux-modules-extra-raspi instead of sudo apt install linux-modules-extra-$(uname -r). This should allow the loopback to persist through kernel updates without running any additional commands.
+-01/26/2022: Added brief notes on specific micro SD card models.
+-01/27/2022: Small editorial changes, thanks @Wirrunna for the feedback.
+-02/01/2022: Updated case pictures to match attached drawings.
+-03/29/2022: Updated following:
+*Added more detail on how to install and use WSL
+*Added guidance on how to copy / paste in to terminal
+*Added guidance on how to use scp to copy files to RPi
+*Added steps for starting camilladsp and camillagui from terminal before implementing service
+*Added logging to camilladsp service
+*Updated flirc.py and oled.py with source switching functionality
+*Added video of display
 03/31/2022: Moved ALSA Loopback installation step sooner.
 04/10/2022: Added instructions to implement bluetooth using bluez-alsa.
 04/26/2022: Minor updates for use with Ubuntu Server 22.04 64 bit.
