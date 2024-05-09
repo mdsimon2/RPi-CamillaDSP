@@ -51,7 +51,7 @@ Although I am not providing configuration files for the following devices, I hav
 - [Focusrite 18i20 2nd gen](https://store.focusrite.com/en-gb/product/scarlett-18i20-2nd-gen/)
 - [DIYINHK multichannel XMOS](https://www.diyinhk.com/shop/audio-kits/142-xmos-multichannel-high-quality-usb-tofrom-i2sdsd-spdif-pcb.html)
 
-Besides this tutorial what are other good sources of information?
+Below are other good sources of information related to CamillaDSP.
 
 - [CamillaDSP GitHub](https://github.com/HEnquist/camilladsp) - Henrik has done a great job with the GitHub and it is an excellent reference. Almost everything I present here can also be found there.
 
