@@ -254,11 +254,13 @@ sudo service camillagui start
 
 ### 10) Assign active configuration in GUI
 
+Configurations are explained in more detail in Part 3 of this tutorial. Pre-made configurations for the DACs in this tutorial can be downloaded by navigating to the configs folder of this repository. Alternatively you can download the entire repository by clicking <>Code and selecting Download ZIP or using git clone.
+
 On a computer that is on the same network as your RPi navigate your browser to http://hostname:5005.
 
 Navigate to Files tab of GUI and upload your desired configuration using the up arrow in the Configs section. Set this configuration as active by pressing the "star" next to the configuration. From now on CamillaDSP and the GUI will start with this configuration loaded. Click the "Apply and Save" button in the lower left to load the configuration to DSP.
 
-<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/configs.png" alt="configs" width="800"/>
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/configs.png" alt="configs" width="600"/>
 
 Congratulations, you now have CamillaDSP up and running!
 
