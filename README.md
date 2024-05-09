@@ -146,7 +146,9 @@ sudo tar -xvf ~/camilladsp/camilladsp-linux-aarch64.tar.gz -C /usr/local/bin/
 sudo nano /lib/systemd/system/camilladsp.service
 </pre>
 
-Paste text below in to nano, modify username to reflect your username. When done, enter 'ctrl + x' to exit nano, enter 'Y' when prompted to Save modified buffer?, hit Enter key when prompted with File Name to Write: /lib/systemd/system/camilladsp.service. You will do the same when editing files in nano elsewhere in this tutorial.
+Paste text below in to nano and modify username to reflect your username. 
+
+When done, enter 'ctrl + x' to exit nano, enter 'Y' when prompted to Save modified buffer?, hit Enter key when prompted with File Name to Write: /lib/systemd/system/camilladsp.service. You will do the same when editing files in nano elsewhere in this tutorial.
 
 <pre>
 [Unit]
