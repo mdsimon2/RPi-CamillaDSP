@@ -64,7 +64,7 @@ Great thread by @MarcosCh showing how to make a low cost (< 50€ !) TOSLINK inp
 Using a Raspberry Pi as equaliser in between an USB Source and USB DAC
 Great thread from @DeLub on how to use a RPi as a USB gadget. Note if you are using Ubuntu 22.10 or later steps 1-6 can be skipped (no need to compile kernel).
 
-### Setup
+## CamillaDSP Setup
 
 This part describes how to get a working CamillaDSP setup. Values shown in bold are user defined such as desired hostname and/or username for your RPi, everything else is universal and can be copy / pasted as-is. Items entered in code snippets are intended to be entered in terminal unless they are in italics in which case they are meant to be copy / pasted in to the file being edited in nano.
 
