@@ -81,9 +81,7 @@ Download and install Raspberry Pi Imager from the links below for your OS.
 
 A brief note on micro SD cards, I've been using a 32 GB Sandisk Extreme Pro, others have mentioned they have had good experience with 32 GB Sandisk Ultras. I do not think the specific micro SD card is super important but if things seem slow or you have data corruption issues you might try one of the cards mentioned above. I've also had good luck with USB SSDs but prefer SD cards as they keep everything tidier.
 
-Open Raspberry Pi Imager and select your desired OS and micro SD card.
-
-Setup your hostname, username, password, SSH and wifi settings and click the Write button to write OS to micro SD card.
+Open Raspberry Pi Imager and select your desired OS and micro SD card. Setup your hostname, username, password, SSH and wifi settings and click the Write button to write OS to micro SD card.
 
 Raspberry Pi Imager Settings.png
 
@@ -102,7 +100,6 @@ wsl install.png
 Once you restart open Ubuntu which will give you a terminal to enter commands.
 
 Ubuntu.png
-
 
 Before we get started a few notes about using copy / paste in terminal and/or nano. On Mac this is straight forward you can use cmd + v or right click + Paste likely you normally would. On Windows running WSL it is a little weird, I have not found a keyboard shortcut that works but if you right click it will paste what is in your clipboard.
 
