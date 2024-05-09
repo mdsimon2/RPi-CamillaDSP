@@ -363,15 +363,15 @@ CamillaDSP expects a constant capture sample rate and cannot accommodate rate ch
 
 - [nanoDIGI](https://www.minidsp.com/images/documents/nanoDIGI%202x8%20User%20Manual.pdf) - $170, discontinued in 2021 but possible to find used, SPDIF / TOSLINK input, SPDIF output, 96 kHz
 - [2x4HD](https://www.minidsp.com/products/minidsp-in-a-box/minidsp-2x4-hd) - $225, TOSLINK / analog input, USB output, 96 kHz
-[miniDSP OpenDRC-DI](https://www.minidsp.com/products/opendrc-series/opendrc-di) - $325, AES / SPDIF / TOSLINK input and output, 48 or 96 kHz
-[Flex Digital](https://www.minidsp.com/products/minidsp-in-a-box/flex) - $495, SPDIF / TOSLINK / USB / analog / bluetooth input, SPDIF / TOSLINK / USB output, 96 kHz
-[Flex Analog](https://www.minidsp.com/products/minidsp-in-a-box/flex) $495-470, SPDIF / TOSLINK / analog / bluetooth input, USB Output, 96 kHz
-[SHD Studio](https://www.minidsp.com/products/streaming-hd-series/shd-studio) - $900, AES / SPDIF / TOSLINK / USB / streamer input, SPDIF / AES / USB output, 96 kHz
-[SHD])https://www.minidsp.com/products/streaming-hd-series/shd) - $1250, AES / SPDIF / TOSLINK / USB / streamer / analog input, SPDIF / AES / USB output, 96 kHz
+- [miniDSP OpenDRC-DI](https://www.minidsp.com/products/opendrc-series/opendrc-di) - $325, AES / SPDIF / TOSLINK input and output, 48 or 96 kHz
+- [Flex Digital](https://www.minidsp.com/products/minidsp-in-a-box/flex) - $495, SPDIF / TOSLINK / USB / analog / bluetooth input, SPDIF / TOSLINK / USB output, 96 kHz
+- [Flex Analog](https://www.minidsp.com/products/minidsp-in-a-box/flex) $495-470, SPDIF / TOSLINK / analog / bluetooth input, USB Output, 96 kHz
+- [SHD Studio](https://www.minidsp.com/products/streaming-hd-series/shd-studio) - $900, AES / SPDIF / TOSLINK / USB / streamer input, SPDIF / AES / USB output, 96 kHz
+- [SHD])https://www.minidsp.com/products/streaming-hd-series/shd) - $1250, AES / SPDIF / TOSLINK / USB / streamer / analog input, SPDIF / AES / USB output, 96 kHz
 
 All of these devices can do IR volume control, although not all have displays for volume / input identification.
 
-For 2x4HD and Flex you can also use Dirac upgraded versions but sample rate will change from 96 kHz to 48 kHz.
+2x4HD and Flex can be upgraded with Dirac but sample rate will change from 96 kHz to 48 kHz.
 
 In order to use USB output of devices like 2x4HD, Flex and SHD you need to set them as the CamillaDSP capture device. Unfortunately this ties up the USB input and makes it unusable. Still, this is a good approach to add extra input functionality to basic USB DACs like the MOTU M4 or Topping DM7 which only have USB input.
 
@@ -380,7 +380,7 @@ If you have a constant sample rate digital source the following devices work wel
 hifime S2 digi (SA9227) - $40, TOSLINK input, USB output, sample rates up to 192 kHz
 hifime UR23 - $25, TOSLINK input, USB output, sample rates up to 96 kHz
 
-Okto dac8 PRO
+### Okto dac8 PRO
 
 These configurations assume that you are NOT using CamillaDSP volume control as the Okto has a nice volume display with knob and IR control. As volume control is downstream of CamillaDSP, digital clipping in CamillaDSP is more of an issue. As a result I have added 1 dB attenuation on all output channels to help avoid clipping, in general if you add boost in your configuration you will want to offset that boost by attenuating the output further. Use the CamillaDSP clipping indicator to gauge if you have enough attenuation to avoid digital clipping.
 
@@ -392,7 +392,7 @@ okto_aes.yml
 
 Set Okto to “USB / AES” mode. This configuration assumes you are using 2 channel input with 8 channel output. If you would like to use more input channels you can modify the mixer to do so. No rate adjust is enabled as the Okto is clocked by AES input in this mode. All configurations use the same input and output sample rate as it is not possible to use different sample rates. Configurations are provided for 48, 96 and 192 kHz sample rates.
 
-MOTU Ultralite Mk5
+### MOTU Ultralite Mk5
 
 This DAC requires a small amount of setup while connected to a Mac or Windows computer prior to use with CamillaDSP. Install Cuemix 5 and set up channel routing such that USB 1-2 are routed to analog output 1-2, USB 3-4 to analog output 3-4, etc. Make sure no other channel routing is in place as we will do all channel routing in CamillaDSP. Check your levels in the Output tab as my Ultralite Mk5 came with all channels set to -20 dB by default. If you want to use the Mk5 volume knob then select which analog channels (knob will only work on analog channels) you want controlled by the knob in the Output tab. See screenshots below for what this should look like.
 
@@ -438,7 +438,7 @@ ultralitemk5_analog.yml
 
 Set the clock source to internal via Ultralite Mk5 front panel. This configuration uses analog 3 and 4 as inputs but you can add/change to other inputs as needed. All configurations use the same input and output sample rate as it is not possible to use different sample rates. Configurations are provided for 48, 96 and 192 kHz sample rates.
 
-MOTU M4
+### MOTU M4
 
 This is the easiest of the bunch to setup as it has limited I/O functionality. Like the Ultralite Mk5 I use CamillaDSP volume control with this DAC.
 
