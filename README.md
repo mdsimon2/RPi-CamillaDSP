@@ -34,13 +34,13 @@ The playback device is either a USB DAC/DDC, HDMI output of the RPi or HAT DAC/D
 
 ### What DACs are recommended?
 
-1) Okto dac8 PRO - €1295, 8 channel balanced analog output, 8 channel AES digital input, 2 channel AES digital output, 1RU full-rack, volume knob, IR remote control, 5 V trigger, large display, excellent analog performance and overall design. Probably the highest performance 8 channel DAC. Okto dac8 PRO ASR Review.
+1) [Okto dac8 PRO]https://www.oktoresearch.com/dac8pro.htm - €1289, 8 channel balanced analog output, 8 channel AES digital input, 2 channel AES digital output, 1RU full-rack, volume knob, IR remote control, 5 V trigger, large display, excellent analog performance and overall design. [Okto dac8 PRO ASR Review](https://www.audiosciencereview.com/forum/index.php?threads/review-and-measurements-of-okto-dac8-8ch-dac-amp.7064/).
 
-2) MOTU Ultralite Mk5 - $600, 10 channel balanced analog output, 8 channel balanced analog input, TOSLINK input / output (also supports ADAT), SPDIF input / output, volume knob capable of controlling all analog outputs, 1RU half-rack, overall good analog performance. I recommend this DAC for most applications due to good analog performance, superior I/O functionality, reasonable price and smaller form factor. MOTU Ultralite Mk5 ASR Review.
+2) [MOTU Ultralite Mk5](https://motu.com/en-us/products/gen5/ultralite-mk5/) - $650, 10 channel balanced analog output, 8 channel balanced analog input, TOSLINK input / output (also supports ADAT), SPDIF input / output, volume knob capable of controlling all analog outputs, 1RU half-rack, overall good analog performance.  [MOTU Ultralite Mk5 ASR Review](https://www.audiosciencereview.com/forum/index.php?threads/motu-ultralite-mk5-review-audio-interface.24777/).
 
-3) MOTU M4 - $250, 4 channel unbalanced/balanced analog output, 4 channel balanced analog input, good analog performance. Good budget option for 2.1/2.2 or 2 way active systems, I/O functionality is rather limited. MOTU M4 ASR Review.
+3) [MOTU M4](https://motu.com/en-us/products/m-series/m4/) - $250, 4 channel unbalanced/balanced analog output, 4 channel balanced analog input, good analog performance, USB powered. Good budget option for 2.1/2.2 or 2 way active systems, I/O functionality is rather limited. [MOTU M4 ASR Review](https://www.audiosciencereview.com/forum/index.php?threads/motu-m4-audio-interface-review.15757/).
 
-5) HifiBerry DAC8x - 
+5) [HifiBerry DAC8x](https://www.hifiberry.com/shop/boards/hifiberry-dac8x/ - $65, requires a RPI5, 8 channel unbalanced analog output, good analog noise performance, acceptable distortion performance. Ultimate budget option! [HifiBerry DAC8x Measurements](https://www.audiosciencereview.com/forum/index.php?threads/8ch-hifiberry-hat-dac-for-rpi5.53672/post-1966410).
 
 6) Whatever you have on hand! Part of the beauty of a CamillaDSP / RPi4 setup is that a RPi4 is cheap and available and if you want to try it out with another USB DAC it is rather easy to do so. Obviously I will not be able to provide specific configuration files but this tutorial should help you get started.
 
