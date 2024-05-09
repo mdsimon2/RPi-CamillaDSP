@@ -254,7 +254,7 @@ sudo service camillagui start
 
 ### 10) Assign active configuration in GUI
 
-Configurations are explained in more detail in Part 3 of this tutorial. Pre-made configurations for the DACs in this tutorial can be downloaded by navigating to the configs folder of this repository. Alternatively you can download the entire repository by clicking <>Code and selecting Download ZIP or using git clone.
+Configurations are explained in more detail in Part 3 of this tutorial. Pre-made configurations for the DACs in this tutorial can be downloaded by navigating to the [configs](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/configs) folder of this repository. Alternatively you can download the entire repository by clicking [here](https://github.com/mdsimon2/RPi-CamillaDSP/archive/refs/heads/main.zip) or using git clone.
 
 On a computer that is on the same network as your RPi navigate your browser to http://hostname:5005.
 
