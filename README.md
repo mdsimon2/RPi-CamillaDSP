@@ -104,9 +104,8 @@ Before we get started a few notes about using copy / paste in terminal and/or na
 ### 2) Update / upgrade RPi
 
 Open terminal and log in to RPi remotely via 
-<pre>
-ssh <b>username</b>@<b>hostname</b>
-</pre>
+
+`ssh`**`username`**`@`**`hostname`**
 
 ```
 sudo apt update
