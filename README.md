@@ -850,10 +850,8 @@ sudo service oled start
 
 Wiring configuration from the display to the RPi GPIO header is listed below. Note, these pins can be changed as desired, see here for more information on RPi4 pinout -> https://www.tomshardware.com/reviews/raspberry-pi-gpio-pinout,6122.html. Specifically using GPIO 18 for the display may be an issue if you are using the display with a DAC HAT.
 
-(ground) -> ground
-
-(supply voltage) -> 3.3 V
-
+1) (ground) -> ground
+2) (supply voltage) -> 3.3 V
 3) (no connection) -> no connection
 4) (data bus 0) -> GPIO 26
 5) (data bus 1) -> GPIO 13
@@ -881,19 +879,19 @@ A challenge with these cases was how to get a USB port in the front of the case 
 
 For a power supply you can either use a standard RPi4 power supply with a USB-C to 5.5 mm adapter or another 5V power supply with the appropriate 5.5 mm jack. Your power supply should be at leas 3 A. I have found that RPi4 power supplies work best as they provide a bit more than 5 V to help tolerate voltage sag.
 
-10 mm front panel - single sided machining - 50€ add-on
+#### 10 mm front panel - single sided machining - 50€ add-on
 
 This option machines a 10 mm aluminum panel from the back side only. The screen is set half way through the panel thickness and there is a hole for the FLIRC IR receiver, mounting holes for the screen and IR receiver are tapped for M2.5 screws so there are no exposed fasteners. Pictures of this panel are shown below. Overall this option looks very nice, one complaint is that due to the thickness of the front panel the top of the display text can be obstructed from view if you are sitting very near to the case and looking down on the screen. If that bothers you it is possible to modify the layout of the text so that it is more centered on the screen or you can look at my option which chamfers the screen opening from the front side at an additional cost.
 
 Recommended hardware:
-display mounting screws: M2.5 x 3 mm long
-FLIRC mounting screws: M2.5 x 16 mm long w/ 8 mm spacers
-USB-C male to USB-A female: Adafruit USB A Socket to USB Type C Plug Adapter
-USB panel extension: Adafruit Panel Mount USB Cable - A Male to A Female
+- display mounting screws: M2.5 x 3 mm long
+- FLIRC mounting screws: M2.5 x 16 mm long w/ 8 mm spacers
+- USB-C male to USB-A female: Adafruit USB A Socket to USB Type C Plug Adapter
+- USB panel extension: Adafruit Panel Mount USB Cable - A Male to A Female
 
-IMG_7444.jpeg
-IMG_7437.jpeg
-IMG_7442.jpeg
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/frontpanel_front.png" alt="frontpanel_front" width="800"/>
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/frontpanel_rear.png" alt="frontpanel_rear" width="800"/>
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/case_interior.png" alt="case_interior" width="800"/>
 
 10 mm front panel - double sided machining - 70€ add-on
 
