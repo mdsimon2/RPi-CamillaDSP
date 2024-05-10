@@ -482,9 +482,11 @@ Paste the following text to the bottom of 50-curtin-networking.cfg, updating the
                 - 169.254.118.240/16
 ```
 
+#### CueMix
+
 Install Cuemix 5 on your Mac / PC. Either connect the Ultralite Mk5 to your Mac / PC or click the gear in Cuemix and enter the hostname of your RPi.
 
-and set up channel routing such that USB 1-2 are routed to analog output 1-2, USB 3-4 to analog output 3-4, etc. Make sure no other channel routing is in place as we will do all channel routing in CamillaDSP. Check your levels in the Output tab as my Ultralite Mk5 came with all channels set to -20 dB by default. If you want to use the Mk5 volume knob then select which analog channels (knob will only work on analog channels) you want controlled by the knob in the Output tab. See screenshots below for what this should look like.
+Set up channel routing such that USB 1-2 are routed to analog output 1-2, USB 3-4 to analog output 3-4, etc. Make sure no other channel routing is in place, as all channel routing will be done in CamillaDSP. Check your levels in the Output tab as my Ultralite Mk5 came with all channels set to -20 dB by default. If you want to use the Mk5 volume knob then select which analog channels (knob will only work on analog channels) you want controlled by the knob in the Output tab. See screenshots below for what this should look like.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/cuemix_main_1-2.png" alt="cuemix_main_1-2" width="500"/>
 
@@ -492,8 +494,7 @@ and set up channel routing such that USB 1-2 are routed to analog output 1-2, US
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/cuemix_output.png" alt="cuemix_output" width="500"/>
 
-
-It is a good idea to update the firmware at this time. After you do this initial setup in Cuemix you will not need to use it again in the future unless you want to upgrade the firmware.
+It is a good idea to update the firmware at this time. 
 
 Input / output channels are described below, however not all channels are present at all sample rates. At 44.1/48 kHz all channels are available, at 88.2/96 kHz only inputs 0-15 and outputs 0-17 are available and at 176.4/192 kHz only inputs 0-9 and outputs 0-9 are available.
 
@@ -515,7 +516,7 @@ Outputs:
 - 18-19: ADAT 5-6
 - 20-21: ADAT 7-8
 
-Once you have channel routing setup in Cuemix this DAC is very similar to the Okto in terms of setup just with more inputs / output options. Although it has a volume knob, I like to use CamillaDSP for volume control with the Mk5 as it does not have an IR receiver. I use a FLIRC USB IR receiver and separate display for volume indication as described in Part 4.
+Once you have channel routing setup in Cuemix, this DAC is very similar to the Okto in terms of setup just with more inputs / output options. Although it has a volume knob, I like to use CamillaDSP for volume control with the Mk5 as it does not have an IR receiver. I use a FLIRC USB IR receiver and separate display for volume indication as described in Part 4.
 
 #### ultralitemk5_streamer.yml
 
