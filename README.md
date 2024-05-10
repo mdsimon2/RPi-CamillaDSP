@@ -873,11 +873,11 @@ For wiring I used prefabbed 8” long 0.1” header jumpers. These are a bit lon
 
 ### Modushop Case
 
-Modushop offers CNC machining of aluminum cases for custom projects. You provide the CAD files and they do the machining. I have found ordering directly from Modushop is slightly cheaper than ordering from DIYAudio Store which is the US distributor, this may change as exchange rates and shipping costs change so be sure to check before ordering. All cases are based on the Galaxy GX247 chassis (230 mm x 170 mm x 40 mm) with 2 mm aluminum covers. I dislike the 1 mm steel covers as they are rather flimsy.
+[Modushop](https://modushop.biz/site/) offers CNC machining of aluminum cases for custom projects. You provide the CAD files and they do the machining. I have found ordering directly from Modushop is slightly cheaper than ordering from [DIYAudio Store](https://diyaudiostore.com) which is the US distributor, this may change as exchange rates and shipping costs change so be sure to check before ordering. All cases are based on the Galaxy GX247 chassis (230 mm x 170 mm x 40 mm) with 2 mm aluminum covers. I dislike the 1 mm steel covers as they are rather flimsy.
 
 Case designs discussed below are designed to be used with a display and IR receiver. Drawings in dwg, pdf and vsdx format are attached in a zip file.
 
-A challenge with these cases was how to get a USB port in the front of the case for the IR receiver and how to get a power connection in the rear of the case. The only USB port that is accessible from inside the case is the USB-C port which is typically used for power, however this port can be used as a normal USB port and the RPi can be powered via the pin header. Therefore I use a USB-A socket to USB-C plug adapter on the USB-C port coupled with a panel mount USB-A extension cable to connect to the IR receiver at the front of the case. For power I installed a 5.5 mm x 2.1 mm jack in the rear of the case and soldered 20 awg wire with pin connectors at the end to the jack. In my case I used two wires for 5 V and two wires for ground and connected all four wires to the pin header. The double wiring is likely overkill but I wanted to make sure I avoided under voltage issues. I recommend using at least 20 awg here for the same reason. This is the only part of the project that requires soldering, if you are totally against soldering you can purchase a 5.5 mm x 2.1 mm jack with prefabbed wiring and crimp prefabbed 20 awg 0.1” header wiring on the ends. If you do this you will likely need to change the diameter of the power jack hole in the rear case, most the prefabbed options I have seen require a larger diameter than 8 mm so it would be easy for you to drill out the hole yourself to accommodate the larger diameter or you can modify the drawings and have Modushop drill a larger hole.
+A challenge with these cases was how to get a USB port in the front of the case for the IR receiver and how to get a power connection in the rear of the case. The only USB port that is accessible from inside the case is the USB-C port which is typically used for power, however this port can be used as a normal USB port and the RPi can be powered via the pin header. Therefore I use a USB-A socket to USB-C plug adapter on the USB-C port coupled with a panel mount USB-A extension cable to connect to the IR receiver at the front of the case. For power I installed a [5.5 mm x 2.1 mm jack](https://www.digikey.com/en/products/detail/mpd-memory-protection-devices/EJ501A/2439531) in the rear of the case and soldered 20 awg wire with pin connectors at the end to the jack. In my case I used two wires for 5 V and two wires for ground and connected all four wires to the pin header. The double wiring is likely overkill but I wanted to make sure I avoided under voltage issues. I recommend using at least 20 awg here for the same reason. This is the only part of the project that requires soldering, if you are totally against soldering you can purchase a 5.5 mm x 2.1 mm jack with prefabbed wiring and crimp prefabbed 20 awg 0.1” header wiring on the ends. If you do this you will likely need to change the diameter of the power jack hole in the rear case, most the prefabbed options I have seen require a larger diameter than 8 mm so it would be easy for you to drill out the hole yourself to accommodate the larger diameter or you can modify the drawings and have Modushop drill a larger hole.
 
 For a power supply you can either use a standard RPi4 power supply with a USB-C to 5.5 mm adapter or another 5V power supply with the appropriate 5.5 mm jack. Your power supply should be at leas 3 A. I have found that RPi4 power supplies work best as they provide a bit more than 5 V to help tolerate voltage sag.
 
@@ -886,10 +886,10 @@ For a power supply you can either use a standard RPi4 power supply with a USB-C 
 This option machines a 10 mm aluminum panel from the back side only. The screen is set half way through the panel thickness and there is a hole for the FLIRC IR receiver, mounting holes for the screen and IR receiver are tapped for M2.5 screws so there are no exposed fasteners. Pictures of this panel are shown below. Overall this option looks very nice, one complaint is that due to the thickness of the front panel the top of the display text can be obstructed from view if you are sitting very near to the case and looking down on the screen. If that bothers you it is possible to modify the layout of the text so that it is more centered on the screen or you can look at my option which chamfers the screen opening from the front side at an additional cost.
 
 Recommended hardware:
-- display mounting screws: M2.5 x 3 mm long
-- FLIRC mounting screws: M2.5 x 16 mm long w/ 8 mm spacers
-- USB-C male to USB-A female: Adafruit USB A Socket to USB Type C Plug Adapter
-- USB panel extension: Adafruit Panel Mount USB Cable - A Male to A Female
+- display mounting screws: [M2.5 x 3 mm long](https://www.mcmaster.com/91292A035/)
+- FLIRC mounting screws: [M2.5 x 16 mm long](https://www.mcmaster.com/91292A018/) w/ [8 mm spacers](https://www.mcmaster.com/94669A102/)
+- USB-C male to USB-A female: [Adafruit USB A Socket to USB Type C Plug Adapter](https://www.adafruit.com/product/5030)
+- USB panel extension: [Adafruit Panel Mount USB Cable - A Male to A Female](https://www.adafruit.com/product/908)
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/frontpanel_front.jpeg" alt="frontpanel_front" width="600"/>
 
@@ -911,11 +911,11 @@ Recommend hardware:
 This option uses all through holes so the machining cost is lower, it does require you to purchase a separate 3 mm front panel. It may be possible to swap out the default 10 mm front panel for a 3 mm front panel at reduced cost. This design has a lot of exposed fasteners due to the through holes but has no issues with viewing angle due to the thinner panel. The IR receiver holes are slightly larger than the display holes so that they can accept M3 screws which match the threading of the Adafruit USB panel extension cable, alternatively you can use M2.5 screw with nuts to keep the hardware consistent.
 
 Recommended hardware:
-- display mounting screws: M2.5 x 12 mm long
-- FLIRC mounting screws: M2.5 x 30 mm long w/ 15 mm spacers
-- nuts: M2.5
-- USB-C male to USB-A female: Adafruit USB A Socket to USB Type C Plug Adapter
-- USB panel extension: Adafruit Panel Mount USB Cable - A Male to A Female
+- display mounting screws: [M2.5 x 12 mm long](https://www.mcmaster.com/92290A062/)
+- FLIRC mounting screws: [M2.5 x 30 mm long](https://www.mcmaster.com/91292A037/) w/ [15 mm spacers](https://www.mcmaster.com/94669A308/)
+- nuts: [M2.5](https://www.mcmaster.com/94150a310/)
+- USB-C male to USB-A female: [Adafruit USB A Socket to USB Type C Plug Adapter](https://www.adafruit.com/product/5030)
+- USB panel extension: [Adafruit Panel Mount USB Cable - A Male to A Female](https://www.adafruit.com/product/908)
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/frontpanel_front_thin.jpeg" alt="frontpanel_front_thin" width="600"/>
 
@@ -926,8 +926,8 @@ Recommended hardware:
 I recommend paying the 5€ for a solid aluminum bottom panel as in my experience the venting gets in the way of the mounting holes. However the additional 25€ machining cost for 4 RPi4 mounting holes is probably not worth it if you can drill 4 decently accurate holes yourself.
 
 Recommended hardware:
-- RPi4 mounting screws: M2.5 x 16 mm long w/ 10 mm spacers
-- nuts: M2.5 (as an alternative you can use the top part of aluminum heatsink case which is tapped for M2.5 screws, this is what I used).
+- RPi4 mounting screws: [M2.5 x 16 mm long](https://www.mcmaster.com/91292A018/) w/ [10 mm spacers](https://www.mcmaster.com/94669A104/)
+- nuts: [M2.5](https://www.mcmaster.com/94150a310/) (as an alternative you can use the top part of [aluminum heatsink](https://www.amazon.com/gp/product/B07VD568FB/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1) case which is tapped for M2.5 screws, this is what I used).
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/case_interior_top.jpeg" alt="case_interior_top" width="600"/>
 
