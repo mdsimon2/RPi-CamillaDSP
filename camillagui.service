@@ -1,0 +1,12 @@
+[Unit]
+Description=CamillaDSP Backend and GUI
+After=multi-user.target
+
+[Service]
+Type=idle
+User=username
+WorkingDirectory=~
+ExecStart=python3 camilladsp/camillagui/main.py
+
+[Install]
+WantedBy=multi-user.target

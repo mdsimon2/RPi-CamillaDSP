@@ -143,7 +143,8 @@ sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/camilla
 
 Open CamillaDSP service in nano and update username to match your username.
 
-```sudo nano /lib/systemd/system/camilladsp.service
+```
+sudo nano /lib/systemd/system/camilladsp.service
 ```
 
 When done, enter ctrl + x to exit nano, when prompted with Save modified buffer? enter Y and when prompted with 'File Name to Write: /lib/systemd/system/camilladsp.service' hit Enter key. You will do the same when editing files in nano elsewhere in this tutorial.
@@ -199,7 +200,15 @@ wget https://github.com/HEnquist/camillagui-backend/releases/download/v2.1.1/cam
 unzip ~/camilladsp/camillagui.zip -d ~/camilladsp/camillagui
 ```
 
-### 9) Create service to start GUI
+### 9) Install CamillaGUI service
+
+Download CamillaGUI service.
+
+```
+sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/camillagui.service -P /lib/systemd/system/
+```
+
+Open CamillaGUI service in nano and update username to match your username.
 
 ```
 sudo nano /lib/systemd/system/camillagui.service
@@ -208,18 +217,7 @@ sudo nano /lib/systemd/system/camillagui.service
 Past text below in to nano, modify username to reflect your username.
 
 ```
-[Unit]
-Description=CamillaDSP Backend and GUI
-After=multi-user.target
 
-[Service]
-Type=idle
-User=username
-WorkingDirectory=~
-ExecStart=python3 camilladsp/camillagui/main.py
-
-[Install]
-WantedBy=multi-user.target
 ```
 
 Enable camillagui service.
