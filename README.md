@@ -593,3 +593,386 @@ This is the easiest of the bunch to setup as it has limited I/O functionality. L
 - Due to clock difference between UR23 and M4, rate adjust and asynchronous resampling are enabled. 
 - Capture sample rate set to device maximum of 96 kHz, but can be changed to match your source.
 - Configuration provided for 96 and 192 kHz playback sample rate.
+
+## Advanced Configuration
+
+### GUI
+
+As mentioned previously, you can view the GUI by going to any browser on your network and entering http://hostname:5005.
+
+As of CamillaDSP V2, the first tab is Title. There isn't much to do in this tab, but you can populate Title and Description fields for your configuration. The Title field is displayed on the first line of the OLED display described later in this tutorial.
+
+Title.png
+
+The Devices tab defines general parameters like capture device, playback device, sample rate, rate adjust, resampling and chunk size.
+
+It is very important that sample format and channel count are supported by your device. If you are using my configurations this will not be an issue but if you are trying to use a different device it is something to be aware of. The majority of issues I see with CamillaDSP not starting are the result of incorrectly specified channel counts and/or formats.
+
+Devices.png
+
+In the Filters tab you can add any filter you want. A big advantage of using the GUI over a manual configuration file is that it will prompt you for the necessary information for the filter type you are using. Once you have created a filter you can view the magnitude / phase / group delay and make sure it matches your expectation. If you have questions about specific filter implementation see the CamillaDSP GitHub. Creating a filter in the Filters tab does not apply it to the pipeline, it just creates a filter that will be available for you to apply in the pipeline.
+
+Filters.png
+
+The Mixers tab defines channel routing, in addition you can change gain and polarity of each channel. Like filters your mixer will not be in effect until you apply it in the pipeline.
+
+As in the Devices tab it is very important that the channel counts in the Mixers tab exactly match the channel counts of your device. Again if you use my configurations this will not be an issue but it is something to be aware of if you are using a different device. You do not need to use all channels in your mixer but they need to specified in the "in" and "out" section. For example in the screenshot below 8 input and 8 output channels are specified although only 2 input channels (0 and 1) are used in the mixer definition.
+
+Mixers.png
+
+Another new addition with V2 is the Processors tab. I haven't used this personally, but you can use it to implement a compressor.
+
+Processors.png
+
+The Pipeline tab is where everything comes together, this is where you apply filters, mixers and processors created in the previous tabs. You can plot the entire pipeline to show how the mixer and filters are applied as well as the combined magnitude / phase / group delay on each channel.
+
+Pipeline.png
+Pipeline Map.png
+
+The Files tab stores configurations and convolution filters. It will show configuration files located in ~/camilladsp/configs/ and convolution filters located in ~/camilladsp/coeffs/. You can download/upload configurations and convolution filters to/from your local computer. You can also save the configuration currently loaded in the GUI to either a new configuration file or an existing one.
+
+To load a configuration in the GUI press the clockwise arrow button next to your desired configuration. Once this is done you will see the configuration name appear in the lower left under "Config", in the screenshot below you can see that a configuration called lxminibsc.yml is loaded in the GUI.
+
+Just because a configuration is loaded in the GUI does NOT mean it is actually applied to the DSP. To apply a configuration to the DSP click the "Apply to DSP" button. This will apply the configuration in the GUI to the DSP but it will NOT save any changes made via the GUI. If you would like to save changes click the "Save to File" button. If you would like both of these operations done at the same time you can click the "Apply and save" button. Alternatively you can use the "Apply automatically" and "Save automatically" check boxes to do these operations automatically after a change is made in the GUI.
+
+If you have a question about what settings are currently applied to the DSP click the "Fetch from DSP" button and it will load the GUI with the current DSP settings. Note it only pulls the settings and does NOT change the configuration name in the lower left.
+
+In order to set a configuration as default (i.e. the configuration that will be loaded when CamillaDSP starts) click the star button next to your desired configuration. After you do this the star button will now be green next to your default configuration.
+
+Files.png
+
+There is a nice compact view that is great for changing volume or configurations from a smartphone or tablet. You can access it by clicking the "Change to compact view" button just to the right of the CamillaDSP logo.
+
+If you add filters named "Bass" and "Treble" you can use the sliders in this view as bass / treble tone controls to control the boost / cut of those filters. Recommended parameters for bass and treble tone control are lowshelf, f=85 Hz, q=0.9 and highshelf, f=6500 Hz, q=0.7 respectively.
+
+IMG_8873.PNG
+
+This is where things get fun! When looking at these options you will notice the Okto has a lot of really nice features that are not available on the other DACs such IR volume control, a big volume display and trigger output. Wouldn’t it be great if we could get the same functionality on other DACs? Turns out you can do this relatively easily.
+
+FLIRC USB IR Receiver
+
+A FLIRC IR receiver is an easy way to add IR volume control for around $20. I’ve created a python script so setting this up is very easy. The first step is to download the FLIRC software on your main computer and connect the FLIRC receiver to that computer. Use the software to pair your remote so that volume up is KEY UP, volume down is KEY DOWN, mute is KEY LEFT and source change is KEY RIGHT.
+
+Pressing KEY LEFT will cause CamillaDSP to mute, if you switch configurations this mute will stay set. You can change volume up and down while muted, the mute will only be removed by either pressing KEY LEFT again or unmuting in the GUI.
+
+Install evdev.
+
+Rich (BB code):
+sudo apt install python3-evdev
+
+Copy / paste python the FLIRC python script attached to this post to ~/flirc.py using nano.
+
+Rich (BB code):
+nano ~/flirc.py
+
+As of 12/13/2023, configuration switching in flirc.py has been changed to accommodate CamillaDSP V2. To identify which configurations you would like to switch between, add a "_" in front of the configuration file. For example, if you had a configurations titled _ultralitemk5_toslink48.yml, _ultralitemk5_streamer.yml, _ultralitemk5_analog.yml and ultralitemk5_streamer.yml, pressing KEY RIGHT would switch between _ultralitemk5_toslink48.yml, _ultralitemk5_streamer.yml and _ultralitemk5_analog.yml but NOT ultralitemk5_streamer.yml because it does not start with "_".
+
+Enable USB-C port for use, this is needed to run the IR receiver from the USB-C port (you will see why you might want to do this in the section discussing cases). If you have the FLIRC plugged in to a USB-A port this is not needed.
+
+Rich (BB code):
+sudo nano /boot/firmware/config.txt
+
+In the section starting with "# Config settings specific to arm64" add ,dr_mode=host after dtoverlay=dwc2 such that it looks like the line below. Reboot for the changes to take effect.
+
+Rich (BB code):
+# Config settings specific to arm64
+arm_64bit=1
+dtoverlay=dwc2,dr_mode=host
+
+Check that your FLIRC is recognized. Run lsusb and make sure you see an entry for Clay Logic flirc as shown below.
+
+Rich (BB code):
+lsusb
+
+Rich (BB code):
+username@hostname:~$ lsusb
+Bus 003 Device 002: ID 20a0:0006 Clay Logic flirc
+Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 001 Device 006: ID 07fd:000c Mark of the Unicorn UltraLite-mk5
+Bus 001 Device 005: ID 07fd:0008 Mark of the Unicorn M Series
+Bus 001 Device 004: ID 262a:10e7 SAVITECH Corp. UR23 USB SPDIF Rx
+Bus 001 Device 002: ID 2109:3431 VIA Labs, Inc. Hub
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+
+Next check that the FLIRC device is named what we expect.
+
+Rich (BB code):
+ls /dev/input/by-id/
+
+Expected output is:
+
+Rich (BB code):
+username@hostname:~$ ls /dev/input/by-id/
+usb-flirc.tv_flirc-if01-event-kbd
+
+If you see something different, potentially like usb-flirc.tv_flirc_E7A648F650554C39322E3120FF08122E-if01-event-kbd you will need to modify flirc.py to reflect this.
+
+Rich (BB code):
+nano ~/flirc.py
+
+If needed change the flirc=evdev.InputDevice line near the top to reflect your FLIRC name.
+
+Rich (BB code):
+flirc=evdev.InputDevice('/dev/input/by-id/usb-flirc.tv_flirc-if01-event-kbd')
+
+Create service to start FLIRC python script. Change User field to reflect your username.
+
+Rich (BB code):
+sudo nano /lib/systemd/system/flirc.service
+
+Rich (BB code):
+[Unit]
+After=syslog.target
+StartLimitIntervalSec=10
+StartLimitBurst=10
+
+[Service]
+Type=simple
+User=username
+WorkingDirectory=~
+ExecStart=python3 flirc.py
+Restart=always
+RestartSec=1
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=flirc
+
+[Install]
+WantedBy=multi-user.target
+
+Enable FLIRC service.
+
+Rich (BB code):
+sudo systemctl enable flirc
+
+Start FLIRC service.
+
+Rich (BB code):
+sudo service flirc start
+
+Trigger Output
+
+It is easy to add a trigger output to the Ultralite Mk5 using a Bobwire DAT1. Simply connect the TOSLINK output of the Ultralite Mk5 to the Bobwire DAT1 and use the Audio Detect output port. All of my configuration files are set to stop after 5 seconds of output less than -100 dB, as a result CamillaDSP will stop after 5 seconds and after 60 seconds the trigger from the Bobwire DAT1 will stop and your amplifiers will turn off. Once CamillaDSP starts playing the Bobwire DAT1 trigger will fire up immediately. The only issues I have with the Bobwire DAT1 are that it is relatively expensive (~$70) and for me the provided power supply had a high frequency noise coming from the power supply itself, I swapped this out with another generic 12 V power supply and the noise went away.
+
+OLED Display
+
+RPis have GPIO pins which can be used to interface with a variety of displays. I’ve developed a python script that works with the buydisplay.com 3.2” diagonal SSD1322 OLED display which is around ~$30 + shipping. Be sure to order the display in the 6800 8 bit configuration, I also recommend you have them solder a pin header as it is only an additional cost of $0.59.
+
+I should warn that my code is messy and will make actual programmers cringe but it works well and it is decently easy to modify. The base setup turns the display off after 10 seconds of no volume changes to avoid OLED burn in. It will turn back on if you change the volume or the CamillaDSP status or configuration changes.
+
+As of 02/21/2023 there are now two options for the oled python script, one based on lgpio and one based on rpi-gpio. @LandscapeJohn did some testing as noted here and found that rpi-gpio was significantly faster than the lgpio. This makes a considerable difference in the responsiveness of the display. I originally chose lgpio over rpi-gpio as I had read that rpi-gpio support was going away (see here and here). However, as of Ubuntu 23.10 rpi-gpio still works and it is well worth using for the significant performance increase. @LandscapeJohn also made some slight changes to the way the routine sends data / commands to the display which I implemented in the lgpio version as well for a slight performance increase.
+
+Note, RPi5s do NOT support rpi-gpio and need to use lgpio, in addition you need to change the line "chip = sbc.gpiochip_open(0)" to "chip = sbc.gpiochip_open(4)".
+
+The python script has the ability to show user defined text on the first line of the display based on loaded configuration file. With CamillaDSP V2, this will show the Title field under the Title tab of the GUI. If this field is blank, "CamillaDSP" will be displayed.
+
+If using lgpio based routine install lgpio.
+
+Rich (BB code):
+sudo apt install python3-lgpio
+
+If using rpi-gpio routine (recommended) install rpi-gpio.
+
+Rich (BB code):
+sudo apt install python3-rpi.gpio
+
+Copy / paste python script in attached “oled.py” in to ~/oled.py using nano.
+
+Rich (BB code):
+nano ~/oled.py
+
+Create service to start OLED python script.
+
+Rich (BB code):
+sudo nano /lib/systemd/system/oled.service
+
+If using Ubuntu 22.04 LTS, use the service below and change User field to reflect your username.
+
+Rich (BB code):
+[Unit]
+After=syslog.target
+StartLimitIntervalSec=10
+StartLimitBurst=10
+
+[Service]
+Type=simple
+User=username
+WorkingDirectory=~
+ExecStart=python3 oled.py
+Restart=always
+RestartSec=1
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=oled
+
+[Install]
+WantedBy=multi-user.target
+
+If using Ubuntu 23.10, use the service below and change the username in the WorkingDirectory field to reflect your username. A different service is required for Ubuntu 23.10 as it requires oled.py to be run as root.
+
+Code:
+[Unit]
+After=syslog.target
+StartLimitIntervalSec=10
+StartLimitBurst=10
+
+[Service]
+Type=simple
+WorkingDirectory=/home/username/
+ExecStart=python3 oled.py
+Restart=always
+RestartSec=1
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=oled
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target
+
+Enable OLED service.
+
+Rich (BB code):
+sudo systemctl enable oled
+
+Start OLED service.
+
+Rich (BB code):
+sudo service oled start
+
+Wiring configuration from the display to the RPi GPIO header is listed below. Note, these pins can be changed as desired, see here for more information on RPi4 pinout -> https://www.tomshardware.com/reviews/raspberry-pi-gpio-pinout,6122.html. Specifically using GPIO 18 for the display may be an issue if you are using the display with a DAC HAT.
+
+01 (ground) -> ground
+02 (supply voltage) -> 3.3 V
+03 (no connection) -> no connection
+04 (data bus 0) -> GPIO 26
+05 (data bus 1) -> GPIO 13
+06 (data bus 2) -> GPIO 6
+07 (data bus 3) -> GPIO 5
+08 (data bus 4) -> GPIO 22
+09 (data bus 5) -> GPIO 27
+10 (data bus 6) -> GPIO 17
+11 (data bus 7) -> GPIO 18
+12 (enable) -> GPIO 23
+13 (read/write) -> ground
+14 (data/command) -> GPIO 16
+15 (reset) -> GPIO 12
+16 (chip select)-> GPIO 25
+
+For wiring I used prefabbed 8” long 0.1” header jumpers. These are a bit long but allow you to remove the front panel with the wiring remaining connected which is a nice feature.
+
+Modushop Case
+
+Modushop offers CNC machining of aluminum cases for custom projects. You provide the CAD files and they do the machining. I have found ordering directly from Modushop is slightly cheaper than ordering from DIYAudio Store which is the US distributor, this may change as exchange rates and shipping costs change so be sure to check before ordering. All cases are based on the Galaxy GX247 chassis (230 mm x 170 mm x 40 mm) with 2 mm aluminum covers. I dislike the 1 mm steel covers as they are rather flimsy.
+
+Case designs discussed below are designed to be used with a display and IR receiver. Drawings in dwg, pdf and vsdx format are attached in a zip file.
+
+A challenge with these cases was how to get a USB port in the front of the case for the IR receiver and how to get a power connection in the rear of the case. The only USB port that is accessible from inside the case is the USB-C port which is typically used for power, however this port can be used as a normal USB port and the RPi can be powered via the pin header. Therefore I use a USB-A socket to USB-C plug adapter on the USB-C port coupled with a panel mount USB-A extension cable to connect to the IR receiver at the front of the case. For power I installed a 5.5 mm x 2.1 mm jack in the rear of the case and soldered 20 awg wire with pin connectors at the end to the jack. In my case I used two wires for 5 V and two wires for ground and connected all four wires to the pin header. The double wiring is likely overkill but I wanted to make sure I avoided under voltage issues. I recommend using at least 20 awg here for the same reason. This is the only part of the project that requires soldering, if you are totally against soldering you can purchase a 5.5 mm x 2.1 mm jack with prefabbed wiring and crimp prefabbed 20 awg 0.1” header wiring on the ends. If you do this you will likely need to change the diameter of the power jack hole in the rear case, most the prefabbed options I have seen require a larger diameter than 8 mm so it would be easy for you to drill out the hole yourself to accommodate the larger diameter or you can modify the drawings and have Modushop drill a larger hole.
+
+For a power supply you can either use a standard RPi4 power supply with a USB-C to 5.5 mm adapter or another 5V power supply with the appropriate 5.5 mm jack. Your power supply should be at leas 3 A. I have found that RPi4 power supplies work best as they provide a bit more than 5 V to help tolerate voltage sag.
+
+10 mm front panel - single sided machining - 50€ add-on
+
+This option machines a 10 mm aluminum panel from the back side only. The screen is set half way through the panel thickness and there is a hole for the FLIRC IR receiver, mounting holes for the screen and IR receiver are tapped for M2.5 screws so there are no exposed fasteners. Pictures of this panel are shown below. Overall this option looks very nice, one complaint is that due to the thickness of the front panel the top of the display text can be obstructed from view if you are sitting very near to the case and looking down on the screen. If that bothers you it is possible to modify the layout of the text so that it is more centered on the screen or you can look at my option which chamfers the screen opening from the front side at an additional cost.
+
+Recommended hardware:
+display mounting screws: M2.5 x 3 mm long
+FLIRC mounting screws: M2.5 x 16 mm long w/ 8 mm spacers
+USB-C male to USB-A female: Adafruit USB A Socket to USB Type C Plug Adapter
+USB panel extension: Adafruit Panel Mount USB Cable - A Male to A Female
+
+IMG_7444.jpeg
+IMG_7437.jpeg
+IMG_7442.jpeg
+
+10 mm front panel - double sided machining - 70€ add-on
+
+This is the same as the first option but has a 45 deg chamfer around the screen opening to improve viewing angles.
+
+Recommend hardware: same as single sided 10 mm front panel
+
+IMG_7443.jpeg
+
+3 mm front panel - 31€ add-on
+
+This option uses all through holes so the machining cost is lower, it does require you to purchase a separate 3 mm front panel. It may be possible to swap out the default 10 mm front panel for a 3 mm front panel at reduced cost. This design has a lot of exposed fasteners due to the through holes but has no issues with viewing angle due to the thinner panel. The IR receiver holes are slightly larger than the display holes so that they can accept M3 screws which match the threading of the Adafruit USB panel extension cable, alternatively you can use M2.5 screw with nuts to keep the hardware consistent.
+
+Recommended hardware:
+display mounting screws: M2.5 x 12 mm long
+FLIRC mounting screws: M2.5 x 30 mm long w/ 15 mm spacers
+nuts: M2.5
+USB-C male to USB-A female: Adafruit USB A Socket to USB Type C Plug Adapter
+USB panel extension: Adafruit Panel Mount USB Cable - A Male to A Female
+
+IMG_7434.jpeg
+IMG_7387.jpeg
+
+2 mm bottom panel - 30€ add-on
+
+I recommend paying the 5€ for a solid aluminum bottom panel as in my experience the venting gets in the way of the mounting holes. However the additional 25€ machining cost for 4 RPi4 mounting holes is probably not worth it if you can drill 4 decently accurate holes yourself.
+
+Recommended hardware:
+RPi4 mounting screws: M2.5 x 16 mm long w/ 10 mm spacers
+nuts: M2.5 (as an alternative you can use the top part of aluminum heatsink case which is tapped for M2.5 screws, this is what I used).
+
+IMG_7440.jpeg
+
+2 mm back panel - 25€ add-on
+
+This is another area where you may be able to save money. For example you could leave the back panel completely off to save on machining costs. I’ve drilled / hand filed similar panels myself which is not fun but certainly can be done at home and the rear will likely not be exposed. This panel has cutouts for RPi4 USB ports and ethernet port. There is also an 8 mm diameter hole for a 5.5 mm barrel connector.
+
+IMG_7429.jpeg
+
+For reference at the time of writing (12/2021) here are prices in USD including priority shipping to my location (Detroit, MI US) for the three basic case options including front panel, bottom panel and rear panel machining.
+
+3 mm front panel: $171
+10 mm front panel, one sided machining: $189
+10 mm front panel, double sided machining: $212
+
+USB Wifi Dongle
+
+I have been using RPis for a while as squeezelite end points and noticed that if I use the built in wifi I get the occasional drop out. As a result I switched to a more powerful USB wifi adapter. This option may not be the easiest as it does require you to install a driver but it seems to work really well. Instructions below walk through how to install the driver and change the wifi setup to use this adapter.
+
+Do this while connected to LAN!
+
+Instructions shown here were originally found here:
+github.com
+GitHub - morrownr/8821au: Linux Driver for USB WiFi Adapters that are based on the RTL8811AU and RTL8821AU Chipsets
+Linux Driver for USB WiFi Adapters that are based on the RTL8811AU and RTL8821AU Chipsets - GitHub - morrownr/8821au: Linux Driver for USB WiFi Adapters that are based on the RTL8811AU and RTL8821A...
+ github.com github.com
+
+Rich (BB code):
+sudo apt install -y dkms git build-essential
+mkdir ~/src
+cd ~/src
+git clone https://github.com/morrownr/8821au-20210708.git
+cd 8821au-20210708
+./ARM64_RPI.sh
+sudo ./install-driver.sh
+sudo reboot
+
+Run iwconfig from terminal and identify the name of your adapter. If you are using the same model as me it should be something like wlx984827e1c95c.
+
+Rich (BB code):
+sudo cp /etc/netplan/50-cloud-init.yaml /etc/cloud/cloud.cfg.d/50-curtin-networking.cfg
+sudo nano /etc/cloud/cloud.cfg.d/50-curtin-networking.cfg
+
+Rich (BB code):
+wifis:
+        wlx984827e1c95c:
+            access-points:
+                networkname:
+                    password: passed
+            dhcp4: true
+            optional: true
+
+I also comment out the existing wlan0 entry so that only the USB adapter is used.
+
+Rich (BB code):
+sudo cloud-init clean
+sudo cloud-init init
+sudo reboot
+
+That is it! Hope everyone finds this useful and if you have any questions or comments please let me know!
