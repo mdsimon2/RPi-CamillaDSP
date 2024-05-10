@@ -680,7 +680,7 @@ sudo apt install python3-evdev
 Download flirc.py from this repository.
 
 ```
-wget https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/flirc.py -P ~/
+wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/flirc.py -P ~/
 ```
 
 Enable USB-C port for use, this is needed to run the IR receiver from the USB-C port (you will see why you might want to do this in the section discussing cases). If you have the FLIRC plugged in to a USB-A port this is not needed.
@@ -806,7 +806,7 @@ sudo apt install python3-rpi.gpio
 Copy / paste python script in attached “oled.py” in to ~/oled.py using nano.
 
 ```
-nano ~/oled.py
+wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.py -P ~/
 ```
 
 Create service to start OLED python script.
