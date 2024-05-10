@@ -890,32 +890,36 @@ Recommended hardware:
 - USB panel extension: Adafruit Panel Mount USB Cable - A Male to A Female
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/frontpanel_front.jpeg" alt="frontpanel_front" width="800"/>
+
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/frontpanel_rear.jpeg" alt="frontpanel_rear" width="800"/>
+
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/case_interior.jpeg" alt="case_interior" width="800"/>
 
-10 mm front panel - double sided machining - 70€ add-on
+#### 10 mm front panel - double sided machining - 70€ add-on
 
 This is the same as the first option but has a 45 deg chamfer around the screen opening to improve viewing angles.
 
-Recommend hardware: same as single sided 10 mm front panel
+Recommend hardware: 
+- same as single sided 10 mm front panel
 
-IMG_7443.jpeg
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/frontpanel_front_chamfer.jpeg" alt="frontpanel_front_chamfer" width="800"/>
 
 3 mm front panel - 31€ add-on
 
 This option uses all through holes so the machining cost is lower, it does require you to purchase a separate 3 mm front panel. It may be possible to swap out the default 10 mm front panel for a 3 mm front panel at reduced cost. This design has a lot of exposed fasteners due to the through holes but has no issues with viewing angle due to the thinner panel. The IR receiver holes are slightly larger than the display holes so that they can accept M3 screws which match the threading of the Adafruit USB panel extension cable, alternatively you can use M2.5 screw with nuts to keep the hardware consistent.
 
 Recommended hardware:
-display mounting screws: M2.5 x 12 mm long
-FLIRC mounting screws: M2.5 x 30 mm long w/ 15 mm spacers
-nuts: M2.5
-USB-C male to USB-A female: Adafruit USB A Socket to USB Type C Plug Adapter
-USB panel extension: Adafruit Panel Mount USB Cable - A Male to A Female
+- display mounting screws: M2.5 x 12 mm long
+- FLIRC mounting screws: M2.5 x 30 mm long w/ 15 mm spacers
+- nuts: M2.5
+- USB-C male to USB-A female: Adafruit USB A Socket to USB Type C Plug Adapter
+- USB panel extension: Adafruit Panel Mount USB Cable - A Male to A Female
 
-IMG_7434.jpeg
-IMG_7387.jpeg
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/frontpanel_front_thin.jpeg" alt="frontpanel_front_thin" width="800"/>
 
-2 mm bottom panel - 30€ add-on
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/case_interior_thin.jpeg" alt="case_interior_thin" width="800"/>
+
+#### 2 mm bottom panel - 30€ add-on
 
 I recommend paying the 5€ for a solid aluminum bottom panel as in my experience the venting gets in the way of the mounting holes. However the additional 25€ machining cost for 4 RPi4 mounting holes is probably not worth it if you can drill 4 decently accurate holes yourself.
 
