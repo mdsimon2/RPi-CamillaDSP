@@ -481,9 +481,8 @@ This is the easiest of the bunch to setup as it has limited I/O functionality. L
 
 - This configuration uses a hifime S2 digi (SA9227) as capture device. 
 - Due to clock difference between S2 digi and M4, rate adjust and asynchronous resampling are enabled. 
-- Capture sample rate set to device maximum of 96 kHz but this can be set to lower rates to match your source. 
-- Configurations provided for 96 kHz and 192 kHz playback sample rates.
+- Configurations provided for 44.1 kHz and 192 kHz capture sample rate, but these can be changed to match your source.
 
 #### m4_ur23.yml
 
-This configuration uses a hifime UR23 as capture device. Rate adjust and asynchronous resampling are enabled to prevent buffer under/over runs as the UR23 and M4 have separate clocks and unlike an ALSA Loopback CamillaDSP has no ability to adjust the UR23 clock. Configurations are provided for 44.1 kHz and 192 kHz capture sample rates but this can be changed to match your source. Both provided configurations use a 192 kHz playback sample rate but this can be changed as desired as capture and playback devices are separate.
+- This configuration uses a hifime UR23 as capture device. Rate adjust and asynchronous resampling are enabled to prevent buffer under/over runs as the UR23 and M4 have separate clocks and unlike an ALSA Loopback CamillaDSP has no ability to adjust the UR23 clock. Configurations are provided for 44.1 kHz and 192 kHz capture sample rates but this can be changed to match your source. Both provided configurations use a 192 kHz playback sample rate but this can be changed as desired as capture and playback devices are separate.
