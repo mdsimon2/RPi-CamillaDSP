@@ -437,38 +437,45 @@ Once you have channel routing setup in Cuemix this DAC is very similar to the Ok
 #### ultralitemk5_toslink.yml
 
 - Set clock source to optical and optical input setting to TOSLINK via Ultralite Mk5 front panel. 
-- No rate adjust is enabled as the Ultralite Mk5 is clocked by TOSLINK input in this mode.
+- No rate adjust is enabled as Ultralite Mk5 is clocked by TOSLINK input in this mode.
 - It is not possible to use different input and output sample rates when using Ultralite Mk5 as capture device.
 - Configurations provided for 48 and 96 kHz sample rates.
 #### ultralitemk5_spdif.yml
 
 - Set clock source to SPDIF via Ultralite Mk5 front panel. 
-- No rate adjust is enabled as the Ultralite Mk5 is clocked by SPDIF input in this mode. 
-- It is not possible to use different input and output sample rates. 
+- No rate adjust is enabled as Ultralite Mk5 is clocked by SPDIF input in this mode. 
+- It is not possible to use different input and output sample rates when using Ultralite Mk5 as capture device.
 - Configurations provided for 48 and 96 kHz sample rates.
 
 #### ultralitemk5_analog.yml
 
 - Set clock source to Internal via Ultralite Mk5 front panel.
 - This configuration uses analog 3 and 4 as inputs but you can add/change to other inputs as needed.
-- It is not possible to use different input and output sample rates.  
+- It is not possible to use different input and output sample rates when using Ultralite Mk5 as capture device.
 - Configurations provided for 48, 96 and 192 kHz sample rates.
 
 ### MOTU M4
 
-This is the easiest of the bunch to setup as it has limited I/O functionality. Like the Ultralite Mk5 I use CamillaDSP volume control with this DAC.
+This is the easiest of the bunch to setup as it has limited I/O functionality. Like the Ultralite Mk5 I use CamillaDSP volume control with this DAC. Due limited input functionality I show how to use a variety of external devices with this DAC, similar configurations can be used with any DAC in this tutorial.
 
 #### m4_streamer.yml
 
-All streamer configurations expect 44.1 kHz input. As the ALSA loopback has a different clock from the M4 these configurations have rate adjust enabled to allow CamillaDSP to adjust the ALSA loopback to match the M4 clock and avoid buffer under/over runs. I have also included configurations that upsample to 96 kHz and 192 kHz.
+- All streamer configurations expect 44.1 kHz input. 
+- Due to clock difference between ALSA loopback and M4, rate adjust is enabled. 
+- Configurations provided for 44.1, 96 and 192 kHz sample rates.
 
 #### m4_analog.yml
 
-This configuration uses analog inputs 3 and 4 but you can use others if needed. All configurations use the same input and output sample rate as it is not possible to use different sample rates. Configurations are provided for 48, 96 and 192 kHz sample rates.
+- This configuration uses analog inputs 3 and 4 but you can use others if needed. 
+- It is not possible to use different input and output sample rates when using Ultralite Mk5 as capture device. 
+- Configurations provided for 48, 96 and 192 kHz sample rates.
 
 #### m4_2x4hd.yml
 
-This configuration uses a miniDSP 2x4HD as capture device. Rate adjust and asynchronous resampling are enabled to prevent buffer under/over runs as the 2x4HD and M4 have separate clocks and unlike an ALSA Loopback CamillaDSP has no ability to adjust the 2x4HD clock. Capture sample rate is set to 96 kHz to match the miniDSP 2x4HD sample rate. Only a 96 kHz playback sample rate configuration is provided but this can be changed to any sample rate supported by the M4 as the capture and playback devices are separate.
+- This configuration uses a miniDSP 2x4HD as capture device. 
+- Due to clock difference between ALSA loopback and M4, rate adjust and asynchronous resampling are enabled.
+- Capture sample rate set to 96 kHz to match miniDSP 2x4HD sample rate. 
+- Only 96 kHz playback sample rate configuration is provided but this can be changed to any sample rate supported by the M4.
 
 #### m4_sa9227.yml
 
