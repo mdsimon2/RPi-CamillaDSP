@@ -902,7 +902,7 @@ This is the same as the first option but has a 45 deg chamfer around the screen 
 Recommend hardware: 
 - same as single sided 10 mm front panel
 
-<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/frontpanel_front_chamfer.jpeg" alt="frontpanel_front_chamfer" width="800"/>
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/frontpanel_front_chamfer.jpeg" alt="frontpanel_front_chamfer" width="600"/>
 
 3 mm front panel - 31€ add-on
 
@@ -924,19 +924,19 @@ Recommended hardware:
 I recommend paying the 5€ for a solid aluminum bottom panel as in my experience the venting gets in the way of the mounting holes. However the additional 25€ machining cost for 4 RPi4 mounting holes is probably not worth it if you can drill 4 decently accurate holes yourself.
 
 Recommended hardware:
-RPi4 mounting screws: M2.5 x 16 mm long w/ 10 mm spacers
-nuts: M2.5 (as an alternative you can use the top part of aluminum heatsink case which is tapped for M2.5 screws, this is what I used).
+- RPi4 mounting screws: M2.5 x 16 mm long w/ 10 mm spacers
+- nuts: M2.5 (as an alternative you can use the top part of aluminum heatsink case which is tapped for M2.5 screws, this is what I used).
 
-IMG_7440.jpeg
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/case_interior_top.jpeg" alt="case_interior_top" width="600"/>
 
-2 mm back panel - 25€ add-on
+#### 2 mm back panel - 25€ add-on
 
 This is another area where you may be able to save money. For example you could leave the back panel completely off to save on machining costs. I’ve drilled / hand filed similar panels myself which is not fun but certainly can be done at home and the rear will likely not be exposed. This panel has cutouts for RPi4 USB ports and ethernet port. There is also an 8 mm diameter hole for a 5.5 mm barrel connector.
 
-IMG_7429.jpeg
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/rearpanel.jpeg" alt="rearpanel" width="600"/>
 
 For reference at the time of writing (12/2021) here are prices in USD including priority shipping to my location (Detroit, MI US) for the three basic case options including front panel, bottom panel and rear panel machining.
 
-3 mm front panel: $171
-10 mm front panel, one sided machining: $189
-10 mm front panel, double sided machining: $212
+- 3 mm front panel: $171
+- 10 mm front panel, one sided machining: $189
+- 10 mm front panel, double sided machining: $212
