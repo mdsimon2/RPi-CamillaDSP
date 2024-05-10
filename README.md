@@ -889,9 +889,9 @@ Recommended hardware:
 - USB-C male to USB-A female: Adafruit USB A Socket to USB Type C Plug Adapter
 - USB panel extension: Adafruit Panel Mount USB Cable - A Male to A Female
 
-<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/frontpanel_front.png" alt="frontpanel_front" width="800"/>
-<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/frontpanel_rear.png" alt="frontpanel_rear" width="800"/>
-<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/case_interior.png" alt="case_interior" width="800"/>
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/frontpanel_front.jpeg" alt="frontpanel_front" width="800"/>
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/frontpanel_rear.jpeg" alt="frontpanel_rear" width="800"/>
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/case_interior.jpeg" alt="case_interior" width="800"/>
 
 10 mm front panel - double sided machining - 70€ add-on
 
