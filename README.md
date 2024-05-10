@@ -414,7 +414,7 @@ These configurations assume you are NOT using CamillaDSP volume control as the O
 
 This DAC requires a small amount of setup, either while connected to a Mac / PC or remotely via nginx.
 
-### nginx
+#### nginx
 
 nginx can be installed via the following instructions.
 
