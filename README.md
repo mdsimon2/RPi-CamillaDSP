@@ -475,7 +475,7 @@ This is the easiest of the bunch to setup as it has limited I/O functionality. L
 - This configuration uses a miniDSP 2x4HD as capture device. 
 - Due to clock difference between loopback and M4, rate adjust and asynchronous resampling are enabled.
 - Capture sample rate set to 96 kHz to match miniDSP 2x4HD sample rate. 
-- 96 kHz playback sample rate configuration provided but this can be changed to any rate supported by M4.
+- Configuration only provided for 96 kHz playback sample rate but this can be changed to any rate supported by M4.
 
 #### m4_sa9227.yml
 
