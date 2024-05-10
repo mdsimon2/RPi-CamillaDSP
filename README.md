@@ -386,15 +386,108 @@ These configurations assume you are NOT using CamillaDSP volume control as the O
 
 #### okto_streamer.yml
 
-Set Okto to “Pure USB” mode. As mentioned previously all streamer configurations expect 44.1 kHz input. As the ALSA loopback has a different clock from the Okto, these configurations have rate adjust enabled to allow CamillaDSP to adjust the ALSA loopback to match the Okto clock and avoid buffer under/over runs, you will see this approach in all further streamer configurations. I have also included configurations that upsample to 96 kHz and 192 kHz.
+- Set Okto to Pure USB mode via front panel.
+- All streamer configurations expect 44.1 kHz input. 
+- Due to clock difference between loopback and Okto, rate adjust is enabled.
+- Configurations provided for 44.1, 96 and 192 playback sample rates.
 
 #### okto_aes.yml
 
-Set Okto to “USB / AES” mode. This configuration assumes you are using 2 channel input with 8 channel output. If you would like to use more input channels you can modify the mixer to do so. No rate adjust is enabled as the Okto is clocked by AES input in this mode. All configurations use the same input and output sample rate as it is not possible to use different sample rates. Configurations are provided for 48, 96 and 192 kHz sample rates.
+- Set Okto to USB / AES mode via front panel.
+- This configuration uses AES inputs 1-2 but you can add to other AES inputs as needed.
+- No rate adjust is enabled as Okto is clocked by AES input in this mode.
+- It is not possible to use different input and output sample rates when using Okto as capture device.
+- Configurations provided for 48, 96 and 192 kHz sample rates.
 
 ### MOTU Ultralite Mk5
 
-This DAC requires a small amount of setup, either while connected to a Mac or Windows computer. Install Cuemix 5 and set up channel routing such that USB 1-2 are routed to analog output 1-2, USB 3-4 to analog output 3-4, etc. Make sure no other channel routing is in place as we will do all channel routing in CamillaDSP. Check your levels in the Output tab as my Ultralite Mk5 came with all channels set to -20 dB by default. If you want to use the Mk5 volume knob then select which analog channels (knob will only work on analog channels) you want controlled by the knob in the Output tab. See screenshots below for what this should look like.
+This DAC requires a small amount of setup, either while connected to a Mac / PC or remotely via nginx.
+
+### nginx
+
+nginx can be installed via the following instructions.
+
+```
+sudo apt install nginx-full
+```
+
+```
+sudo nano /etc/nginx/nginx.conf
+```
+
+Paste the text below to the end of nginx.conf, update the IP address to match your Ultralite Mk5.
+
+```
+stream {
+    upstream portforward {
+    
+# replace «xx..xx» to the ip-address of the sound card from the About menu
+        server 169.254.117.240:1280;
+    }
+
+    server {
+        listen 1280;
+        proxy_pass portforward;
+    }
+}
+```
+
+Restart nginx service.
+
+```
+sudo service nginx restart
+```
+
+Your Ultralite Mk5 should automatically be connected to the network if using Raspberry Pi OS, if you are using Ubuntu Server, use the following instructions.
+
+Find the network device name of your Ultralite Mk5.
+
+```
+ip a
+```
+
+Output should look something like this, enx0001f2fff075 is the network device name in this example.
+
+```
+: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether dc:a6:32:7d:4c:dc brd ff:ff:ff:ff:ff:ff
+3: enx0001f2fff075: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 00:01:f2:ff:f0:75 brd ff:ff:ff:ff:ff:ff
+4: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether dc:a6:32:7d:4c:dd brd ff:ff:ff:ff:ff:ff
+    inet 192.168.86.25/24 metric 600 brd 192.168.86.255 scope global dynamic wlan0
+       valid_lft 85792sec preferred_lft 85792sec
+    inet6 2601:406:4300:910:dea6:32ff:fe7d:4cdd/64 scope global dynamic mngtmpaddr noprefixroute
+       valid_lft 86294sec preferred_lft 86294sec
+    inet6 fe80::dea6:32ff:fe7d:4cdd/64 scope link
+       valid_lft forever preferred_lft forever
+```
+
+Update network configuration to include the Ultralite Mk5. You will need to use an IP where the third number is one greater than the actual IP address reported on your front panel. For example, my Ultralite Mk5 has an IP address of 169.254.117.240, so I enter 169.254.118.240.
+
+```
+sudo cp /etc/netplan/50-cloud-init.yaml /etc/cloud/cloud.cfg.d/50-curtin-networking.cfg
+sudo nano /etc/cloud/cloud.cfg.d/50-curtin-networking.cfg
+```
+
+Paste the following text to the bottom of 50-curtin-networking.cfg, updating the IP address for your Ultralite Mk5. ethernets should be at the same indentation as wifis.
+
+```
+    ethernets:
+         enx0001f2fff075:
+            addresses:
+                - 169.254.118.240/16
+```
+
+Install Cuemix 5 on your Mac / PC. Either connect the Ultralite Mk5 to your Mac / PC or click the gear in Cuemix and enter the hostname of your RPi.
+
+and set up channel routing such that USB 1-2 are routed to analog output 1-2, USB 3-4 to analog output 3-4, etc. Make sure no other channel routing is in place as we will do all channel routing in CamillaDSP. Check your levels in the Output tab as my Ultralite Mk5 came with all channels set to -20 dB by default. If you want to use the Mk5 volume knob then select which analog channels (knob will only work on analog channels) you want controlled by the knob in the Output tab. See screenshots below for what this should look like.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/cuemix_main_1-2.png" alt="cuemix_main_1-2" width="500"/>
 
@@ -450,7 +543,7 @@ Once you have channel routing setup in Cuemix this DAC is very similar to the Ok
 #### ultralitemk5_analog.yml
 
 - Set clock source to internal via Ultralite Mk5 front panel.
-- This configuration uses analog 3 and 4 as inputs but you can add/change to other inputs as needed.
+- This configuration uses analog inputs 3-4 but you can add/change to other inputs as needed.
 - It is not possible to use different input and output sample rates when using Ultralite Mk5 as capture device.
 - Configurations provided for 48, 96 and 192 kHz sample rates.
 
@@ -466,7 +559,7 @@ This is the easiest of the bunch to setup as it has limited I/O functionality. L
 
 #### m4_analog.yml
 
-- This configuration uses analog inputs 3 and 4 but you can use others if needed. 
+- This configuration uses analog inputs 3-4 but you can use others if needed. 
 - It is not possible to use different input and output sample rates when using Ultralite Mk5 as capture device. 
 - Configurations provided for 48, 96 and 192 kHz sample rates.
 
@@ -481,8 +574,12 @@ This is the easiest of the bunch to setup as it has limited I/O functionality. L
 
 - This configuration uses a hifime S2 digi (SA9227) as capture device. 
 - Due to clock difference between S2 digi and M4, rate adjust and asynchronous resampling are enabled. 
-- Configurations provided for 44.1 and 192 kHz capture sample rate, but can be changed to match your source.
+- Configuration provided for 44.1 and 192 kHz capture sample rate, but can be changed to match your source.
+- Playback sample rate set to device maximum of 192 kHz.
 
 #### m4_ur23.yml
 
-- This configuration uses a hifime UR23 as capture device. Rate adjust and asynchronous resampling are enabled to prevent buffer under/over runs as the UR23 and M4 have separate clocks and unlike an ALSA Loopback CamillaDSP has no ability to adjust the UR23 clock. Configurations are provided for 44.1 kHz and 192 kHz capture sample rates but this can be changed to match your source. Both provided configurations use a 192 kHz playback sample rate but this can be changed as desired as capture and playback devices are separate.
+- This configuration uses a hifime UR23 as capture device.
+- Due to clock difference between UR23 and M4, rate adjust and asynchronous resampling are enabled. 
+- Capture sample rate set to device maximum of 96 kHz, but can be changed to match your source.
+- Configuration provided for 96 and 192 kHz playback sample rate.
