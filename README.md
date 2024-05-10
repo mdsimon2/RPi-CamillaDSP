@@ -738,8 +738,9 @@ flirc=evdev.InputDevice('/dev/input/by-id/usb-flirc.tv_flirc-if01-event-kbd')
 
 Download FLIRC service.
 
-
-
+```
+sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/flirc.service -P /lib/systemd/system/
+```
 
 Change username to reflect your username.
 
@@ -793,9 +794,11 @@ Download oled.py.
 wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.py -P ~/
 ```
 
-Download OLED service from repository.
+Download OLED service.
 
+``
 sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.service -P /lib/systemd/system/
+```
 
 Open service in nano and update username to reflect your username
 
