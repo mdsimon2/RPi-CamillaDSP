@@ -429,9 +429,9 @@ Once you have channel routing setup in Cuemix this DAC is very similar to the Ok
 
 #### ultralitemk5_streamer.yml
 
-- Set clock source to Internal via Ultralite Mk5 front panel. 
+- Set clock source to internal via Ultralite Mk5 front panel. 
 - All streamer configurations expect 44.1 kHz input. 
-- Due to clock difference between ALSA loopback and Ultralite Mk5, rate adjust is enabled.
+- Due to clock difference between loopback and Ultralite Mk5, rate adjust is enabled.
 - Configurations provided for 44.1, 96 and 192 kHz output sample rates.
 
 #### ultralitemk5_toslink.yml
@@ -449,7 +449,7 @@ Once you have channel routing setup in Cuemix this DAC is very similar to the Ok
 
 #### ultralitemk5_analog.yml
 
-- Set clock source to Internal via Ultralite Mk5 front panel.
+- Set clock source to internal via Ultralite Mk5 front panel.
 - This configuration uses analog 3 and 4 as inputs but you can add/change to other inputs as needed.
 - It is not possible to use different input and output sample rates when using Ultralite Mk5 as capture device.
 - Configurations provided for 48, 96 and 192 kHz sample rates.
@@ -461,7 +461,7 @@ This is the easiest of the bunch to setup as it has limited I/O functionality. L
 #### m4_streamer.yml
 
 - All streamer configurations expect 44.1 kHz input. 
-- Due to clock difference between ALSA loopback and M4, rate adjust is enabled. 
+- Due to clock difference between loopback and M4, rate adjust is enabled. 
 - Configurations provided for 44.1, 96 and 192 kHz sample rates.
 
 #### m4_analog.yml
@@ -473,7 +473,7 @@ This is the easiest of the bunch to setup as it has limited I/O functionality. L
 #### m4_2x4hd.yml
 
 - This configuration uses a miniDSP 2x4HD as capture device. 
-- Due to clock difference between ALSA loopback and M4, rate adjust and asynchronous resampling are enabled.
+- Due to clock difference between loopback and M4, rate adjust and asynchronous resampling are enabled.
 - Capture sample rate set to 96 kHz to match miniDSP 2x4HD sample rate. 
 - Only 96 kHz playback sample rate configuration is provided but this can be changed to any sample rate supported by the M4.
 
