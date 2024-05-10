@@ -844,13 +844,16 @@ sudo systemctl enable oled
 
 Start OLED service.
 
-Rich (BB code):
+```
 sudo service oled start
+```
 
 Wiring configuration from the display to the RPi GPIO header is listed below. Note, these pins can be changed as desired, see here for more information on RPi4 pinout -> https://www.tomshardware.com/reviews/raspberry-pi-gpio-pinout,6122.html. Specifically using GPIO 18 for the display may be an issue if you are using the display with a DAC HAT.
 
-1) (ground) -> ground
-2) (supply voltage) -> 3.3 V
+(ground) -> ground
+
+(supply voltage) -> 3.3 V
+
 3) (no connection) -> no connection
 4) (data bus 0) -> GPIO 26
 5) (data bus 1) -> GPIO 13
