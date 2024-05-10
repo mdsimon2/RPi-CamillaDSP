@@ -698,10 +698,6 @@ dtoverlay=dwc2,dr_mode=host
 Check that your FLIRC is recognized. Run lsusb and make sure you see an entry for Clay Logic flirc as shown below.
 
 ```
-lsusb
-```
-
-```
 username@hostname:~$ lsusb
 Bus 003 Device 002: ID 20a0:0006 Clay Logic flirc
 Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
