@@ -431,14 +431,14 @@ Once you have channel routing setup in Cuemix this DAC is very similar to the Ok
 
 - Set clock source to Internal via Ultralite Mk5 front panel. 
 - All streamer configurations expect 44.1 kHz input. 
-- Due to clock difference between Loopback and Ultralite Mk5, rate adjust is enabled.
+- Due to clock difference between ALSA loopback and Ultralite Mk5, rate adjust is enabled.
 - Configurations provided for 44.1, 96 and 192 kHz output sample rates.
 
 #### ultralitemk5_toslink.yml
 
 - Set clock source to optical and optical input setting to TOSLINK via Ultralite Mk5 front panel. 
 - No rate adjust is enabled as the Ultralite Mk5 is clocked by TOSLINK input in this mode.
-- It is not possible to use different input and output sample rates. 
+- It is not possible to use different input and output sample rates when using Ultralite Mk5 as capture device.
 - Configurations provided for 48 and 96 kHz sample rates.
 #### ultralitemk5_spdif.yml
 
