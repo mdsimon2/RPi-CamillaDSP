@@ -139,32 +139,18 @@ sudo tar -xvf ~/camilladsp/camilladsp-linux-aarch64.tar.gz -C /usr/local/bin/
 sudo nano /lib/systemd/system/camilladsp.service
 ```
 
-Paste text below in to nano, modify username to reflect your username. 
+Download CamillaDSP service.
 
 ```
-[Unit]
-After=syslog.target
-StartLimitIntervalSec=10
-StartLimitBurst=10
-
-[Service]
-Type=simple
-User=username
-WorkingDirectory=~
-ExecStart=camilladsp -s camilladsp/statefile.yml -w -g-40 -o camilladsp/camilladsp.log -p 1234
-Restart=always
-RestartSec=1
-StandardOutput=journal
-StandardError=journal
-SyslogIdentifier=camilladsp
-CPUSchedulingPolicy=fifo
-CPUSchedulingPriority=10
-
-[Install]
-WantedBy=multi-user.target
+sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/camillasdp.service -P /lib/systemd/system/
 ```
 
-When done, enter 'ctrl + x' to exit nano, when prompted with Save modified buffer? enter 'Y' and when prompted with File Name to Write: /lib/systemd/system/camilladsp.service hit Enter key. You will do the same when editing files in nano elsewhere in this tutorial.
+Open CamillaDSP service in nano and update username to match your username.
+
+```sudo nano /lib/systemd/system/camilladsp.service
+```
+
+When done, enter ctrl + x to exit nano, when prompted with Save modified buffer? enter Y and when prompted with 'File Name to Write: /lib/systemd/system/camilladsp.service' hit Enter key. You will do the same when editing files in nano elsewhere in this tutorial.
 
 Enable camilladsp service.
 
