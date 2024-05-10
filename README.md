@@ -793,7 +793,7 @@ Download oled.py.
 wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.py -P ~/
 ```
 
-Download OLED service.
+Download OLED service from repository.
 
 sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.service -P /lib/systemd/system/
 
