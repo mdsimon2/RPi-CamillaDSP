@@ -677,7 +677,7 @@ Install evdev.
 sudo apt install python3-evdev
 ```
 
-Download flirc.py from this repository.
+Download flirc.py.
 
 ```
 wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/flirc.py -P ~/
@@ -803,7 +803,7 @@ If using rpi-gpio routine (recommended) install rpi-gpio.
 sudo apt install python3-rpi.gpio
 ```
 
-Copy / paste python script in attached “oled.py” in to ~/oled.py using nano.
+Download oled.py.
 
 ```
 wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.py -P ~/
