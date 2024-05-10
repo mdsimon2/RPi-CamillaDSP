@@ -38,7 +38,7 @@ The playback device is either a USB DAC/DDC, HDMI output of the RPi or HAT DAC/D
 
 3) [MOTU M4](https://motu.com/en-us/products/m-series/m4/) - $250, 4 channel unbalanced/balanced analog output, 4 channel balanced analog input, good analog performance, USB powered. Good budget option for 2.1/2.2 or 2 way active systems, I/O functionality is rather limited. [MOTU M4 ASR Review](https://www.audiosciencereview.com/forum/index.php?threads/motu-m4-audio-interface-review.15757/).
 
-5) [HifiBerry DAC8x](https://www.hifiberry.com/shop/boards/hifiberry-dac8x/) - $65, requires a RPi5, 8, HAT, channel unbalanced analog output, good analog noise performance, acceptable distortion performance. Ultimate budget option! [HifiBerry DAC8x Measurements](https://www.audiosciencereview.com/forum/index.php?threads/8ch-hifiberry-hat-dac-for-rpi5.53672/post-1966410).
+5) [HifiBerry DAC8x](https://www.hifiberry.com/shop/boards/hifiberry-dac8x/) - $65, requires a RPi5, HAT, 8 channel unbalanced analog output, good analog noise performance, acceptable distortion performance. Ultimate budget option! [HifiBerry DAC8x Measurements](https://www.audiosciencereview.com/forum/index.php?threads/8ch-hifiberry-hat-dac-for-rpi5.53672/post-1966410).
 
 6) Whatever you have on hand! Part of the beauty of a CamillaDSP / RPi setup is that it is cheap and if you want to try CamillaDSP with another USB DAC it is rather easy to do so. Obviously I will not be able to provide specific configuration files but this tutorial should help you get started.
 
@@ -75,7 +75,7 @@ Download and install Raspberry Pi Imager from the links below for your OS.
 - [Raspberry Pi Imager for Windows](https://downloads.raspberrypi.org/imager/imager_latest.exe)
 - [Raspberry Pi Imager for macOS](https://downloads.raspberrypi.org/imager/imager_latest.dmg)
 
-A brief note on micro SD cards, I've been using a 32 GB Sandisk Extreme Pro, others have mentioned they have had good experience with 32 GB Sandisk Ultras. I do not think the specific micro SD card is super important but if things seem slow or you have data corruption issues you might try one of the cards mentioned above. I've also had good luck with USB SSDs but prefer SD cards as they keep everything tidier.
+A brief note on micro SD cards, I've been using a [32 GB Sandisk Extreme Pro](https://www.amazon.com/gp/product/B06XYHN68L/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1), others have mentioned they have had good experience with 32 GB Sandisk Ultras. I do not think the specific micro SD card is super important but if things seem slow or you have data corruption issues you might try one of the cards mentioned above. I've also had good luck with USB SSDs but prefer SD cards as they keep everything tidier.
 
 Open Raspberry Pi Imager, select your desired RPi, OS and micro SD card. Setup your hostname, username, password, SSH and wifi settings and click the Write button to write OS to micro SD card.
 
@@ -665,7 +665,7 @@ If you add filters named "Bass" and "Treble" you can use the sliders in this vie
 
 ### FLIRC USB IR Receiver
 
-A FLIRC IR receiver is an easy way to add IR volume control for around $20. I’ve created a python script so setting this up is very easy. The first step is to download the FLIRC software on your main computer and connect the FLIRC receiver to that computer. Use the software to pair your remote so that volume up is KEY UP, volume down is KEY_DOWN, mute is KEY_LEFT and source change is KEY_RIGHT.
+A [FLIRC IR receiver](https://flirc.tv/more/flirc-usb) is an easy way to add IR volume control for around $20. I’ve created a python script so setting this up is very easy. The first step is to download the FLIRC software on your main computer and connect the FLIRC receiver to that computer. Use the software to pair your remote so that volume up is KEY UP, volume down is KEY_DOWN, mute is KEY_LEFT and source change is KEY_RIGHT.
 
 The source change functionality will switch between any configuration that has "_" in front of the configuration. For example, if you had configurations titled _ultralitemk5_toslink48.yml, _ultralitemk5_streamer.yml, _ultralitemk5_analog.yml and ultralitemk5_streamer.yml, pressing KEY RIGHT would switch between _ultralitemk5_toslink48.yml, _ultralitemk5_streamer.yml and _ultralitemk5_analog.yml but NOT ultralitemk5_streamer.yml because it does not start with "_".
 
@@ -777,11 +777,11 @@ sudo service flirc start
 
 ### Trigger Output
 
-It is easy to add a trigger output to the Ultralite Mk5 using a Bobwire DAT1. Simply connect the TOSLINK output of the Ultralite Mk5 to the Bobwire DAT1 and use the Audio Detect output port. All of my configuration files are set to stop after 5 seconds of output less than -100 dB, as a result CamillaDSP will stop after 5 seconds and after 60 seconds the trigger from the Bobwire DAT1 will stop and your amplifiers will turn off. Once CamillaDSP starts playing the Bobwire DAT1 trigger will fire up immediately. The only issues I have with the Bobwire DAT1 are that it is relatively expensive (~$70) and for me the provided power supply had a high frequency noise coming from the power supply itself, I swapped this out with another generic 12 V power supply and the noise went away.
+It is easy to add a trigger output to the Ultralite Mk5 using a [Bobwire DAT1](https://www.bobwireaudio.com/). Simply connect the TOSLINK output of the Ultralite Mk5 to the Bobwire DAT1 and use the Audio Detect output port. All of my configuration files are set to stop after 5 seconds of output less than -100 dB, as a result CamillaDSP will stop after 5 seconds and after 60 seconds the trigger from the Bobwire DAT1 will stop and your amplifiers will turn off. Once CamillaDSP starts playing the Bobwire DAT1 trigger will fire up immediately. The only issues I have with the Bobwire DAT1 are that it is relatively expensive (~$70) and for me the provided power supply had a high frequency noise coming from the power supply itself, I swapped this out with another generic 12 V power supply and the noise went away.
 
 ### OLED Display
 
-RPis have GPIO pins which can be used to interface with a variety of displays. I’ve developed a python script that works with the buydisplay.com 3.2” diagonal SSD1322 OLED display which is around ~$30 + shipping. Be sure to order the display in the 6800 8 bit configuration, I also recommend you have them solder a pin header as it is only an additional cost of $0.59.
+RPis have GPIO pins which can be used to interface with a variety of displays. I’ve developed a python script that works with the [buydisplay.com 3.2” diagonal SSD1322 OLED display](https://www.buydisplay.com/white-3-2-inch-arduino-raspberry-pi-oled-display-module-256x64-spi) which is around ~$30 + shipping. Be sure to order the display in the 6800 8 bit configuration, I also recommend you have them solder a pin header as it is only an additional cost of $0.59.
 
 I should warn that my code is messy and will make actual programmers cringe but it works well and it is decently easy to modify. The base setup turns the display off after 10 seconds of no volume changes to avoid OLED burn in. It will turn back on if you change the volume or the CamillaDSP status or configuration changes.
 
