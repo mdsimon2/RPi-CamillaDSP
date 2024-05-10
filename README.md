@@ -409,9 +409,6 @@ nginx can be installed via the following instructions.
 
 ```
 sudo apt install nginx-full
-```
-
-```
 sudo nano /etc/nginx/nginx.conf
 ```
 
