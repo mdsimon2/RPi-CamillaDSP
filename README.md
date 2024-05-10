@@ -793,16 +793,14 @@ Download oled.py.
 wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.py -P ~/
 ```
 
-Create service to start OLED python script.
+Download OLED service.
+
+sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.service -P /lib/systemd/system/
+
+Open service in nano and update username to reflect your username
 
 ```
 sudo nano /lib/systemd/system/oled.service
-```
-
-If using Ubuntu 22.04 LTS, use the service below and change User field to reflect your username.
-
-```
-
 ```
 
 Enable OLED service.
