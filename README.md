@@ -380,6 +380,18 @@ If you have a constant sample rate digital source the following devices work wel
 - [hifime S2 digi (SA9227)](https://hifimediy.com/product/s2-digi/) - $40, TOSLINK input, USB output, sample rates up to 192 kHz
 - [hifime UR23](https://hifimediy.com/product/hifime-ur23-spdif-optical-to-usb-converter/) - $25, TOSLINK input, USB output, does NOT work with RPi5, sample rates up to 96 kHz
 
+### chunksize / target_level
+
+CamillaDSP V1 used a buffer size of 2 x chunk size, CamillaDSP V2 uses a buffer size of 4 x chunksize. In previous versions of this tutorial I used rather long chunksize (44.1/48 = 1024, 88.2/96 = 2048, 176.4/192 = 4096), but this resulted in rather long latency. After some experimentation, I've found much lower chunksizes can be used. The configurations in this repository all use the following chunksize depending on play back sample rate.
+
+- 44.1 / 48 kHz: 64
+- 88.2 / 96 kHz: 128
+- 176.4 / 192 kHz: 256
+
+For configurations where playback and capture device are synchronous (i.e. no rate adjust is enabled), target_level = chunksize. For asynchronous configurations, target_level = 3 x chunksize.
+
+These chunksize / target_level settings will result in < 10 ms latency. If you find you are having issues with dropouts, increase chunksize / target, and please let me know.
+
 ### Okto dac8 PRO
 
 These configurations assume you are NOT using CamillaDSP volume control as the Okto has a nice volume display with knob and IR control. As volume control is downstream of CamillaDSP, digital clipping in CamillaDSP is more of an issue. As a result, I have added 1 dB attenuation on all output channels of configurations that implement resampling to help avoid clipping. In general, if you add boost in your configuration you will want to offset that boost by attenuating the output further. Use the CamillaDSP clipping indicator to gauge if you have enough attenuation to avoid digital clipping.
