@@ -605,13 +605,13 @@ As of CamillaDSP V2, the first tab is Title. There isn't much to do in this tab,
 
 The Devices tab defines general parameters like capture device, playback device, sample rate, rate adjust, resampling and chunk size.
 
-It is very important that sample format and channel count are supported by your device. If you are using my configurations this will not be an issue but if you are trying to use a different device it is something to be aware of. The majority of issues I see with CamillaDSP not starting are the result of incorrectly specified channel counts and/or formats.
+It is very important that sample format and channel count are supported by your device. If you are using configurations from this repository this will not be an issue, but if you make your own configuration it is something to be aware of. The majority of issues I see with CamillaDSP not starting are the result of incorrectly specified channel counts and/or formats.
 
-Devices.png
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/devices.png" alt="devices" width="600"/>
 
-In the Filters tab you can add any filter you want. A big advantage of using the GUI over a manual configuration file is that it will prompt you for the necessary information for the filter type you are using. Once you have created a filter you can view the magnitude / phase / group delay and make sure it matches your expectation. If you have questions about specific filter implementation see the CamillaDSP GitHub. Creating a filter in the Filters tab does not apply it to the pipeline, it just creates a filter that will be available for you to apply in the pipeline.
+In the Filters tab you can add any filter you want. A big advantage of using the GUI over a manual configuration file is that it will prompt you for the necessary information for the filter type you are using. Once you have created a filter you can view the magnitude / phase / group delay and make sure it matches your expectation. If you have questions about specific filter implementation, see the CamillaDSP GitHub. Creating a filter in the Filters tab does not apply it to the pipeline, it just creates a filter that will be available for you to apply in the pipeline.
 
-Filters.png
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/filters.png" alt="filters" width="600"/>
 
 The Mixers tab defines channel routing, in addition you can change gain and polarity of each channel. Like filters your mixer will not be in effect until you apply it in the pipeline.
 
