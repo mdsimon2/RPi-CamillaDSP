@@ -301,7 +301,6 @@ For streamer applications I am assuming your player is outputting 44.1 kHz and r
 
 ### shairport-sync
 
-
 ```
 sudo apt install shairport-sync libsoxr-dev
 ```
@@ -602,7 +601,7 @@ As mentioned previously, you can view the GUI by going to any browser on your ne
 
 As of CamillaDSP V2, the first tab is Title. There isn't much to do in this tab, but you can populate Title and Description fields for your configuration. The Title field is displayed on the first line of the OLED display described later in this tutorial.
 
-Title.png
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/title.png" alt="title" width="600"/>
 
 The Devices tab defines general parameters like capture device, playback device, sample rate, rate adjust, resampling and chunk size.
 
