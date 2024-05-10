@@ -133,11 +133,7 @@ wget https://github.com/HEnquist/camilladsp/releases/download/v2.0.3/camilladsp-
 sudo tar -xvf ~/camilladsp/camilladsp-linux-aarch64.tar.gz -C /usr/local/bin/
 ```
 
-### 4) Create CamillaDSP service
-
-```
-sudo nano /lib/systemd/system/camilladsp.service
-```
+### 4) Install CamillaDSP service
 
 Download CamillaDSP service.
 
