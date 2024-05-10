@@ -637,9 +637,9 @@ A new addition with CamillaDSP V2 is the Processors tab. I haven't used this per
 
 The Pipeline tab is where everything comes together, this is where you apply filters, mixers and processors created in the previous tabs. You can plot the entire pipeline to show how the mixer and filters are applied as well as the combined magnitude / phase / group delay on each channel.
 
-<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/pipeline.png" alt="pipeline" width="600"/>
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/pipeline.png" alt="pipeline" width="800"/>
 
-<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/pipeline_map.png" alt="pipeline_map" width="600"/>
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/pipeline_map.png" alt="pipeline_map" width="800"/>
 
 The Files tab stores configurations and convolution filters. It will show configuration files located in ~/camilladsp/configs/ and convolution filters located in ~/camilladsp/coeffs/. You can download/upload configurations and convolution filters to/from your local computer. You can also save the configuration currently loaded in the GUI to either a new configuration file or an existing one.
 
