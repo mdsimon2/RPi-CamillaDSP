@@ -663,33 +663,37 @@ If you add filters named "Bass" and "Treble" you can use the sliders in this vie
 
 ### FLIRC USB IR Receiver
 
-A FLIRC IR receiver is an easy way to add IR volume control for around $20. I’ve created a python script so setting this up is very easy. The first step is to download the FLIRC software on your main computer and connect the FLIRC receiver to that computer. Use the software to pair your remote so that volume up is KEY UP, volume down is KEY DOWN, mute is KEY LEFT and source change is KEY RIGHT.
+A FLIRC IR receiver is an easy way to add IR volume control for around $20. I’ve created a python script so setting this up is very easy. The first step is to download the FLIRC software on your main computer and connect the FLIRC receiver to that computer. Use the software to pair your remote so that volume up is KEY UP, volume down is KEY_DOWN, mute is KEY_LEFT and source change is KEY_RIGHT.
 
-Pressing KEY LEFT will cause CamillaDSP to mute, if you switch configurations this mute will stay set. You can change volume up and down while muted, the mute will only be removed by either pressing KEY LEFT again or unmuting in the GUI.
+The source change functionality will switch between any configuration that has "_" in front of the configuration. For example, if you had configurations titled _ultralitemk5_toslink48.yml, _ultralitemk5_streamer.yml, _ultralitemk5_analog.yml and ultralitemk5_streamer.yml, pressing KEY RIGHT would switch between _ultralitemk5_toslink48.yml, _ultralitemk5_streamer.yml and _ultralitemk5_analog.yml but NOT ultralitemk5_streamer.yml because it does not start with "_".
+
+Pressing KEY_LEFT will mute CamillaDSP, if you switch configurations this mute will stay set. You can change volume up and down while muted, the mute will only be removed by either pressing KEY_LEFT again or unmuting in the GUI.
 
 Install evdev.
 
-Rich (BB code):
+```
 sudo apt install python3-evdev
+```
 
-Copy / paste python the FLIRC python script attached to this post to ~/flirc.py using nano.
+Download flirc.py from this repository.
 
-Rich (BB code):
-nano ~/flirc.py
-
-As of 12/13/2023, configuration switching in flirc.py has been changed to accommodate CamillaDSP V2. To identify which configurations you would like to switch between, add a "_" in front of the configuration file. For example, if you had a configurations titled _ultralitemk5_toslink48.yml, _ultralitemk5_streamer.yml, _ultralitemk5_analog.yml and ultralitemk5_streamer.yml, pressing KEY RIGHT would switch between _ultralitemk5_toslink48.yml, _ultralitemk5_streamer.yml and _ultralitemk5_analog.yml but NOT ultralitemk5_streamer.yml because it does not start with "_".
+```
+wget https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/flirc.py -P ~/
+```
 
 Enable USB-C port for use, this is needed to run the IR receiver from the USB-C port (you will see why you might want to do this in the section discussing cases). If you have the FLIRC plugged in to a USB-A port this is not needed.
 
-Rich (BB code):
+```
 sudo nano /boot/firmware/config.txt
+```
 
 In the section starting with "# Config settings specific to arm64" add ,dr_mode=host after dtoverlay=dwc2 such that it looks like the line below. Reboot for the changes to take effect.
 
-Rich (BB code):
+```
 # Config settings specific to arm64
 arm_64bit=1
 dtoverlay=dwc2,dr_mode=host
+```
 
 Check that your FLIRC is recognized. Run lsusb and make sure you see an entry for Clay Logic flirc as shown below.
 
