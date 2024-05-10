@@ -200,24 +200,18 @@ wget https://github.com/HEnquist/camillagui-backend/releases/download/v2.1.1/cam
 unzip ~/camilladsp/camillagui.zip -d ~/camilladsp/camillagui
 ```
 
-### 9) Install CamillaGUI service
+### 9) Install GUI service
 
-Download CamillaGUI service.
+Download GUI service.
 
 ```
 sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/camillagui.service -P /lib/systemd/system/
 ```
 
-Open CamillaGUI service in nano and update username to match your username.
+Open GUI service in nano and update username to match your username.
 
 ```
 sudo nano /lib/systemd/system/camillagui.service
-```
-
-Past text below in to nano, modify username to reflect your username.
-
-```
-
 ```
 
 Enable camillagui service.
