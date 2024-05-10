@@ -466,14 +466,14 @@ Output should look something like this, enx0001f2fff075 is the network device na
        valid_lft forever preferred_lft forever
 ```
 
-Update network configuration to include the Ultralite Mk5. You will need to use an IP where the third number is one greater than the actual IP address reported on your front panel. For example, my Ultralite Mk5 has an IP address of 169.254.117.240, so I enter 169.254.118.240.
+Update network configuration to include the Ultralite Mk5. You will need to use an IP address where the third number is one greater than the actual IP address reported on your front panel. For example, my Ultralite Mk5 has an IP address of 169.254.117.240, so I enter 169.254.118.240.
 
 ```
 sudo cp /etc/netplan/50-cloud-init.yaml /etc/cloud/cloud.cfg.d/50-curtin-networking.cfg
 sudo nano /etc/cloud/cloud.cfg.d/50-curtin-networking.cfg
 ```
 
-Paste the following text to the bottom of 50-curtin-networking.cfg, updating the IP address for your Ultralite Mk5. ethernets should be at the same indentation as wifis.
+Paste the following text to the bottom of 50-curtin-networking.cfg, updating the IP address for your Ultralite Mk5. ethernets should be at the same indentation level as wifis.
 
 ```
     ethernets:
