@@ -599,9 +599,13 @@ This is the easiest of the bunch to setup as it has limited I/O functionality. L
 
 Access the GUI via any computer on the same network as your RPi by navigating a browser to http://hostname:5005.
 
+#### Title
+
 As of CamillaDSP V2, the first tab is Title. There isn't much to do in this tab, but you can populate Title and Description fields for your configuration. The Title field is displayed on the first line of the OLED display described later in this tutorial.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/title.png" alt="title" width="600"/>
+
+#### Devices
 
 The Devices tab defines general parameters like capture device, playback device, sample rate, rate adjust, resampling and chunk size.
 
@@ -609,19 +613,23 @@ It is very important that sample format and channel count are supported by your 
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/devices.png" alt="devices" width="600"/>
 
+#### Filters
+
 In the Filters tab you can add any filter you want. A big advantage of using the GUI over a manual configuration file is that it will prompt you for the necessary information for the filter type you are using. Once you have created a filter you can view the magnitude / phase / group delay and make sure it matches your expectation. If you have questions about specific filter implementation, see the CamillaDSP GitHub. Creating a filter in the Filters tab does not apply it to the pipeline, it just creates a filter that will be available for you to apply in the pipeline.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/filters.png" alt="filters" width="600"/>
 
-The Mixers tab defines channel routing, in addition you can change gain and polarity of each channel. Like filters your mixer will not be in effect until you apply it in the pipeline.
+#### Mixers
 
-As in the Devices tab it is very important that the channel counts in the Mixers tab exactly match the channel counts of your device. Again if you use my configurations this will not be an issue but it is something to be aware of if you are using a different device. You do not need to use all channels in your mixer but they need to specified in the "in" and "out" section. For example in the screenshot below 8 input and 8 output channels are specified although only 2 input channels (0 and 1) are used in the mixer definition.
+The Mixers tab defines channel routing, in addition you can change gain and polarity of each channel. Like filters, your mixer will not be in effect until you apply it in the pipeline.
 
-Mixers.png
+As in the Devices tab, it is very important that the channel counts in the Mixers tab exactly match the channel counts of your device. Again if you configurations from this repository this will not be an issue. You do not need to use all channels in your mixer, but they need to specified in the "in" and "out" section. For example in the screenshot below 8 input and 8 output channels are specified although only 2 input channels (0 and 1) are used in the mixer definition.
 
-Another new addition with V2 is the Processors tab. I haven't used this personally, but you can use it to implement a compressor.
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/mixers.png" alt="mixers" width="600"/>
 
-Processors.png
+A new addition with CamillaDSP V2 is the Processors tab. I haven't used this personally, but you can use it to implement a compressor.
+
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/processors.png" alt="processors" width="600"/>
 
 The Pipeline tab is where everything comes together, this is where you apply filters, mixers and processors created in the previous tabs. You can plot the entire pipeline to show how the mixer and filters are applied as well as the combined magnitude / phase / group delay on each channel.
 
