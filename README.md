@@ -593,6 +593,8 @@ This is the easiest of the bunch to setup as it has limited I/O functionality. L
 - Capture sample rate set to device maximum of 96 kHz, but can be changed to match your source.
 - Configuration provided for 96 and 192 kHz playback sample rate.
 
+### HifiBerry DAC8x
+
 ## Advanced Configuration
 
 ### GUI
