@@ -597,7 +597,7 @@ This is the easiest of the bunch to setup as it has limited I/O functionality. L
 
 ### GUI
 
-As mentioned previously, you can view the GUI by going to any browser on your network and entering http://hostname:5005.
+Access the GUI via any computer on the same network as your RPi by navigating a browser to http://hostname:5005.
 
 As of CamillaDSP V2, the first tab is Title. There isn't much to do in this tab, but you can populate Title and Description fields for your configuration. The Title field is displayed on the first line of the OLED display described later in this tutorial.
 
