@@ -661,9 +661,7 @@ If you add filters named "Bass" and "Treble" you can use the sliders in this vie
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/compact_view.png" alt="files" width="300"/>
 
-This is where things get fun! When looking at these options you will notice the Okto has a lot of really nice features that are not available on the other DACs such IR volume control, a big volume display and trigger output. Wouldn’t it be great if we could get the same functionality on other DACs? Turns out you can do this relatively easily.
-
-FLIRC USB IR Receiver
+### FLIRC USB IR Receiver
 
 A FLIRC IR receiver is an easy way to add IR volume control for around $20. I’ve created a python script so setting this up is very easy. The first step is to download the FLIRC software on your main computer and connect the FLIRC receiver to that computer. Use the software to pair your remote so that volume up is KEY UP, volume down is KEY DOWN, mute is KEY LEFT and source change is KEY RIGHT.
 
