@@ -736,31 +736,15 @@ If needed change the flirc=evdev.InputDevice line near the top to reflect your F
 flirc=evdev.InputDevice('/dev/input/by-id/usb-flirc.tv_flirc-if01-event-kbd')
 ```
 
-Create service to start FLIRC python script. Change username to reflect your username.
+Download FLIRC service.
+
+
+
+
+Change username to reflect your username.
 
 ```
 sudo nano /lib/systemd/system/flirc.service
-```
-
-```
-[Unit]
-After=syslog.target
-StartLimitIntervalSec=10
-StartLimitBurst=10
-
-[Service]
-Type=simple
-User=username
-WorkingDirectory=~
-ExecStart=python3 flirc.py
-Restart=always
-RestartSec=1
-StandardOutput=journal
-StandardError=journal
-SyslogIdentifier=flirc
-
-[Install]
-WantedBy=multi-user.target
 ```
 
 Enable FLIRC service.
@@ -818,24 +802,7 @@ sudo nano /lib/systemd/system/oled.service
 If using Ubuntu 22.04 LTS, use the service below and change User field to reflect your username.
 
 ```
-[Unit]
-After=syslog.target
-StartLimitIntervalSec=10
-StartLimitBurst=10
 
-[Service]
-Type=simple
-User=username
-WorkingDirectory=~
-ExecStart=python3 oled.py
-Restart=always
-RestartSec=1
-StandardOutput=journal
-StandardError=journal
-SyslogIdentifier=oled
-
-[Install]
-WantedBy=multi-user.target
 ```
 
 Enable OLED service.
