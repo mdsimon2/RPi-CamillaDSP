@@ -641,6 +641,8 @@ The Pipeline tab is where everything comes together, this is where you apply fil
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/pipeline_map.png" alt="pipeline_map" width="800"/>
 
+#### Files
+
 The Files tab stores configurations and convolution filters. It will show configuration files located in ~/camilladsp/configs/ and convolution filters located in ~/camilladsp/coeffs/. You can download/upload configurations and convolution filters to/from your local computer. You can also save the configuration currently loaded in the GUI to either a new configuration file or an existing one.
 
 To load a configuration in the GUI press the clockwise arrow button next to your desired configuration. Once this is done you will see the configuration name appear in the lower left under "Config", in the screenshot below you can see that a configuration called lxminibsc.yml is loaded in the GUI.
@@ -651,13 +653,13 @@ If you have a question about what settings are currently applied to the DSP clic
 
 In order to set a configuration as default (i.e. the configuration that will be loaded when CamillaDSP starts) click the star button next to your desired configuration. After you do this the star button will now be green next to your default configuration.
 
-Files.png
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/files.png" alt="files" width="600"/>
 
 There is a nice compact view that is great for changing volume or configurations from a smartphone or tablet. You can access it by clicking the "Change to compact view" button just to the right of the CamillaDSP logo.
 
 If you add filters named "Bass" and "Treble" you can use the sliders in this view as bass / treble tone controls to control the boost / cut of those filters. Recommended parameters for bass and treble tone control are lowshelf, f=85 Hz, q=0.9 and highshelf, f=6500 Hz, q=0.7 respectively.
 
-IMG_8873.PNG
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/compact_view.png" alt="files" width="300"/>
 
 This is where things get fun! When looking at these options you will notice the Okto has a lot of really nice features that are not available on the other DACs such IR volume control, a big volume display and trigger output. Wouldn’t it be great if we could get the same functionality on other DACs? Turns out you can do this relatively easily.
 
