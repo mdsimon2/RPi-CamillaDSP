@@ -791,27 +791,31 @@ The python script has the ability to show user defined text on the first line of
 
 If using lgpio based routine install lgpio.
 
-Rich (BB code):
+```
 sudo apt install python3-lgpio
+```
 
 If using rpi-gpio routine (recommended) install rpi-gpio.
 
-Rich (BB code):
+```
 sudo apt install python3-rpi.gpio
+```
 
 Copy / paste python script in attached “oled.py” in to ~/oled.py using nano.
 
-Rich (BB code):
+```
 nano ~/oled.py
+```
 
 Create service to start OLED python script.
 
-Rich (BB code):
+```
 sudo nano /lib/systemd/system/oled.service
+```
 
 If using Ubuntu 22.04 LTS, use the service below and change User field to reflect your username.
 
-Rich (BB code):
+```
 [Unit]
 After=syslog.target
 StartLimitIntervalSec=10
@@ -830,34 +834,13 @@ SyslogIdentifier=oled
 
 [Install]
 WantedBy=multi-user.target
-
-If using Ubuntu 23.10, use the service below and change the username in the WorkingDirectory field to reflect your username. A different service is required for Ubuntu 23.10 as it requires oled.py to be run as root.
-
-Code:
-[Unit]
-After=syslog.target
-StartLimitIntervalSec=10
-StartLimitBurst=10
-
-[Service]
-Type=simple
-WorkingDirectory=/home/username/
-ExecStart=python3 oled.py
-Restart=always
-RestartSec=1
-StandardOutput=journal
-StandardError=journal
-SyslogIdentifier=oled
-User=root
-Group=root
-
-[Install]
-WantedBy=multi-user.target
+```
 
 Enable OLED service.
 
-Rich (BB code):
+```
 sudo systemctl enable oled
+```
 
 Start OLED service.
 
@@ -866,8 +849,8 @@ sudo service oled start
 
 Wiring configuration from the display to the RPi GPIO header is listed below. Note, these pins can be changed as desired, see here for more information on RPi4 pinout -> https://www.tomshardware.com/reviews/raspberry-pi-gpio-pinout,6122.html. Specifically using GPIO 18 for the display may be an issue if you are using the display with a DAC HAT.
 
-01 (ground) -> ground
-02 (supply voltage) -> 3.3 V
+01) (ground) -> ground
+02) (supply voltage) -> 3.3 V
 03 (no connection) -> no connection
 04 (data bus 0) -> GPIO 26
 05 (data bus 1) -> GPIO 13
