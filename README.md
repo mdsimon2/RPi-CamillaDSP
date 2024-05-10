@@ -777,7 +777,7 @@ sudo service flirc start
 
 It is easy to add a trigger output to the Ultralite Mk5 using a Bobwire DAT1. Simply connect the TOSLINK output of the Ultralite Mk5 to the Bobwire DAT1 and use the Audio Detect output port. All of my configuration files are set to stop after 5 seconds of output less than -100 dB, as a result CamillaDSP will stop after 5 seconds and after 60 seconds the trigger from the Bobwire DAT1 will stop and your amplifiers will turn off. Once CamillaDSP starts playing the Bobwire DAT1 trigger will fire up immediately. The only issues I have with the Bobwire DAT1 are that it is relatively expensive (~$70) and for me the provided power supply had a high frequency noise coming from the power supply itself, I swapped this out with another generic 12 V power supply and the noise went away.
 
-OLED Display
+### OLED Display
 
 RPis have GPIO pins which can be used to interface with a variety of displays. I’ve developed a python script that works with the buydisplay.com 3.2” diagonal SSD1322 OLED display which is around ~$30 + shipping. Be sure to order the display in the 6800 8 bit configuration, I also recommend you have them solder a pin header as it is only an additional cost of $0.59.
 
@@ -952,49 +952,3 @@ For reference at the time of writing (12/2021) here are prices in USD including 
 3 mm front panel: $171
 10 mm front panel, one sided machining: $189
 10 mm front panel, double sided machining: $212
-
-USB Wifi Dongle
-
-I have been using RPis for a while as squeezelite end points and noticed that if I use the built in wifi I get the occasional drop out. As a result I switched to a more powerful USB wifi adapter. This option may not be the easiest as it does require you to install a driver but it seems to work really well. Instructions below walk through how to install the driver and change the wifi setup to use this adapter.
-
-Do this while connected to LAN!
-
-Instructions shown here were originally found here:
-github.com
-GitHub - morrownr/8821au: Linux Driver for USB WiFi Adapters that are based on the RTL8811AU and RTL8821AU Chipsets
-Linux Driver for USB WiFi Adapters that are based on the RTL8811AU and RTL8821AU Chipsets - GitHub - morrownr/8821au: Linux Driver for USB WiFi Adapters that are based on the RTL8811AU and RTL8821A...
- github.com github.com
-
-Rich (BB code):
-sudo apt install -y dkms git build-essential
-mkdir ~/src
-cd ~/src
-git clone https://github.com/morrownr/8821au-20210708.git
-cd 8821au-20210708
-./ARM64_RPI.sh
-sudo ./install-driver.sh
-sudo reboot
-
-Run iwconfig from terminal and identify the name of your adapter. If you are using the same model as me it should be something like wlx984827e1c95c.
-
-Rich (BB code):
-sudo cp /etc/netplan/50-cloud-init.yaml /etc/cloud/cloud.cfg.d/50-curtin-networking.cfg
-sudo nano /etc/cloud/cloud.cfg.d/50-curtin-networking.cfg
-
-Rich (BB code):
-wifis:
-        wlx984827e1c95c:
-            access-points:
-                networkname:
-                    password: passed
-            dhcp4: true
-            optional: true
-
-I also comment out the existing wlan0 entry so that only the USB adapter is used.
-
-Rich (BB code):
-sudo cloud-init clean
-sudo cloud-init init
-sudo reboot
-
-That is it! Hope everyone finds this useful and if you have any questions or comments please let me know!
