@@ -697,10 +697,11 @@ dtoverlay=dwc2,dr_mode=host
 
 Check that your FLIRC is recognized. Run lsusb and make sure you see an entry for Clay Logic flirc as shown below.
 
-Rich (BB code):
+```
 lsusb
+```
 
-Rich (BB code):
+```
 username@hostname:~$ lsusb
 Bus 003 Device 002: ID 20a0:0006 Clay Logic flirc
 Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
@@ -710,34 +711,40 @@ Bus 001 Device 005: ID 07fd:0008 Mark of the Unicorn M Series
 Bus 001 Device 004: ID 262a:10e7 SAVITECH Corp. UR23 USB SPDIF Rx
 Bus 001 Device 002: ID 2109:3431 VIA Labs, Inc. Hub
 Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+```
 
 Next check that the FLIRC device is named what we expect.
 
-Rich (BB code):
+```
 ls /dev/input/by-id/
+```
 
 Expected output is:
 
-Rich (BB code):
+```
 username@hostname:~$ ls /dev/input/by-id/
 usb-flirc.tv_flirc-if01-event-kbd
+```
 
 If you see something different, potentially like usb-flirc.tv_flirc_E7A648F650554C39322E3120FF08122E-if01-event-kbd you will need to modify flirc.py to reflect this.
 
-Rich (BB code):
+```
 nano ~/flirc.py
+```
 
 If needed change the flirc=evdev.InputDevice line near the top to reflect your FLIRC name.
 
-Rich (BB code):
+```
 flirc=evdev.InputDevice('/dev/input/by-id/usb-flirc.tv_flirc-if01-event-kbd')
+```
 
-Create service to start FLIRC python script. Change User field to reflect your username.
+Create service to start FLIRC python script. Change username to reflect your username.
 
-Rich (BB code):
+```
 sudo nano /lib/systemd/system/flirc.service
+```
 
-Rich (BB code):
+```
 [Unit]
 After=syslog.target
 StartLimitIntervalSec=10
@@ -756,18 +763,21 @@ SyslogIdentifier=flirc
 
 [Install]
 WantedBy=multi-user.target
+```
 
 Enable FLIRC service.
 
-Rich (BB code):
+```
 sudo systemctl enable flirc
+```
 
 Start FLIRC service.
 
-Rich (BB code):
+```
 sudo service flirc start
+```
 
-Trigger Output
+### Trigger Output
 
 It is easy to add a trigger output to the Ultralite Mk5 using a Bobwire DAT1. Simply connect the TOSLINK output of the Ultralite Mk5 to the Bobwire DAT1 and use the Audio Detect output port. All of my configuration files are set to stop after 5 seconds of output less than -100 dB, as a result CamillaDSP will stop after 5 seconds and after 60 seconds the trigger from the Bobwire DAT1 will stop and your amplifiers will turn off. Once CamillaDSP starts playing the Bobwire DAT1 trigger will fire up immediately. The only issues I have with the Bobwire DAT1 are that it is relatively expensive (~$70) and for me the provided power supply had a high frequency noise coming from the power supply itself, I swapped this out with another generic 12 V power supply and the noise went away.
 
