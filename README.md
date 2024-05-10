@@ -475,13 +475,13 @@ This is the easiest of the bunch to setup as it has limited I/O functionality. L
 - This configuration uses a miniDSP 2x4HD as capture device. 
 - Due to clock difference between loopback and M4, rate adjust and asynchronous resampling are enabled.
 - Capture sample rate set to 96 kHz to match miniDSP 2x4HD sample rate. 
-- Configuration provided for 96 kHz playback sample rate but this can be changed to any rate supported by M4.
+- Configuration provided for 96 kHz playback sample rate, but can be changed to any rate supported by M4.
 
 #### m4_sa9227.yml
 
 - This configuration uses a hifime S2 digi (SA9227) as capture device. 
 - Due to clock difference between S2 digi and M4, rate adjust and asynchronous resampling are enabled. 
-- Configurations provided for 44.1 kHz and 192 kHz capture sample rate, but these can be changed to match your source.
+- Configurations provided for 44.1 and 192 kHz capture sample rate, but can be changed to match your source.
 
 #### m4_ur23.yml
 
