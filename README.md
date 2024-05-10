@@ -849,26 +849,26 @@ sudo service oled start
 
 Wiring configuration from the display to the RPi GPIO header is listed below. Note, these pins can be changed as desired, see here for more information on RPi4 pinout -> https://www.tomshardware.com/reviews/raspberry-pi-gpio-pinout,6122.html. Specifically using GPIO 18 for the display may be an issue if you are using the display with a DAC HAT.
 
-01) (ground) -> ground
-02) (supply voltage) -> 3.3 V
-03 (no connection) -> no connection
-04 (data bus 0) -> GPIO 26
-05 (data bus 1) -> GPIO 13
-06 (data bus 2) -> GPIO 6
-07 (data bus 3) -> GPIO 5
-08 (data bus 4) -> GPIO 22
-09 (data bus 5) -> GPIO 27
-10 (data bus 6) -> GPIO 17
-11 (data bus 7) -> GPIO 18
-12 (enable) -> GPIO 23
-13 (read/write) -> ground
-14 (data/command) -> GPIO 16
-15 (reset) -> GPIO 12
-16 (chip select)-> GPIO 25
+1) (ground) -> ground
+2) (supply voltage) -> 3.3 V
+3) (no connection) -> no connection
+4) (data bus 0) -> GPIO 26
+5) (data bus 1) -> GPIO 13
+6) (data bus 2) -> GPIO 6
+7) (data bus 3) -> GPIO 5
+8) (data bus 4) -> GPIO 22
+9) (data bus 5) -> GPIO 27
+10) (data bus 6) -> GPIO 17
+11) (data bus 7) -> GPIO 18
+12) (enable) -> GPIO 23
+13) (read/write) -> ground
+14) (data/command) -> GPIO 16
+15) (reset) -> GPIO 12
+16) (chip select)-> GPIO 25
 
 For wiring I used prefabbed 8” long 0.1” header jumpers. These are a bit long but allow you to remove the front panel with the wiring remaining connected which is a nice feature.
 
-Modushop Case
+### Modushop Case
 
 Modushop offers CNC machining of aluminum cases for custom projects. You provide the CAD files and they do the machining. I have found ordering directly from Modushop is slightly cheaper than ordering from DIYAudio Store which is the US distributor, this may change as exchange rates and shipping costs change so be sure to check before ordering. All cases are based on the Galaxy GX247 chassis (230 mm x 170 mm x 40 mm) with 2 mm aluminum covers. I dislike the 1 mm steel covers as they are rather flimsy.
 
