@@ -681,7 +681,7 @@ Pressing KEY_RIGHT will switch between:
 
 However, will not switch to ultralitemk5_streamer.yml because it does not start with "_".
 
-Pressing KEY_LEFT will mute CamillaDSP, if you switch configurations this mute will stay set. You can change volume up and down while muted, the mute will only be removed by either pressing KEY_LEFT again or unmuting in the GUI.
+Pressing KEY_LEFT will mute CamillaDSP, if configurations are switched this mute will stay set. Volume can be changed while muted, the mute will only be removed by either pressing KEY_LEFT again or unmuting in the GUI.
 
 Install evdev.
 
@@ -695,7 +695,7 @@ Download flirc.py.
 wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/flirc.py -P ~/
 ```
 
-Enable USB-C port for use, this is needed to run the IR receiver from the USB-C port (you will see why you might want to do this in the section discussing cases). If you have the FLIRC plugged in to a USB-A port this is not needed.
+Enable USB-C port for use, this is needed to run the IR receiver from the USB-C port, this is needed if using . If you have the FLIRC plugged in to a USB-A port this is not needed.
 
 ```
 sudo nano /boot/firmware/config.txt
@@ -808,7 +808,7 @@ wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.py -P ~
 
 Download OLED service.
 
-``
+```
 sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.service -P /lib/systemd/system/
 ```
 
