@@ -639,25 +639,45 @@ The Files tab stores configurations and convolution filters. It will show config
 
 To load a configuration in the GUI press the clockwise arrow button next to the desired configuration. Once this is done, the configuration name appear in the lower left under "Config", in the screenshot below, a configuration called lxminibsc.yml is loaded in the GUI.
 
-Just because a configuration is loaded in the GUI does NOT mean it is actually applied to the DSP. To apply a configuration to the DSP click the "Apply to DSP" button. This will apply the configuration in the GUI to the DSP but it will NOT save any changes made via the GUI. If you would like to save changes click the "Save to File" button. If you would like both of these operations done at the same time you can click the "Apply and save" button. Alternatively you can use the "Apply automatically" and "Save automatically" check boxes to do these operations automatically after a change is made in the GUI.
+Just because a configuration is loaded in the GUI does NOT mean it is actually applied to the DSP. To apply a configuration to the DSP, click the "Apply to DSP" button. This will apply the configuration in the GUI to the DSP but it will NOT save any changes made via the GUI. To save changes, click the "Save to File" button. To implement both of these operations at the same time, click the "Apply and save" button. Alternatively, use the "Apply automatically" and "Save automatically" check boxes to do these operations automatically after a change is made in the GUI.
 
-If you have a question about what settings are currently applied to the DSP click the "Fetch from DSP" button and it will load the GUI with the current DSP settings. Note it only pulls the settings and does NOT change the configuration name in the lower left.
+To see what settings are currently applied to the DSP, click the "Fetch from DSP" button and it will load the GUI with the current DSP settings. Note, it only pulls the settings and does NOT change the configuration name in the lower left.
 
-In order to set a configuration as default (i.e. the configuration that will be loaded when CamillaDSP starts) click the star button next to your desired configuration. After you do this the star button will now be green next to your default configuration.
+In order to set a configuration as default (i.e. the configuration that will be loaded when CamillaDSP starts), click the star button next to the desired configuration. After this is done, the star button will now be green next to the default configuration.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/files.png" alt="files" width="600"/>
 
-There is a nice compact view that is great for changing volume or configurations from a smartphone or tablet. You can access it by clicking the "Change to compact view" button just to the right of the CamillaDSP logo.
+There is a nice compact view that is great for changing volume or configurations from a smartphone or tablet. It can be accessed by clicking the "Change to compact view" button just to the right of the CamillaDSP logo.
 
-If you add filters named "Bass" and "Treble" you can use the sliders in this view as bass / treble tone controls to control the boost / cut of those filters. Recommended parameters for bass and treble tone control are lowshelf, f=85 Hz, q=0.9 and highshelf, f=6500 Hz, q=0.7 respectively.
+If filters named "Bass" and "Treble" are created and applied, the sliders in this view can be used as bass / treble tone controls. Recommended parameters for bass and treble tone control are lowshelf, f=85 Hz, q=0.9 and highshelf, f=6500 Hz, q=0.7 respectively.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/compact_view.png" alt="files" width="300"/>
 
 ### FLIRC USB IR Receiver
 
-A [FLIRC IR receiver](https://flirc.tv/more/flirc-usb) is an easy way to add IR volume control for around $20. I’ve created a python script so setting this up is very easy. The first step is to download the FLIRC software on your main computer and connect the FLIRC receiver to that computer. Use the software to pair your remote so that volume up is KEY UP, volume down is KEY_DOWN, mute is KEY_LEFT and source change is KEY_RIGHT.
+A [FLIRC IR receiver](https://flirc.tv/more/flirc-usb) is an easy way to add IR volume control for around $20. A  python script has been created so setting this up is very easy. 
 
-The source change functionality will switch between any configuration that has "_" in front of the configuration. For example, if you had configurations titled _ultralitemk5_toslink48.yml, _ultralitemk5_streamer.yml, _ultralitemk5_analog.yml and ultralitemk5_streamer.yml, pressing KEY RIGHT would switch between _ultralitemk5_toslink48.yml, _ultralitemk5_streamer.yml and _ultralitemk5_analog.yml but NOT ultralitemk5_streamer.yml because it does not start with "_".
+Download the FLIRC software on a Mac / PC and connect the FLIRC receiver to that computer. Use the software to pair a remote as shown below.
+
+- KEY_UP = volume up
+- KEY_DOWN = volume down
+- KEY_LEFT = mute
+- KEY_RIGHT = source change
+
+The source change functionality will switch between any configuration that has "_" in front of the name. For example, for the following configurations:
+
+- _ultralitemk5_toslink48.yml
+- _ultralitemk5_streamer.yml
+- _ultralitemk5_analog.yml
+- ultralitemk5_streamer.yml
+
+Pressing KEY_RIGHT will switch between:
+
+- _ultralitemk5_toslink48.yml
+- _ultralitemk5_streamer.yml
+- _ultralitemk5_analog.yml 
+
+However, will not switch to ultralitemk5_streamer.yml because it does not start with "_".
 
 Pressing KEY_LEFT will mute CamillaDSP, if you switch configurations this mute will stay set. You can change volume up and down while muted, the mute will only be removed by either pressing KEY_LEFT again or unmuting in the GUI.
 
