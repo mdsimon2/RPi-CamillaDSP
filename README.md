@@ -408,8 +408,10 @@ Download and install nginx.
 ```
 sudo apt install nginx-full
 ```
+
 Open nginx.conf in nano.
 
+```
 sudo nano /etc/nginx/nginx.conf
 ```
 
