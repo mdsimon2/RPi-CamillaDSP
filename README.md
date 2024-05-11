@@ -922,7 +922,7 @@ This is another area where you may be able to save money. For example you could 
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/rearpanel.jpeg" alt="rearpanel" width="600"/>
 
-For reference at the time of writing (12/2021) here are prices in USD including priority shipping to my location (Detroit, MI US) for the three basic case options including front panel, bottom panel and rear panel machining.
+As of 12/2021 prices in USD including priority shipping to Detroit, MI US for the three basic case options including front panel, bottom panel and rear panel machining are shown below.
 
 - 3 mm front panel: $171
 - 10 mm front panel, one sided machining: $189
