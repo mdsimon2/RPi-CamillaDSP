@@ -140,7 +140,7 @@ sudo tar -xvf ~/camilladsp/camilladsp-linux-aarch64.tar.gz -C /usr/local/bin/
 Download CamillaDSP service.
 
 ```
-sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/camillasdp.service -P /lib/systemd/system/
+sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/camilladsp.service -P /lib/systemd/system/
 ```
 
 Open CamillaDSP service in nano and update username to reflect your username.
