@@ -695,7 +695,9 @@ Download flirc.py.
 wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/flirc.py -P ~/
 ```
 
-Enable USB-C port for use, this is needed to run the IR receiver from the USB-C port, this is needed if using . If you have the FLIRC plugged in to a USB-A port this is not needed.
+Enable USB-C port for use, this is needed to run the IR receiver from the USB-C port as is implemented in the [Modushop Case](https://github.com/mdsimon2/RPi-CamillaDSP#modushop-case) design in this tutorial . If the FLIRC is plugged in to a USB-A port this is not needed.
+
+Open config.txt in nano.
 
 ```
 sudo nano /boot/firmware/config.txt
@@ -709,10 +711,15 @@ arm_64bit=1
 dtoverlay=dwc2,dr_mode=host
 ```
 
-Check that your FLIRC is recognized. Run lsusb and make sure you see an entry for Clay Logic flirc as shown below.
+Check that the FLIRC is recognized.
 
 ```
-username@hostname:~$ lsusb
+lsusb
+```
+
+There should be an entry for Clay Logic flirc as shown below.
+
+```
 Bus 003 Device 002: ID 20a0:0006 Clay Logic flirc
 Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
@@ -723,7 +730,7 @@ Bus 001 Device 002: ID 2109:3431 VIA Labs, Inc. Hub
 Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 ```
 
-Next check that the FLIRC device is named what we expect.
+Next check that the FLIRC device name.
 
 ```
 ls /dev/input/by-id/
@@ -736,7 +743,7 @@ username@hostname:~$ ls /dev/input/by-id/
 usb-flirc.tv_flirc-if01-event-kbd
 ```
 
-If you see something different, potentially like usb-flirc.tv_flirc_E7A648F650554C39322E3120FF08122E-if01-event-kbd you will need to modify flirc.py to reflect this.
+If this looks different, potentially like usb-flirc.tv_flirc_E7A648F650554C39322E3120FF08122E-if01-event-kbd, modify flirc.py to reflect this.
 
 ```
 nano ~/flirc.py
@@ -774,27 +781,23 @@ sudo service flirc start
 
 ### Trigger Output
 
-It is easy to add a trigger output to the Ultralite Mk5 using a [Bobwire DAT1](https://www.bobwireaudio.com/). Simply connect the TOSLINK output of the Ultralite Mk5 to the Bobwire DAT1 and use the Audio Detect output port. All of my configuration files are set to stop after 5 seconds of output less than -100 dB, as a result CamillaDSP will stop after 5 seconds and after 60 seconds the trigger from the Bobwire DAT1 will stop and your amplifiers will turn off. Once CamillaDSP starts playing the Bobwire DAT1 trigger will fire up immediately. The only issues I have with the Bobwire DAT1 are that it is relatively expensive (~$70) and for me the provided power supply had a high frequency noise coming from the power supply itself, I swapped this out with another generic 12 V power supply and the noise went away.
+It is easy to add a trigger output to the Ultralite Mk5 using a [Bobwire DAT1](https://www.bobwireaudio.com/). Simply connect the TOSLINK output of the Ultralite Mk5 to the Bobwire DAT1 and use the Audio Detect output port. All configuration files in this tutorial are set to stop after 5 seconds of output less than -100 dB, as a result CamillaDSP will stop after 5 seconds and after 60 seconds the trigger from the Bobwire DAT1 will turn any connected amplifiers off. Once CamillaDSP starts playing the Bobwire DAT1 trigger will fire up immediately.
 
 ### OLED Display
 
-RPis have GPIO pins which can be used to interface with a variety of displays. I’ve developed a python script that works with the [buydisplay.com 3.2” diagonal SSD1322 OLED display](https://www.buydisplay.com/white-3-2-inch-arduino-raspberry-pi-oled-display-module-256x64-spi) which is around ~$30 + shipping. Be sure to order the display in the 6800 8 bit configuration, I also recommend you have them solder a pin header as it is only an additional cost of $0.59.
+RPis have GPIO pins which can be used to interface with a variety of displays. A python script has been developed for the [buydisplay.com 3.2” diagonal SSD1322 OLED display](https://www.buydisplay.com/white-3-2-inch-arduino-raspberry-pi-oled-display-module-256x64-spi) which is around ~$30 + shipping. Be sure to order the display in the 6800 8 bit configuration. It is recommended to have them solder a pin header as it is only an additional cost of $0.59.
 
-I should warn that my code is messy and will make actual programmers cringe but it works well and it is decently easy to modify. The base setup turns the display off after 10 seconds of no volume changes to avoid OLED burn in. It will turn back on if you change the volume or the CamillaDSP status or configuration changes.
+The base setup turns the display off after 10 seconds of no volume changes to avoid OLED burn in. It will turn back on if the volume is changed or the CamillaDSP status or configuration changes.
 
-As of 02/21/2023 there are now two options for the oled python script, one based on lgpio and one based on rpi-gpio. @LandscapeJohn did some testing as noted here and found that rpi-gpio was significantly faster than the lgpio. This makes a considerable difference in the responsiveness of the display. I originally chose lgpio over rpi-gpio as I had read that rpi-gpio support was going away (see here and here). However, as of Ubuntu 23.10 rpi-gpio still works and it is well worth using for the significant performance increase. @LandscapeJohn also made some slight changes to the way the routine sends data / commands to the display which I implemented in the lgpio version as well for a slight performance increase.
+Two versions of the OLED python script are provided. The default uses lgpio, this works with both the RPi4 and RPi5. An alternative configuration is provided which uses rpi-gpio which only works with the RPi4 and is slightly faster.
 
-Note, RPi5s do NOT support rpi-gpio and need to use lgpio, in addition you need to change the line "chip = sbc.gpiochip_open(0)" to "chip = sbc.gpiochip_open(4)".
-
-The python script has the ability to show user defined text on the first line of the display based on loaded configuration file. With CamillaDSP V2, this will show the Title field under the Title tab of the GUI. If this field is blank, "CamillaDSP" will be displayed.
-
-If using lgpio based routine install lgpio.
+If using the default lgpio based routine install lgpio.
 
 ```
 sudo apt install python3-lgpio
 ```
 
-If using rpi-gpio routine (recommended) install rpi-gpio.
+If using the alternative rpi-gpio routine install rpi-gpio.
 
 ```
 sudo apt install python3-rpi.gpio
@@ -829,27 +832,29 @@ Start OLED service.
 ```
 sudo service oled start
 ```
+The python script has the ability to show user defined text on the first line of the display based on loaded configuration file. With CamillaDSP V2, this will show the Title field under the Title tab of the GUI. If this field is blank, "CamillaDSP" will be displayed.
 
-Wiring configuration from the display to the RPi GPIO header is listed below. Note, these pins can be changed as desired, see here for more information on RPi4 pinout -> https://www.tomshardware.com/reviews/raspberry-pi-gpio-pinout,6122.html. Specifically using GPIO 18 for the display may be an issue if you are using the display with a DAC HAT.
+
+Wiring configuration from the display to the RPi GPIO header is listed below. Note, these pins can be changed as desired, see here for more information on RPi pinout -> https://www.tomshardware.com/reviews/raspberry-pi-gpio-pinout,6122.html. In addition, please note the wiring configuration has been changed from earlier versions of the tutorial to accommodate the HifiBerry DAC8x, the old pin configurations are shown in parenthesis for the pins that have changed.
 
 1) (ground) -> ground
 2) (supply voltage) -> 3.3 V
 3) (no connection) -> no connection
-4) (data bus 0) -> GPIO 26
+4) (data bus 0) -> GPIO 15 (GPIO 26)
 5) (data bus 1) -> GPIO 13
 6) (data bus 2) -> GPIO 6
 7) (data bus 3) -> GPIO 5
-8) (data bus 4) -> GPIO 22
-9) (data bus 5) -> GPIO 27
+8) (data bus 4) -> GPIO 7 (GPIO 22)
+9) (data bus 5) -> GPIO 2 (GPIO 27)
 10) (data bus 6) -> GPIO 17
-11) (data bus 7) -> GPIO 18
-12) (enable) -> GPIO 23
+11) (data bus 7) -> GPIO 3 (GPIO 18)
+12) (enable) -> GPIO 14 (GPIO 23)
 13) (read/write) -> ground
 14) (data/command) -> GPIO 16
 15) (reset) -> GPIO 12
-16) (chip select)-> GPIO 25
+16) (chip select)-> GPIO 8 (GPIO 25)
 
-For wiring I used prefabbed 8” long 0.1” header jumpers. These are a bit long but allow you to remove the front panel with the wiring remaining connected which is a nice feature.
+For wiring, prefabbed 8” long 0.1” header jumpers are recommended. These are a bit long but allow the removal the front panel with the wiring remaining connected which is a nice feature.
 
 ### Modushop Case
 
