@@ -7,7 +7,7 @@ I would like to especially thank [@HEnquist](https://github.com/HEnquist) for de
 
 I am not a programmer or DSP expert, my primary motivation is finding better ways to implement DIY active speakers. If you see a better way of doing something or want further explanation please speak up! These instructions have been developed as I learned how to implement CamillaDSP and found better ways to set it up, but I am always learning.
 
-Prior to GitHub, I archived older versions of the tutorial at the links below.
+For archived versions of the tutorial that pre-date Github, see links below.
 
 - [10/20/2022 Archive](https://drive.google.com/file/d/1y-vULEbXNjza7W4X1vQyIIH1r1GOCVpN/view?usp=sharing)
 - [12/12/2023 Archive](https://drive.google.com/file/d/1MbB300dAJUEtBld14Qd4loA6hD94v67B/view?usp=share_link)
@@ -235,9 +235,9 @@ sudo service camillagui start
 
 ### 10) Assign active configuration in GUI
 
-Configurations are explained in more detail in the [CamillaDSP Configurations](https://github.com/mdsimon2/RPi-CamillaDSP#camilladsp-configurations) section of this tutorial. Pre-made configurations for the DACs in this tutorial can be downloaded by navigating to the [configs](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/configs) folder of this repository. Alternatively you can download the entire repository by clicking [here](https://github.com/mdsimon2/RPi-CamillaDSP/archive/refs/heads/main.zip) or using git clone.
+Configurations are explained in more detail in the [CamillaDSP Configurations](https://github.com/mdsimon2/RPi-CamillaDSP#camilladsp-configurations) section of this tutorial. Pre-made configurations for the DACs in this tutorial can be downloaded by navigating to the [configs](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/configs) folder of this repository. Alternatively, you can download the entire repository by clicking [here](https://github.com/mdsimon2/RPi-CamillaDSP/archive/refs/heads/main.zip) or using git clone.
 
-On a computer that is on the same network as your RPi navigate your browser to http://hostname:5005.
+On a computer that is on the same network as your RPi, navigate your browser to http://hostname:5005.
 
 Navigate to Files tab of GUI and upload your desired configuration using the up arrow in the Configs section. Set this configuration as active by pressing the "star" next to the configuration. From now on CamillaDSP and the GUI will start with this configuration loaded. Click the "Apply and Save" button in the lower left to load the configuration to DSP.
 
@@ -247,7 +247,7 @@ Congratulations, you now have CamillaDSP up and running!
 
 ### 11) Upgrading to future versions
 
-If you would like to upgrade to a new version of CamillaDSP simply remove your old CamillaDSP binary and tar and download and extract a new one.
+To upgrade to a new version of CamillaDSP simply remove the old CamillaDSP binary and tar and download and extract a new one.
 
 ```
 rm ~/camilladsp/camilladsp-linux-aarch64.tar.gz
@@ -276,17 +276,21 @@ sudo service camillagui restart
 
 ## Streamer Applications
 
-There are two basic ways to use CamillaDSP, either use RPi as a streamer (AirPlay, squeezelite, spotify, bluetooth, etc) or use an external physical input like TOSLINK, SPDIF, AES or analog. I will document configuration files for both streamer and external inputs for each of the recommended DACs in this tutorial. The configurations are simple and route 2 channel input to all available outputs.
+For streamer applications this tutorial assumes your software player outputs 44.1 kHz and resamples everything that is not 44.1 kHz to accomplish this. 
 
-For streamer applications I am assuming your player is outputting 44.1 kHz and resampling everything that is not 44.1 kHz to accomplish this. Before we get started I will show you how to install shairport-sync (Airplay) and squeezelite as these are the players that I use in my streamer setup and how to best configure them.
+This tutorial covers how to install shairport-sync and squeezelite. Other players can be used as long as they output 44.1 kHz and can play to an ALSA loopback.
 
 ### shairport-sync
+
+Download and install shairport-sync and SOX.
 
 ```
 sudo apt install shairport-sync libsoxr-dev
 ```
 
-After you install there are some configuration items we will need to change.
+After installation there are some items which require configuration.
+
+Open shairport-sync.conf in nano.
 
 ```
 sudo nano /etc/shairport-sync.conf
@@ -299,7 +303,7 @@ interpolation = "soxr";
 output_device = "hw:Loopback,1";
 ```
 
-Using SOX for interpolation should avoid audible artifacts from clock syncing. The last line sets the output device to your ALSA loopback device 1. Airplay will automatically resample to 44.1 kHz sample rate by default.
+Using SOX for interpolation should avoid audible artifacts from clock syncing. The last line sets the output device to ALSA loopback device 1. Airplay will automatically resample to 44.1 kHz sample rate by default.
 
 Restart shairport-sync service to reflect changes in shairport-sync.conf
 
@@ -309,11 +313,13 @@ sudo service shairport-sync restart
 
 ### squeezelite
 
+Download and install squeezelite.
+
 ```
 sudo apt install squeezelite
 ```
 
-Like shairport-sync we need to make a few changes to the squeezelite configuration. Copy and paste the lines shown below to the end of the file using nano.
+Like shairport-sync a few changes are required to the squeezelite configuration. Copy and paste the lines shown below to the end of the file using nano.
 
 ```
 sudo nano /etc/default/squeezelite
@@ -330,16 +336,16 @@ Restart squeezelite service to reflect changes.
 sudo service squeezelite restart
 ```
 
-These changes set your ALSA loopback device 1 as squeezelite playback device, resample all files to 44.1 kHz using a high quality resampling algorithm and stop squeezelite after 5 seconds of inactivity.
+These changes set ALSA loopback device 1 as squeezelite playback device, resample all files to 44.1 kHz using a high quality resampling algorithm and stop squeezelite after 5 seconds of inactivity.
 
 ## CamillaDSP Configurations
 
-All configurations use maximum amount of output channels for a given device. If you do not need an output channel remove it from the mixer as each extra channel requires additional processing resource. Configuration files can be found in the [configs](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/configs) folder of this repository.
+All configurations use maximum amount of output channels for a given device. If an output channel is not needed remove it from the mixer as each extra channel requires additional processing resources. Configuration files can be found in the [configs](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/configs) folder of this repository.
 
-The naming convention for my configuration files is dac_input_capturerate_playbackrate. For example, a configuration for a MOTU Ultralite Mk5, TOSLINK input with 96 kHz capture and 96 kHz playback rates is ultralitemk5_toslink_96c_96p.
+The naming convention configuration files in this repository is dac_input_capturerate_playbackrate. For example, a configuration for a MOTU Ultralite Mk5, TOSLINK input with 96 kHz capture and 96 kHz playback rates is ultralitemk5_toslink_96c_96p.
 
 ### ASRC Options
-CamillaDSP expects a constant capture sample rate and cannot accommodate rate changes without a restart. If you have a variable sample rate physical digital source like TOSLINK, AES or SPDIF or have multiple physical digital sources with different rates, a good option is to add a device that has an ASRC to convert to a consistent rate. miniDSP offer many devices with this capability which are summarized summarized below.
+CamillaDSP expects a constant capture sample rate and cannot accommodate rate changes without a restart. For variable sample rate physical digital sources like TOSLINK, AES or SPDIF or multiple physical digital sources with different rates, a good option is to add a device that has an ASRC to convert to a consistent rate. miniDSP offer many devices with this capability which are summarized summarized below.
 
 - [nanoDIGI](https://www.minidsp.com/images/documents/nanoDIGI%202x8%20User%20Manual.pdf) - $170, discontinued in 2021 but possible to find used, SPDIF / TOSLINK input, SPDIF output, 96 kHz
 - [2x4HD](https://www.minidsp.com/products/minidsp-in-a-box/minidsp-2x4-hd) - $225, TOSLINK / analog input, USB output, 96 kHz
@@ -349,20 +355,20 @@ CamillaDSP expects a constant capture sample rate and cannot accommodate rate ch
 - [SHD Studio](https://www.minidsp.com/products/streaming-hd-series/shd-studio) - $900, AES / SPDIF / TOSLINK / USB / streamer input, SPDIF / AES / USB output, 96 kHz
 - [SHD](https://www.minidsp.com/products/streaming-hd-series/shd) - $1250, AES / SPDIF / TOSLINK / USB / streamer / analog input, SPDIF / AES / USB output, 96 kHz
 
-All of these devices can do IR volume control, although not all have displays for volume / input identification.
+These devices can do IR volume control, although not all have displays for volume / input identification.
 
-2x4HD and Flex can be upgraded with Dirac but sample rate will change from 96 kHz to 48 kHz.
+2x4HD and Flex can be upgraded to Dirac versions but sample rate will change from 96 kHz to 48 kHz.
 
-In order to use USB output of devices like 2x4HD, Flex and SHD you need to set them as the CamillaDSP capture device. Unfortunately this ties up the USB input and makes it unusable. Still, this is a good approach to add extra input functionality to basic USB DACs like the MOTU M4 or Topping DM7 which only have USB input.
+In order to use USB output of devices like 2x4HD, Flex and SHD they need to be set as capture device in CamillaDSP. Unfortunately this ties up the USB input and makes it unusable. Still, this is a good approach to add extra input functionality to basic USB DACs like the MOTU M4 or Topping DM7 which only have USB input.
 
-If you have a constant sample rate digital source the following devices work well. Compared to other solutions like the HiFiBerry Digi+ I/O they handle signal interruptions gracefully. These devices are used in a similar way to the miniDSPs with USB outputs, the device is set as the CamillaDSP capture device. Note, that although the S2 digi also has a TOSLINK output, I don't recommend using I've experienced audible dropouts when using it as an output.
+For constant sample rate digital source the following devices work well. Compared to other solutions like the HiFiBerry Digi+ I/O they handle signal interruptions gracefully. These devices are used in a similar way to the miniDSPs with USB outputs, the device is set as the CamillaDSP capture device. Note, that although the S2 digi also has a TOSLINK output, it is not recommended due to audible dropouts.
 
 - [hifime S2 digi (SA9227)](https://hifimediy.com/product/s2-digi/) - $40, TOSLINK input, USB output, sample rates up to 192 kHz
 - [hifime UR23](https://hifimediy.com/product/hifime-ur23-spdif-optical-to-usb-converter/) - $25, TOSLINK input, USB output, does NOT work with RPi5, sample rates up to 96 kHz
 
 ### chunksize / target_level
 
-CamillaDSP V1 used a buffer size of 2 x chunk size, CamillaDSP V2 uses a buffer size of 4 x chunksize. In previous versions of this tutorial I used rather long chunksize (44.1/48 = 1024, 88.2/96 = 2048, 176.4/192 = 4096), but this resulted in rather long latency. After some experimentation, I've found much lower chunksizes can be used. The configurations in this repository all use the following chunksize depending on play back sample rate.
+CamillaDSP V1 used a buffer size of 2 x chunksize, CamillaDSP V2 uses a buffer size of 4 x chunksize. In previous versions of this tutorial a rather long chunksize was specified (44.1/48 = 1024, 88.2/96 = 2048, 176.4/192 = 4096), but this resulted in long latency. After some experimentation, it was found that much lower chunksizes are stable. The configurations in this repository all use the following chunksize depending on playback sample rate.
 
 - 44.1 / 48 kHz: 64
 - 88.2 / 96 kHz: 128
@@ -370,23 +376,23 @@ CamillaDSP V1 used a buffer size of 2 x chunk size, CamillaDSP V2 uses a buffer 
 
 For configurations where playback and capture device are synchronous (i.e. no rate adjust is enabled), target_level = chunksize. For asynchronous configurations, target_level = 3 x chunksize.
 
-These chunksize / target_level settings will result in < 10 ms latency. If you find you are having issues with dropouts, increase chunksize / target_level, and please let me know.
+These chunksize / target_level settings will result in < 10 ms latency. If dropouts are experienced, increase chunksize / target_level, and please let me know.
 
 ### Okto dac8 PRO
 
-These configurations assume you are NOT using CamillaDSP volume control as the Okto has a nice volume display with knob and IR control. As volume control is downstream of CamillaDSP, digital clipping in CamillaDSP is more of an issue. As a result, I have added 1 dB attenuation on all output channels of configurations that implement resampling to help avoid clipping. In general, if you add boost in your configuration you will want to offset that boost by attenuating the output further. Use the CamillaDSP clipping indicator to gauge if you have enough attenuation to avoid digital clipping.
+These configurations assume CamillaDSP volume control is NOT being used as the Okto has a nice volume display with knob and IR control. As volume control is downstream of CamillaDSP, digital clipping in CamillaDSP is more of an issue. As a result, I have added 1 dB attenuation on all output channels of configurations that implement resampling to help avoid clipping. In general, if boost is added to a configuration, offset that boost by attenuating the output further. Use the CamillaDSP clipping indicator to gauge if there is enough attenuation to avoid digital clipping.
 
 #### okto_streamer.yml
 
 - Set Okto to Pure USB mode via front panel.
 - All streamer configurations expect 44.1 kHz input. 
 - Due to clock difference between loopback and Okto, rate adjust is enabled.
-- Configurations provided for 44.1, 96 and 192 playback sample rates.
+- Configurations provided for 44.1, 96 and 192 kHz playback sample rates.
 
 #### okto_aes.yml
 
 - Set Okto to USB / AES mode via front panel.
-- This configuration uses AES inputs 1-2 but you can add to other AES inputs as needed.
+- This configuration uses AES inputs 1-2 but other AES inputs can be added as needed.
 - No rate adjust is enabled as Okto is clocked by AES input in this mode.
 - It is not possible to use different input and output sample rates when using Okto as capture device.
 - Configurations provided for 48, 96 and 192 kHz sample rates.
@@ -397,14 +403,17 @@ This DAC requires a small amount of setup, either while connected to a Mac / PC 
 
 #### nginx
 
-nginx can be installed via the following instructions.
+Download and install nginx.
 
 ```
 sudo apt install nginx-full
+```
+Open nginx.conf in nano.
+
 sudo nano /etc/nginx/nginx.conf
 ```
 
-Paste the text below to the end of nginx.conf, update the IP address to match your Ultralite Mk5.
+Paste the text below to the end of nginx.conf, update the IP address shown on the front panel of the Ultralite Mk5.
 
 ```
 stream {
@@ -427,9 +436,9 @@ Restart nginx service.
 sudo service nginx restart
 ```
 
-Your Ultralite Mk5 should automatically be connected to the network if using Raspberry Pi OS, if you are using Ubuntu Server, use the following instructions.
+Ultralite Mk5 should automatically connect to the network if using Raspberry Pi OS, if using Ubuntu Server, use the following instructions.
 
-Find the network device name of your Ultralite Mk5.
+Find the network device name of the Ultralite Mk5.
 
 ```
 ip a
@@ -458,14 +467,14 @@ Output should look something like this, enx0001f2fff075 is the network device na
        valid_lft forever preferred_lft forever
 ```
 
-Update network configuration to include the Ultralite Mk5. You will need to use an IP address where the third number is one greater than the actual IP address reported on your front panel. For example, my Ultralite Mk5 has an IP address of 169.254.117.240, so I enter 169.254.118.240.
+Update network configuration to include the Ultralite Mk5. Use an IP address where the third number is one greater than the actual IP address reported on the front panel, followed by /16. For example, if the front panel reports 169.254.117.240, enter 169.254.118.240/16.
 
 ```
 sudo cp /etc/netplan/50-cloud-init.yaml /etc/cloud/cloud.cfg.d/50-curtin-networking.cfg
 sudo nano /etc/cloud/cloud.cfg.d/50-curtin-networking.cfg
 ```
 
-Paste the following text to the bottom of 50-curtin-networking.cfg, updating the IP address for your Ultralite Mk5. ethernets should be at the same indentation level as wifis.
+Paste the following text to the bottom of 50-curtin-networking.cfg, updating the IP address using the guidance above. ethernets should be at the same indentation level as wifis.
 
 ```
     ethernets:
@@ -476,9 +485,9 @@ Paste the following text to the bottom of 50-curtin-networking.cfg, updating the
 
 #### CueMix
 
-Install Cuemix 5 on your Mac / PC. Either connect the Ultralite Mk5 to your Mac / PC or click the gear in Cuemix and enter the hostname of your RPi.
+Install Cuemix 5 on a Mac / PC. Either connect the Ultralite Mk5 to the Mac / PC or click the gear in Cuemix and enter the hostname of the RPi.
 
-Set up channel routing such that USB 1-2 are routed to analog output 1-2, USB 3-4 to analog output 3-4, etc. Make sure no other channel routing is in place, as all channel routing will be done in CamillaDSP. Check your levels in the Output tab as my Ultralite Mk5 came with all channels set to -20 dB by default. If you want to use the Mk5 volume knob then select which analog channels (knob will only work on analog channels) you want controlled by the knob in the Output tab. See screenshots below for what this should look like.
+Set up channel routing such that USB 1-2 are routed to analog output 1-2, USB 3-4 to analog output 3-4, etc. Make sure no other channel routing is in place, as all channel routing will be done in CamillaDSP. Check the levels in the Output tab as the Ultralite Mk5 may come with all channels set to -20 dB by default. To use the Mk5 volume knob, select which analog channels (knob will only work on analog channels) should be controlled by the knob in the Output tab. See screenshots below for what this should look like.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/cuemix_main_1-2.png" alt="cuemix_main_1-2" width="500"/>
 
@@ -508,7 +517,7 @@ Outputs:
 - 18-19: ADAT 5-6
 - 20-21: ADAT 7-8
 
-Once you have channel routing setup in Cuemix, this DAC is very similar to the Okto in terms of setup just with more inputs / output options. Although it has a volume knob, I like to use CamillaDSP for volume control with the Mk5 as it does not have an IR receiver. I use a FLIRC USB IR receiver and separate display for volume indication as described in Part 4.
+Once channel routing is set in Cuemix, this DAC is very similar to the Okto in terms of setup, just with more inputs / output options. Although the Ultralite Mk5 has a volume knob, you may want to use CamillaDSP for volume control with the Mk5 as it does not have an IR receiver. See [FLIRC IR Receiver](https://github.com/mdsimon2/RPi-CamillaDSP#flirc-usb-ir-receiver) and [OLED Display](https://github.com/mdsimon2/RPi-CamillaDSP#oled-display) sections of this tutorial for more information.
 
 #### ultralitemk5_streamer.yml
 
@@ -539,7 +548,7 @@ Once you have channel routing setup in Cuemix, this DAC is very similar to the O
 
 ### MOTU M4
 
-This is the easiest of the bunch to setup as it has limited I/O functionality. Like the Ultralite Mk5 I use CamillaDSP volume control with this DAC. Due limited input functionality I show how to use a variety of external devices with this DAC, similar configurations can be used with any DAC in this tutorial.
+This is the easiest of the bunch to setup as it has limited I/O functionality. Given lack of 4 channel on device volume control, it is recommended to use CamillaDSP volume control with this DAC. Due limited input functionality, a variety of configurations with external input devices are provided, similar configurations can be used with any DAC in this tutorial.
 
 #### m4_streamer.yml
 
@@ -550,7 +559,7 @@ This is the easiest of the bunch to setup as it has limited I/O functionality. L
 #### m4_analog.yml
 
 - This configuration uses analog inputs 3-4 but you can use others if needed. 
-- It is not possible to use different input and output sample rates when using Ultralite Mk5 as capture device. 
+- It is not possible to use different input and output sample rates when using M4 as capture device. 
 - Configurations provided for 48, 96 and 192 kHz sample rates.
 
 #### m4_2x4hd.yml
@@ -564,14 +573,14 @@ This is the easiest of the bunch to setup as it has limited I/O functionality. L
 
 - This configuration uses a hifime S2 digi (SA9227) as capture device. 
 - Due to clock difference between S2 digi and M4, rate adjust and asynchronous resampling are enabled. 
-- Configuration provided for 44.1 and 192 kHz capture sample rate, but can be changed to match your source.
+- Configuration provided for 44.1 and 192 kHz capture sample rate, but can be changed to match the source.
 - Playback sample rate set to device maximum of 192 kHz.
 
 #### m4_ur23.yml
 
 - This configuration uses a hifime UR23 as capture device.
 - Due to clock difference between UR23 and M4, rate adjust and asynchronous resampling are enabled. 
-- Capture sample rate set to device maximum of 96 kHz, but can be changed to match your source.
+- Capture sample rate set to device maximum of 96 kHz, but can be changed to match the source.
 - Configuration provided for 96 and 192 kHz playback sample rate.
 
 ### HifiBerry DAC8x
@@ -580,11 +589,11 @@ This is the easiest of the bunch to setup as it has limited I/O functionality. L
 
 ### GUI
 
-Access the GUI via any computer on the same network as your RPi by navigating a browser to http://hostname:5005.
+Access the GUI via any computer on the same network as the RPi by navigating a browser to http://hostname:5005.
 
 #### Title
 
-As of CamillaDSP V2, the first tab is Title. There isn't much to do in this tab, but you can populate Title and Description fields for your configuration. The Title field is displayed on the first line of the OLED display described later in this tutorial.
+As of CamillaDSP V2, the first tab is Title. There isn't much to do in this tab, but the Title and Description fields can be populated. The Title field is displayed on the first line of the [OLED display](https://github.com/mdsimon2/RPi-CamillaDSP#oled-display) described later in this tutorial.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/title.png" alt="title" width="600"/>
 
@@ -592,21 +601,21 @@ As of CamillaDSP V2, the first tab is Title. There isn't much to do in this tab,
 
 The Devices tab defines general parameters like capture device, playback device, sample rate, rate adjust, resampling and chunk size.
 
-It is very important that sample format and channel count are supported by your device. If you are using configurations from this repository this will not be an issue, but if you make your own configuration it is something to be aware of. The majority of issues I see with CamillaDSP not starting are the result of incorrectly specified channel counts and/or formats.
+It is very important that sample format and channel count are supported by the device. If using configurations from this repository this will not be an issue, but if creating new configurations it is something to be aware of.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/devices.png" alt="devices" width="600"/>
 
 #### Filters
 
-In the Filters tab you can add any filter you want. A big advantage of using the GUI over a manual configuration file is that it will prompt you for the necessary information for the filter type you are using. Once you have created a filter you can view the magnitude / phase / group delay and make sure it matches your expectation. If you have questions about specific filter implementation, see the CamillaDSP GitHub. Creating a filter in the Filters tab does not apply it to the pipeline, it just creates a filter that will be available for you to apply in the pipeline.
+In the Filters tab a variety of filters can be created. A big advantage of using the GUI over a manual configuration file is that it will prompt for the necessary information for a given filter type. Once a filter is created, the magnitude / phase / group delay can be viewed. For questions about specific filter implementation, see the [CamillaDSP GitHub](https://github.com/HEnquist/camilladsp). Creating a filter in the Filters tab does not apply it to the pipeline, it just creates a filter that will be available to apply in the Pipeline.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/filters.png" alt="filters" width="600"/>
 
 #### Mixers
 
-The Mixers tab defines channel routing, in addition you can change gain and polarity of each channel. Like filters, your mixer will not be in effect until you apply it in the pipeline.
+The Mixers tab defines channel routing, in addition, gain and polarity can be defined for each channel. Like Filters, the Mixer will not be in effect until you apply it in the Pipeline.
 
-As in the Devices tab, it is very important that the channel counts in the Mixers tab exactly match the channel counts of your device. Again if you configurations from this repository this will not be an issue. You do not need to use all channels in your mixer, but they need to specified in the "in" and "out" section. For example in the screenshot below 8 input and 8 output channels are specified although only 2 input channels (0 and 1) are used in the mixer definition.
+As in the Devices tab, it is very important that channel counts in the Mixers tab exactly match the channel counts of the device. For configurations from this repository this will not be an issue. It is not required to use all channels in the Mixer, but the correct channel counts need to specified in the "in" and "out" section. For example in the screenshot below 8 input and 8 output channels are specified although only 2 input channels (0 and 1) are used in the Mixer definition.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/mixers.png" alt="mixers" width="600"/>
 
@@ -618,7 +627,7 @@ A new addition with CamillaDSP V2 is the Processors tab. I haven't used this per
 
 #### Pipeline
 
-The Pipeline tab is where everything comes together, this is where you apply filters, mixers and processors created in the previous tabs. You can plot the entire pipeline to show how the mixer and filters are applied as well as the combined magnitude / phase / group delay on each channel.
+The Pipeline tab is where everything comes together, filters, mixers and processors created in the previous tabs are applied her. The entire pipeline can be plotted to show how the mixer and filters are applied as well as the combined magnitude / phase / group delay on each channel.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/pipeline.png" alt="pipeline" width="800"/>
 
@@ -626,9 +635,9 @@ The Pipeline tab is where everything comes together, this is where you apply fil
 
 #### Files
 
-The Files tab stores configurations and convolution filters. It will show configuration files located in ~/camilladsp/configs/ and convolution filters located in ~/camilladsp/coeffs/. You can download/upload configurations and convolution filters to/from your local computer. You can also save the configuration currently loaded in the GUI to either a new configuration file or an existing one.
+The Files tab stores configurations and convolution filters. It will show configuration files located in ~/camilladsp/configs/ and convolution filters located in ~/camilladsp/coeffs/. You can download/upload configurations and convolution filters to/from your local computer via this tab. 
 
-To load a configuration in the GUI press the clockwise arrow button next to your desired configuration. Once this is done you will see the configuration name appear in the lower left under "Config", in the screenshot below you can see that a configuration called lxminibsc.yml is loaded in the GUI.
+To load a configuration in the GUI press the clockwise arrow button next to the desired configuration. Once this is done, the configuration name appear in the lower left under "Config", in the screenshot below, a configuration called lxminibsc.yml is loaded in the GUI.
 
 Just because a configuration is loaded in the GUI does NOT mean it is actually applied to the DSP. To apply a configuration to the DSP click the "Apply to DSP" button. This will apply the configuration in the GUI to the DSP but it will NOT save any changes made via the GUI. If you would like to save changes click the "Save to File" button. If you would like both of these operations done at the same time you can click the "Apply and save" button. Alternatively you can use the "Apply automatically" and "Save automatically" check boxes to do these operations automatically after a change is made in the GUI.
 
