@@ -20,7 +20,7 @@ This tutorial is geared towards 2 channel audio as it is somewhat difficult to g
 
 ### How does this work?
 
-Starting point is a RPi4 or RPi5 running either Raspberry Pi OS Lite or Ubuntu Server 64 bit. RPi4 is recommended over RPi5 due to lower cost and better thermal performance. However, a RPi5 is required for multichannel I2S applications such as the HifiBerry DAC8x.
+Starting point is a RPi4 or RPi5 running either Raspberry Pi OS Lite or Ubuntu Server 64 bit. RPi4 is recommended over RPi5 due to lower cost and better thermal performance. However, RPi5 is required for multichannel I2S applications such as the HifiBerry DAC8x.
 
 CamillaDSP will be set up such that it is always running on the RPi as a service. A web browser based GUI is available to configure CamillaDSP after initial setup. 
 
@@ -69,7 +69,7 @@ This part describes how to get a working CamillaDSP setup. For reference, a comp
 
 ### 1) Write OS to micro SD and login to RPi via SSH
 
-Raspberry Pi OS Lite Bookworm is recommended but Ubuntu Server 24.04 LTS 64 bit can also be used for all DACs in this tutorial with the exception of the HifiBerry DAC8x
+Raspberry Pi OS Lite 64 bit Bookworm is the recommended OS. Ubuntu Server 24.04 LTS 64 bit can also be used for all DACs in this tutorial with the exception of the HifiBerry DAC8x
 
 Download and install Raspberry Pi Imager from the links below for your OS.
 
@@ -871,11 +871,11 @@ For wiring, prefabbed 8” long 0.1” header jumpers are recommended. These are
 
 [Modushop](https://modushop.biz/site/) offers CNC machining of aluminum cases for custom projects. Depending on exchange rates and shipping costs, ordering directly from Modushop may be slightly cheaper than ordering from [DIYAudio Store](https://diyaudiostore.com) which is the US distributor. All cases are based on the Galaxy GX247 chassis (230 mm x 170 mm x 40 mm) with 2 mm aluminum covers.
 
-Case designs discussed below are intended to be used with a [OLED Display](https://github.com/mdsimon2/RPi-CamillaDSP#oled-display), [FLIRC IR Receiver](https://github.com/mdsimon2/RPi-CamillaDSP#flirc-usb-ir-receiver) and RPi4. A RPi5 can be used but the back panel will not work as the USB/ethernet orientation has been switched compared to the RPi4, if using a RPi5, either modify the drawing or just leave the back panel off. Drawings in dwg, pdf and vsdx format can be found in the [case_drawings](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/case_drawings) folder of this repository.
+Case designs discussed below are intended to be used with a [OLED Display](https://github.com/mdsimon2/RPi-CamillaDSP#oled-display), [FLIRC IR Receiver](https://github.com/mdsimon2/RPi-CamillaDSP#flirc-usb-ir-receiver) and RPi4. A RPi5 can be used but the back panel will not work as the USB/ethernet orientation has been reversed compared to the RPi4, if using a RPi5, either modify the rear panel drawing or leave the back panel off. Drawings in dwg, pdf and vsdx format can be found in the [case_drawings](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/case_drawings) folder of this repository.
 
-A challenge with these cases was how to get a USB port in the front of the case for the IR receiver and how to get a power connection in the rear of the case. The only USB port that is accessible from inside the case is the USB-C port which is typically used for power, however this port can be used as a normal USB port and the RPi can be powered via the pin header. Therefore I use a USB-A socket to USB-C plug adapter on the USB-C port coupled with a panel mount USB-A extension cable to connect to the IR receiver at the front of the case. For power I installed a [5.5 mm x 2.1 mm jack](https://www.digikey.com/en/products/detail/mpd-memory-protection-devices/EJ501A/2439531) in the rear of the case and soldered 20 awg wire with pin connectors at the end to the jack. In my case I used two wires for 5 V and two wires for ground and connected all four wires to the pin header. The double wiring is likely overkill but I wanted to make sure I avoided under voltage issues. I recommend using at least 20 awg here for the same reason. This is the only part of the project that requires soldering, if you are totally against soldering you can purchase a 5.5 mm x 2.1 mm jack with prefabbed wiring and crimp prefabbed 20 awg 0.1” header wiring on the ends. If you do this you will likely need to change the diameter of the power jack hole in the rear case, most the prefabbed options I have seen require a larger diameter than 8 mm so it would be easy for you to drill out the hole yourself to accommodate the larger diameter or you can modify the drawings and have Modushop drill a larger hole.
+All USB-A ports are located on the rear of the RPi. The only USB port that is accessible from inside the case is the USB-C port which is typically used for power, however this port can be used as a normal USB port and the RPi can be powered via the pin header. For the FLIRC IR receiver, a USB-A socket to USB-C plug adapter is used on the USB-C port coupled with a panel mount USB-A extension cable to connect to the IR receiver at the front of the case. For power, a [5.5 mm x 2.1 mm jack](https://www.digikey.com/en/products/detail/mpd-memory-protection-devices/EJ501A/2439531) is located in the rear of the case, it is recommend to solder at least 20 awg wire with pin connectors at the end to the jack, preferably two 5 V and two ground wires. This is the only part of the project that requires soldering, if soldering is not possible, a 5.5 mm x 2.1 mm jack with prefabbed wiring and crimp prefabbed 20 awg 0.1” header wiring on the ends can be purchased but this may require changing the diameter of the power jack hole.
 
-For a power supply you can either use a standard RPi4 power supply with a USB-C to 5.5 mm adapter or another 5V power supply with the appropriate 5.5 mm jack. Your power supply should be at leas 3 A. I have found that RPi4 power supplies work best as they provide a bit more than 5 V to help tolerate voltage sag.
+For a power supply, a standard RPi4 (15 W) or RPi5 (27 W) power supply with a USB-C to 5.5 mm adapter or another 5V power supply with the appropriate 5.5 mm jack can be used. The power supply should be capable of supplying at least 3 A. The standard RPi power supplies are recommended as they output slightly more than 5 V which helps against voltage sag.
 
 #### 10 mm front panel - single sided machining - 50€ add-on
 
@@ -933,7 +933,7 @@ This is another area where you may be able to save money. For example you could 
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/rearpanel.jpeg" alt="rearpanel" width="600"/>
 
-As of 12/2021 prices in USD including priority shipping to Detroit, MI US for the three basic case options including front panel, bottom panel and rear panel machining are shown below.
+As of 12/2021, prices in USD including priority shipping to Detroit, MI US for the three basic case options including front panel, bottom panel and rear panel machining are shown below.
 
 - 3 mm front panel: $171
 - 10 mm front panel, one sided machining: $189
