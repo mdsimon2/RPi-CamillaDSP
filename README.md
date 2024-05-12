@@ -814,7 +814,7 @@ Download OLED service.
 ```
 sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.service -P /lib/systemd/system/
 ```
-If you are using a RPi5, you will to change the gpiochip specified in oled.py.
+If using a RPi5, change the gpiochip specified in oled.py.
 
 ```
 nano ~/oled.py
