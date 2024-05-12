@@ -875,11 +875,11 @@ Case designs discussed below are intended to be used with a [OLED Display](https
 
 All USB-A ports are located on the rear of the RPi. The only USB port that is accessible from inside the case is the USB-C port which is typically used for power, however this port can be used as a normal USB port and the RPi can be powered via the pin header. For the FLIRC IR receiver, a USB-A socket to USB-C plug adapter is used on the USB-C port coupled with a panel mount USB-A extension cable to connect to the IR receiver at the front of the case. For power, a [5.5 mm x 2.1 mm jack](https://www.digikey.com/en/products/detail/mpd-memory-protection-devices/EJ501A/2439531) is located in the rear of the case, it is recommend to solder at least 20 awg wire with pin connectors at the end to the jack, preferably two 5 V and two ground wires. This is the only part of the project that requires soldering, if soldering is not possible, a 5.5 mm x 2.1 mm jack with prefabbed wiring and crimp prefabbed 20 awg 0.1” header wiring on the ends can be purchased but this may require changing the diameter of the power jack hole.
 
-For a power supply, a standard RPi4 (15 W) or RPi5 (27 W) power supply with a USB-C to 5.5 mm adapter or another 5V power supply with the appropriate 5.5 mm jack can be used. The power supply should be capable of supplying at least 3 A. The standard RPi power supplies are recommended as they output slightly more than 5 V which helps against voltage sag.
+For a power supply, a standard RPi4 (15 W) or RPi5 (27 W) power supply with a USB-C to 5.5 mm adapter or another 5V power supply with the appropriate 5.5 mm jack can be used. The power supply should be capable of supplying at least 3 A. The standard RPi power supplies are recommended as they output slightly more than 5 V which helps with voltage sag.
 
 #### 10 mm front panel - single sided machining - 50€ add-on
 
-This option machines a 10 mm aluminum panel from the back side only. The screen is set half way through the panel thickness and there is a hole for the FLIRC IR receiver, mounting holes for the screen and IR receiver are tapped for M2.5 screws so there are no exposed fasteners. Pictures of this panel are shown below. Overall this option looks very nice, one complaint is that due to the thickness of the front panel the top of the display text can be obstructed from view if you are sitting very near to the case and looking down on the screen. If that bothers you it is possible to modify the layout of the text so that it is more centered on the screen or you can look at my option which chamfers the screen opening from the front side at an additional cost.
+This option machines a 10 mm aluminum panel from the back side only. The screen is set half way through the panel thickness and there is a hole for the FLIRC IR receiver, mounting holes for the screen and IR receiver are tapped for M2.5 screws so there are no exposed fasteners. Pictures of this panel are shown below. Overall this option looks very nice, one complaint is that due to the thickness of the front panel the top of the display text can be obstructed from view if sitting very near to the case and looking down on the screen. 
 
 Recommended hardware:
 - display mounting screws: [M2.5 x 3 mm long](https://www.mcmaster.com/91292A035/)
@@ -897,7 +897,7 @@ Recommended hardware:
 
 This is the same as the first option but has a 45 deg chamfer around the screen opening to improve viewing angles.
 
-Recommend hardware: 
+Recommended hardware: 
 - same as single sided 10 mm front panel
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/frontpanel_front_chamfer.jpeg" alt="frontpanel_front_chamfer" width="600"/>
@@ -919,17 +919,17 @@ Recommended hardware:
 
 #### 2 mm bottom panel - 30€ add-on
 
-I recommend paying the 5€ for a solid aluminum bottom panel as in my experience the venting gets in the way of the mounting holes. However the additional 25€ machining cost for 4 RPi4 mounting holes is probably not worth it if you can drill 4 decently accurate holes yourself.
+It is recommended to pay the 5€ for a solid aluminum bottom panel, as the venting gets in the way of the mounting holes. However, the additional 25€ machining cost for 4 RPi4 mounting holes is probably not worth it, as drilling 4 holes is reasonably simple.
 
 Recommended hardware:
-- RPi4 mounting screws: [M2.5 x 16 mm long](https://www.mcmaster.com/91292A018/) w/ [10 mm spacers](https://www.mcmaster.com/94669A104/)
+- RPi mounting screws: [M2.5 x 16 mm long](https://www.mcmaster.com/91292A018/) w/ [10 mm spacers](https://www.mcmaster.com/94669A104/)
 - nuts: [M2.5](https://www.mcmaster.com/94150a310/) (as an alternative you can use the top part of [aluminum heatsink](https://www.amazon.com/gp/product/B07VD568FB/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1) case which is tapped for M2.5 screws, this is what I used).
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/case_interior_top.jpeg" alt="case_interior_top" width="600"/>
 
 #### 2 mm back panel - 25€ add-on
 
-This is another area where you may be able to save money. For example you could leave the back panel completely off to save on machining costs. I’ve drilled / hand filed similar panels myself which is not fun but certainly can be done at home and the rear will likely not be exposed. This panel has cutouts for RPi4 USB ports and ethernet port. There is also an 8 mm diameter hole for a 5.5 mm barrel connector.
+This is another area to potentially save money. For example, the back panel can be completely left off to save on machining costs. Although it requires some effort, circular holes can be drilled and filled to manually create square holes. This panel has cutouts for RPi4 USB ports and ethernet port. There is also an 8 mm diameter hole for a 5.5 mm barrel connector. Important to again note that the RPi5 USB / ethernet port orientation is opposite of the RPi4, therefore this design will NOT work with a RPi5.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/rearpanel.jpeg" alt="rearpanel" width="600"/>
 
