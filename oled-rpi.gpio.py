@@ -22,18 +22,23 @@ except IOError as e:
         sys.exit(1)
 
 # Define RPi GPIO to display mapping for 8 bit 6800 parallel
-OLED_DC = 16
-OLED_E = 23
-OLED_D0 = 26
-OLED_D1 = 13
-OLED_D2 = 6
-OLED_D3 = 5
-OLED_D4 = 22
-OLED_D5 = 27
-OLED_D6 = 17
-OLED_D7 = 18
-OLED_RESET = 12
-OLED_CS = 25
+
+#OLED_GND = GND         OLED pin 1
+#OLED_SUPPLY = 3.3 V    OLED pin 2
+#OLED_NC = NC           OLED pin 3
+OLED_D0 = 15        #26 OLED pin 4
+OLED_D1 = 13        #   OLED pin 5
+OLED_D2 = 6         #   OLED pin 6
+OLED_D3 = 5         #   OLED pin 7
+OLED_D4 = 7         #22 OLED pin 8
+OLED_D5 = 2         #27 OLED pin 9
+OLED_D6 = 17        #   OLED pin 10
+OLED_D7 = 3         #18 OLED pin 11
+OLED_E = 14         #23 OLED pin 12
+#OLED_RW = GND      #   OLED pin 13
+OLED_DC = 16        #   OLED pin 14
+OLED_RESET = 12     #   OLED pin 15
+OLED_CS = 8         #25 OLED pin 16
 
 def main():
 

@@ -814,6 +814,18 @@ Download OLED service.
 ```
 sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.service -P /lib/systemd/system/
 ```
+If you are using a RPi5, you will to change the gpiochip specified in oled.py.
+
+```
+nano ~/oled.py
+```
+
+Uncomment the RPi5 line and comment out the RPi4 line so it looks like below.
+
+```
+chip = sbc.gpiochip_open(0) #use this for RPi4
+#chip = sbc.gpiochip_open(4) #use this for RPi5
+```
 
 Open service in nano and update username to reflect your username
 
@@ -833,7 +845,6 @@ Start OLED service.
 sudo service oled start
 ```
 The python script has the ability to show user defined text on the first line of the display based on loaded configuration file. With CamillaDSP V2, this will show the Title field under the Title tab of the GUI. If this field is blank, "CamillaDSP" will be displayed.
-
 
 Wiring configuration from the display to the RPi GPIO header is listed below. Note, these pins can be changed as desired, see here for more information on RPi pinout -> https://www.tomshardware.com/reviews/raspberry-pi-gpio-pinout,6122.html. In addition, please note the wiring configuration has been changed from earlier versions of the tutorial to accommodate the HifiBerry DAC8x, the old pin configurations are shown in parenthesis for the pins that have changed.
 
