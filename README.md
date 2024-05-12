@@ -1,7 +1,7 @@
 # RPi-CamillaDSP
 
 ## Introduction
-Intent of this project is to provide guidance on setting up [CamillaDSP](https://github.com/HEnquist/camilladsp) on a RPi4/5. There is a lot of good information on [ASR](https://www.audiosciencereview.com/forum/index.php?threads/rpi4-camilladsp-tutorial.29656/), [DIYAudio](https://www.diyaudio.com/community/threads/camilladsp-cross-platform-iir-and-fir-engine-for-crossovers-room-correction-etc.349818/) and the [CamillaDSP GitHub](https://github.com/HEnquist/camilladsp), but there also appears to be a lot of apprehension. My goal is to give concrete examples of how to use CamillaDSP with a variety of hardware to ease some of that apprehension. This tutorial originally lived at ASR, but in May 2024 I decided to migrate it to GitHub to make version management easier and provide a more universal location.
+Intent of this project is to provide guidance on implementing [CamillaDSP](https://github.com/HEnquist/camilladsp) on a RPi4/5. There is a lot of good information on [ASR](https://www.audiosciencereview.com/forum/index.php?threads/rpi4-camilladsp-tutorial.29656/), [DIYAudio](https://www.diyaudio.com/community/threads/camilladsp-cross-platform-iir-and-fir-engine-for-crossovers-room-correction-etc.349818/) and the [CamillaDSP GitHub](https://github.com/HEnquist/camilladsp), but there also appears to be a lot of apprehension. My goal is to give concrete examples of how to use CamillaDSP with a variety of hardware to ease some of that apprehension. This tutorial originally lived at ASR, but in May 2024 I decided to migrate it to GitHub to make version management easier and provide a more universal location.
 
 I would like to especially thank [@HEnquist](https://github.com/HEnquist) for developing CamillaDSP. I’ve long been skeptical of computer-based DSP but CamillaDSP is a game changer. It runs on minimal hardware, is easy to interface with a variety of devices and is exceptionally well designed. I’ve replaced all of my miniDSP systems with RPi4s running CamillaDSP and could not be happier.
 
@@ -14,19 +14,19 @@ For archived versions of the tutorial that pre-date Github, see links below.
 
 ## Background
 
-### Why would I want to use CamillaDSP on a RPi?
+### Why use CamillaDSP on a RPi?
 
-This tutorial is geared towards 2 channel audio as it is somewhat difficult to get multichannel audio in to a RPi. Typical applications are DIY active speakers / subwoofers such as Directiva R1 (4+ channels), LXmini + sub(s) or LX 521.4 (8+ channels). Another good application is passive stereo speakers with 3+ subwoofers. Although it is possible to use other hardware with CamillaDSP, a RPi offers GPIO pins which are useful for integrating a display and has the ability to be used as a USB gadget.
+This tutorial is geared towards 2 channel audio as it is somewhat difficult to get multichannel audio in to a RPi. Typical applications are DIY active speakers / subwoofers such as Directiva R1 (4+ channels), LXmini + sub(s) or LX 521.4 (8+ channels). Another good application is passive stereo speakers with 3+ subwoofers. Although it is possible to use other hardware with CamillaDSP, a RPi offers GPIO pins which are useful for integrating a [display](https://github.com/mdsimon2/RPi-CamillaDSP#oled-display) and has the ability to be used as a USB gadget.
 
-### How does this work?
+### How does it work?
 
-Starting point is a RPi4 or RPi5 running either Raspberry Pi OS Lite or Ubuntu Server 64 bit. RPi4 is recommended over RPi5 due to lower cost and better thermal performance. However, RPi5 is required for multichannel I2S applications such as the HifiBerry DAC8x.
+Starting point is a RPi4 or RPi5 running either Raspberry Pi OS Lite 64 bit or Ubuntu Server 64 bit. RPi4 is recommended over RPi5 due to lower cost and better thermal performance. However, RPi5 is required for multichannel I2S applications such as the HifiBerry DAC8x.
 
-CamillaDSP will be set up such that it is always running on the RPi as a service. A web browser based GUI is available to configure CamillaDSP after initial setup. 
+CamillaDSP will be installed such that it is always running on the RPi as a service. A web browser based GUI is available to configure CamillaDSP after initial setup.
 
 CamillaDSP requires a capture device and playback device, the capture device is the input and playback device is the output. 
 
-The capture device can be a variety of things, it can be the RPi itself with software audio players such as squeezelite or shairport-sync playing to an ALSA loopback, it can be the same device as the playback device in the case of an audio interface with analog/digital inputs, or it can be a separate device such as a TOSLINK to USB card. The main point here is that CamillaDSP is NOT limited to applications that use a RPi as a source.
+The capture device can be a variety of things, it can be the RPi itself with software audio players such as squeezelite or shairport-sync playing to an ALSA loopback, the same device as the playback device in the case of an audio interface with analog/digital inputs, or a separate device such as a TOSLINK to USB card. The main point here is that CamillaDSP is NOT limited to applications that use a RPi as a source.
 
 The playback device is either a USB DAC/DDC, HDMI output of the RPi or HAT DAC/DDC. Between the capture device and the playback device is where the magic happens, CamillaDSP can implement channel routing, IIR filters, FIR filters, volume control (w/ dynamic loudness), resampling and delay. The RPi is surprising powerful and is able to do much more than any miniDSP product that exists today.
 
@@ -57,19 +57,19 @@ Below are other good sources of information related to CamillaDSP.
 
 - [RPi4 + CamillaDSP Tutorial ASR Thread](https://www.audiosciencereview.com/forum/index.php?threads/rpi4-camilladsp-tutorial.29656/) - This tutorial originally lived in this thread. It is a good place to discuss using CamillaDSP on a RPi as well as display / remote control integrations.
 
-- [Pi4 + CamillaDSP + MOTU M4 ASR Thread](https://www.audiosciencereview.com/forum/index.php?threads/pi4-camilladsp-audio-interface-motu-m4-phenomal-dsp-streamer.24493/) - Excellent thread that helped inspire this tutorial. 
+- [Pi4 + CamillaDSP + MOTU M4 ASR Thread](https://www.audiosciencereview.com/forum/index.php?threads/pi4-camilladsp-audio-interface-motu-m4-phenomal-dsp-streamer.24493/) - Excellent thread by [@armigo](https://www.audiosciencereview.com/forum/index.php?members/armigo.20011/) that helped inspire this tutorial. 
 
 - [Budget Standalone Toslink > DSP > Toslink with CamillaDSP ASR Thread](https://www.audiosciencereview.com/forum/index.php?threads/budget-standalone-toslink-dsp-toslink-with-camilladsp-set-up-instructions-for-newbies.30830/) - Great thread by [@MCH](https://www.audiosciencereview.com/forum/index.php?members/mch.30254/) showing how to make a low cost (< 50€ !) TOSLINK input / output stereo room correction DSP using CamillaDSP.
 
-- [Using a Raspberry Pi as equaliser in between an USB Source and USB DAC](https://www.audiosciencereview.com/forum/index.php?threads/using-a-raspberry-pi-as-equaliser-in-between-an-usb-source-ipad-and-usb-dac.25414/page-3#post-1180356) - Great thread from [@DeLub](https://www.audiosciencereview.com/forum/index.php?members/delub.16965/) on how to use a RPi as a USB gadget. Note, with recent versions of Ubuntu or Raspberry Pi OS, steps 1-6 can be skipped (no need to compile kernel).
+- [Using a Raspberry Pi as equaliser in between an USB Source and USB DAC](https://www.audiosciencereview.com/forum/index.php?threads/using-a-raspberry-pi-as-equaliser-in-between-an-usb-source-ipad-and-usb-dac.25414/page-3#post-1180356) - Great thread from [@DeLub](https://www.audiosciencereview.com/forum/index.php?members/delub.16965/) on how to use a RPi as a USB gadget. Note, with Raspberry Pi OS Bookworm or Ubuntu Server 24.04, steps 1-6 can be skipped (no need to compile kernel).
 
 ## CamillaDSP Setup
 
-This part describes how to get a working CamillaDSP setup. For reference, a complete install should take just under 1 hour (including display and FLIRC IR receiver setup), most of that time is waiting for things to download / install.
+This part describes how to get a working CamillaDSP setup. For reference, a complete install should take under 1 hour (including [OLED display](https://github.com/mdsimon2/RPi-CamillaDSP#oled-display) and {FLIRC IR receiver}(https://github.com/mdsimon2/RPi-CamillaDSP#flirc-usb-ir-receiver) setup), most of that time is waiting for things to download / install.
 
 ### 1) Write OS to micro SD and login to RPi via SSH
 
-Raspberry Pi OS Lite 64 bit Bookworm is the recommended OS. Ubuntu Server 24.04 LTS 64 bit can also be used for all DACs in this tutorial with the exception of the HifiBerry DAC8x
+Raspberry Pi OS Lite 64 bit Bookworm is the recommended OS. Ubuntu Server 24.04 LTS 64 bit can also be used but does not currently work with the HifiBerry DAC8x
 
 Download and install Raspberry Pi Imager from the links below for your OS.
 
@@ -81,7 +81,7 @@ Open Raspberry Pi Imager, select your desired RPi, OS and micro SD card. Setup y
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/raspberrypi_imager_settings.png" alt="raspberrypi_imager_settings" width="300"/>
 
-This install assumes the RPi will be managed remotely via SSH from a separate computer. With Mac or Linux terminal will installed by default and commands in subsequent steps of this tutorial in terminal without issue.
+This install assumes the RPi will be managed remotely via SSH from a separate computer. With Mac or Linux, terminal will installed by default and commands in subsequent steps of this tutorial can be in terminal without issue.
 
 With Windows 10 or 11 it is recommended to install Windows Subsystem for Linux (WSL). Instruction below are condensed version of this -> https://docs.microsoft.com/en-us/windows/wsl/install.
 
@@ -116,7 +116,7 @@ Say yes to any upgrade prompts. If prompted about restarting services, hit enter
 
 ### 3) Install CamillaDSP
 
-Make a camilladsp folder as well as folders for CamillaDSP to reference stored coefficients and configurations.
+Make a camilladsp folder as well as folders for CamillaDSP to reference stored FIR filters and configurations.
 
 ```
 mkdir ~/camilladsp ~/camilladsp/coeffs ~/camilladsp/configs
@@ -135,7 +135,15 @@ wget https://github.com/HEnquist/camilladsp/releases/download/v2.0.3/camilladsp-
 sudo tar -xvf ~/camilladsp/camilladsp-linux-aarch64.tar.gz -C /usr/local/bin/
 ```
 
-### 4) Install CamillaDSP service
+### 4) Enable ALSA loopback
+
+This step is only required for [streamer applications](https://github.com/mdsimon2/RPi-CamillaDSP#streamer-applications) using an ALSA loopback.
+
+```
+> snd-aloop
+```
+
+### 5) Install CamillaDSP service
 
 Download CamillaDSP service.
 
@@ -176,13 +184,13 @@ See below for a brief explanation of the CamillaDSP flags applied in ExecStart o
 
 "-o camilladsp/camilladsp.log" creates a log file that can be viewed in the GUI for troubleshooting. Verbosity of this log can be increased by adding "-l debug".
 
-### 5) Install python and dependencies
+### 6) Install python and dependencies
 
 ```
 sudo apt install python3 python3-pip python3-websocket python3-aiohttp python3-jsonschema python3-numpy python3-matplotlib unzip
 ```
 
-### 6) Install pycamilladsp
+### 7) Install pycamilladsp
 
 Download pycamilladsp and install. 
 
@@ -190,7 +198,7 @@ Download pycamilladsp and install.
 sudo pip3 install git+https://github.com/HEnquist/pycamilladsp.git --break-system-packages
 ```
 
-### 7) Install pycamilladsp-plot
+### 8) Install pycamilladsp-plot
 
 Download pyamilladsp-plot and install. 
 
@@ -198,7 +206,7 @@ Download pyamilladsp-plot and install.
 sudo pip3 install git+https://github.com/HEnquist/pycamilladsp-plot.git --break-system-packages
 ```
 
-### 8) Install GUI server
+### 9) Install GUI server
 
 Download and unzip GUI. Commands below will install V2.1.1 of the GUI.
 
@@ -207,7 +215,7 @@ wget https://github.com/HEnquist/camillagui-backend/releases/download/v2.1.1/cam
 unzip ~/camilladsp/camillagui.zip -d ~/camilladsp/camillagui
 ```
 
-### 9) Install GUI service
+### 10) Install GUI service
 
 Download GUI service.
 
@@ -233,7 +241,7 @@ Start camillagui service.
 sudo service camillagui start
 ```
 
-### 10) Assign active configuration in GUI
+### 11) Assign active configuration in GUI
 
 Configurations are explained in more detail in the [CamillaDSP Configurations](https://github.com/mdsimon2/RPi-CamillaDSP#camilladsp-configurations) section of this tutorial. Pre-made configurations for the DACs in this tutorial can be downloaded by navigating to the [configs](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/configs) folder of this repository. Alternatively, you can download the entire repository by clicking [here](https://github.com/mdsimon2/RPi-CamillaDSP/archive/refs/heads/main.zip) or using git clone.
 
@@ -245,7 +253,7 @@ Navigate to Files tab of GUI and upload your desired configuration using the up 
 
 Congratulations, you now have CamillaDSP up and running!
 
-### 11) Upgrading to future versions
+### 12) Upgrading to future versions
 
 To upgrade to a new version of CamillaDSP simply remove the old CamillaDSP binary and tar and download and extract a new one.
 
