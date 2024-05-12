@@ -116,7 +116,7 @@ Say yes to any upgrade prompts. If prompted about restarting services, hit enter
 
 ### 3) Install CamillaDSP
 
-Make a camilladsp folder as well as folders for CamillaDSP to reference stored FIR filters and configurations.
+Make a camilladsp folder, as well as folders for CamillaDSP to reference stored FIR filters and configurations.
 
 ```
 mkdir ~/camilladsp ~/camilladsp/coeffs ~/camilladsp/configs
@@ -144,8 +144,6 @@ This step is only required for [streamer applications](https://github.com/mdsimo
 ```
 
 ### 5) Install CamillaDSP service
-
-Download CamillaDSP service.
 
 ```
 sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/camilladsp.service -P /lib/systemd/system/
@@ -192,15 +190,11 @@ sudo apt install python3 python3-pip python3-websocket python3-aiohttp python3-j
 
 ### 7) Install pycamilladsp
 
-Download pycamilladsp and install. 
-
 ```
 sudo pip3 install git+https://github.com/HEnquist/pycamilladsp.git --break-system-packages
 ```
 
 ### 8) Install pycamilladsp-plot
-
-Download pyamilladsp-plot and install. 
 
 ```
 sudo pip3 install git+https://github.com/HEnquist/pycamilladsp-plot.git --break-system-packages
@@ -208,16 +202,12 @@ sudo pip3 install git+https://github.com/HEnquist/pycamilladsp-plot.git --break-
 
 ### 9) Install GUI server
 
-Download and unzip GUI. Commands below will install V2.1.1 of the GUI.
-
 ```
 wget https://github.com/HEnquist/camillagui-backend/releases/download/v2.1.1/camillagui.zip -P ~/camilladsp/
 unzip ~/camilladsp/camillagui.zip -d ~/camilladsp/camillagui
 ```
 
 ### 10) Install GUI service
-
-Download GUI service.
 
 ```
 sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/camillagui.service -P /lib/systemd/system/
@@ -243,19 +233,19 @@ sudo service camillagui start
 
 ### 11) Assign active configuration in GUI
 
-Configurations are explained in more detail in the [CamillaDSP Configurations](https://github.com/mdsimon2/RPi-CamillaDSP#camilladsp-configurations) section of this tutorial. Pre-made configurations for the DACs in this tutorial can be downloaded by navigating to the [configs](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/configs) folder of this repository. Alternatively, you can download the entire repository by clicking [here](https://github.com/mdsimon2/RPi-CamillaDSP/archive/refs/heads/main.zip) or using git clone.
+Configurations are explained in more detail in the [CamillaDSP Configurations](https://github.com/mdsimon2/RPi-CamillaDSP#camilladsp-configurations) section of this tutorial. Pre-made configurations for the DACs in this tutorial can be downloaded by navigating to the [configs](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/configs) folder of this repository. Alternatively, download the entire repository by clicking [here](https://github.com/mdsimon2/RPi-CamillaDSP/archive/refs/heads/main.zip) or using git clone.
 
-On a computer that is on the same network as your RPi, navigate your browser to http://hostname:5005.
+On a computer that is on the same network as the RPi, navigate browser to http://hostname:5005.
 
-Navigate to Files tab of GUI and upload your desired configuration using the up arrow in the Configs section. Set this configuration as active by pressing the "star" next to the configuration. From now on CamillaDSP and the GUI will start with this configuration loaded. Click the "Apply and Save" button in the lower left to load the configuration to DSP.
+Navigate to Files tab of GUI and upload desired configuration using the up arrow in the Configs section. Set this configuration as active by pressing the "star" next to the configuration. From now on CamillaDSP and the GUI will start with this configuration loaded. Click the "Apply and Save" button in the lower left to load the configuration to DSP.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/configs.png" alt="configs" width="600"/>
 
-Congratulations, you now have CamillaDSP up and running!
+Congratulations, CamillaDSP is now up and running!
 
 ### 12) Upgrading to future versions
 
-To upgrade to a new version of CamillaDSP simply remove the old CamillaDSP binary and tar and download and extract a new one.
+To upgrade to a new version of CamillaDSP, simply remove the old CamillaDSP binary and tar and download and extract a new one.
 
 ```
 rm ~/camilladsp/camilladsp-linux-aarch64.tar.gz
@@ -284,13 +274,13 @@ sudo service camillagui restart
 
 ## Streamer Applications
 
-For streamer applications this tutorial assumes your software player outputs 44.1 kHz and resamples everything that is not 44.1 kHz to accomplish this. 
+For streamer applications this tutorial assumes the software player outputs 44.1 kHz and resamples everything that is not 44.1 kHz to accomplish this. 
 
 This tutorial covers how to install shairport-sync and squeezelite. Other players can be used as long as they output 44.1 kHz and can play to an ALSA loopback.
 
 ### shairport-sync
 
-Download and install shairport-sync and SOX.
+Install shairport-sync and SOX.
 
 ```
 sudo apt install shairport-sync libsoxr-dev
@@ -321,13 +311,13 @@ sudo service shairport-sync restart
 
 ### squeezelite
 
-Download and install squeezelite.
+Install squeezelite.
 
 ```
 sudo apt install squeezelite
 ```
 
-Like shairport-sync a few changes are required to the squeezelite configuration. Copy and paste the lines shown below to the end of the file using nano.
+Like shairport-sync, a few changes are required to the squeezelite configuration. Copy and paste the lines shown below to the end of the file using nano.
 
 ```
 sudo nano /etc/default/squeezelite
@@ -348,7 +338,7 @@ These changes set ALSA loopback device 1 as squeezelite playback device, resampl
 
 ## CamillaDSP Configurations
 
-All configurations use maximum amount of output channels for a given device. If an output channel is not needed remove it from the mixer as each extra channel requires additional processing resources. Configuration files can be found in the [configs](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/configs) folder of this repository.
+All configurations use maximum amount of output channels for a given playback device. If an output channel is not needed remove it from the mixer as each extra channel requires additional processing resources. Configuration files can be found in the [configs](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/configs) folder of this repository.
 
 The naming convention configuration files in this repository is dac_input_capturerate_playbackrate. For example, a configuration for a MOTU Ultralite Mk5, TOSLINK input with 96 kHz capture and 96 kHz playback rates is ultralitemk5_toslink_96c_96p.
 
@@ -369,14 +359,14 @@ These devices can do IR volume control, although not all have displays for volum
 
 In order to use USB output of devices like 2x4HD, Flex and SHD they need to be set as capture device in CamillaDSP. Unfortunately this ties up the USB input and makes it unusable. Still, this is a good approach to add extra input functionality to basic USB DACs like the MOTU M4 or Topping DM7 which only have USB input.
 
-For constant sample rate digital source the following devices work well. Compared to other solutions like the HiFiBerry Digi+ I/O they handle signal interruptions gracefully. These devices are used in a similar way to the miniDSPs with USB outputs, the device is set as the CamillaDSP capture device. Note, that although the S2 digi also has a TOSLINK output, it is not recommended due to audible dropouts.
+For constant sample rate digital sources the following devices work well. Compared to other solutions like the HiFiBerry Digi+ I/O they handle signal interruptions gracefully. These devices are used in a similar way to the miniDSPs with USB outputs, the device is set as the CamillaDSP capture device. Note, that although the S2 digi also has a TOSLINK output, it is not recommended due to audible dropouts.
 
 - [hifime S2 digi (SA9227)](https://hifimediy.com/product/s2-digi/) - $40, TOSLINK input, USB output, sample rates up to 192 kHz
 - [hifime UR23](https://hifimediy.com/product/hifime-ur23-spdif-optical-to-usb-converter/) - $25, TOSLINK input, USB output, does NOT work with RPi5, sample rates up to 96 kHz
 
 ### chunksize / target_level
 
-CamillaDSP V1 used a buffer size of 2 x chunksize, CamillaDSP V2 uses a buffer size of 4 x chunksize. In previous versions of this tutorial a rather long chunksize was specified (44.1/48 = 1024, 88.2/96 = 2048, 176.4/192 = 4096), but this resulted in long latency. After some experimentation, it was found that much lower chunksizes are stable. The configurations in this repository all use the following chunksize depending on playback sample rate.
+CamillaDSP V1 used a buffer size of 2 x chunksize, CamillaDSP V2 uses a buffer size of 4 x chunksize. In previous versions of this tutorial a rather long chunksize was specified (44.1/48 = 1024, 88.2/96 = 2048, 176.4/192 = 4096) resulting in long latency. After some experimentation, it was found that much lower chunksizes are stable. The configurations in this repository now use the following chunksize depending on playback sample rate.
 
 - 44.1 / 48 kHz: 64
 - 88.2 / 96 kHz: 128
@@ -388,7 +378,7 @@ These chunksize / target_level settings will result in < 10 ms latency. If dropo
 
 ### Okto dac8 PRO
 
-These configurations assume CamillaDSP volume control is NOT being used as the Okto has a nice volume display with knob and IR control. As volume control is downstream of CamillaDSP, digital clipping in CamillaDSP is more of an issue. As a result, I have added 1 dB attenuation on all output channels of configurations that implement resampling to help avoid clipping. In general, if boost is added to a configuration, offset that boost by attenuating the output further. Use the CamillaDSP clipping indicator to gauge if there is enough attenuation to avoid digital clipping.
+These configurations assume CamillaDSP volume control is NOT being used as the Okto has a nice display with volume knob and IR control. As volume control is downstream of CamillaDSP, digital clipping in CamillaDSP is more of an issue. As a result, 1 dB attenuation has been added to all output channels of configurations that implement resampling to help avoid clipping. In general, if boost is added to a configuration, offset that boost by attenuating the output further. Use the CamillaDSP clipping indicator to gauge if there is enough attenuation to avoid digital clipping.
 
 #### okto_streamer.yml
 
@@ -411,7 +401,7 @@ This DAC requires a small amount of setup, either while connected to a Mac / PC 
 
 #### nginx
 
-Download and install nginx.
+Install nginx.
 
 ```
 sudo apt install nginx-full
@@ -495,7 +485,7 @@ Paste the following text to the bottom of 50-curtin-networking.cfg, updating the
 
 #### CueMix
 
-Install Cuemix 5 on a Mac / PC. Either connect the Ultralite Mk5 to the Mac / PC or click the gear in Cuemix and enter the hostname of the RPi.
+Install Cuemix 5 on a Mac / PC. Either connect the Ultralite Mk5 to the Mac / PC or click the gear in Cuemix and enter the hostname of the RPi if managing remotely with nginx.
 
 Set up channel routing such that USB 1-2 are routed to analog output 1-2, USB 3-4 to analog output 3-4, etc. Make sure no other channel routing is in place, as all channel routing will be done in CamillaDSP. Check the levels in the Output tab as the Ultralite Mk5 may come with all channels set to -20 dB by default. To use the Mk5 volume knob, select which analog channels (knob will only work on analog channels) should be controlled by the knob in the Output tab. See screenshots below for what this should look like.
 
@@ -558,7 +548,7 @@ Once channel routing is set in Cuemix, this DAC is very similar to the Okto in t
 
 ### MOTU M4
 
-This is the easiest of the bunch to setup as it has limited I/O functionality. Given lack of 4 channel on device volume control, it is recommended to use CamillaDSP volume control with this DAC. Due limited input functionality, a variety of configurations with external input devices are provided, similar configurations can be used with any DAC in this tutorial.
+Given lack of 4 channel on device volume control, it is recommended to use CamillaDSP volume control with this DAC. Due limited input functionality, a variety of configurations with external input devices are provided, similar configurations can be used with any DAC in this tutorial.
 
 #### m4_streamer.yml
 
@@ -603,7 +593,7 @@ Access the GUI via any computer on the same network as the RPi by navigating a b
 
 #### Title
 
-As of CamillaDSP V2, the first tab is Title. There isn't much to do in this tab, but the Title and Description fields can be populated. The Title field is displayed on the first line of the [OLED display](https://github.com/mdsimon2/RPi-CamillaDSP#oled-display) described later in this tutorial.
+As of CamillaDSP V2, the first tab is Title. There isn't much to do in this tab, but the title and description fields can be populated. The title field is displayed on the first line of the [OLED display](https://github.com/mdsimon2/RPi-CamillaDSP#oled-display) described later in this tutorial.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/title.png" alt="title" width="600"/>
 
@@ -617,15 +607,15 @@ It is very important that sample format and channel count are supported by the d
 
 #### Filters
 
-In the Filters tab a variety of filters can be created. A big advantage of using the GUI over a manual configuration file is that it will prompt for the necessary information for a given filter type. Once a filter is created, the magnitude / phase / group delay can be viewed. For questions about specific filter implementation, see the [CamillaDSP GitHub](https://github.com/HEnquist/camilladsp). Creating a filter in the Filters tab does not apply it to the pipeline, it just creates a filter that will be available to apply in the Pipeline.
+In the Filters tab a variety of filters can be created. A big advantage of using the GUI over a manual configuration file is that it will prompt for the necessary information for a given filter type. Once a filter is created, magnitude / phase / group delay can be viewed. For questions about specific filter implementation, see the [CamillaDSP GitHub](https://github.com/HEnquist/camilladsp). Creating a filter in the Filters tab does not apply it to the pipeline, it just creates a filter that will be available to apply in the pipeline.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/filters.png" alt="filters" width="600"/>
 
 #### Mixers
 
-The Mixers tab defines channel routing, in addition, gain and polarity can be defined for each channel. Like Filters, the Mixer will not be in effect until you apply it in the Pipeline.
+The Mixers tab defines channel routing, in addition, gain and polarity can be defined for each channel. Like filters, mixers will not be in effect until applied in the pipeline.
 
-As in the Devices tab, it is very important that channel counts in the Mixers tab exactly match the channel counts of the device. For configurations from this repository this will not be an issue. It is not required to use all channels in the Mixer, but the correct channel counts need to specified in the "in" and "out" section. For example in the screenshot below 8 input and 8 output channels are specified although only 2 input channels (0 and 1) are used in the Mixer definition.
+As in the Devices tab, it is very important that mixer channel counts exactly match the channel counts of the device. For configurations from this repository this will not be an issue. It is not required to use all channels in the mixer, but the correct channel counts need to specified in the "in" and "out" section. For example in the screenshot below 8 input and 8 output channels are specified although only 2 input channels (0 and 1) are used in the mixer definition.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/mixers.png" alt="mixers" width="600"/>
 
@@ -637,7 +627,7 @@ A new addition with CamillaDSP V2 is the Processors tab. I haven't used this per
 
 #### Pipeline
 
-The Pipeline tab is where everything comes together, filters, mixers and processors created in the previous tabs are applied her. The entire pipeline can be plotted to show how the mixer and filters are applied as well as the combined magnitude / phase / group delay on each channel.
+The Pipeline tab is where everything comes together. Filters, mixers and processors created in the previous tabs are applied here. The entire pipeline can be plotted to show how the mixer and filters are applied as well as the combined magnitude / phase / group delay on each channel.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/pipeline.png" alt="pipeline" width="800"/>
 
@@ -645,19 +635,19 @@ The Pipeline tab is where everything comes together, filters, mixers and process
 
 #### Files
 
-The Files tab stores configurations and convolution filters. It will show configuration files located in ~/camilladsp/configs/ and convolution filters located in ~/camilladsp/coeffs/. You can download/upload configurations and convolution filters to/from your local computer via this tab. 
+The Files tab stores configurations and convolution filters. It will show configuration files located in ~/camilladsp/configs/ and convolution filters located in ~/camilladsp/coeffs/. Configurations and convolution filters can be downloaded / uploaded to/from via this tab. 
 
-To load a configuration in the GUI press the clockwise arrow button next to the desired configuration. Once this is done, the configuration name appear in the lower left under "Config", in the screenshot below, a configuration called lxminibsc.yml is loaded in the GUI.
+To load a configuration in the GUI, press the clockwise arrow button next to the desired configuration. Once this is done, the configuration name appear in the lower left under "Config", in the screenshot below, a configuration called lxminibsc.yml is loaded in the GUI.
 
 Just because a configuration is loaded in the GUI does NOT mean it is actually applied to the DSP. To apply a configuration to the DSP, click the "Apply to DSP" button. This will apply the configuration in the GUI to the DSP but it will NOT save any changes made via the GUI. To save changes, click the "Save to File" button. To implement both of these operations at the same time, click the "Apply and save" button. Alternatively, use the "Apply automatically" and "Save automatically" check boxes to do these operations automatically after a change is made in the GUI.
 
-To see what settings are currently applied to the DSP, click the "Fetch from DSP" button and it will load the GUI with the current DSP settings. Note, it only pulls the settings and does NOT change the configuration name in the lower left.
+To see what settings are currently applied to the DSP, click the "Fetch from DSP" button and to load the GUI with the current DSP settings. Note, it only pulls the settings and does NOT change the configuration name in the lower left.
 
 In order to set a configuration as default (i.e. the configuration that will be loaded when CamillaDSP starts), click the star button next to the desired configuration. After this is done, the star button will now be green next to the default configuration.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/files.png" alt="files" width="600"/>
 
-There is a nice compact view that is great for changing volume or configurations from a smartphone or tablet. It can be accessed by clicking the "Change to compact view" button just to the right of the CamillaDSP logo.
+There is a compact view that is great for changing volume or configurations from a smartphone or tablet. It can be accessed by clicking the "Change to compact view" button just to the right of the CamillaDSP logo.
 
 If filters named "Bass" and "Treble" are created and applied, the sliders in this view can be used as bass / treble tone controls. Recommended parameters for bass and treble tone control are lowshelf, f=85 Hz, q=0.9 and highshelf, f=6500 Hz, q=0.7 respectively.
 
@@ -665,7 +655,7 @@ If filters named "Bass" and "Treble" are created and applied, the sliders in thi
 
 ### FLIRC USB IR Receiver
 
-A [FLIRC IR receiver](https://flirc.tv/more/flirc-usb) is an easy way to add IR volume control for around $20. A  python script has been created so setting this up is very easy. 
+A [FLIRC IR receiver](https://flirc.tv/more/flirc-usb) is an easy way to add IR volume control for around $20. A python script has been created so setting this up is very easy. 
 
 Download the FLIRC software on a Mac / PC and connect the FLIRC receiver to that computer. Use the software to pair a remote as shown below.
 
@@ -689,7 +679,7 @@ Pressing KEY_RIGHT will switch between:
 
 However, will not switch to ultralitemk5_streamer.yml because it does not start with "_".
 
-Pressing KEY_LEFT will mute CamillaDSP, if configurations are switched this mute will stay set. Volume can be changed while muted, the mute will only be removed by either pressing KEY_LEFT again or unmuting in the GUI.
+Pressing KEY_LEFT will mute CamillaDSP, if configurations are switched this mute will stay set. Volume can be changed while muted. The mute will be removed by either pressing KEY_LEFT again or unmuting in the GUI.
 
 Install evdev.
 
@@ -697,13 +687,13 @@ Install evdev.
 sudo apt install python3-evdev
 ```
 
-Download flirc.py.
+Install flirc.py.
 
 ```
 wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/flirc.py -P ~/
 ```
 
-Enable USB-C port for use, this is needed to run the IR receiver from the USB-C port as is implemented in the [Modushop Case](https://github.com/mdsimon2/RPi-CamillaDSP#modushop-case) design in this tutorial . If the FLIRC is plugged in to a USB-A port this is not needed.
+Enable USB-C port for use, this is needed to run the IR receiver from the USB-C port as is implemented in the [Modushop Case](https://github.com/mdsimon2/RPi-CamillaDSP#modushop-case) design in this tutorial . If the FLIRC is plugged in to a USB-A port this step is not required.
 
 Open config.txt in nano.
 
@@ -711,7 +701,7 @@ Open config.txt in nano.
 sudo nano /boot/firmware/config.txt
 ```
 
-In the section starting with "# Config settings specific to arm64" add ,dr_mode=host after dtoverlay=dwc2 such that it looks like the line below. Reboot for the changes to take effect.
+In the section starting with "# Config settings specific to arm64", add ,dr_mode=host after dtoverlay=dwc2 such that it looks like the line below. Reboot the RPi for the changes to take effect.
 
 ```
 # Config settings specific to arm64
@@ -738,7 +728,7 @@ Bus 001 Device 002: ID 2109:3431 VIA Labs, Inc. Hub
 Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 ```
 
-Next check that the FLIRC device name.
+Next check the FLIRC device name.
 
 ```
 ls /dev/input/by-id/
@@ -757,13 +747,13 @@ If this looks different, potentially like usb-flirc.tv_flirc_E7A648F650554C39322
 nano ~/flirc.py
 ```
 
-If needed change the flirc=evdev.InputDevice line near the top to reflect your FLIRC name.
+If needed, change the flirc=evdev.InputDevice line near the top to reflect the FLIRC device name.
 
 ```
 flirc=evdev.InputDevice('/dev/input/by-id/usb-flirc.tv_flirc-if01-event-kbd')
 ```
 
-Download FLIRC service.
+Install FLIRC service.
 
 ```
 sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/flirc.service -P /lib/systemd/system/
@@ -789,35 +779,31 @@ sudo service flirc start
 
 ### Trigger Output
 
-It is easy to add a trigger output to the Ultralite Mk5 using a [Bobwire DAT1](https://www.bobwireaudio.com/). Simply connect the TOSLINK output of the Ultralite Mk5 to the Bobwire DAT1 and use the Audio Detect output port. All configuration files in this tutorial are set to stop after 5 seconds of output less than -100 dB, as a result CamillaDSP will stop after 5 seconds and after 60 seconds the trigger from the Bobwire DAT1 will turn any connected amplifiers off. Once CamillaDSP starts playing the Bobwire DAT1 trigger will fire up immediately.
+It is easy to add a trigger output to the Ultralite Mk5 using a [Bobwire DAT1](https://www.bobwireaudio.com/). Simply connect the TOSLINK output of the Ultralite Mk5 to the Bobwire DAT1 and use the Audio Detect output port. All configuration files in this tutorial are set to stop after 5 seconds of output less than -100 dB, as a result CamillaDSP will stop after 5 seconds and after 60 seconds the trigger from the Bobwire DAT1 will turn any connected amplifiers off. Once CamillaDSP starts playing, the Bobwire DAT1 trigger will activate.
 
 ### OLED Display
 
-RPis have GPIO pins which can be used to interface with a variety of displays. A python script has been developed for the [buydisplay.com 3.2” diagonal SSD1322 OLED display](https://www.buydisplay.com/white-3-2-inch-arduino-raspberry-pi-oled-display-module-256x64-spi) which is around ~$30 + shipping. Be sure to order the display in the 6800 8 bit configuration. It is recommended to have them solder a pin header as it is only an additional cost of $0.59.
+RPis have GPIO pins which can be used to interface with a variety of displays. A python script has been developed for the [buydisplay.com 3.2” diagonal SSD1322 OLED display](https://www.buydisplay.com/white-3-2-inch-arduino-raspberry-pi-oled-display-module-256x64-spi) which is ~$30 + shipping. Be sure to order the display in the 6800 8 bit configuration. It is recommended to have them solder a pin header as it is only an additional cost of $0.59.
 
-The base setup turns the display off after 10 seconds of no volume changes to avoid OLED burn in. It will turn back on if the volume is changed or the CamillaDSP status or configuration changes.
+The base setup turns the display off after 10 seconds of no volume changes to avoid OLED burn in. It will turn back on if the volume, status or configuration are changed. 
 
 Two versions of the OLED python script are provided. The default uses lgpio, this works with both the RPi4 and RPi5. An alternative configuration is provided which uses rpi-gpio which only works with the RPi4 and is slightly faster.
 
-If using the default lgpio based routine install lgpio.
+If using the default lgpio based routine install lgpio and oled.py.
 
 ```
 sudo apt install python3-lgpio
-```
-
-If using the alternative rpi-gpio routine install rpi-gpio.
-
-```
-sudo apt install python3-rpi.gpio
-```
-
-Download oled.py.
-
-```
 wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.py -P ~/
 ```
 
-Download OLED service.
+If using the alternative rpi-gpio routine install rpi-gpio and oled-rpi.gpio.py.
+
+```
+sudo apt install python3-rpi.gpio
+wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled-rpi.gpio.py -P ~/oled.py
+```
+
+Install OLED service.
 
 ```
 sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.service -P /lib/systemd/system/
@@ -835,7 +821,7 @@ chip = sbc.gpiochip_open(0) #use this for RPi4
 #chip = sbc.gpiochip_open(4) #use this for RPi5
 ```
 
-Open service in nano and update username to reflect your username
+Open OLED service in nano and update username to reflect your username
 
 ```
 sudo nano /lib/systemd/system/oled.service
@@ -852,9 +838,9 @@ Start OLED service.
 ```
 sudo service oled start
 ```
-The python script has the ability to show user defined text on the first line of the display based on loaded configuration file. With CamillaDSP V2, this will show the Title field under the Title tab of the GUI. If this field is blank, "CamillaDSP" will be displayed.
+The python script has the ability to show user defined text on the first line of the display based on loaded configuration file. With CamillaDSP V2, this will show the title field under the Title tab of the GUI. If this field is blank, "CamillaDSP" will be displayed.
 
-Wiring configuration from the display to the RPi GPIO header is listed below. Note, these pins can be changed as desired, see here for more information on RPi pinout -> https://www.tomshardware.com/reviews/raspberry-pi-gpio-pinout,6122.html. In addition, please note the wiring configuration has been changed from earlier versions of the tutorial to accommodate the HifiBerry DAC8x, the old pin configurations are shown in parenthesis for the pins that have changed.
+Wiring configuration from the display to the RPi GPIO header is listed below. Note, these pins can be changed as desired, see here for more information on RPi pinout -> https://www.tomshardware.com/reviews/raspberry-pi-gpio-pinout,6122.html. Please note the wiring configuration has been changed from earlier versions of the tutorial to accommodate the HifiBerry DAC8x, the old pin configurations are shown in parenthesis for the pins that have changed.
 
 1) (ground) -> ground
 2) (supply voltage) -> 3.3 V
@@ -879,15 +865,15 @@ For wiring, prefabbed 8” long 0.1” header jumpers are recommended. These are
 
 [Modushop](https://modushop.biz/site/) offers CNC machining of aluminum cases for custom projects. Depending on exchange rates and shipping costs, ordering directly from Modushop may be slightly cheaper than ordering from [DIYAudio Store](https://diyaudiostore.com) which is the US distributor. All cases are based on the Galaxy GX247 chassis (230 mm x 170 mm x 40 mm) with 2 mm aluminum covers.
 
-Case designs discussed below are intended to be used with a [OLED Display](https://github.com/mdsimon2/RPi-CamillaDSP#oled-display), [FLIRC IR Receiver](https://github.com/mdsimon2/RPi-CamillaDSP#flirc-usb-ir-receiver) and RPi4. A RPi5 can be used but the back panel will not work as the USB/ethernet orientation has been reversed compared to the RPi4, if using a RPi5, either modify the rear panel drawing or leave the back panel off. Drawings in dwg, pdf and vsdx format can be found in the [case_drawings](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/case_drawings) folder of this repository.
+Case designs discussed below are intended for use with an [OLED Display](https://github.com/mdsimon2/RPi-CamillaDSP#oled-display), [FLIRC IR Receiver](https://github.com/mdsimon2/RPi-CamillaDSP#flirc-usb-ir-receiver) and RPi4. A RPi5 can be used but the back panel will not work as the USB/ethernet orientation has been reversed compared to the RPi4. If using a RPi5, either modify the rear panel drawing or leave the back panel off. Drawings in dwg, pdf and vsdx format can be found in the [case_drawings](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/case_drawings) folder of this repository.
 
-All USB-A ports are located on the rear of the RPi. The only USB port that is accessible from inside the case is the USB-C port which is typically used for power, however this port can be used as a normal USB port and the RPi can be powered via the pin header. For the FLIRC IR receiver, a USB-A socket to USB-C plug adapter is used on the USB-C port coupled with a panel mount USB-A extension cable to connect to the IR receiver at the front of the case. For power, a [5.5 mm x 2.1 mm jack](https://www.digikey.com/en/products/detail/mpd-memory-protection-devices/EJ501A/2439531) is located in the rear of the case, it is recommend to solder at least 20 awg wire with pin connectors at the end to the jack, preferably two 5 V and two ground wires. This is the only part of the project that requires soldering, if soldering is not possible, a 5.5 mm x 2.1 mm jack with prefabbed wiring and crimp prefabbed 20 awg 0.1” header wiring on the ends can be purchased but this may require changing the diameter of the power jack hole.
+All USB-A ports are located on the rear of the RPi. The only USB port that is accessible from inside the case is the USB-C port which is typically used for power, however this port can be used as a normal USB port and the RPi can be powered via the pin header. For the FLIRC IR receiver, a USB-A socket to USB-C plug adapter is used on the USB-C port coupled with a panel mount USB-A extension cable to connect to the IR receiver at the front of the case. For power, a [5.5 mm x 2.1 mm jack](https://www.digikey.com/en/products/detail/mpd-memory-protection-devices/EJ501A/2439531) is located in the rear of the case, it is recommend to solder at least 20 awg wire with pin connectors at the end to the jack, using preferably two 5 V and two ground wires. This is the only part of the project that requires soldering, if soldering is not possible, a 5.5 mm x 2.1 mm jack with prefabbed wiring and crimp prefabbed 20 awg 0.1” header wiring on the ends can be purchased but this may require changing the diameter of the power jack hole.
 
 For a power supply, a standard RPi4 (15 W) or RPi5 (27 W) power supply with a USB-C to 5.5 mm adapter or another 5V power supply with the appropriate 5.5 mm jack can be used. The power supply should be capable of supplying at least 3 A. The standard RPi power supplies are recommended as they output slightly more than 5 V which helps with voltage sag.
 
 #### 10 mm front panel - single sided machining - 50€ add-on
 
-This option machines a 10 mm aluminum panel from the back side only. The screen is set half way through the panel thickness and there is a hole for the FLIRC IR receiver, mounting holes for the screen and IR receiver are tapped for M2.5 screws so there are no exposed fasteners. Pictures of this panel are shown below. Overall this option looks very nice, one complaint is that due to the thickness of the front panel the top of the display text can be obstructed from view if sitting very near to the case and looking down on the screen. 
+This option machines a 10 mm aluminum panel from the back side only. The screen is set half way through the panel thickness and there is a through hole for the FLIRC IR receiver. Mounting holes for the screen and IR receiver are tapped for M2.5 screws so there are no exposed fasteners. Pictures of this panel are shown below. Overall this option looks very nice, however due to the thickness of the front panel the top of the display text can be obstructed from view if sitting very near to the case and looking down on the screen. 
 
 Recommended hardware:
 - display mounting screws: [M2.5 x 3 mm long](https://www.mcmaster.com/91292A035/)
@@ -903,7 +889,7 @@ Recommended hardware:
 
 #### 10 mm front panel - double sided machining - 70€ add-on
 
-This is the same as the first option but has a 45 deg chamfer around the screen opening to improve viewing angles.
+This is the same as the first option but has a 45 deg chamfer around the screen opening to improve viewing angles. This option requires machining on both sides of the panel and is more expensive.
 
 Recommended hardware: 
 - same as single sided 10 mm front panel
@@ -912,7 +898,7 @@ Recommended hardware:
 
 #### 3 mm front panel - 31€ add-on
 
-This option uses all through holes so the machining cost is lower, it does require you to purchase a separate 3 mm front panel. It may be possible to swap out the default 10 mm front panel for a 3 mm front panel at reduced cost. This design has a lot of exposed fasteners due to the through holes but has no issues with viewing angle due to the thinner panel. The IR receiver holes are slightly larger than the display holes so that they can accept M3 screws which match the threading of the Adafruit USB panel extension cable, alternatively you can use M2.5 screw with nuts to keep the hardware consistent.
+This option uses all through holes for machining cost. As this panel is not default for the case, a separate 3 mm front panel must be purchased. This design has a lot of exposed fasteners due to the through holes but has good viewing angle due to the thinner panel. The IR receiver holes are slightly larger than the display holes so that they can accept M3 screws which match the threading of the Adafruit USB panel extension cable, alternatively you can use M2.5 screw with nuts to keep the hardware consistent.
 
 Recommended hardware:
 - display mounting screws: [M2.5 x 12 mm long](https://www.mcmaster.com/92290A062/)
@@ -927,7 +913,7 @@ Recommended hardware:
 
 #### 2 mm bottom panel - 30€ add-on
 
-It is recommended to pay the 5€ for a solid aluminum bottom panel, as the venting gets in the way of the mounting holes. However, the additional 25€ machining cost for 4 RPi4 mounting holes is probably not worth it, as drilling 4 holes is reasonably simple.
+This design uses a solid aluminum bottom panel which costs 5€. However, the additional 25€ machining cost for 4 RPi4 mounting holes is probably not worth it, as drilling 4 holes is reasonably simple.
 
 Recommended hardware:
 - RPi mounting screws: [M2.5 x 16 mm long](https://www.mcmaster.com/91292A018/) w/ [10 mm spacers](https://www.mcmaster.com/94669A104/)
@@ -937,7 +923,7 @@ Recommended hardware:
 
 #### 2 mm back panel - 25€ add-on
 
-This is another area to potentially save money. For example, the back panel can be completely left off to save on machining costs. Although it requires some effort, circular holes can be drilled and filled to manually create square holes. This panel has cutouts for RPi4 USB ports and ethernet port. There is also an 8 mm diameter hole for a 5.5 mm barrel connector. Important to again note that the RPi5 USB / ethernet port orientation is opposite of the RPi4, therefore this design will NOT work with a RPi5.
+This is another area to potentially save on machining costs. For example, the back panel can be completely left off as it is in the rear and not visible. Alternatively, although it requires substantial effort, circular holes can be drilled and filled to manually create square holes. This panel has cutouts for RPi4 USB and ethernet ports. There is also an 8 mm diameter hole for a 5.5 mm barrel connector. Important to again note that the RPi5 USB / ethernet port orientation is reversed compared to the RPi4, therefore this design will NOT work with a RPi5.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/rearpanel.jpeg" alt="rearpanel" width="600"/>
 
