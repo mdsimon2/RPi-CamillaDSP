@@ -814,7 +814,8 @@ If using the alternative rpi-gpio routine install rpi-gpio and oled-rpi.gpio.py.
 
 ```
 sudo apt install python3-rpi.gpio
-wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled-rpi.gpio.py -P ~/oled.py
+wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled-rpi.gpio.py -P ~/
+mv ~/oled-rpi.gpio.py ~/oled.py
 ```
 
 Install OLED service.
