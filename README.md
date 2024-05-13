@@ -7,7 +7,7 @@ I would like to especially thank [@HEnquist](https://github.com/HEnquist) for de
 
 I am not a programmer or DSP expert, my primary motivation is finding better ways to implement DIY active speakers. If you see a better way of doing something or want further explanation please speak up! These instructions have been developed as I learned how to implement CamillaDSP and found better ways to set it up, but I am always learning.
 
-For archived versions of the tutorial that pre-date Github, see links below.
+For archived versions of the tutorial that pre-date the migration to Github, see links below.
 
 - [20-Oct-2022 Archive](https://drive.google.com/file/d/1y-vULEbXNjza7W4X1vQyIIH1r1GOCVpN/view?usp=sharing)
 - [12-Dec-2023 Archive](https://drive.google.com/file/d/1MbB300dAJUEtBld14Qd4loA6hD94v67B/view?usp=share_link)
