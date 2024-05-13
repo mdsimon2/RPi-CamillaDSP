@@ -921,7 +921,7 @@ Recommended hardware:
 
 This design uses a solid aluminum bottom panel which costs 5€. However, the additional 25€ machining cost for 4 RPi mounting holes is probably not worth it, as drilling 4 holes is reasonably simple.
 
-If using the case with a RPi5 + DAC8x, use slightly shorter spacers to accommodate the additional stack height.
+If using the case with a RPi5 + DAC8x + OLED display, use [5 mm spacers](https://www.mcmaster.com/94669A098/) to accommodate the additional stack height.
 
 Recommended hardware:
 - RPi mounting screws: [M2.5 x 16 mm long](https://www.mcmaster.com/91292A018/) w/ [10 mm spacers](https://www.mcmaster.com/94669A104/)
