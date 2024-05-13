@@ -9,8 +9,9 @@ I am not a programmer or DSP expert, my primary motivation is finding better way
 
 For archived versions of the tutorial that pre-date Github, see links below.
 
-- [10/20/2022 Archive](https://drive.google.com/file/d/1y-vULEbXNjza7W4X1vQyIIH1r1GOCVpN/view?usp=sharing)
-- [12/12/2023 Archive](https://drive.google.com/file/d/1MbB300dAJUEtBld14Qd4loA6hD94v67B/view?usp=share_link)
+- [20-Oct-2022 Archive](https://drive.google.com/file/d/1y-vULEbXNjza7W4X1vQyIIH1r1GOCVpN/view?usp=sharing)
+- [12-Dec-2023 Archive](https://drive.google.com/file/d/1MbB300dAJUEtBld14Qd4loA6hD94v67B/view?usp=share_link)
+- [13-May-2024 Archive](https://drive.google.com/file/d/1SS70Ra2lkjtfXbIT7be4-WIjYCXNgC9c/view?usp=share_link)
 
 ## Background
 
@@ -801,16 +802,16 @@ RPis have GPIO pins which can be used to interface with a variety of displays. A
 
 The base setup turns the display off after 10 seconds of no volume changes to avoid OLED burn in. It will turn back on if the volume, status or configuration are changed. 
 
-Two versions of the OLED python script are provided. The default uses lgpio, this works with both the RPi4 and RPi5. An alternative configuration is provided which uses rpi-gpio, this is only supported by the RPi4 and is slightly faster.
+Two versions of the OLED python script are provided. The default uses lgpio and is supported by both the RPi4 and RPi5. An alternative configuration is provided which uses rpi-gpio, this is only supported by the RPi4 and is slightly faster.
 
-If using the default lgpio based routine install lgpio and oled.py.
+If using the default lgpio routine, install lgpio and oled.py.
 
 ```
 sudo apt install python3-lgpio
 wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.py -P ~/
 ```
 
-If using the alternative rpi-gpio routine install rpi-gpio and oled-rpi.gpio.py.
+If using the alternative rpi-gpio routine, install rpi-gpio and oled-rpi.gpio.py.
 
 ```
 sudo apt install python3-rpi.gpio
