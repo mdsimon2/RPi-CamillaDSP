@@ -716,7 +716,7 @@ Open config.txt in nano.
 sudo nano /boot/firmware/config.txt
 ```
 
-In the section starting with "# Config settings specific to arm64", add ,dr_mode=host after dtoverlay=dwc2 such that it looks like the line below. Reboot the RPi for the changes to take effect.
+Below "arm_64bit=1", add line containing "dtoverlay=dwc2,_dr_mode=host". On the Ubuntu Server, "dtoverlay=dwc2" will already be present, on Raspberry Pi OS there is no entry below "arm_64bit=1". The end result should like like below. Reboot the RPi for the changes to take effect.
 
 ```
 # Config settings specific to arm64
