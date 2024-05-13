@@ -831,8 +831,8 @@ nano ~/oled.py
 Uncomment the RPi5 line and comment out the RPi4 line so it looks like below.
 
 ```
-chip = sbc.gpiochip_open(0) #use this for RPi4
-#chip = sbc.gpiochip_open(4) #use this for RPi5
+#chip = sbc.gpiochip_open(0) #use this for RPi4
+chip = sbc.gpiochip_open(4) #use this for RPi5
 ```
 
 Open OLED service in nano and update username to reflect your username
