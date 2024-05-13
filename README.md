@@ -65,7 +65,7 @@ Below are other good sources of information related to CamillaDSP.
 
 ## CamillaDSP Setup
 
-This part describes how to get a working CamillaDSP setup. For reference, a complete install should take under 1 hour (including [OLED display](https://github.com/mdsimon2/RPi-CamillaDSP#oled-display) and {FLIRC IR receiver}(https://github.com/mdsimon2/RPi-CamillaDSP#flirc-usb-ir-receiver) setup), most of that time is waiting for things to download / install.
+This part describes how to get a working CamillaDSP setup. For reference, a complete install should take under 1 hour (including [OLED display](https://github.com/mdsimon2/RPi-CamillaDSP#oled-display) and [FLIRC IR receiver](https://github.com/mdsimon2/RPi-CamillaDSP#flirc-usb-ir-receiver) setup), most of that time is waiting for things to download / install.
 
 ### 1) Write OS to micro SD and login to RPi via SSH
 
