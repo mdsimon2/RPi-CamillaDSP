@@ -140,7 +140,13 @@ sudo tar -xvf ~/camilladsp/camilladsp-linux-aarch64.tar.gz -C /usr/local/bin/
 This step is only required for [streamer applications](https://github.com/mdsimon2/RPi-CamillaDSP#streamer-applications) using an ALSA loopback.
 
 ```
-> snd-aloop
+echo > snd-aloop.conf snd-aloop
+```
+
+Restart the RPi for the change to take effect.
+
+```
+sudo reboot now
 ```
 
 ### 5) Install CamillaDSP service
@@ -913,7 +919,9 @@ Recommended hardware:
 
 #### 2 mm bottom panel - 30€ add-on
 
-This design uses a solid aluminum bottom panel which costs 5€. However, the additional 25€ machining cost for 4 RPi4 mounting holes is probably not worth it, as drilling 4 holes is reasonably simple.
+This design uses a solid aluminum bottom panel which costs 5€. However, the additional 25€ machining cost for 4 RPi mounting holes is probably not worth it, as drilling 4 holes is reasonably simple.
+
+If using the case with a RPi5 + DAC8x, use slightly shorter spacers to accommodate the additional stack height.
 
 Recommended hardware:
 - RPi mounting screws: [M2.5 x 16 mm long](https://www.mcmaster.com/91292A018/) w/ [10 mm spacers](https://www.mcmaster.com/94669A104/)
