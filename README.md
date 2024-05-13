@@ -403,7 +403,7 @@ These configurations assume CamillaDSP volume control is NOT being used as the O
 
 ### MOTU Ultralite Mk5
 
-This DAC requires a small amount of setup, either while connected to a Mac / PC or remotely via nginx.
+This DAC requires some configuration prior to use, either while connected to a Mac / PC or connected to the RPi and managed remotely via nginx.
 
 #### nginx
 
@@ -487,6 +487,14 @@ Paste the following text to the bottom of 50-curtin-networking.cfg, updating the
          enx0001f2fff075:
             addresses:
                 - 169.254.118.240/16
+```
+
+Apply changes and restart.
+
+```
+sudo cloud-init clean
+sudo cloud-init init
+sudo reboot now
 ```
 
 #### CueMix
