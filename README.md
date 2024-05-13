@@ -801,7 +801,7 @@ RPis have GPIO pins which can be used to interface with a variety of displays. A
 
 The base setup turns the display off after 10 seconds of no volume changes to avoid OLED burn in. It will turn back on if the volume, status or configuration are changed. 
 
-Two versions of the OLED python script are provided. The default uses lgpio, this works with both the RPi4 and RPi5. An alternative configuration is provided which uses rpi-gpio which only works with the RPi4 and is slightly faster.
+Two versions of the OLED python script are provided. The default uses lgpio, this works with both the RPi4 and RPi5. An alternative configuration is provided which uses rpi-gpio, this is only supported by the RPi4 and is slightly faster.
 
 If using the default lgpio based routine install lgpio and oled.py.
 
