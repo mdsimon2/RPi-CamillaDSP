@@ -140,7 +140,7 @@ sudo tar -xvf ~/camilladsp/camilladsp-linux-aarch64.tar.gz -C /usr/local/bin/
 This step is only required for [streamer applications](https://github.com/mdsimon2/RPi-CamillaDSP#streamer-applications) using an ALSA loopback.
 
 ```
-sudo nano echo > /etc/modules-load.d/snd-aloop.conf snd-aloop
+echo 'snd-aloop' | sudo tee -a /etc/modules-load.d/snd-aloop.conf > /dev/null
 ```
 
 Restart the RPi for the change to take effect.
