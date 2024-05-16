@@ -66,11 +66,11 @@ Below are other good sources of information related to CamillaDSP.
 
 ## CamillaDSP Setup
 
-This part describes how to get a working CamillaDSP setup. For reference, a complete install should take under 1 hour (including [OLED display](https://github.com/mdsimon2/RPi-CamillaDSP#oled-display) and [FLIRC IR receiver](https://github.com/mdsimon2/RPi-CamillaDSP#flirc-usb-ir-receiver) setup), most of that time is waiting for things to download / install.
+This part describes how to get a working CamillaDSP setup. For reference, a complete install should take less than 30 minutes (including [OLED display](https://github.com/mdsimon2/RPi-CamillaDSP#oled-display) and [FLIRC IR receiver](https://github.com/mdsimon2/RPi-CamillaDSP#flirc-usb-ir-receiver) setup), most of that time is waiting for things to download / install.
 
-### 1) Write OS to micro SD card and login to RPi via SSH
+### 1) Write OS to micro SD card
 
-Raspberry Pi OS Lite 64 bit Bookworm is the recommended OS. Ubuntu Server 24.04 LTS 64 bit can also be used but does not currently work with the HifiBerry DAC8x.
+Raspberry Pi OS Lite 64 bit Bookworm is the recommended OS. Ubuntu Server 24.04 LTS 64 bit can also be used but does not currently work with the HifiBerry DAC8x. In addition, Raspberry Pi OS is more responsive than Ubuntu Server, this is especially noticeable if using an [OLED display](https://github.com/mdsimon2/RPi-CamillaDSP#oled-display).
 
 Download and install Raspberry Pi Imager from the links below for your OS.
 
@@ -79,6 +79,8 @@ Download and install Raspberry Pi Imager from the links below for your OS.
 - [Raspberry Pi Imager for macOS](https://downloads.raspberrypi.org/imager/imager_latest.dmg)
 
 Open Raspberry Pi Imager, select the desired RPi, OS and micro SD card. Setup your hostname, username, password, SSH and wifi settings and click the Write button to write OS to micro SD card.
+
+When done, insert micro SD card into RPi and connect power supply.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/raspberrypi_imager_settings.png" alt="raspberrypi_imager_settings" width="300"/>
 
@@ -98,9 +100,9 @@ Following the restart Ubuntu can be used for terminal access.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/Ubuntu.png" alt="Ubuntu" width="500"/>
 
-### 2) Update / upgrade RPi
+### 2) Log in to RPi and update / upgrade
 
-Open terminal and log in to RPi using your username and hostname.
+Wait a minute or two for RPi to start for the first time, then open terminal and log in to RPi using your username and hostname. 
 
 ```
 ssh username@hostname
@@ -782,6 +784,8 @@ It is easy to add a trigger output to the Ultralite Mk5 using a [Bobwire DAT1](h
 RPis have GPIO pins which can be used to interface with a variety of displays. A python script has been developed for the [buydisplay.com 3.2” diagonal SSD1322 OLED display](https://www.buydisplay.com/white-3-2-inch-arduino-raspberry-pi-oled-display-module-256x64-spi) which is ~$30 + shipping. Be sure to order the display in the 6800 8 bit configuration. It is recommended to have them solder a pin header as it is only an additional cost of $0.59.
 
 The base setup turns the display off after 10 seconds of no volume changes to avoid OLED burn in. It will turn back on if the volume, status or configuration are changed. 
+
+Previous versions of this tutorial offered python routines based on lgpio and rpi-gpio. However, going forward only the lgpio routine will be provided. Updates to the lgpio routine implementing group pin writing have significantly improved performance and using Raspberry Pi OS instead of Ubuntu Server improves performance even further. In addition, the RPi5 does not support rpi-gpio.
 
 Install lgpio and oled.py.
 
