@@ -78,7 +78,7 @@ Download and install Raspberry Pi Imager from the links below for your OS.
 - [Raspberry Pi Imager for Windows](https://downloads.raspberrypi.org/imager/imager_latest.exe)
 - [Raspberry Pi Imager for macOS](https://downloads.raspberrypi.org/imager/imager_latest.dmg)
 
-Open Raspberry Pi Imager, select the desired RPi, OS, micro SD card and click Next.
+Open Raspberry Pi Imager, select the desired RPi, OS and micro SD card. When done, click Next.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/rpi_imager.png" alt="rpi_imager" width="300"/>
 
@@ -86,7 +86,7 @@ When prompted, click Edit Settings.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/rpi_imager_2.png" alt="rpi_imager_2" width="300"/>
 
-Under General tab, setup your hostname, username, password and wifi settings. Then click Services tab.
+Under General tab, setup your hostname, username, password and wifi settings. When done, click Services tab.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/rpi_imager_3.png" alt="rpi_imager_3" width="300"/>
 
