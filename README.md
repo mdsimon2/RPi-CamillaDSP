@@ -112,6 +112,8 @@ Update / upgrade RPi and install necessary tools and dependencies.
 sudo apt update
 sudo apt full-upgrade
 sudo apt install alsa-utils git python3 python3-pip python3-websocket python3-aiohttp python3-jsonschema python3-numpy python3-matplotlib unzip
+sudo pip3 install git+https://github.com/HEnquist/pycamilladsp.git --break-system-packages
+sudo pip3 install git+https://github.com/HEnquist/pycamilladsp-plot.git --break-system-packages
 ```
 
 Say yes to any upgrade prompts. If prompted about restarting services, hit enter.
