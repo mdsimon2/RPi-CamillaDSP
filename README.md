@@ -80,11 +80,19 @@ Download and install Raspberry Pi Imager from the links below for your OS.
 
 Open Raspberry Pi Imager, select the desired RPi, OS, micro SD card and click Next.
 
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/rpi_imager_1.png" alt="rpi_imager_1" width="300"/>
+
+When prompted, click Edit Settings.
+
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/rpi_imager_2.png" alt="rpi_imager_2" width="300"/>
+
+Under General tab, setup your hostname, username, password and wifi settings. Then click Services tab.
+
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/rpi_imager_3.png" alt="rpi_imager_3" width="300"/>
+
+Under Services tab, enable SSH and password authentication. When done, click Save.
 
 
-
-
-Setup your hostname, username, password, SSH and wifi settings and click the Write button to write OS to micro SD card.
 
 When done, insert micro SD card into RPi and connect power supply.
 
