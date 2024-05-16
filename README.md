@@ -410,7 +410,7 @@ Open nginx.conf in nano.
 sudo nano /etc/nginx/nginx.conf
 ```
 
-Paste the text below to the end of nginx.conf, update the IP address shown on the front panel of the Ultralite Mk5.
+Paste the text below to the end of nginx.conf, update the IP address shown on the front panel of the Ultralite Mk5 followed by :1280.
 
 ```
 stream {
