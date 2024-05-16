@@ -23,7 +23,7 @@ devices:
   silence_threshold: -100
   silence_timeout: 5
   stop_on_rate_change: false
-  target_level: 384
+  target_level: 255
   volume_ramp_time: null
 filters: null
 mixers:

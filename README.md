@@ -380,9 +380,11 @@ CamillaDSP V1 used a buffer size of 2 x chunksize, CamillaDSP V2 uses a buffer s
 - 88.2 / 96 kHz: 128
 - 176.4 / 192 kHz: 256
 
-For configurations where playback and capture device are synchronous (i.e. no rate adjust is enabled), target_level = chunksize. For asynchronous configurations, target_level = 3 x chunksize.
+Currently, CamillaDSP only allows a maximum target_level of 2 x chunksize - 1. For simplicity, all configurations use a target_level of 2 x chunksize - 1. These chunksize / target_level settings will result in < 10 ms latency.
 
-These chunksize / target_level settings will result in < 10 ms latency. If dropouts are experienced, increase chunksize / target_level, and please let me know.
+Note, for configurations where playback and capture device are synchronous (i.e. no rate adjust is enabled), target_level = chunksize will also work and will slightly reduce latency. For asynchronous configurations, the ideal target_level is 3 x chunksize, this will be allowed in future versions of CamillaDSP and the configurations in this tutorial will updated to reflect this when possible.
+
+If dropouts are experienced, increase chunksize / target_level, and please let me know.
 
 ### Okto dac8 PRO
 
