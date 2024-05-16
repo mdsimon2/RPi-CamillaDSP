@@ -17,7 +17,7 @@ For archived versions of the tutorial that pre-date the migration to Github, see
 
 ### Why use CamillaDSP on a RPi?
 
-This tutorial is geared towards 2 channel audio as it is somewhat difficult to get multichannel audio in to a RPi. Typical applications are DIY active speakers / subwoofers such as Directiva R1 (4+ channels), LXmini + sub(s) or LX 521.4 (8+ channels). Another good application is passive stereo speakers with 3+ subwoofers. Although it is possible to use other hardware with CamillaDSP, a RPi offers GPIO pins which are useful for integrating a [display](https://github.com/mdsimon2/RPi-CamillaDSP#oled-display) and has the ability to be used as a USB gadget.
+This tutorial is geared towards 2 channel audio as it is somewhat difficult to get multichannel audio in to a RPi. Typical applications are DIY active speakers / subwoofers such as Directiva R1 (4+ channels), LXmini + sub(s) or LX 521.4 (8+ channels). Another good application is passive stereo speakers with 3+ subwoofers. Although it is possible to use other hardware with CamillaDSP, a RPi offers GPIO pins which are useful for [display](https://github.com/mdsimon2/RPi-CamillaDSP#oled-display) integration and has the ability to be used as a USB gadget.
 
 ### How does it work?
 
@@ -68,9 +68,9 @@ Below are other good sources of information related to CamillaDSP.
 
 This part describes how to get a working CamillaDSP setup. For reference, a complete install should take under 1 hour (including [OLED display](https://github.com/mdsimon2/RPi-CamillaDSP#oled-display) and [FLIRC IR receiver](https://github.com/mdsimon2/RPi-CamillaDSP#flirc-usb-ir-receiver) setup), most of that time is waiting for things to download / install.
 
-### 1) Write OS to micro SD and login to RPi via SSH
+### 1) Write OS to micro SD card and login to RPi via SSH
 
-Raspberry Pi OS Lite 64 bit Bookworm is the recommended OS. Ubuntu Server 24.04 LTS 64 bit can also be used but does not currently work with the HifiBerry DAC8x
+Raspberry Pi OS Lite 64 bit Bookworm is the recommended OS. Ubuntu Server 24.04 LTS 64 bit can also be used but does not currently work with the HifiBerry DAC8x.
 
 Download and install Raspberry Pi Imager from the links below for your OS.
 
@@ -78,7 +78,7 @@ Download and install Raspberry Pi Imager from the links below for your OS.
 - [Raspberry Pi Imager for Windows](https://downloads.raspberrypi.org/imager/imager_latest.exe)
 - [Raspberry Pi Imager for macOS](https://downloads.raspberrypi.org/imager/imager_latest.dmg)
 
-Open Raspberry Pi Imager, select your desired RPi, OS and micro SD card. Setup your hostname, username, password, SSH and wifi settings and click the Write button to write OS to micro SD card.
+Open Raspberry Pi Imager, select the desired RPi, OS and micro SD card. Setup your hostname, username, password, SSH and wifi settings and click the Write button to write OS to micro SD card.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/raspberrypi_imager_settings.png" alt="raspberrypi_imager_settings" width="300"/>
 
@@ -106,51 +106,27 @@ Open terminal and log in to RPi using your username and hostname.
 ssh username@hostname
 ```
 
-Update and upgrade RPi software.
+Update / upgrade RPi software and all install necessary tools and dependencies.
 
 ```
 sudo apt update
 sudo apt full-upgrade
+sudo apt install alsa-utils git python3 python3-pip python3-websocket python3-aiohttp python3-jsonschema python3-numpy python3-matplotlib unzip
 ```
 
 Say yes to any upgrade prompts. If prompted about restarting services, hit enter.
 
 ### 3) Install CamillaDSP
 
-Make a camilladsp folder, as well as folders for CamillaDSP to reference stored FIR filters and configurations.
+Make a camilladsp folder, as well as folders for CamillaDSP to reference stored FIR filters and configurations. Download and unpack CamillaDSP. The commands below will install V2.0.3 in /usr/local/bin/.
 
 ```
 mkdir ~/camilladsp ~/camilladsp/coeffs ~/camilladsp/configs
-```
-
-Install alsa-utils and git. This gives access to helpful ALSA tools like aplay and amixer, it will also install libasound2 as a dependency which is required by CamillaDSP. Git is needed to install pycamilladsp and pycamilladsp-plot, and can also be used to clone this repository.
-
-```
-sudo apt install alsa-utils git
-```
-
-Download and unpack CamillaDSP. The commands below will install V2.0.3 in /usr/local/bin/.
-
-```
 wget https://github.com/HEnquist/camilladsp/releases/download/v2.0.3/camilladsp-linux-aarch64.tar.gz -P ~/camilladsp/
 sudo tar -xvf ~/camilladsp/camilladsp-linux-aarch64.tar.gz -C /usr/local/bin/
 ```
 
-### 4) Enable ALSA loopback
-
-This step is only required for [streamer applications](https://github.com/mdsimon2/RPi-CamillaDSP#streamer-applications) using an ALSA loopback.
-
-```
-echo 'snd-aloop' | sudo tee -a /etc/modules-load.d/snd-aloop.conf > /dev/null
-```
-
-Restart the RPi for the change to take effect.
-
-```
-sudo reboot now
-```
-
-### 5) Install CamillaDSP service
+### 4) Install CamillaDSP service
 
 ```
 sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/camilladsp.service -P /lib/systemd/system/
@@ -164,15 +140,10 @@ sudo nano /lib/systemd/system/camilladsp.service
 
 When done, enter ctrl + x to exit nano, when prompted with 'Save modified buffer?' enter Y and when prompted with 'File Name to Write: /lib/systemd/system/camilladsp.service' hit Enter key. This same technique will be used elsewhere in this tutorial when editing files in nano.
 
-Enable camilladsp service.
+Enable and start camilladsp service.
 
 ```
 sudo systemctl enable camilladsp
-```
-
-Start camilladsp service.
-
-```
 sudo service camilladsp start
 ```
 
@@ -189,32 +160,14 @@ See below for a brief explanation of the CamillaDSP flags applied in ExecStart o
 
 "-o camilladsp/camilladsp.log" creates a log file that can be viewed in the GUI for troubleshooting. Verbosity of this log can be increased by adding "-l debug".
 
-### 6) Install python and dependencies
-
-```
-sudo apt install python3 python3-pip python3-websocket python3-aiohttp python3-jsonschema python3-numpy python3-matplotlib unzip
-```
-
-### 7) Install pycamilladsp
-
-```
-sudo pip3 install git+https://github.com/HEnquist/pycamilladsp.git --break-system-packages
-```
-
-### 8) Install pycamilladsp-plot
-
-```
-sudo pip3 install git+https://github.com/HEnquist/pycamilladsp-plot.git --break-system-packages
-```
-
-### 9) Install GUI server
+### 5) Install GUI server
 
 ```
 wget https://github.com/HEnquist/camillagui-backend/releases/download/v2.1.1/camillagui.zip -P ~/camilladsp/
 unzip ~/camilladsp/camillagui.zip -d ~/camilladsp/camillagui
 ```
 
-### 10) Install GUI service
+### 6) Install GUI service
 
 ```
 sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/camillagui.service -P /lib/systemd/system/
@@ -226,19 +179,63 @@ Open GUI service in nano and update username to reflect your username.
 sudo nano /lib/systemd/system/camillagui.service
 ```
 
-Enable camillagui service.
+Enable and start camillagui service.
 
 ```
 sudo systemctl enable camillagui
-```
-
-Start camillagui service.
-
-```
 sudo service camillagui start
 ```
 
-### 11) Assign active configuration in GUI
+4) Enable ALSA loopback (optional)
+
+This step is only required for [streamer applications](https://github.com/mdsimon2/RPi-CamillaDSP#streamer-applications) using an ALSA loopback.
+
+```
+echo 'snd-aloop' | sudo tee -a /etc/modules-load.d/snd-aloop.conf > /dev/null
+```
+
+Restart RPi for the change to take effect.
+
+```
+sudo reboot now
+```
+
+### 5) Enable USB gadget (optional)
+
+The RPi4/5 can be used as USB input / output device, this is known as a USB gadget. This step is only required if you would like to use the RPi as a gadget. See the USB gadget configuration section for more detail.
+
+Open config.txt in nano.
+
+```
+sudo nano /boot/firmware/config.txt
+```
+
+Add the line below.
+
+```
+dtoverlay=dwc2
+```
+
+Create usb_g_audio.conf with desired parameters
+
+```
+echo 'options g_audio c_srate=44100 c_ssize=4 c_chmask=3 p_chmask=0' | sudo tee -a /etc/modprobe.d/usb_g_audio.conf > /dev/null 
+```
+"c_srate" sets the capture rates that will be offered to the USB host. Feel free to add / delete rates as necessary. It is important to note that your USB host must be set to the same rate as the CamillaDSP capture rate. There are tools that can automatically switch the CamillaDSP capture rate such as [gaudio_ctl](https://github.com/pavhofman/gaudio_ctl) and [camilladsp-setrate](https://github.com/marcoevang/camilladsp-setrate) but they are outside the scope of this tutorial.
+
+"c_ssize" sets the capture rate format offered to the USB host. 4 = S32_LE.
+
+"c_chmask" sets the number of capture channels. Format is 2^(number of channels) - 1. Therefore, 3 = 2 channels, 63 = 6 channels and 255 = 8 channels.
+
+"p_chmask" sets the number of playback channels offered to the RPi. This is set to 0 as as the gadget is typically only used as a capture device.
+
+Restart RPi for the change to take effect.
+
+```
+sudo reboot now
+```
+
+### 6) Assign active configuration in GUI
 
 Configurations are explained in more detail in the [CamillaDSP Configurations](https://github.com/mdsimon2/RPi-CamillaDSP#camilladsp-configurations) section of this tutorial. Pre-made configurations for the DACs in this tutorial can be downloaded by navigating to the [configs](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/configs) folder of this repository. Alternatively, download the entire repository by clicking [here](https://github.com/mdsimon2/RPi-CamillaDSP/archive/refs/heads/main.zip) or using git clone.
 
@@ -250,7 +247,7 @@ Navigate to Files tab of GUI and upload desired configuration using the up arrow
 
 Congratulations, CamillaDSP is now up and running!
 
-### 12) Upgrading to future versions
+### 7) Upgrading to future versions
 
 To upgrade to a new version of CamillaDSP, simply remove the old CamillaDSP binary and tar and download and extract a new one.
 
@@ -600,6 +597,23 @@ Given lack of 4 channel on device volume control, it is recommended to use Camil
 
 ### HifiBerry DAC8x
 
+This is the only HAT option in the tutorial. As it uses multichannel I2S output, it must be used with a RPi5. Due to lack of volume control, it is recommended to use CamillaDSP volume control with this DAC.
+
+A small addition is required to config.txt for this DAC to be recognized.
+
+```
+sudo nano /boot/firmware/config.txt
+```
+
+Add the line below.
+
+```
+dtoverlay=dtoverlay=hifiberry-dac8x
+```
+
+After a RPi reboot, it should be recognized.
+
+
 ## Advanced Configuration
 
 ### GUI
@@ -883,9 +897,9 @@ For wiring, prefabbed 8” long 0.1” header jumpers are recommended. These are
 
 Case designs discussed below are intended for use with an [OLED Display](https://github.com/mdsimon2/RPi-CamillaDSP#oled-display), [FLIRC IR Receiver](https://github.com/mdsimon2/RPi-CamillaDSP#flirc-usb-ir-receiver) and RPi4. A RPi5 can be used but the back panel will not work as the USB/ethernet orientation has been reversed compared to the RPi4. If using a RPi5, either modify the rear panel drawing or leave the back panel off. Drawings in dwg, pdf and vsdx format can be found in the [case_drawings](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/case_drawings) folder of this repository.
 
-All USB-A ports are located on the rear of the RPi. The only USB port that is accessible from inside the case is the USB-C port which is typically used for power, however this port can be used as a normal USB port and the RPi can be powered via the pin header. For the FLIRC IR receiver, a USB-A socket to USB-C plug adapter is used on the USB-C port coupled with a panel mount USB-A extension cable to connect to the IR receiver at the front of the case. For power, a [5.5 mm x 2.1 mm jack](https://www.digikey.com/en/products/detail/mpd-memory-protection-devices/EJ501A/2439531) is located in the rear of the case, it is recommend to solder at least 20 awg wire with pin connectors at the end to the jack, using preferably two 5 V and two ground wires. This is the only part of the project that requires soldering, if soldering is not possible, a 5.5 mm x 2.1 mm jack with prefabbed wiring and crimp prefabbed 20 awg 0.1” header wiring on the ends can be purchased but this may require changing the diameter of the power jack hole.
+All USB-A ports are located on the rear of the RPi. The only USB port that is accessible from inside the case is the USB-C port which is typically used for power, however this port can be used as a normal USB port and the RPi can be powered via the pin header. For the FLIRC IR receiver, a USB-A socket to USB-C plug adapter is used on the USB-C port coupled with a panel mount USB-A extension cable to connect to the IR receiver at the front of the case. For power, a [5.5 mm x 2.1 mm jack](https://www.digikey.com/en/products/detail/mpd-memory-protection-devices/EJ501A/2439531) is located in the rear of the case, it is recommended to solder at least 20 awg wire with pin connectors at the end to the jack, using preferably two 5 V and two ground wires. This is the only part of the project that requires soldering. If soldering is not possible, a 5.5 mm x 2.1 mm jack with prefabbed wiring and crimp prefabbed 20 awg 0.1” header wiring on the ends can be purchased but this may require changing the diameter of the power jack hole.
 
-For a power supply, a standard RPi4 (15 W) or RPi5 (27 W) power supply with a USB-C to 5.5 mm adapter or another 5V power supply with the appropriate 5.5 mm jack can be used. The power supply should be capable of supplying at least 3 A. The standard RPi power supplies are recommended as they output slightly more than 5 V which helps with voltage sag.
+For a power supply, a standard [RPi4 (15 W)](https://www.raspberrypi.com/products/type-c-power-supply/) or [RPi5 (27 W)](https://www.raspberrypi.com/products/27w-power-supply/) power supply with a USB-C to 5.5 mm adapter or another 5V power supply with the appropriate 5.5 mm jack can be used. The power supply should be capable of supplying at least 3 A. The standard RPi power supplies are recommended as they output slightly more than 5 V which helps with voltage sag.
 
 #### 10 mm front panel - single sided machining - 50€ add-on
 
@@ -914,7 +928,7 @@ Recommended hardware:
 
 #### 3 mm front panel - 31€ add-on
 
-This option uses all through holes for machining cost. As this panel is not default for the case, a separate 3 mm front panel must be purchased. This design has a lot of exposed fasteners due to the through holes but has good viewing angle due to the thinner panel. The IR receiver holes are slightly larger than the display holes so that they can accept M3 screws which match the threading of the Adafruit USB panel extension cable, alternatively you can use M2.5 screw with nuts to keep the hardware consistent.
+This option uses all through holes to reduce machining cost. As this panel is not default for the case, a separate 3 mm front panel must be purchased. This design has a lot of exposed fasteners due to the through holes but has good viewing angle due to the thinner panel. The IR receiver holes are slightly larger than the display holes so that they can accept M3 screws which match the threading of the Adafruit USB panel extension cable, alternatively you can use M2.5 screw with nuts to keep the hardware consistent.
 
 Recommended hardware:
 - display mounting screws: [M2.5 x 12 mm long](https://www.mcmaster.com/92290A062/)
