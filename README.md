@@ -697,15 +697,10 @@ However, will not switch to ultralitemk5_streamer.yml because it does not start 
 
 Pressing KEY_LEFT will mute CamillaDSP, if configurations are switched this mute will stay set. Volume can be changed while muted. The mute will be removed by either pressing KEY_LEFT again or unmuting in the GUI.
 
-Install evdev.
+Install evdev and flirc.py
 
 ```
 sudo apt install python3-evdev
-```
-
-Install flirc.py.
-
-```
 wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/flirc.py -P ~/
 ```
 
