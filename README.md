@@ -210,7 +210,7 @@ Update config.txt to include dtoverlay=dwc2, add dwc2 and g_audio to /etc/module
 
 ```
 echo 'dtoverlay=dwc2' | sudo tee -a /boot/firmware/config.txt > /dev/null
-echo -e 'dwc2\ng_audio' | sudo tee -a /etc/modules > dev/null
+echo -e 'dwc2\ng_audio' | sudo tee -a /etc/modules > /dev/null
 echo 'options g_audio c_srate=44100 c_ssize=4 c_chmask=3 p_chmask=0' | sudo tee -a /etc/modprobe.d/usb_g_audio.conf > /dev/null 
 ```
 "c_srate" sets the capture rates that will be offered to the USB host. Feel free to add / delete rates as necessary. It is important to note the USB host must be set to the same rate as the CamillaDSP capture rate. There are tools that can automatically switch the CamillaDSP capture rate such as [gaudio_ctl](https://github.com/pavhofman/gaudio_ctl) and [camilladsp-setrate](https://github.com/marcoevang/camilladsp-setrate) but they are outside the scope of this tutorial.
