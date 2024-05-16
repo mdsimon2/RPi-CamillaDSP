@@ -202,7 +202,7 @@ sudo reboot now
 
 ### 5) Enable USB gadget (optional)
 
-The RPi4/5 can be used as USB input / output device, this is known as a USB gadget. This step is only required if you would like to use the RPi as a gadget. See the USB gadget configuration section for more detail.
+The RPi4/5 can be used as USB input / output device, this is known as a USB gadget. This step is only required for configurations using the USB gadget as capture device. See USB gadget configuration section for more detail.
 
 Open config.txt in nano.
 
