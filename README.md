@@ -241,7 +241,7 @@ If using the RPi as a USB gadget, connect the RPi to the USB host via the USB-C 
 
 ### 9) Assign active configuration in GUI
 
-Configurations are explained in more detail in the [CamillaDSP Configurations](https://github.com/mdsimon2/RPi-CamillaDSP#camilladsp-configurations) section of this tutorial. Pre-made configurations for the DACs in this tutorial can be downloaded by navigating to the [configs](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/configs) folder of this repository. Alternatively, download the entire repository by clicking [here](https://github.com/mdsimon2/RPi-CamillaDSP/archive/refs/heads/main.zip) or using git clone.
+Configurations are explained in more detail in the [CamillaDSP Configurations](https://github.com/mdsimon2/RPi-CamillaDSP#camilladsp-configurations) section of this tutorial. Pre-made configurations for the DACs in this tutorial can be downloaded by navigating to the [configs](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/configs) folder. Alternatively, download the entire repository by clicking [here](https://github.com/mdsimon2/RPi-CamillaDSP/archive/refs/heads/main.zip) or using git clone.
 
 On a computer that is on the same network as the RPi, navigate browser to http://hostname:5005.
 
@@ -346,9 +346,9 @@ These changes set ALSA loopback device 1 as squeezelite playback device, resampl
 
 ## CamillaDSP Configurations
 
-All configurations use maximum amount of output channels for a given playback device. If an output channel is not needed remove it from the mixer as each extra channel requires additional processing resources. Configuration files can be found in the [configs](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/configs) folder of this repository.
+All configurations use maximum amount of output channels for a given playback device. If an output channel is not needed remove it from the mixer as each extra channel requires additional processing resources. Configuration files can be found in the [configs](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/configs) folder.
 
-The naming convention configuration files in this repository is dac_input_capturerate_playbackrate. For example, a configuration for a MOTU Ultralite Mk5, TOSLINK input with 96 kHz capture and 96 kHz playback rates is ultralitemk5_toslink_96c_96p.
+The naming convention configuration files in this tutorial is dac_input_capturerate_playbackrate. For example, a configuration for a MOTU Ultralite Mk5, TOSLINK input with 96 kHz capture and 96 kHz playback rates is ultralitemk5_toslink_96c_96p.
 
 ### ASRC Options
 CamillaDSP expects a constant capture sample rate and cannot accommodate rate changes without a restart. For variable sample rate physical digital sources like TOSLINK, AES or SPDIF or multiple physical digital sources with different rates, a good option is to add a device that has an ASRC to convert to a consistent rate. miniDSP offer many devices with this capability which are summarized summarized below.
@@ -374,7 +374,7 @@ For constant sample rate digital sources the following devices work well. Compar
 
 ### chunksize / target_level
 
-CamillaDSP V1 used a buffer size of 2 x chunksize, CamillaDSP V2 uses a buffer size of 4 x chunksize. In previous versions of this tutorial a rather long chunksize was specified (44.1/48 = 1024, 88.2/96 = 2048, 176.4/192 = 4096) resulting in long latency. After some experimentation, it was found that much lower chunksizes are stable. The configurations in this repository now use the following chunksize depending on playback sample rate.
+CamillaDSP V1 used a buffer size of 2 x chunksize, CamillaDSP V2 uses a buffer size of 4 x chunksize. In previous versions of this tutorial a rather long chunksize was specified (44.1/48 = 1024, 88.2/96 = 2048, 176.4/192 = 4096) resulting in long latency. After some experimentation, it was found that much lower chunksizes are stable. The configurations in this tutorial now use the following chunksize depending on playback sample rate.
 
 - 44.1 / 48 kHz: 64
 - 88.2 / 96 kHz: 128
@@ -636,7 +636,7 @@ As of CamillaDSP V2, the first tab is Title. There isn't much to do in this tab,
 
 The Devices tab defines general parameters like capture device, playback device, sample rate, rate adjust, resampling and chunk size.
 
-It is very important that sample format and channel count are supported by the device. If using configurations from this repository this will not be an issue, but if creating new configurations it is something to be aware of.
+It is very important that sample format and channel count are supported by the device. If using configurations from this tutorial this will not be an issue, but if creating new configurations it is something to be aware of.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/devices.png" alt="devices" width="600"/>
 
@@ -650,7 +650,7 @@ In the Filters tab a variety of filters can be created. A big advantage of using
 
 The Mixers tab defines channel routing, in addition, gain and polarity can be defined for each channel. Like filters, mixers will not be in effect until applied in the pipeline.
 
-As in the Devices tab, it is very important that mixer channel counts exactly match the channel counts of the device. For configurations from this repository this will not be an issue. It is not required to use all channels in the mixer, but the correct channel counts need to specified in the "in" and "out" section. For example in the screenshot below 8 input and 8 output channels are specified although only 2 input channels (0 and 1) are used in the mixer definition.
+As in the Devices tab, it is very important that mixer channel counts exactly match the channel counts of the device. For configurations from this tutorial this will not be an issue. It is not required to use all channels in the mixer, but the correct channel counts need to specified in the "in" and "out" section. For example in the screenshot below 8 input and 8 output channels are specified although only 2 input channels (0 and 1) are used in the mixer definition.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/mixers.png" alt="mixers" width="600"/>
 
@@ -901,7 +901,7 @@ For wiring, prefabbed 8” long 0.1” header jumpers are recommended. These are
 
 [Modushop](https://modushop.biz/site/) offers CNC machining of aluminum cases for custom projects. Depending on exchange rates and shipping costs, ordering directly from Modushop may be slightly cheaper than ordering from [DIYAudio Store](https://diyaudiostore.com) which is the US distributor. All cases are based on the Galaxy GX247 chassis (230 mm x 170 mm x 40 mm) with 2 mm aluminum covers.
 
-Case designs discussed below are intended for use with an [OLED Display](https://github.com/mdsimon2/RPi-CamillaDSP#oled-display), [FLIRC IR Receiver](https://github.com/mdsimon2/RPi-CamillaDSP#flirc-usb-ir-receiver) and RPi4. A RPi5 can be used but the back panel will not work as the USB/ethernet orientation has been reversed compared to the RPi4. If using a RPi5, either modify the rear panel drawing or leave the back panel off. Drawings in dwg, pdf and vsdx format can be found in the [case_drawings](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/case_drawings) folder of this repository.
+Case designs discussed below are intended for use with an [OLED Display](https://github.com/mdsimon2/RPi-CamillaDSP#oled-display), [FLIRC IR Receiver](https://github.com/mdsimon2/RPi-CamillaDSP#flirc-usb-ir-receiver) and RPi4. A RPi5 can be used but the back panel will not work as the USB/ethernet orientation has been reversed compared to the RPi4. If using a RPi5, either modify the rear panel drawing or leave the back panel off. Drawings in dwg, pdf and vsdx format can be found in the [case_drawings](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/case_drawings) folder.
 
 All USB-A ports are located on the rear of the RPi. The only USB port that is accessible from inside the case is the USB-C port which is typically used for power, however this port can be used as a normal USB port and the RPi can be powered via the pin header. For the FLIRC IR receiver, a USB-A socket to USB-C plug adapter is used on the USB-C port coupled with a panel mount USB-A extension cable to connect to the IR receiver at the front of the case. For power, a [5.5 mm x 2.1 mm jack](https://www.digikey.com/en/products/detail/mpd-memory-protection-devices/EJ501A/2439531) is located in the rear of the case, it is recommended to solder at least 20 awg wire with pin connectors at the end to the jack, using preferably two 5 V and two ground wires. This is the only part of the project that requires soldering. If soldering is not possible, a 5.5 mm x 2.1 mm jack with prefabbed wiring and crimp prefabbed 20 awg 0.1” header wiring on the ends can be purchased but this may require changing the diameter of the power jack hole.
 
