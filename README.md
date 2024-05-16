@@ -805,11 +805,6 @@ wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled-rpi.gpi
 mv ~/oled-rpi.gpio.py ~/oled.py
 ```
 
-Install OLED service.
-
-```
-sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.service -P /lib/systemd/system/
-```
 If using a RPi5, change the gpiochip specified in oled.py.
 
 ```
@@ -823,7 +818,13 @@ Uncomment the RPi5 line and comment out the RPi4 line so it looks like below.
 chip = sbc.gpiochip_open(4) #use this for RPi5
 ```
 
-Open OLED service in nano and update username to reflect your username
+Install OLED service.
+
+```
+sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.service -P /lib/systemd/system/
+```
+
+Open OLED service in nano and update username to reflect your username. If using Ubuntu Server and rpi-gpio, change username to root.
 
 ```
 sudo nano /lib/systemd/system/oled.service
