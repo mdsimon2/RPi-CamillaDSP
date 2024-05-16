@@ -186,7 +186,7 @@ sudo systemctl enable camillagui
 sudo service camillagui start
 ```
 
-4) Enable ALSA loopback (optional)
+7) Enable ALSA loopback (optional)
 
 This step is only required for [streamer applications](https://github.com/mdsimon2/RPi-CamillaDSP#streamer-applications) using an ALSA loopback.
 
@@ -200,7 +200,7 @@ Restart RPi for the change to take effect.
 sudo reboot now
 ```
 
-### 5) Enable USB gadget (optional)
+### 8) Enable USB gadget (optional)
 
 The RPi4/5 can be used as USB input / output device, this is known as a USB gadget. This step is only required for configurations using the USB gadget as capture device. See USB gadget configuration section for more detail.
 
@@ -235,7 +235,7 @@ Restart RPi for the change to take effect.
 sudo reboot now
 ```
 
-### 6) Assign active configuration in GUI
+### 9) Assign active configuration in GUI
 
 Configurations are explained in more detail in the [CamillaDSP Configurations](https://github.com/mdsimon2/RPi-CamillaDSP#camilladsp-configurations) section of this tutorial. Pre-made configurations for the DACs in this tutorial can be downloaded by navigating to the [configs](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/configs) folder of this repository. Alternatively, download the entire repository by clicking [here](https://github.com/mdsimon2/RPi-CamillaDSP/archive/refs/heads/main.zip) or using git clone.
 
@@ -247,7 +247,7 @@ Navigate to Files tab of GUI and upload desired configuration using the up arrow
 
 Congratulations, CamillaDSP is now up and running!
 
-### 7) Upgrading to future versions
+### 10) Upgrading to future versions
 
 To upgrade to a new version of CamillaDSP, simply remove the old CamillaDSP binary and tar and download and extract a new one.
 
