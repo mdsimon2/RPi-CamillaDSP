@@ -204,7 +204,7 @@ sudo reboot now
 
 ### 8) Enable USB gadget (optional)
 
-The RPi4/5 can be used as USB input / output device, this is known as a USB gadget. This step is only required for configurations using the USB gadget as capture device. See USB gadget configuration section for more detail.
+The RPi4/5 can be used as USB input / output device, this is known as a USB gadget. This step is only required for configurations using the USB gadget as capture device.
 
 Open config.txt in nano.
 
@@ -236,6 +236,8 @@ Restart RPi for the change to take effect.
 ```
 sudo reboot now
 ```
+
+If using the RPi as a USB gadget, connect the RPi to the USB host via the USB-C port. By default, this will power the RPi from the USB host. Purchase a [USB-C power/data splitter](https://thepihut.com/products/usb-c-data-power-splitter) to power the RPi from a separate power supply.
 
 ### 9) Assign active configuration in GUI
 
