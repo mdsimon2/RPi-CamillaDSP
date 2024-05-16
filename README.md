@@ -106,7 +106,7 @@ Open terminal and log in to RPi using your username and hostname.
 ssh username@hostname
 ```
 
-Update / upgrade RPi software and all install necessary tools and dependencies.
+Update / upgrade RPi and install necessary tools and dependencies.
 
 ```
 sudo apt update
