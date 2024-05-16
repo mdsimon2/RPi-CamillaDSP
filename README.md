@@ -78,7 +78,13 @@ Download and install Raspberry Pi Imager from the links below for your OS.
 - [Raspberry Pi Imager for Windows](https://downloads.raspberrypi.org/imager/imager_latest.exe)
 - [Raspberry Pi Imager for macOS](https://downloads.raspberrypi.org/imager/imager_latest.dmg)
 
-Open Raspberry Pi Imager, select the desired RPi, OS and micro SD card. Setup your hostname, username, password, SSH and wifi settings and click the Write button to write OS to micro SD card.
+Open Raspberry Pi Imager, select the desired RPi, OS, micro SD card and click Next.
+
+
+
+
+
+Setup your hostname, username, password, SSH and wifi settings and click the Write button to write OS to micro SD card.
 
 When done, insert micro SD card into RPi and connect power supply.
 
