@@ -716,21 +716,11 @@ wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/flirc.py -P 
 
 Enable USB-C port for use, this is needed to run the IR receiver from the USB-C port as is implemented in the [Modushop Case](https://github.com/mdsimon2/RPi-CamillaDSP#modushop-case) design in this tutorial . If the FLIRC is plugged in to a USB-A port this step is not required.
 
-Open config.txt in nano.
-
 ```
-sudo nano /boot/firmware/config.txt
+echo 'dtoverlay=dwc2,dr_mode=host' | sudo tee -a /boot/firmware/config.txt > /dev/null
 ```
 
-Below "arm_64bit=1", add line containing "dtoverlay=dwc2,_dr_mode=host". On the Ubuntu Server, "dtoverlay=dwc2" will already be present, on Raspberry Pi OS there is no entry below "arm_64bit=1". The end result should like below. Reboot the RPi for the changes to take effect.
-
-```
-# Config settings specific to arm64
-arm_64bit=1
-dtoverlay=dwc2,dr_mode=host
-```
-
-Check that the FLIRC is recognized.
+After rebooting, check that the FLIRC is recognized.
 
 ```
 lsusb
@@ -786,15 +776,10 @@ Change username to reflect your username.
 sudo nano /lib/systemd/system/flirc.service
 ```
 
-Enable FLIRC service.
+Enable and start FLIRC service.
 
 ```
 sudo systemctl enable flirc
-```
-
-Start FLIRC service.
-
-```
 sudo service flirc start
 ```
 
@@ -849,17 +834,13 @@ Open OLED service in nano and update username to reflect your username
 sudo nano /lib/systemd/system/oled.service
 ```
 
-Enable OLED service.
+Enable and start OLED service.
 
 ```
 sudo systemctl enable oled
-```
-
-Start OLED service.
-
-```
 sudo service oled start
 ```
+
 The python script has the ability to show user defined text on the first line of the display based on loaded configuration file. With CamillaDSP V2, this will show the title field under the Title tab of the GUI. If this field is blank, "CamillaDSP" will be displayed.
 
 Wiring configuration from the display to the RPi GPIO header is listed below. Note, these pins can be changed as desired, see here for more information on RPi pinout -> https://www.tomshardware.com/reviews/raspberry-pi-gpio-pinout,6122.html. Please note the wiring configuration has been changed from earlier versions of the tutorial to accommodate the HifiBerry DAC8x, the old pin configurations are shown in parenthesis for the pins that have changed.
