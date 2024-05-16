@@ -317,15 +317,10 @@ Install squeezelite.
 sudo apt install squeezelite
 ```
 
-Like shairport-sync, a few changes are required to the squeezelite configuration. Copy and paste the lines shown below to the end of the file using nano.
+Like shairport-sync, a few changes are required to the squeezelite configuration. 
 
 ```
-sudo nano /etc/default/squeezelite
-```
-
-```
-SL_SOUNDCARD="hw:Loopback,1"
-SB_EXTRA_ARGS="-W -C 5 -r 44100-44100 -R hLE:::28"
+echo 'SL_SOUNDCARD="hw:Loopback,1"\nSB_EXTRA_ARGS="-W -C 5 -r 44100-44100 -R hLE:::28"' | sudo tee -a /etc/default/squeezelite > /dev/null
 ```
 
 Restart squeezelite service to reflect changes.
