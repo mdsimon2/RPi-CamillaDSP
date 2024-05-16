@@ -82,7 +82,6 @@ Open Raspberry Pi Imager, select the desired RPi, OS, micro SD card and click Ne
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/rpi_imager_1.png" alt="rpi_imager_1" width="300"/>
 
-
 When prompted, click Edit Settings.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/rpi_imager_2.png" alt="rpi_imager_2" width="300"/>
