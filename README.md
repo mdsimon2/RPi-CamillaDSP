@@ -192,6 +192,8 @@ sudo service camillagui start
 
 This step is only required for [streamer applications](https://github.com/mdsimon2/RPi-CamillaDSP#streamer-applications) using an ALSA loopback.
 
+Create snd-aloop.conf.
+
 ```
 echo 'snd-aloop' | sudo tee -a /etc/modules-load.d/snd-aloop.conf > /dev/null
 ```
@@ -595,16 +597,10 @@ Given lack of 4 channel on device volume control, it is recommended to use Camil
 
 This is the only HAT option in the tutorial. As it uses multichannel I2S output, it must be used with a RPi5. Due to lack of volume control, it is recommended to use CamillaDSP volume control with this DAC.
 
-A small addition is required to config.txt for this DAC to be recognized.
+Add dtoverlay=hifiberry-dac8x to config.txt.
 
 ```
-sudo nano /boot/firmware/config.txt
-```
-
-Add the line below.
-
-```
-dtoverlay=dtoverlay=hifiberry-dac8x
+echo 'dtoverlay=hifiberry-dac8x' | sudo tee -a /boot/firmware/config.txt > /dev/null
 ```
 
 After a RPi reboot, it should be recognized.
