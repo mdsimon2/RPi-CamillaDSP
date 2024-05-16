@@ -824,7 +824,7 @@ Install OLED service.
 sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.service -P /lib/systemd/system/
 ```
 
-Open OLED service in nano and update username to reflect your username. If using Ubuntu Server and rpi-gpio, change username to root.
+Open OLED service in nano and update username to reflect your username unless using Ubuntu Server and rpi-gpio, in which case change username to root.
 
 ```
 sudo nano /lib/systemd/system/oled.service
