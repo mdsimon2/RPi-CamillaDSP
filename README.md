@@ -98,7 +98,7 @@ Click Yes to write OS to micro SD card.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/rpi_imager_5.png" alt="rpi_imager_5" width="300"/>
 
-When done, insert micro SD card into RPi and connect power supply.
+When done writing, insert micro SD card into RPi and connect power supply.
 
 This install assumes the RPi will be managed remotely via SSH from a separate computer. With Mac or Linux, terminal will installed by default and commands in subsequent steps of this tutorial can be in terminal without issue.
 
