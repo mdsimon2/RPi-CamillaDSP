@@ -34,7 +34,7 @@ mixers:
       mute: false
       sources:
       - channel: 0
-        gain: -1
+        gain: 0
         inverted: false
         mute: false
         scale: null
@@ -42,7 +42,7 @@ mixers:
       mute: false
       sources:
       - channel: 1
-        gain: -1
+        gain: 0
         inverted: false
         mute: false
         scale: null
@@ -50,7 +50,7 @@ mixers:
       mute: false
       sources:
       - channel: 0
-        gain: -1
+        gain: 0
         inverted: false
         mute: false
         scale: null
@@ -58,7 +58,7 @@ mixers:
       mute: false
       sources:
       - channel: 1
-        gain: -1
+        gain: 0
         inverted: false
         mute: false
         scale: null
@@ -66,7 +66,7 @@ mixers:
       mute: false
       sources:
       - channel: 0
-        gain: -1
+        gain: 0
         inverted: false
         mute: false
         scale: null
@@ -74,7 +74,7 @@ mixers:
       mute: false
       sources:
       - channel: 1
-        gain: -1
+        gain: 0
         inverted: false
         mute: false
         scale: null
@@ -82,7 +82,7 @@ mixers:
       mute: false
       sources:
       - channel: 0
-        gain: -1
+        gain: 0
         inverted: false
         mute: false
         scale: null
@@ -90,7 +90,7 @@ mixers:
       mute: false
       sources:
       - channel: 1
-        gain: -1
+        gain: 0
         inverted: false
         mute: false
         scale: null

@@ -188,7 +188,7 @@ sudo systemctl enable camillagui
 sudo service camillagui start
 ```
 
-7) Enable ALSA loopback (optional)
+### 7) Enable ALSA loopback (optional)
 
 This step is only required for [streamer applications](https://github.com/mdsimon2/RPi-CamillaDSP#streamer-applications) using an ALSA loopback.
 
