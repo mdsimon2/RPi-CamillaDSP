@@ -68,4 +68,4 @@ pipeline:
   name: 2x4
   type: Mixer
 processors: null
-title: Streamer
+title: Gadget
