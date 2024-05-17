@@ -41,7 +41,7 @@ The playback device is either a USB DAC/DDC, HDMI output of the RPi or HAT DAC/D
 
 5) [HifiBerry DAC8x](https://www.hifiberry.com/shop/boards/hifiberry-dac8x/) - $65, requires a RPi5, HAT, 8 channel unbalanced analog output, good analog noise performance, acceptable distortion performance. Ultimate budget option! [HifiBerry DAC8x Measurements](https://www.audiosciencereview.com/forum/index.php?threads/8ch-hifiberry-hat-dac-for-rpi5.53672/post-1966410).
 
-6) Whatever you have on hand! Part of the beauty of a CamillaDSP / RPi setup is that it is cheap and if you want to try CamillaDSP with another USB DAC it is rather easy to do so. 
+6) Whatever is on have on hand! Part of the beauty of a CamillaDSP / RPi setup is that it is cheap and it is easy try with almost any USB device. 
 
 Although configurations are not provided for the following devices, they have been used successfully with CamillaDSP on a RPi4. In particular the MCHstreamer / USBstreamer are very useful as they allow the use old pro audio interfaces with ADAT inputs to achieve 8 channels of output at 44.1/48 kHz.
 
@@ -54,7 +54,7 @@ Below are other good sources of information related to CamillaDSP.
 
 - [CamillaDSP GitHub](https://github.com/HEnquist/camilladsp) - Henrik has done a great job with the GitHub and it is an excellent reference. Almost everything presented in this tutorial can also be found there.
 
-- [CamillaDSP DIYAudio Thread](https://www.diyaudio.com/community/threads/camilladsp-cross-platform-iir-and-fir-engine-for-crossovers-room-correction-etc.349818/) - If you want to ask a question about CamillaDSP this is the place to ask it. Also a great thread to search for further information on any CamillaDSP topic.
+- [CamillaDSP DIYAudio Thread](https://www.diyaudio.com/community/threads/camilladsp-cross-platform-iir-and-fir-engine-for-crossovers-room-correction-etc.349818/) - The best place to ask general CamillaDSP questions. Also a great thread to search for further information on any CamillaDSP topic.
 
 - [RPi4 + CamillaDSP Tutorial ASR Thread](https://www.audiosciencereview.com/forum/index.php?threads/rpi4-camilladsp-tutorial.29656/) - This tutorial originally lived in this thread. It is a good place to discuss using CamillaDSP on a RPi as well as display / remote control integrations.
 
@@ -86,7 +86,7 @@ When prompted, click Edit Settings.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/rpi_imager_2.png" alt="rpi_imager_2" width="300"/>
 
-Under General tab, setup your hostname, username, password and wifi settings. When done, click Services tab.
+Under General tab, set hostname, username, password and wifi settings. When done, click Services tab.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/rpi_imager_3.png" alt="rpi_imager_3" width="300"/>
 
@@ -556,7 +556,7 @@ Outputs:
 - 18-19: ADAT 5-6
 - 20-21: ADAT 7-8
 
-Once channel routing is set in Cuemix, this DAC is very similar to the Okto in terms of setup, just with more inputs / output options. Although the Ultralite Mk5 has a volume knob, you may want to use CamillaDSP for volume control with the Mk5 as it does not have an IR receiver. See [FLIRC IR Receiver](https://github.com/mdsimon2/RPi-CamillaDSP#flirc-usb-ir-receiver) and [OLED Display](https://github.com/mdsimon2/RPi-CamillaDSP#oled-display) sections of this tutorial for more information.
+Once channel routing is set in Cuemix, this DAC is very similar to the Okto in terms of setup, just with more inputs / output options. Although the Ultralite Mk5 has a volume knob, it does not have an IR receiver, therefore it is advantageous to use CamillaDSP for volume control. See [FLIRC IR Receiver](https://github.com/mdsimon2/RPi-CamillaDSP#flirc-usb-ir-receiver) and [OLED Display](https://github.com/mdsimon2/RPi-CamillaDSP#oled-display) sections of this tutorial for more information.
 
 #### ultralitemk5_streamer.yml
 
@@ -589,7 +589,7 @@ Once channel routing is set in Cuemix, this DAC is very similar to the Okto in t
 #### ultralitemk5_analog.yml
 
 - Set clock source to internal via Ultralite Mk5 front panel.
-- This configuration uses analog inputs 3-4 but you can add/change to other inputs as needed.
+- This configuration uses analog inputs 3-4 but others can be used as needed.
 - It is not possible to use different input and output sample rates when using Ultralite Mk5 as capture device.
 - Configurations provided for 48, 96 and 192 kHz sample rates.
 
@@ -611,7 +611,7 @@ Given lack of 4 channel on device volume control, it is recommended to use Camil
 
 #### m4_analog.yml
 
-- This configuration uses analog inputs 3-4 but you can use others if needed. 
+- This configuration uses analog inputs 3-4 but others can be used as needed.
 - It is not possible to use different input and output sample rates when using M4 as capture device. 
 - Configurations provided for 48, 96 and 192 kHz sample rates.
 
@@ -692,7 +692,7 @@ As in the Devices tab, it is very important that mixer channel counts exactly ma
 
 #### Processors
 
-A new addition with CamillaDSP V2 is the Processors tab. I haven't used this personally, but you can use it to implement a compressor.
+A new addition with CamillaDSP V2 is the Processors tab. I haven't used this personally, but it can be used to implement a compressor.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/processors.png" alt="processors" width="600"/>
 
@@ -865,7 +865,7 @@ Install OLED service.
 sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.service -P /lib/systemd/system/
 ```
 
-Open OLED service in nano and update username to reflect your username unless using Ubuntu Server and rpi-gpio, in which case change username to root.
+Open OLED service in nano and update username to reflect your username.
 
 ```
 sudo nano /lib/systemd/system/oled.service
@@ -938,7 +938,7 @@ Recommended hardware:
 
 #### 3 mm front panel - 31€ add-on
 
-This option uses all through holes to reduce machining cost. As this panel is not default for the case, a separate 3 mm front panel must be purchased. This design has a lot of exposed fasteners due to the through holes but has good viewing angle due to the thinner panel. The IR receiver holes are slightly larger than the display holes so that they can accept M3 screws which match the threading of the Adafruit USB panel extension cable, alternatively you can use M2.5 screw with nuts to keep the hardware consistent.
+This option uses all through holes to reduce machining cost. As this panel is not default for the case, a separate 3 mm front panel must be purchased. This design has a lot of exposed fasteners due to the through holes but has good viewing angle due to the thinner panel. The IR receiver holes are slightly larger than the display holes so that they can accept M3 screws which match the threading of the Adafruit USB panel extension cable, alternatively M2.5 screw with nuts can be used to keep the hardware consistent.
 
 Recommended hardware:
 - display mounting screws: [M2.5 x 12 mm long](https://www.mcmaster.com/92290A062/)
@@ -959,7 +959,7 @@ If using the case with a RPi5 + DAC8x + OLED display, use [5 mm spacers](https:/
 
 Recommended hardware:
 - RPi mounting screws: [M2.5 x 16 mm long](https://www.mcmaster.com/91292A018/) w/ [10 mm spacers](https://www.mcmaster.com/94669A104/)
-- nuts: [M2.5](https://www.mcmaster.com/94150a310/) (as an alternative you can use the top part of [aluminum heatsink](https://www.amazon.com/gp/product/B07VD568FB/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1) case which is tapped for M2.5 screws, this is what I used).
+- nuts: [M2.5](https://www.mcmaster.com/94150a310/) (as an alternative use the top part of an [aluminum heatsink](https://www.amazon.com/gp/product/B07VD568FB/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1) case tapped for M2.5 screws).
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/case_interior_top.jpeg" alt="case_interior_top" width="600"/>
 
