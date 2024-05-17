@@ -1,5 +1,6 @@
 [Unit]
-After=syslog.target
+Description=CamillaDSP
+After=default.target
 StartLimitIntervalSec=10
 StartLimitBurst=10
 
@@ -17,4 +18,4 @@ CPUSchedulingPolicy=fifo
 CPUSchedulingPriority=10
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target

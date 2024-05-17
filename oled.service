@@ -1,5 +1,6 @@
 [Unit]
-After=syslog.target
+Description=CamillaDSP OLED display
+After=default.target
 StartLimitIntervalSec=10
 StartLimitBurst=10
 
@@ -15,4 +16,4 @@ StandardError=journal
 SyslogIdentifier=oled
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
