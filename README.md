@@ -595,7 +595,7 @@ Once channel routing is set in Cuemix, this DAC is very similar to the Okto in t
 
 ### MOTU M4
 
-Given lack of 4 channel on device volume control, it is recommended to use CamillaDSP volume control with this DAC. Due limited input functionality, a variety of configurations with external input devices are provided, similar configurations can be used with any DAC in this tutorial.
+Given lack of 4 channel on device volume control, it is recommended to use CamillaDSP volume control with this DAC. Due to limited input functionality, a variety of configurations with external input devices are provided, similar configurations can be used with any DAC in this tutorial.
 
 #### m4_streamer.yml
 
