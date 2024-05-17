@@ -556,7 +556,14 @@ Once channel routing is set in Cuemix, this DAC is very similar to the Okto in t
 - Set clock source to internal via Ultralite Mk5 front panel. 
 - All streamer configurations expect 44.1 kHz input. 
 - Due to clock difference between loopback and Ultralite Mk5, rate adjust is enabled.
-- Configurations provided for 44.1, 96 and 192 kHz output sample rates.
+- Configurations provided for 44.1, 96 and 192 kHz playback sample rates.
+
+#### ultralitemk5_gadget.yml
+
+- Set clock source to internal via Ultralite Mk5 front panel. 
+- All gadget configurations expect 44.1 kHz input to match usb_g_audio.conf.
+- Due to clock difference between RPi and Ultralite Mk5, rate adjust is enabled.
+- Configurations provided for 44.1, 96 and 192 kHz playback sample rates.
 
 #### ultralitemk5_toslink.yml
 
@@ -564,6 +571,7 @@ Once channel routing is set in Cuemix, this DAC is very similar to the Okto in t
 - No rate adjust is enabled as Ultralite Mk5 is clocked by TOSLINK input in this mode.
 - It is not possible to use different input and output sample rates when using Ultralite Mk5 as capture device.
 - Configurations provided for 48 and 96 kHz sample rates.
+
 #### ultralitemk5_spdif.yml
 
 - Set clock source to SPDIF via Ultralite Mk5 front panel. 
@@ -586,7 +594,13 @@ Given lack of 4 channel on device volume control, it is recommended to use Camil
 
 - All streamer configurations expect 44.1 kHz input. 
 - Due to clock difference between loopback and M4, rate adjust is enabled. 
-- Configurations provided for 44.1, 96 and 192 kHz sample rates.
+- Configurations provided for 44.1, 96 and 192 kHz playback sample rates.
+
+#### m4_gadget.yml
+
+- All gadget configurations expect 44.1 kHz input to match usb_g_audio.conf.
+- Due to clock difference between RPi and M4, rate adjust is enabled. 
+- Configurations provided for 44.1, 96 and 192 kHz playback sample rates.
 
 #### m4_analog.yml
 
@@ -626,6 +640,14 @@ echo 'dtoverlay=hifiberry-dac8x' | sudo tee -a /boot/firmware/config.txt > /dev/
 ```
 
 After a RPi reboot, it should be recognized.
+
+#### dac8x_streamer.yml
+
+#### dac8x_gadget.yml
+
+#### dac8x_2x4hd.yml
+
+#### dac8x_sa9227.yml
 
 
 ## Advanced Configuration
