@@ -379,17 +379,25 @@ For constant sample rate digital sources the following devices work well. Compar
 
 ### chunksize / target_level
 
-CamillaDSP V1 used a buffer size of 2 x chunksize, CamillaDSP V2 uses a buffer size of 4 x chunksize. In previous versions of this tutorial a rather long chunksize was specified (44.1/48 = 1024, 88.2/96 = 2048, 176.4/192 = 4096) resulting in long latency. After some experimentation, it was found that much lower chunksizes are stable. The configurations in this tutorial now use the following chunksize depending on playback sample rate.
+CamillaDSP V1 used a buffer size of 2 x chunksize, CamillaDSP V2 uses a buffer size of 4 x chunksize. In previous versions of this tutorial a rather long chunksize was specified (44.1/48 = 1024, 88.2/96 = 2048, 176.4/192 = 4096) resulting in long latency. After some experimentation, it was found that much lower chunksizes are stable when using physical input (SPDIF, TOSLINK, analog, etc) capture devices.
+
+All physical input capture device configurations now use the following chunksize depending on playback sample rate.
 
 - 44.1 / 48 kHz: 64
 - 88.2 / 96 kHz: 128
 - 176.4 / 192 kHz: 256
 
-Currently, CamillaDSP only allows a maximum target_level of 2 x chunksize - 1. For simplicity, all configurations use a target_level of 2 x chunksize - 1. These chunksize / target_level settings will result in < 10 ms latency.
+All ALSA Loopback / USB gadget capture device configurations now use the following chunksize depending on playback sample rate.
 
-Note, for configurations where playback and capture device are synchronous (i.e. no rate adjust is enabled), target_level = chunksize will also work and will slightly reduce latency. For asynchronous configurations, the ideal target_level is 3 x chunksize, this will be allowed in future versions of CamillaDSP and the configurations in this tutorial will updated to reflect this when possible.
+- 44.1 / 48 kHz: 256
+- 88.2 / 96 kHz: 512
+- 176.4 / 192 kHz: 1024
 
-If dropouts are experienced, increase chunksize / target_level, and please let me know.
+Currently, CamillaDSP only allows a maximum target_level of 2 x chunksize - 1. For simplicity, all configurations use a target_level of 2 x chunksize - 1. 
+
+For physical input capture device configurations latency is < 10 ms, for ALSA Loopback / USB gadget capture device configurations latency is < 20 ms.
+
+If dropouts are experienced, try doubling chunksize / target_level, and please let me know.
 
 ### Okto dac8 PRO
 
@@ -496,6 +504,7 @@ Paste the following text to the bottom of 50-curtin-networking.cfg, updating the
          enx0001f2fff075:
             addresses:
                 - 169.254.118.240/16
+            optional: true
 ```
 
 Apply changes and restart.

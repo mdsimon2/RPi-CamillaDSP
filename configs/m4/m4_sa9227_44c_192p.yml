@@ -49,6 +49,22 @@ mixers:
         inverted: false
         mute: false
         scale: null
+    - dest: 2
+      mute: false
+      sources:
+      - channel: 0
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 3
+      mute: false
+      sources:
+      - channel: 1
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
 pipeline:
 - bypassed: null
   description: null

@@ -7,7 +7,7 @@ devices:
     format: S32LE
     type: Alsa
   capture_samplerate: 44100
-  chunksize: 64
+  chunksize: 256
   enable_rate_adjust: true
   playback:
     channels: 4
@@ -20,7 +20,7 @@ devices:
   silence_threshold: -100
   silence_timeout: 5
   stop_on_rate_change: false
-  target_level: 127
+  target_level: 511
   volume_ramp_time: null
 filters: null
 mixers:
@@ -46,6 +46,22 @@ mixers:
         inverted: false
         mute: false
         scale: null
+    - dest: 2
+      mute: false
+      sources:
+      - channel: 0
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 3
+      mute: false
+      sources:
+      - channel: 1
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
 pipeline:
 - bypassed: null
   description: null
