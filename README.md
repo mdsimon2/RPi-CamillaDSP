@@ -247,7 +247,7 @@ Restart RPi for the change to take effect.
 sudo reboot now
 ```
 
-If using the RPi as a USB gadget, connect the RPi to the USB host via the USB-C port. By default, this will power the RPi from the USB host. Purchase a [USB-C power/data splitter](https://thepihut.com/products/usb-c-data-power-splitter) to power the RPi from a separate power supply.
+If using the RPi as a USB gadget, connect the RPi to the USB host via the USB-C port. By default, this will power the RPi from the USB host. Purchase a [USB-C power/data splitter](https://www.tindie.com/products/8086net/usb-cpwr-splitter/) to power the RPi from a separate power supply.
 
 ### 9) Assign active configuration in GUI
 
@@ -393,9 +393,9 @@ All ALSA Loopback / USB gadget capture device configurations now use the followi
 - 88.2 / 96 kHz: 512
 - 176.4 / 192 kHz: 1024
 
-Currently, CamillaDSP only allows a maximum target_level of 2 x chunksize - 1. For simplicity, all configurations use a target_level of 2 x chunksize - 1. 
+Currently, CamillaDSP only allows a maximum target_level of 2 x chunksize - 1. For simplicity, all configurations use maximum target_level.
 
-For physical input capture device configurations latency is < 10 ms, for ALSA Loopback / USB gadget capture device configurations latency is < 20 ms.
+For physical input capture device configurations latency is ~10 ms, for ALSA Loopback / USB gadget capture device configurations latency is ~20 ms.
 
 If dropouts are experienced, try doubling chunksize / target_level, and please let me know.
 
