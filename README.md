@@ -410,6 +410,13 @@ These configurations assume CamillaDSP volume control is NOT being used as the O
 - Due to clock difference between loopback and Okto, rate adjust is enabled.
 - Configurations provided for 44.1, 96 and 192 kHz playback sample rates.
 
+#### okto_gadget.yml
+
+- Set Okto to Pure USB mode via front panel.
+- All gadget configurations expect 44.1 kHz input to match usb_g_audio.conf.
+- Due to clock difference between RPi and Okto, rate adjust is enabled.
+- Configurations provided for 44.1, 96 and 192 kHz playback sample rates.
+
 #### okto_aes.yml
 
 - Set Okto to USB / AES mode via front panel.
@@ -648,7 +655,6 @@ After a RPi reboot, it should be recognized.
 #### dac8x_2x4hd.yml
 
 #### dac8x_sa9227.yml
-
 
 ## Advanced Configuration
 
