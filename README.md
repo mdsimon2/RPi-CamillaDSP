@@ -852,7 +852,7 @@ Wiring configuration from the display to the RPi GPIO header is listed below. No
 5) (data bus 1) -> GPIO 13
 6) (data bus 2) -> GPIO 6
 7) (data bus 3) -> GPIO 5
-8) (data bus 4) -> GPIO 7 (GPIO 22)
+8) (data bus 4) -> GPIO 9 (GPIO 22)
 9) (data bus 5) -> GPIO 2 (GPIO 27)
 10) (data bus 6) -> GPIO 17
 11) (data bus 7) -> GPIO 3 (GPIO 18)
@@ -860,7 +860,7 @@ Wiring configuration from the display to the RPi GPIO header is listed below. No
 13) (read/write) -> ground
 14) (data/command) -> GPIO 16
 15) (reset) -> GPIO 12
-16) (chip select)-> GPIO 8 (GPIO 25)
+16) (chip select)-> GPIO 10 (GPIO 25)
 
 For wiring, prefabbed 8” long 0.1” header jumpers are recommended. These are a bit long but allow the removal the front panel with the wiring remaining connected.
 
