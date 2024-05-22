@@ -833,7 +833,7 @@ Install FLIRC service.
 sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/flirc.service -P /lib/systemd/system/
 ```
 
-Change username to reflect your username.
+Open FLIRC service in nano and update username to reflect your username.
 
 ```
 sudo nano /lib/systemd/system/flirc.service
