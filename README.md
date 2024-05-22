@@ -17,7 +17,7 @@ For archived versions of the tutorial that pre-date the migration to Github, see
 
 ### Why use CamillaDSP on a RPi?
 
-This tutorial is geared towards 2 channel audio as it is somewhat difficult to get multichannel audio in to a RPi. Typical applications are DIY active speakers / subwoofers such as Directiva R1 (4+ channels), LXmini + sub(s) or LX 521.4 (8+ channels). Another good application is passive stereo speakers with 3+ subwoofers. Although it is possible to use other hardware with CamillaDSP, a RPi offers GPIO pins which are useful for [display](https://github.com/mdsimon2/RPi-CamillaDSP#oled-display) integration and has the ability to be used as a USB gadget.
+This tutorial is geared towards 2 channel audio as it is somewhat difficult to get multichannel audio in to a RPi. Typical applications are DIY active speakers / subwoofers such as Directiva R1 (4+ channels), LXmini + sub(s) or LX 521.4 (8+ channels). Another good application is passive stereo speakers with 3+ subwoofers. Although it is possible to use other hardware with CamillaDSP, a RPi offers GPIO pins which are useful for [display](#oled-display) integration and has the ability to be used as a USB gadget.
 
 ### How does it work?
 
@@ -47,7 +47,7 @@ Although configurations are not provided for the following devices, they have be
 
 - [miniDSP MCHstreamer](https://www.minidsp.com/products/usb-audio-interface/mchstreamer)
 - [miniDSP USBstreamer](https://www.minidsp.com/products/usb-audio-interface/usbstreamer)
-- [Focusrite 18i20 2nd gen](https://store.focusrite.com/en-gb/product/scarlett-18i20-2nd-gen/)
+- [Focusrite 18i20 2nd gen](https://www.crutchfield.com/S-8cLHKJ3PIHh/p_880SC182G2/Focusrite-Scarlett-18i20-Second-Generation.html)
 - [DIYINHK multichannel XMOS](https://www.diyinhk.com/shop/audio-kits/142-xmos-multichannel-high-quality-usb-tofrom-i2sdsd-spdif-pcb.html)
 
 Below are other good sources of information related to CamillaDSP.
