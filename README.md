@@ -7,7 +7,7 @@ I would like to especially thank [@HEnquist](https://github.com/HEnquist) for de
 
 I am not a programmer or DSP expert, my primary motivation is finding better ways to implement DIY active speakers. If you see a better way of doing something or want further explanation please speak up! These instructions have been developed as I learned how to implement CamillaDSP and found better ways to set it up, but I am always learning.
 
-For archived versions of the tutorial that pre-date the migration to Github, see links below.
+For archived versions of this tutorial that pre-date the migration to Github, see links below.
 
 - [20-Oct-2022 Archive](https://drive.google.com/file/d/1y-vULEbXNjza7W4X1vQyIIH1r1GOCVpN/view?usp=sharing)
 - [12-Dec-2023 Archive](https://drive.google.com/file/d/1MbB300dAJUEtBld14Qd4loA6hD94v67B/view?usp=share_link)
@@ -356,7 +356,7 @@ All configurations use maximum amount of output channels for a given playback de
 The naming convention configuration files in this tutorial is dac_input_capturerate_playbackrate. For example, a configuration for a MOTU Ultralite Mk5, TOSLINK input with 96 kHz capture and 96 kHz playback rates is [ultralitemk5_toslink_96c_96p.yml](https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/configs/ultralitemk5/ultralitemk5_toslink_96c_96p.yml).
 
 ### ASRC Options
-CamillaDSP expects a constant capture sample rate and cannot accommodate rate changes without a restart. For variable sample rate physical digital sources like TOSLINK, AES or SPDIF or multiple physical digital sources with different rates, a good option is to add a device that has an ASRC to convert to a consistent rate. miniDSP offer many devices with this capability which are summarized summarized below.
+CamillaDSP expects a constant capture sample rate and cannot accommodate rate changes without a restart. For variable sample rate physical digital sources like TOSLINK, AES or SPDIF or multiple physical digital sources with different rates, a good option is to add a device that has an ASRC to convert to a consistent rate. miniDSP offer many devices with this capability which are summarized below.
 
 - [nanoDIGI](https://www.minidsp.com/images/documents/nanoDIGI%202x8%20User%20Manual.pdf) - $170, discontinued in 2021 but possible to find used, SPDIF / TOSLINK input, SPDIF output, 96 kHz
 - [2x4HD](https://www.minidsp.com/products/minidsp-in-a-box/minidsp-2x4-hd) - $225, TOSLINK / analog input, USB output, 96 kHz
@@ -370,7 +370,7 @@ These devices can do IR volume control, although not all have displays for volum
 
 2x4HD and Flex can be upgraded to Dirac versions but sample rate will change from 96 kHz to 48 kHz.
 
-In order to use USB output of devices like 2x4HD, Flex and SHD they need to be set as capture device in CamillaDSP. Unfortunately this ties up the USB input and makes it unusable. Still, this is a good approach to add extra input functionality to basic USB DACs like the MOTU M4 or Topping DM7 which only have USB input.
+In order to use USB output of devices like 2x4HD, Flex and SHD they need to be set as capture device in CamillaDSP. Unfortunately this ties up the USB input and makes it unusable. Still, this is a good approach to add extra input functionality to basic USB DACs like the MOTU M4 or Topping DM7 which only have USB input. [minidsp-rs](https://github.com/mrene/minidsp-rs) can be used to manage miniDSPs connected to a RPi but is beyond the scope of this tutorial.
 
 For constant sample rate digital sources the following devices work well. Compared to other solutions like the HiFiBerry Digi+ I/O they handle signal interruptions gracefully. These devices are used in a similar way to the miniDSPs with USB outputs, the device is set as the CamillaDSP capture device. Note, that although the S2 digi also has a TOSLINK output, it is not recommended due to audible dropouts.
 
@@ -638,7 +638,7 @@ Given lack of 4 channel on device volume control, it is recommended to use Camil
 
 ### HifiBerry DAC8x
 
-This is the only HAT option in the tutorial. As it uses multichannel I2S output, it must be used with a RPi5. Due to lack of volume control, it is recommended to use CamillaDSP volume control with this DAC.
+This is the only HAT option in this tutorial. As it uses multichannel I2S output, it must be used with a RPi5. Due to lack of volume control, it is recommended to use CamillaDSP volume control with this DAC.
 
 Add dtoverlay=hifiberry-dac8x to config.txt.
 
@@ -898,7 +898,7 @@ sudo service oled start
 
 The python script has the ability to show user defined text on the first line of the display based on loaded configuration file. With CamillaDSP V2, this will show the title field under the Title tab of the GUI. If this field is blank, "CamillaDSP" will be displayed.
 
-Wiring configuration from the display to the RPi GPIO header is listed below. Note, these pins can be changed as desired, see here for more information on RPi pinout -> https://www.tomshardware.com/reviews/raspberry-pi-gpio-pinout,6122.html. Please note the wiring configuration has been changed from earlier versions of the tutorial to accommodate the HifiBerry DAC8x, the old pin configurations are shown in parenthesis for the pins that have changed.
+Wiring configuration from the display to the RPi GPIO header is listed below. Note, these pins can be changed as desired, see here for more information on RPi pinout -> https://www.tomshardware.com/reviews/raspberry-pi-gpio-pinout,6122.html. Please note the wiring configuration has been changed from earlier versions of this tutorial to accommodate the HifiBerry DAC8x, the old pin configurations are shown in parenthesis for the pins that have changed.
 
 1) (ground) -> ground
 2) (supply voltage) -> 3.3 V
