@@ -66,11 +66,11 @@ Below are other good sources of information related to CamillaDSP.
 
 ## CamillaDSP Setup
 
-This part describes how to get a working CamillaDSP setup. For reference, a complete install should take less than 30 minutes (including [OLED display](https://github.com/mdsimon2/RPi-CamillaDSP#oled-display) and [FLIRC IR receiver](https://github.com/mdsimon2/RPi-CamillaDSP#flirc-usb-ir-receiver) setup), most of that time is waiting for things to download / install.
+This part describes how to get a working CamillaDSP setup. For reference, a complete install should take less than 30 minutes (including [OLED display](#oled-display) and [FLIRC IR receiver](#flirc-usb-ir-receiver) setup), most of that time is waiting for things to download / install.
 
 ### 1) Write OS to micro SD card
 
-Raspberry Pi OS Lite 64 bit Bookworm is the recommended OS. Ubuntu Server 24.04 LTS 64 bit can also be used but does not currently work with the HifiBerry DAC8x. In addition, Raspberry Pi OS is more responsive than Ubuntu Server, this is especially noticeable if using an [OLED display](https://github.com/mdsimon2/RPi-CamillaDSP#oled-display).
+Raspberry Pi OS Lite 64 bit Bookworm is the recommended OS. Ubuntu Server 24.04 LTS 64 bit can also be used but does not currently work with the HifiBerry DAC8x. In addition, Raspberry Pi OS is more responsive than Ubuntu Server, this is especially noticeable if using an [OLED display](#oled-display).
 
 Download and install Raspberry Pi Imager from the links below for your OS.
 
@@ -208,7 +208,7 @@ sudo service camillagui start
 
 ### 7) Enable ALSA loopback (optional)
 
-This step is only required for [streamer applications](https://github.com/mdsimon2/RPi-CamillaDSP#streamer-applications) using an ALSA loopback.
+This step is only required for [streamer applications](#streamer-applications) using an ALSA loopback.
 
 Create snd-aloop.conf.
 
@@ -251,7 +251,7 @@ If using the RPi as a USB gadget, connect the RPi to the USB host via the USB-C 
 
 ### 9) Assign active configuration in GUI
 
-Configurations are explained in more detail in the [CamillaDSP Configurations](https://github.com/mdsimon2/RPi-CamillaDSP#camilladsp-configurations) section of this tutorial. Pre-made configurations for the DACs in this tutorial can be downloaded by navigating to the [configs](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/configs) folder. Alternatively, download the entire repository by clicking [here](https://github.com/mdsimon2/RPi-CamillaDSP/archive/refs/heads/main.zip) or using git clone.
+Configurations are explained in more detail in the [CamillaDSP Configurations](#camilladsp-configurations) section of this tutorial. Pre-made configurations for the DACs in this tutorial can be downloaded by navigating to the [configs](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/configs) folder. Alternatively, download the entire repository by clicking [here](https://github.com/mdsimon2/RPi-CamillaDSP/archive/refs/heads/main.zip) or using git clone.
 
 On a computer that is on the same network as the RPi, navigate browser to http://hostname:5005.
 
@@ -556,7 +556,7 @@ Outputs:
 - 18-19: ADAT 5-6
 - 20-21: ADAT 7-8
 
-Once channel routing is set in Cuemix, this DAC is very similar to the Okto in terms of setup, just with more inputs / output options. Although the Ultralite Mk5 has a volume knob, it does not have an IR receiver, therefore it is advantageous to use CamillaDSP for volume control. See [FLIRC IR Receiver](https://github.com/mdsimon2/RPi-CamillaDSP#flirc-usb-ir-receiver) and [OLED Display](https://github.com/mdsimon2/RPi-CamillaDSP#oled-display) sections of this tutorial for more information.
+Once channel routing is set in Cuemix, this DAC is very similar to the Okto in terms of setup, just with more inputs / output options. Although the Ultralite Mk5 has a volume knob, it does not have an IR receiver, therefore it is advantageous to use CamillaDSP for volume control. See [FLIRC IR Receiver](#flirc-usb-ir-receiver) and [OLED Display](https://github.com/mdsimon2/RPi-CamillaDSP#oled-display) sections of this tutorial for more information.
 
 #### ultralitemk5_streamer.yml
 
@@ -664,7 +664,7 @@ Access the GUI via any computer on the same network as the RPi by navigating a b
 
 #### Title
 
-As of CamillaDSP V2, the first tab is Title. There isn't much to do in this tab, but the title and description fields can be populated. The title field is displayed on the first line of the [OLED display](https://github.com/mdsimon2/RPi-CamillaDSP#oled-display) described later in this tutorial.
+As of CamillaDSP V2, the first tab is Title. There isn't much to do in this tab, but the title and description fields can be populated. The title field is displayed on the first line of the [OLED display](#oled-display) described later in this tutorial.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/title.png" alt="title" width="600"/>
 
@@ -759,7 +759,7 @@ sudo apt install python3-evdev
 wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/flirc.py -P ~/
 ```
 
-Enable USB-C port for use, this is needed to run the IR receiver from the USB-C port as is implemented in the [Modushop Case](https://github.com/mdsimon2/RPi-CamillaDSP#modushop-case) design in this tutorial . If the FLIRC is plugged in to a USB-A port this step is not required.
+Enable USB-C port for use, this is needed to run the IR receiver from the USB-C port as is implemented in the [Modushop Case](#modushop-case) design in this tutorial . If the FLIRC is plugged in to a USB-A port this step is not required.
 
 ```
 echo 'dtoverlay=dwc2,dr_mode=host' | sudo tee -a /boot/firmware/config.txt > /dev/null
@@ -905,11 +905,11 @@ For wiring, prefabbed 8” long 0.1” header jumpers are recommended. These are
 
 [Modushop](https://modushop.biz/site/) offers CNC machining of aluminum cases for custom projects. Depending on exchange rates and shipping costs, ordering directly from Modushop may be slightly cheaper than ordering from [DIYAudio Store](https://diyaudiostore.com) which is the US distributor. All cases are based on the Galaxy GX247 chassis (230 mm x 170 mm x 40 mm) with 2 mm aluminum covers.
 
-Case designs discussed below are intended for use with an [OLED Display](https://github.com/mdsimon2/RPi-CamillaDSP#oled-display), [FLIRC IR Receiver](https://github.com/mdsimon2/RPi-CamillaDSP#flirc-usb-ir-receiver) and RPi4. A RPi5 can be used but the back panel will not work as the USB/ethernet orientation has been reversed compared to the RPi4. If using a RPi5, either modify the rear panel drawing or leave the back panel off. Drawings in dwg, pdf and vsdx format can be found in the [case_drawings](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/case_drawings) folder.
+Case designs discussed below are intended for use with an [OLED Display](#oled-display), [FLIRC IR Receiver](#flirc-usb-ir-receiver) and RPi4. A RPi5 can be used but the back panel will not work as the USB/ethernet orientation has been reversed compared to the RPi4. If using a RPi5, either modify the rear panel drawing or leave the back panel off. Drawings in dwg, pdf and vsdx format can be found in the [case_drawings](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/case_drawings) folder.
 
 All USB-A ports are located on the rear of the RPi. The only USB port that is accessible from inside the case is the USB-C port which is typically used for power, however this port can be used as a normal USB port and the RPi can be powered via the pin header. For the FLIRC IR receiver, a USB-A socket to USB-C plug adapter is used on the USB-C port coupled with a panel mount USB-A extension cable to connect to the IR receiver at the front of the case. For power, a [5.5 mm x 2.1 mm jack](https://www.digikey.com/en/products/detail/mpd-memory-protection-devices/EJ501A/2439531) is located in the rear of the case, it is recommended to solder at least 20 awg wire with pin connectors at the end to the jack, using preferably two 5 V and two ground wires. This is the only part of the project that requires soldering. If soldering is not possible, a 5.5 mm x 2.1 mm jack with prefabbed wiring and crimp prefabbed 20 awg 0.1” header wiring on the ends can be purchased but this may require changing the diameter of the power jack hole.
 
-For a power supply, a standard [RPi4 (15 W)](https://www.raspberrypi.com/products/type-c-power-supply/) or [RPi5 (27 W)](https://www.raspberrypi.com/products/27w-power-supply/) power supply with a USB-C to 5.5 mm adapter or another 5V power supply with the appropriate 5.5 mm jack can be used. The power supply should be capable of supplying at least 3 A. The standard RPi power supplies are recommended as they output slightly more than 5 V which helps with voltage sag.
+For a power supply, a standard [RPi4 (15 W)](https://www.raspberrypi.com/products/type-c-power-supply/) with a USB-C to 5.5 mm adapter or another 5V power supply with the appropriate 5.5 mm jack can be used. The power supply should be capable of supplying at least 3 A. The standard RPi power supplies are recommended as they output slightly more than 5 V which helps with voltage sag. DO NOT USE a standard [RPi5 (27 W)](https://www.raspberrypi.com/products/27w-power-supply/) power supply with a USB-C to 5.5 mm adapter as it will output 15 V and destroy the RPi. In all cases, verify 5 V from the power supply with a multimeter prior to applying to the pin header.
 
 #### 10 mm front panel - single sided machining - 50€ add-on
 
