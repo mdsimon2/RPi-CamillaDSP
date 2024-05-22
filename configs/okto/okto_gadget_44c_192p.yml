@@ -3,7 +3,7 @@ devices:
   adjust_period: 10
   capture:
     channels: 2
-    device: hw:Loopback,0
+    device: hw:UAC2Gadget
     format: S32LE
     type: Alsa
   capture_samplerate: 44100
@@ -102,4 +102,4 @@ pipeline:
   name: 2x8
   type: Mixer
 processors: null
-title: Streamer
+title: Gadget

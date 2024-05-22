@@ -3,7 +3,7 @@ devices:
   adjust_period: 10
   capture:
     channels: 2
-    device: hw:Loopback,0
+    device: hw:UAC2Gadget
     format: S32LE
     type: Alsa
   capture_samplerate: 44100
@@ -11,20 +11,20 @@ devices:
   enable_rate_adjust: true
   playback:
     channels: 8
-    device: hw:DAC8PRO
+    device: hw:sndrpihifiberry
     format: S32LE
     type: Alsa
   queuelimit: 4
-  rate_measure_interval: 1
+  rate_measure_interval: null
   resampler:
     type: Synchronous
   samplerate: 192000
   silence_threshold: -100
   silence_timeout: 5
-  stop_on_rate_change: false
+  stop_on_rate_change: null
   target_level: 2047
   volume_ramp_time: null
-filters: null
+filters: {}
 mixers:
   2x8:
     channels:
@@ -36,70 +36,70 @@ mixers:
       mute: false
       sources:
       - channel: 0
-        gain: -1
+        gain: 0
         inverted: false
         mute: false
-        scale: null
+        scale: dB
     - dest: 1
       mute: false
       sources:
       - channel: 1
-        gain: -1
+        gain: 0
         inverted: false
         mute: false
-        scale: null
+        scale: dB
     - dest: 2
       mute: false
       sources:
       - channel: 0
-        gain: -1
+        gain: 0
         inverted: false
         mute: false
-        scale: null
+        scale: dB
     - dest: 3
       mute: false
       sources:
       - channel: 1
-        gain: -1
+        gain: 0
         inverted: false
         mute: false
-        scale: null
+        scale: dB
     - dest: 4
       mute: false
       sources:
       - channel: 0
-        gain: -1
+        gain: 0
         inverted: false
         mute: false
-        scale: null
+        scale: dB
     - dest: 5
       mute: false
       sources:
       - channel: 1
-        gain: -1
+        gain: 0
         inverted: false
         mute: false
-        scale: null
+        scale: dB
     - dest: 6
       mute: false
       sources:
       - channel: 0
-        gain: -1
+        gain: 0
         inverted: false
         mute: false
-        scale: null
+        scale: dB
     - dest: 7
       mute: false
       sources:
       - channel: 1
-        gain: -1
+        gain: 0
         inverted: false
         mute: false
-        scale: null
+        scale: dB
 pipeline:
 - bypassed: null
   description: null
   name: 2x8
   type: Mixer
-processors: null
-title: Streamer
+processors: {}
+title: Gadget

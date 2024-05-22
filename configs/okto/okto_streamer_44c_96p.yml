@@ -7,7 +7,7 @@ devices:
     format: S32LE
     type: Alsa
   capture_samplerate: 44100
-  chunksize: 128
+  chunksize: 512
   enable_rate_adjust: true
   playback:
     channels: 8
@@ -22,7 +22,7 @@ devices:
   silence_threshold: -100
   silence_timeout: 5
   stop_on_rate_change: false
-  target_level: 255
+  target_level: 1023
   volume_ramp_time: null
 filters: null
 mixers:
@@ -102,4 +102,4 @@ pipeline:
   name: 2x8
   type: Mixer
 processors: null
-title: null
+title: Gadget
