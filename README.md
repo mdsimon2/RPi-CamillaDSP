@@ -650,11 +650,29 @@ After a RPi reboot, it should be recognized.
 
 #### dac8x_streamer.yml
 
+- All streamer configurations expect 44.1 kHz input. 
+- Due to clock difference between loopback and DAC8x, rate adjust is enabled. 
+- Configurations provided for 44.1, 96 and 192 kHz playback sample rates.
+
 #### dac8x_gadget.yml
+
+- All gadget configurations expect 44.1 kHz input to match usb_g_audio.conf.
+- Due to clock difference between RPi and DAC8x, rate adjust is enabled. 
+- Configurations provided for 44.1, 96 and 192 kHz playback sample rates.
 
 #### dac8x_2x4hd.yml
 
+- This configuration uses a miniDSP 2x4HD as capture device. 
+- Due to clock difference between loopback and DAC8x, rate adjust and asynchronous resampling are enabled.
+- Capture sample rate set to 96 kHz to match miniDSP 2x4HD sample rate. 
+- Configuration provided for 96 kHz playback sample rate, but can be changed to any rate supported by DAC8x.
+
 #### dac8x_sa9227.yml
+
+- This configuration uses a hifime S2 digi (SA9227) as capture device. 
+- Due to clock difference between S2 digi and DAC8x, rate adjust and asynchronous resampling are enabled. 
+- Configuration provided for 44.1 and 192 kHz capture sample rate, but can be changed to match the source.
+- Playback sample rate set to device maximum of 192 kHz.
 
 ## Advanced Configuration
 
