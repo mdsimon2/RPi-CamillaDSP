@@ -27,9 +27,9 @@ CamillaDSP will be installed such that it is always running on the RPi as a serv
 
 CamillaDSP requires a capture device and playback device, the capture device is the input and playback device is the output. 
 
-The capture device can be a variety of things, it can be the RPi itself with software audio players such as squeezelite or shairport-sync playing to an ALSA loopback, the same device as the playback device in the case of an audio interface with analog/digital inputs, or a separate device such as a TOSLINK to USB card. The main point here is that CamillaDSP is NOT limited to applications that use a RPi as a source.
+The capture device can be a variety of things, it can be the RPi itself with software audio players such as squeezelite or shairport-sync playing to an ALSA loopback, the same device as the playback device in the case of an audio interface with analog/digital inputs, or a separate device such as a TOSLINK to USB card. The main point is that CamillaDSP is NOT limited to applications that use a RPi as a source.
 
-The playback device is either a USB DAC/DDC, HDMI output of the RPi or HAT DAC/DDC. Between the capture device and the playback device is where the magic happens, CamillaDSP can implement channel routing, IIR filters, FIR filters, volume control (w/ dynamic loudness), resampling and delay. The RPi is surprising powerful and is able to do much more than any miniDSP product that exists today.
+The playback device is either a USB DAC/DDC, HDMI output of the RPi or HAT DAC/DDC. Between the capture device and the playback device is where the magic happens, CamillaDSP can implement channel routing, IIR filters, FIR filters, volume control (with dynamic loudness), resampling and delay. The RPi is surprising powerful and is able to do much more than any miniDSP product that exists today.
 
 ### What DACs are recommended?
 
@@ -100,7 +100,7 @@ Click Yes to write OS to micro SD card.
 
 When done writing, insert micro SD card into RPi and connect power supply.
 
-This install assumes the RPi will be managed remotely via SSH from a separate computer. With Mac or Linux, terminal will installed by default and commands in subsequent steps of this tutorial can be in terminal without issue.
+This install assumes the RPi will be managed remotely via SSH from a separate computer. With Mac or Linux, terminal will installed by default and commands in subsequent steps of this tutorial can be run in terminal without issue.
 
 With Windows 10 or 11 it is recommended to install Windows Subsystem for Linux (WSL). Instruction below are condensed version of this -> https://docs.microsoft.com/en-us/windows/wsl/install.
 
@@ -180,7 +180,7 @@ See below for a brief explanation of the CamillaDSP flags applied in ExecStart o
 
 "-o camilladsp/camilladsp.log" creates a log file that can be viewed in the GUI for troubleshooting. Verbosity of this log can be increased by adding "-l debug".
 
-### 5) Install GUI server
+### 5) Install GUI
 
 ```
 wget https://github.com/HEnquist/camillagui-backend/releases/download/v2.1.1/camillagui.zip -P ~/camilladsp/
@@ -353,7 +353,7 @@ These changes set ALSA loopback device 1 as squeezelite playback device, resampl
 
 All configurations use maximum amount of output channels for a given playback device. If an output channel is not needed remove it from the mixer as each extra channel requires additional processing resources. Configuration files can be found in the [configs](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/configs) folder.
 
-The naming convention configuration files in this tutorial is dac_input_capturerate_playbackrate. For example, a configuration for a MOTU Ultralite Mk5, TOSLINK input with 96 kHz capture and 96 kHz playback rates is ultralitemk5_toslink_96c_96p.
+The naming convention configuration files in this tutorial is dac_input_capturerate_playbackrate. For example, a configuration for a MOTU Ultralite Mk5, TOSLINK input with 96 kHz capture and 96 kHz playback rates is [ultralitemk5_toslink_96c_96p.yml](https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/configs/ultralitemk5/ultralitemk5_toslink_96c_96p.yml).
 
 ### ASRC Options
 CamillaDSP expects a constant capture sample rate and cannot accommodate rate changes without a restart. For variable sample rate physical digital sources like TOSLINK, AES or SPDIF or multiple physical digital sources with different rates, a good option is to add a device that has an ASRC to convert to a consistent rate. miniDSP offer many devices with this capability which are summarized summarized below.
