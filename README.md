@@ -864,18 +864,6 @@ Install lgpio and oled.py.
 sudo apt install python3-lgpio
 wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.py -P ~/
 ```
-If using a RPi5, change the gpiochip specified in oled.py.
-
-```
-nano ~/oled.py
-```
-
-Uncomment the RPi5 line and comment out the RPi4 line so it looks like below.
-
-```
-#chip = sbc.gpiochip_open(0) #use this for RPi4
-chip = sbc.gpiochip_open(4) #use this for RPi5
-```
 
 Install OLED service.
 

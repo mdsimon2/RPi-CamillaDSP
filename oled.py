@@ -41,8 +41,8 @@ OLED_DC = 16        #   OLED pin 14
 OLED_RESET = 12     #   OLED pin 15
 OLED_CS = 10        #25 OLED pin 16
 
-chip = sbc.gpiochip_open(0) #use this for RPi4
-#chip = sbc.gpiochip_open(4) #use this for RPi5
+chip = sbc.gpiochip_open(0)
+
 def main():
 
 	# Claim RPi GPIO outputs
