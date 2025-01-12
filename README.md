@@ -285,8 +285,8 @@ sudo service camillagui restart
 For upgrades to pycamilladsp and pycamilladsp-plot, re-run the original install commands to get the new versions. 
 
 ```
-sudo pip3 install git+https://github.com/HEnquist/pycamilladsp.git --break-system-packages
-sudo pip3 install git+https://github.com/HEnquist/pycamilladsp-plot.git --break-system-packages
+sudo pip3 install git+https://github.com/HEnquist/pycamilladsp.git --break-system-packages --upgrade
+sudo pip3 install git+https://github.com/HEnquist/pycamilladsp-plot.git --break-system-packages --upgrade
 sudo service camillagui restart
 ```
 
