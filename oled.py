@@ -77,7 +77,7 @@ def main():
 	status = cdsp.general.state().name
 #	status = "Clip: " + str(cdsp.status.clipped_samples())
 
-	mute = cdsp.mute.main()
+	mute = cdsp.volume.main_mute()
 	set_sleep_mode(0xAE)
 	oled_string1()
 	oled_string2()
@@ -105,7 +105,7 @@ def main():
 		# Get CamillaDSP volume level
 		time.sleep(0.05)
 		getvol()
-		mute = cdsp.mute.main()
+		mute = cdsp.volume.main_mute()
 		current = cdsp.config.active_raw()
 		#uncomment line below if using clipped samples
 #		clip = cdsp.status.clipped_samples()
@@ -455,7 +455,7 @@ def oled_string(a,b,c,d,h,font,message):
 def getvol():
 	global cdspvolume
 	global strcdspvolume
-	cdspvolume = cdsp.volume.main()
+	cdspvolume = cdsp.volume.main_volume()
 	if int(cdspvolume <= -10):
 #switch comment from first strcdspvolume to second strcdspvolume below if using smaller volume font with decimals, i.e. -36.5 dB
 #		strcdspvolume = str(cdspvolume)

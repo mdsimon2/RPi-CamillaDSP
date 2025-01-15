@@ -19,36 +19,36 @@ def main():
 
   for event in flirc.read_loop():
        config = glob.glob(configdir + '_*')
-       cdspvolume = cdsp.volume.main_volume()
-       cdspmute = cdsp.volume.main_mute()
+       cdspvolume = cdsp.volume.main()
+       cdspmute = cdsp.mute.main()
        cdspvolumeold = cdspvolume
        if event.type == evdev.ecodes.EV_KEY:
             attrib = evdev.categorize(event)
             if attrib.keystate == 1:
                 if attrib.keycode == 'KEY_DOWN':
                     if cdspvolume - 1 >= -99: #change to cdspvolume - 0.5 if you want 0.5 dB increments
-                        cdsp.volume.set_main_volume(cdspvolume - 1) # change to cdspvolume - 0.5 if you want 0.5 dB increments
-                        cdspvolume = cdsp.volume.main_volume()
+                        cdsp.volume.set_main(cdspvolume - 1) # change to cdspvolume - 0.5 if you want 0.5 dB increments
+                        cdspvolume = cdsp.volume.main()
                     else:
-                        cdsp.volume.set_main_volume(-99)
-                        cdspvolume = cdsp.volume.main_volume()
+                        cdsp.volume.set_main(-99)
+                        cdspvolume = cdsp.volume.main()
 
                 elif attrib.keycode == 'KEY_UP':
                     if cdspvolume + 1 < 0: #change to cdspvolume + 0.5 if you want 0.5 dB increments
-                         cdsp.volume.set_main_volume(cdspvolume + 1) #change to cdspvolume + 0.5 if you want 0.5 dB increments
-                         cdspvolume = cdsp.volume.main_volume()
+                         cdsp.volume.set_main(cdspvolume + 1) #change to cdspvolume + 0.5 if you want 0.5 dB increments
+                         cdspvolume = cdsp.volume.main()
                     else:
-                         cdsp.volume.set_main_volume(0)
-                         cdspvolume = cdsp.volume.main_volume()
+                         cdsp.volume.set_main(0)
+                         cdspvolume = cdsp.volume.main()
 
                 elif attrib.keycode == 'KEY_LEFT':
                     if cdspmute == False:
-                        cdsp.volume.set_main_mute(True)
-                        cdspmute = cdsp.volume.main_mute()
+                        cdsp.mute.set_main(True)
+                        cdspmute = cdsp.mute.main()
 
                     else:
-                        cdsp.volume.set_main_mute(False)
-                        cdspmute = cdsp.volume.main_mute()
+                        cdsp.mute.set_main(False)
+                        cdspmute = cdsp.mute.main()
 
 
                 elif attrib.keycode == 'KEY_RIGHT':
@@ -68,19 +68,19 @@ def main():
             elif attrib.keystate == 2:
                 if attrib.keycode == 'KEY_DOWN':
                     if cdspvolume - 1 >= -99: #change to cdspvolume - 0.5 if you want 0.5 dB increments
-                        cdsp.volume.set_main_volume(cdspvolume - 1) #change to cdspvolume - 0.5 volume if you want 0.5 increments
-                        cdspvolume = cdsp.volume.main_volume()
+                        cdsp.volume.set_main(cdspvolume - 1) #change to cdspvolume - 0.5 volume if you want 0.5 increments
+                        cdspvolume = cdsp.volume.main()
                     else:
-                        cdsp.volume.set_main_volume(-99)
-                        cdspvolume = cdsp.volume.main_volume()
+                        cdsp.volume.set_main(-99)
+                        cdspvolume = cdsp.volume.main()
 
                 elif attrib.keycode == 'KEY_UP':
                     if cdspvolume + 1 < 0: #change to cdspvolume + 0.5 if you want 0.5 dB increments
-                        cdsp.volume.set_main_volume(cdspvolume + 1) #change to cdspvolume + 0.5 if you want 0.5 dB increments
-                        cdspvolume = cdsp.volume.main_volume()
+                        cdsp.volume.set_main(cdspvolume + 1) #change to cdspvolume + 0.5 if you want 0.5 dB increments
+                        cdspvolume = cdsp.volume.main()
                     else:
-                        cdsp.volume.set_main_volume(0)
-                        cdspvolume = cdsp.volume.main_volume()
+                        cdsp.volume.set_main(0)
+                        cdspvolume = cdsp.volume.main()
 
 if __name__ == '__main__':
 

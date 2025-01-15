@@ -138,11 +138,11 @@ Say yes to any upgrade prompts. If prompted about restarting services, hit enter
 
 ### 3) Install CamillaDSP
 
-Make a camilladsp folder, as well as folders for CamillaDSP to reference stored FIR filters and configurations. Download and unpack CamillaDSP. The commands below will install V2.0.3 in /usr/local/bin/.
+Make a camilladsp folder, as well as folders for CamillaDSP to reference stored FIR filters and configurations. Download and unpack CamillaDSP. The commands below will install V3.0.0 in /usr/local/bin/.
 
 ```
 mkdir ~/camilladsp ~/camilladsp/coeffs ~/camilladsp/configs
-wget https://github.com/HEnquist/camilladsp/releases/download/v2.0.3/camilladsp-linux-aarch64.tar.gz -P ~/camilladsp/
+wget https://github.com/HEnquist/camilladsp/releases/download/v3.0.0/camilladsp-linux-aarch64.tar.gz -P ~/camilladsp/
 sudo tar -xvf ~/camilladsp/camilladsp-linux-aarch64.tar.gz -C /usr/local/bin/
 ```
 
@@ -183,7 +183,7 @@ See below for a brief explanation of the CamillaDSP flags applied in ExecStart o
 ### 5) Install GUI
 
 ```
-wget https://github.com/HEnquist/camillagui-backend/releases/download/v2.1.1/camillagui.zip -P ~/camilladsp/
+wget https://github.com/HEnquist/camillagui-backend/releases/download/v3.0.0/camillagui.zip -P ~/camilladsp/
 unzip ~/camilladsp/camillagui.zip -d ~/camilladsp/camillagui
 ```
 
@@ -267,7 +267,7 @@ To upgrade to a new version of CamillaDSP, simply remove the old CamillaDSP bina
 
 ```
 rm ~/camilladsp/camilladsp-linux-aarch64.tar.gz
-wget https://github.com/HEnquist/camilladsp/releases/download/v2.0.3/camilladsp-linux-aarch64.tar.gz -P ~/camilladsp/
+wget https://github.com/HEnquist/camilladsp/releases/download/v3.0.0/camilladsp-linux-aarch64.tar.gz -P ~/camilladsp/
 sudo tar -xvf ~/camilladsp/camilladsp-linux-aarch64.tar.gz -C /usr/local/bin/
 sudo service camilladsp restart
 ```
@@ -276,7 +276,7 @@ Upgrading the GUI is a similar process.
 
 ```
 rm -r ~/camilladsp/camillagui ~/camilladsp/camillagui.zip
-wget https://github.com/HEnquist/camillagui-backend/releases/download/v2.1.1/camillagui.zip -P ~/camilladsp/
+wget https://github.com/HEnquist/camillagui-backend/releases/download/v3.0.0/camillagui.zip -P ~/camilladsp/
 unzip ~/camilladsp/camillagui.zip -d ~/camilladsp/camillagui
 sudo service camilladsp restart
 sudo service camillagui restart
