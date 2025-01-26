@@ -784,7 +784,7 @@ Install FLIRC service.
 sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/flirc.service -O /lib/systemd/system/flirc.service
 ```
 
-Open FLIRC service in nano and update username to reflect your username.
+Open FLIRC service in nano and update username and ExecStart to reflect your username.
 
 ```
 sudo nano /lib/systemd/system/flirc.service
@@ -824,7 +824,7 @@ Install OLED service.
 sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.service -O /lib/systemd/system/oled.service
 ```
 
-Open OLED service in nano and update username to reflect your username.
+Open OLED service in nano and update username and ExecStart to reflect your username.
 
 ```
 sudo nano /lib/systemd/system/oled.service
