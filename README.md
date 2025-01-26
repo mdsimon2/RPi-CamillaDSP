@@ -195,7 +195,7 @@ unzip ~/camilladsp/camillagui.zip -d ~/camilladsp/camillagui
 sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/camillagui.service -P /lib/systemd/system/
 ```
 
-Open GUI service in nano and update username to reflect your username.
+Open GUI service in nano and update username and ExecStart to reflect your username.
 
 ```
 sudo nano /lib/systemd/system/camillagui.service
