@@ -721,7 +721,7 @@ Install evdev and flirc.py
 
 ```
 sudo apt install python3-evdev
-wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/flirc.py -P ~/
+wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/flirc.py -O ~/flirc.py
 ```
 
 Enable USB-C port for use, this is needed to run the IR receiver from the USB-C port as is implemented in the [Modushop Case](#modushop-case) design in this tutorial . If the FLIRC is plugged in to a USB-A port this step is not required.
@@ -777,7 +777,7 @@ flirc=evdev.InputDevice('/dev/input/by-id/usb-flirc.tv_flirc-if01-event-kbd')
 Install FLIRC service.
 
 ```
-sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/flirc.service -P /lib/systemd/system/
+sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/flirc.service -O /lib/systemd/system/flirc.service
 ```
 
 Open FLIRC service in nano and update username to reflect your username.
@@ -809,13 +809,13 @@ Install lgpio and oled.py.
 
 ```
 sudo apt install python3-lgpio
-wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.py -P ~/
+wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.py -O ~/oled.py
 ```
 
 Install OLED service.
 
 ```
-sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.service -P /lib/systemd/system/
+sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.service -O /lib/systemd/system/oled.service
 ```
 
 Open OLED service in nano and update username to reflect your username.
