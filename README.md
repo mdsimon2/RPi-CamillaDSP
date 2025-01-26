@@ -70,9 +70,7 @@ This part describes how to get a working CamillaDSP setup. For reference, a comp
 
 ### 1) Write OS to micro SD card
 
-Raspberry Pi OS Lite 64 bit Bookworm is the recommended OS. Ubuntu Server 24.04 LTS 64 bit can also be used but does not currently work with the HifiBerry DAC8x. In addition, Raspberry Pi OS is more responsive than Ubuntu Server, this is especially noticeable if using an [OLED display](#oled-display).
-
-Download and install Raspberry Pi Imager from the links below for your OS.
+Download and install Raspberry Pi Imager from the links below for Raspberry Pi OS Lite 64 bit Bookworm.
 
 - [Raspberry Pi Imager for Ubuntu](https://downloads.raspberrypi.org/imager/imager_latest_amd64.deb)
 - [Raspberry Pi Imager for Windows](https://downloads.raspberrypi.org/imager/imager_latest.exe)
@@ -124,14 +122,18 @@ Wait a minute or two for RPi to start for the first time, then open terminal and
 ssh username@hostname
 ```
 
-Update / upgrade RPi and install necessary tools and dependencies.
+Update / upgrade RPi and install necessary tools and dependencies. This will install pycamilladsp and pycamilladsp-plot in a virtual environment, this is a change from previous versions of this tutorial.
 
 ```
 sudo apt update
 sudo apt full-upgrade
-sudo apt install alsa-utils git python3 python3-pip python3-websocket python3-aiohttp python3-jsonschema python3-numpy python3-matplotlib unzip
-sudo pip3 install git+https://github.com/HEnquist/pycamilladsp.git --break-system-packages
-sudo pip3 install git+https://github.com/HEnquist/pycamilladsp-plot.git --break-system-packages
+sudo apt install git
+python -m venv ~/camilladsp/.venv
+source ~/camilladsp/.venv/bin/activate
+pip3 install git+https://github.com/HEnquist/pycamilladsp.git
+pip3 install git+https://github.com/HEnquist/pycamilladsp-plot.git
+pip3 install aiohttp
+deactivate
 ```
 
 Say yes to any upgrade prompts. If prompted about restarting services, hit enter.
