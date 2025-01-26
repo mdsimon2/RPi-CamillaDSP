@@ -151,7 +151,7 @@ sudo tar -xvf ~/camilladsp/camilladsp-linux-aarch64.tar.gz -C /usr/local/bin/
 ### 4) Install CamillaDSP service
 
 ```
-sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/camilladsp.service -P /lib/systemd/system/
+sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/camilladsp.service -O /lib/systemd/system/camilladsp.service
 ```
 
 Open CamillaDSP service in nano and update username to reflect your username.
@@ -185,14 +185,14 @@ See below for a brief explanation of the CamillaDSP flags applied in ExecStart o
 ### 5) Install GUI
 
 ```
-wget https://github.com/HEnquist/camillagui-backend/releases/download/v3.0.0/camillagui.zip -P ~/camilladsp/
+wget https://github.com/HEnquist/camillagui-backend/releases/download/v3.0.0/camillagui.zip -O ~/camilladsp/camillagui.zip
 unzip ~/camilladsp/camillagui.zip -d ~/camilladsp/camillagui
 ```
 
 ### 6) Install GUI service
 
 ```
-sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/camillagui.service -P /lib/systemd/system/
+sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/camillagui.service -O /lib/systemd/system/camillagui.service
 ```
 
 Open GUI service in nano and update username and ExecStart to reflect your username.
@@ -265,11 +265,9 @@ Congratulations, CamillaDSP is now up and running!
 
 ### 10) Upgrading to future versions
 
-To upgrade to a new version of CamillaDSP, simply remove the old CamillaDSP binary and tar and download and extract a new one.
-
+To upgrade to a new version of CamillaDSP, simply download / tar / extract the new binary.
 ```
-rm ~/camilladsp/camilladsp-linux-aarch64.tar.gz
-wget https://github.com/HEnquist/camilladsp/releases/download/v3.0.0/camilladsp-linux-aarch64.tar.gz -P ~/camilladsp/
+wget https://github.com/HEnquist/camilladsp/releases/download/v3.0.0/camilladsp-linux-aarch64.tar.gz -O ~/camilladsp/
 sudo tar -xvf ~/camilladsp/camilladsp-linux-aarch64.tar.gz -C /usr/local/bin/
 sudo service camilladsp restart
 ```
@@ -277,8 +275,7 @@ sudo service camilladsp restart
 Upgrading the GUI is a similar process.
 
 ```
-rm -r ~/camilladsp/camillagui ~/camilladsp/camillagui.zip
-wget https://github.com/HEnquist/camillagui-backend/releases/download/v3.0.0/camillagui.zip -P ~/camilladsp/
+wget https://github.com/HEnquist/camillagui-backend/releases/download/v3.0.0/camillagui.zip -O ~/camilladsp/
 unzip ~/camilladsp/camillagui.zip -d ~/camilladsp/camillagui
 sudo service camilladsp restart
 sudo service camillagui restart
@@ -287,8 +284,10 @@ sudo service camillagui restart
 For upgrades to pycamilladsp and pycamilladsp-plot, re-run the original install commands to get the new versions. 
 
 ```
-sudo pip3 install git+https://github.com/HEnquist/pycamilladsp.git --break-system-packages
-sudo pip3 install git+https://github.com/HEnquist/pycamilladsp-plot.git --break-system-packages
+source ~/camilladsp/.venv/bin/activate
+pip3 install git+https://github.com/HEnquist/pycamilladsp.git
+pip3 install git+https://github.com/HEnquist/pycamilladsp-plot.git
+deactivate
 sudo service camillagui restart
 ```
 
