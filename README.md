@@ -122,7 +122,7 @@ Wait a minute or two for RPi to start for the first time, then open terminal and
 ssh username@hostname
 ```
 
-Update / upgrade RPi and install necessary tools and dependencies. This will install pycamilladsp and pycamilladsp-plot in a virtual environment, this is a change from previous versions of this tutorial.
+Update / upgrade RPi and install necessary tools and dependencies. This will install pycamilladsp and pycamilladsp-plot in a virtual environment, this is a change from previous versions of this tutorial and requires an update to camillagui.service.
 
 ```
 sudo apt update
