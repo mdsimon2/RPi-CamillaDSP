@@ -6,7 +6,7 @@ After=default.target
 Type=idle
 User=username
 WorkingDirectory=~
-ExecStart=camilladsp/.venv/bin/python3 camilladsp/camillagui/main.py
+ExecStart=/home/username/camilladsp/.venv/bin/python3 camilladsp/camillagui/main.py
 
 [Install]
 WantedBy=default.target
