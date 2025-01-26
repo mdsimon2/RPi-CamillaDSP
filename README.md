@@ -127,7 +127,7 @@ Update / upgrade RPi and install necessary tools and dependencies. This will ins
 ```
 sudo apt update
 sudo apt full-upgrade
-sudo apt install git
+sudo apt install git python3-dev
 python -m venv ~/camilladsp/.venv
 source ~/camilladsp/.venv/bin/activate
 pip3 install git+https://github.com/HEnquist/pycamilladsp.git
@@ -720,7 +720,9 @@ Pressing KEY_LEFT will mute CamillaDSP, if configurations are switched this mute
 Install evdev and flirc.py
 
 ```
-sudo apt install python3-evdev
+source ~/camilladsp/.venv/bin/activate
+pip3 install evdev
+deactivate
 wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/flirc.py -O ~/flirc.py
 ```
 
@@ -808,7 +810,9 @@ Previous versions of this tutorial offered python routines based on lgpio and rp
 Install lgpio and oled.py.
 
 ```
-sudo apt install python3-lgpio
+source ~/camilladsp/.venv/bin/activate
+pip3 install lgpio
+deactivate
 wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.py -O ~/oled.py
 ```
 
