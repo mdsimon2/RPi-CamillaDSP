@@ -21,7 +21,7 @@ This tutorial is geared towards 2 channel audio as it is somewhat difficult to g
 
 ### How does it work?
 
-Starting point is a RPi4 or RPi5 running either Raspberry Pi OS Lite 64 bit or Ubuntu Server 64 bit. RPi4 is recommended over RPi5 due to lower cost and better thermal performance. However, RPi5 is required for multichannel I2S applications such as the HifiBerry DAC8x.
+Starting point is a RPi4 or RPi5 running either Raspberry Pi OS Lite 64 bit. RPi4 is recommended over RPi5 due to lower cost and better thermal performance. However, RPi5 is required for multichannel I2S applications such as the HifiBerry DAC8x.
 
 CamillaDSP will be installed such that it is always running on the RPi as a service. A web browser based GUI is available to configure CamillaDSP after initial setup.
 
@@ -39,11 +39,11 @@ The playback device is either a USB DAC/DDC, HDMI output of the RPi or HAT DAC/D
 
 3) [MOTU M4](https://motu.com/en-us/products/m-series/m4/) - $250, 4 channel unbalanced/balanced analog output, 4 channel balanced analog input, good analog performance, USB powered. Good budget option for 2.1/2.2 or 2 way active systems, I/O functionality is rather limited. [MOTU M4 ASR Review](https://www.audiosciencereview.com/forum/index.php?threads/motu-m4-audio-interface-review.15757/).
 
-5) [HifiBerry DAC8x](https://www.hifiberry.com/shop/boards/hifiberry-dac8x/) - $65, requires a RPi5, HAT, 8 channel unbalanced analog output, good analog noise performance, acceptable distortion performance. Ultimate budget option! [HifiBerry DAC8x Measurements](https://www.audiosciencereview.com/forum/index.php?threads/8ch-hifiberry-hat-dac-for-rpi5.53672/post-1966410).
+5) [HifiBerry DAC8x](https://www.hifiberry.com/shop/boards/hifiberry-dac8x/) - $65, requires a RPi5, HAT, 8 channel unbalanced analog output, good analog noise performance, acceptable distortion performance, 1/8" headphone outputs are rather flimsy. Ultimate budget option! [HifiBerry DAC8x Measurements](https://www.audiosciencereview.com/forum/index.php?threads/8ch-hifiberry-hat-dac-for-rpi5.53672/post-1966410).
 
-6) Whatever is on have on hand! Part of the beauty of a CamillaDSP / RPi setup is that it is cheap and it is easy try with almost any USB device. 
+6) Whatever is on have on hand! Part of the beauty of a CamillaDSP / RPi setup is that it is cheap and easy try with almost any USB device. 
 
-Although configurations are not provided for the following devices, they have been used successfully with CamillaDSP on a RPi4. In particular the MCHstreamer / USBstreamer are very useful as they allow the use old pro audio interfaces with ADAT inputs to achieve 8 channels of output at 44.1/48 kHz.
+Although configurations are not provided for the following devices, they have been used successfully with CamillaDSP on a RPi4. In particular the MCHstreamer / USBstreamer are useful with ADAT input pro audio interfaces to achieve 8 channels of output at 44.1/48 kHz.
 
 - [miniDSP MCHstreamer](https://www.minidsp.com/products/usb-audio-interface/mchstreamer)
 - [miniDSP USBstreamer](https://www.minidsp.com/products/usb-audio-interface/usbstreamer)
@@ -122,7 +122,7 @@ Wait a minute or two for RPi to start for the first time, then open terminal and
 ssh username@hostname
 ```
 
-Update / upgrade RPi and install necessary tools and dependencies. This will install pycamilladsp and pycamilladsp-plot in a virtual environment, this is a change from previous versions of this tutorial and requires an update to camillagui.service.
+Update / upgrade RPi and install necessary tools and dependencies. This will install pycamilladsp and pycamilladsp-plot in a virtual environment, this is a change from previous versions of this tutorial and requires updates to camillagui.service, oled.service and flirc.service.
 
 ```
 sudo apt update
@@ -140,11 +140,11 @@ Say yes to any upgrade prompts. If prompted about restarting services, hit enter
 
 ### 3) Install CamillaDSP
 
-Make a camilladsp folder, as well as folders for CamillaDSP to reference stored FIR filters and configurations. Download and unpack CamillaDSP. The commands below will install V3.0.0 in /usr/local/bin/.
+Make a camilladsp folder, as well as folders for CamillaDSP to reference stored FIR filters and configurations. Download and unpack CamillaDSP binary. The commands below will install V3.0.0 in /usr/local/bin/.
 
 ```
 mkdir ~/camilladsp ~/camilladsp/coeffs ~/camilladsp/configs
-wget https://github.com/HEnquist/camilladsp/releases/download/v3.0.0/camilladsp-linux-aarch64.tar.gz -P ~/camilladsp/
+wget https://github.com/HEnquist/camilladsp/releases/download/v3.0.0/camilladsp-linux-aarch64.tar.gz -O ~/camilladsp/camilladsp-linux-aarch64.tar.gz
 sudo tar -xvf ~/camilladsp/camilladsp-linux-aarch64.tar.gz -C /usr/local/bin/
 ```
 
@@ -265,9 +265,9 @@ Congratulations, CamillaDSP is now up and running!
 
 ### 10) Upgrading to future versions
 
-To upgrade to a new version of CamillaDSP, simply download / tar / extract the new binary.
+To upgrade to a new version of CamillaDSP, simply download and extract the new binary.
 ```
-wget https://github.com/HEnquist/camilladsp/releases/download/v3.0.0/camilladsp-linux-aarch64.tar.gz -O ~/camilladsp/
+wget https://github.com/HEnquist/camilladsp/releases/download/v3.0.0/camilladsp-linux-aarch64.tar.gz -O ~/camilladsp-linux-aarch.tar.gz
 sudo tar -xvf ~/camilladsp/camilladsp-linux-aarch64.tar.gz -C /usr/local/bin/
 sudo service camilladsp restart
 ```
@@ -275,7 +275,7 @@ sudo service camilladsp restart
 Upgrading the GUI is a similar process.
 
 ```
-wget https://github.com/HEnquist/camillagui-backend/releases/download/v3.0.0/camillagui.zip -O ~/camilladsp/
+wget https://github.com/HEnquist/camillagui-backend/releases/download/v3.0.0/camillagui.zip -O ~/camilladsp/camillagui.zip
 unzip ~/camilladsp/camillagui.zip -d ~/camilladsp/camillagui
 sudo service camilladsp restart
 sudo service camillagui restart
@@ -352,9 +352,9 @@ These changes set ALSA loopback device 1 as squeezelite playback device, resampl
 
 ## CamillaDSP Configurations
 
-All configurations use maximum amount of output channels for a given playback device. If an output channel is not needed remove it from the mixer as each extra channel requires additional processing resources. Configuration files can be found in the [configs](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/configs) folder.
+All configurations use maximum amount of output channels for a given playback device. Bass and Treble filters are provided on input channels, see [Compact View](#compact-view) for more information. If an output channel is not needed remove it from the mixer as each extra channel requires additional processing resources. Configuration files can be found in the [configs](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/configs) folder.
 
-The naming convention configuration files in this tutorial is dac_input_capturerate_playbackrate. For example, a configuration for a MOTU Ultralite Mk5, TOSLINK input with 96 kHz capture and 96 kHz playback rates is [ultralitemk5_toslink_96c_96p.yml](https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/configs/ultralitemk5/ultralitemk5_toslink_96c_96p.yml).
+The naming convention configuration files in this tutorial is dac_input_capturerate_playbackrate. For example, a configuration for a MOTU Ultralite Mk5, TOSLINK input with 96 kHz capture and 96 kHz playback rates is [ultralitemk5_toslink_96c_96p.yml](https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/configs/ultralitemk5/ultralitemk5_toslink_96c_96p.yml). All configurations are intended for use with CamillaDSP v3.
 
 ### ASRC Options
 CamillaDSP expects a constant capture sample rate and cannot accommodate rate changes without a restart. For variable sample rate physical digital sources like TOSLINK, AES or SPDIF or multiple physical digital sources with different rates, a good option is to add a device that has an ASRC to convert to a consistent rate. miniDSP offer many devices with this capability which are summarized below.
@@ -380,7 +380,7 @@ For constant sample rate digital sources the following devices work well. Compar
 
 ### chunksize / target_level
 
-CamillaDSP V1 used a buffer size of 2 x chunksize, CamillaDSP V2 uses a buffer size of 4 x chunksize. In previous versions of this tutorial a rather long chunksize was specified (44.1/48 = 1024, 88.2/96 = 2048, 176.4/192 = 4096) resulting in long latency. After some experimentation, it was found that much lower chunksizes are stable when using physical input (SPDIF, TOSLINK, analog, etc) capture devices.
+CamillaDSP V1 used a buffer size of 2 x chunksize, CamillaDSP V2 and V3 use a buffer size of 4 x chunksize. In previous versions of this tutorial a rather long chunksize was specified (44.1/48 = 1024, 88.2/96 = 2048, 176.4/192 = 4096) resulting in long latency. After some experimentation, it was found that much lower chunksizes are stable when using physical input (SPDIF, TOSLINK, analog, etc) capture devices.
 
 All physical input capture device configurations now use the following chunksize depending on playback sample rate.
 
@@ -394,7 +394,7 @@ All ALSA Loopback / USB gadget capture device configurations now use the followi
 - 88.2 / 96 kHz: 512
 - 176.4 / 192 kHz: 1024
 
-Currently, CamillaDSP only allows a maximum target_level of 2 x chunksize - 1. For simplicity, all configurations use maximum target_level.
+All configurations use target level of 3X chunk size.
 
 For physical input capture device configurations latency is ~10 ms, for ALSA Loopback / USB gadget capture device configurations latency is ~20 ms.
 
@@ -629,7 +629,7 @@ Access the GUI via any computer on the same network as the RPi by navigating a b
 
 #### Title
 
-As of CamillaDSP V2, the first tab is Title. There isn't much to do in this tab, but the title and description fields can be populated. The title field is displayed on the first line of the [OLED display](#oled-display) described later in this tutorial.
+There isn't much to do in this tab, but the title and description fields can be populated. The title field is displayed on the first line of the [OLED display](#oled-display) described later in this tutorial.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/title.png" alt="title" width="600"/>
 
@@ -683,7 +683,9 @@ In order to set a configuration as default (i.e. the configuration that will be 
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/files.png" alt="files" width="600"/>
 
-There is a compact view that is great for changing volume or configurations from a smartphone or tablet. It can be accessed by clicking the "Change to compact view" button just to the right of the CamillaDSP logo.
+#### Compact View
+
+The Compact View is great for changing volume or configurations from a smartphone or tablet. It can be accessed by clicking the "Change to compact view" button just to the right of the CamillaDSP logo.
 
 If filters named "Bass" and "Treble" are created and applied, the sliders in this view can be used as bass / treble tone controls. Recommended parameters for bass and treble tone control are lowshelf, f=85 Hz, q=0.9 and highshelf, f=6500 Hz, q=0.7 respectively.
 
