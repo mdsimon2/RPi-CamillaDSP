@@ -467,61 +467,7 @@ Restart nginx service.
 sudo service nginx restart
 ```
 
-Ultralite Mk5 should automatically connect to the network if using Raspberry Pi OS, if using Ubuntu Server, use the following instructions.
-
-Find the network device name of the Ultralite Mk5.
-
-```
-ip a
-```
-
-Output should look something like this, enx0001f2fff075 is the network device name in this example.
-
-```
-: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-    inet 127.0.0.1/8 scope host lo
-       valid_lft forever preferred_lft forever
-    inet6 ::1/128 scope host
-       valid_lft forever preferred_lft forever
-2: eth0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN group default qlen 1000
-    link/ether dc:a6:32:7d:4c:dc brd ff:ff:ff:ff:ff:ff
-3: enx0001f2fff075: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN group default qlen 1000
-    link/ether 00:01:f2:ff:f0:75 brd ff:ff:ff:ff:ff:ff
-4: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
-    link/ether dc:a6:32:7d:4c:dd brd ff:ff:ff:ff:ff:ff
-    inet 192.168.86.25/24 metric 600 brd 192.168.86.255 scope global dynamic wlan0
-       valid_lft 85792sec preferred_lft 85792sec
-    inet6 2601:406:4300:910:dea6:32ff:fe7d:4cdd/64 scope global dynamic mngtmpaddr noprefixroute
-       valid_lft 86294sec preferred_lft 86294sec
-    inet6 fe80::dea6:32ff:fe7d:4cdd/64 scope link
-       valid_lft forever preferred_lft forever
-```
-
-Update network configuration to include the Ultralite Mk5. Use an IP address where the third number is one greater than the actual IP address reported on the front panel, followed by /16. For example, if the front panel reports 169.254.117.240, enter 169.254.118.240/16.
-
-```
-sudo cp /etc/netplan/50-cloud-init.yaml /etc/cloud/cloud.cfg.d/50-curtin-networking.cfg
-sudo nano /etc/cloud/cloud.cfg.d/50-curtin-networking.cfg
-```
-
-Paste the following text to the bottom of 50-curtin-networking.cfg, updating the IP address using the guidance above. ethernets should be at the same indentation level as wifis.
-
-```
-    ethernets:
-         enx0001f2fff075:
-            addresses:
-                - 169.254.118.240/16
-            optional: true
-```
-
-Apply changes and restart.
-
-```
-sudo cloud-init clean
-sudo cloud-init init
-sudo reboot now
-```
+Ultralite Mk5 should automatically connect to the network if using Raspberry Pi OS.
 
 #### CueMix
 
