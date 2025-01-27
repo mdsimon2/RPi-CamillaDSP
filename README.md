@@ -366,10 +366,7 @@ CamillaDSP V3 uses different nomenclature than V2, therefore if you have an exis
 
 Select your V2 configuration and click the box next to the configuration name and scroll to the bottom and select import, this loads the configuration to the GUI. 
 
-<p align = "middle"
-<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/v3_import_3.png" alt="v3_import_3" width="100"/>
-<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/v3_import_4.png" alt="v3_import_4" width="100"/>
-</p>
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/v3_import_3.png" alt="v3_import_3" width="100"/><img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/v3_import_4.png" alt="v3_import_4" width="100"/>
 
 You should see message saying the import was successful..
 
