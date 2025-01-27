@@ -1,0 +1,249 @@
+description: null
+devices:
+  adjust_period: 10
+  capture:
+    channels: 20
+    device: hw:UltraLitemk5
+    format: S24LE3
+    labels: null
+    link_mute_control: null
+    link_volume_control: null
+    stop_on_inactive: null
+    type: Alsa
+  capture_samplerate: 48000
+  chunksize: 64
+  enable_rate_adjust: false
+  multithreaded: null
+  playback:
+    channels: 22
+    device: hw:UltraLitemk5
+    format: S24LE3
+    type: Alsa
+  queuelimit: 4
+  rate_measure_interval: 1
+  resampler: null
+  samplerate: 48000
+  silence_threshold: -100
+  silence_timeout: 5
+  stop_on_rate_change: false
+  target_level: 192
+  volume_limit: null
+  volume_ramp_time: null
+  worker_threads: null
+filters:
+  Bass:
+    description: null
+    parameters:
+      freq: 85
+      gain: 0
+      q: 0.9
+      type: Lowshelf
+    type: Biquad
+  Treble:
+    description: null
+    parameters:
+      freq: 6500
+      gain: 0
+      q: 0.7
+      type: Highshelf
+    type: Biquad
+mixers:
+  20x22:
+    channels:
+      in: 20
+      out: 22
+    description: null
+    labels: null
+    mapping:
+    - dest: 0
+      mute: false
+      sources:
+      - channel: 12
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 1
+      mute: false
+      sources:
+      - channel: 13
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 2
+      mute: false
+      sources:
+      - channel: 12
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 3
+      mute: false
+      sources:
+      - channel: 13
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 4
+      mute: false
+      sources:
+      - channel: 12
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 5
+      mute: false
+      sources:
+      - channel: 13
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 6
+      mute: false
+      sources:
+      - channel: 12
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 7
+      mute: false
+      sources:
+      - channel: 13
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 8
+      mute: false
+      sources:
+      - channel: 12
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 9
+      mute: false
+      sources:
+      - channel: 13
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 10
+      mute: false
+      sources:
+      - channel: 12
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 11
+      mute: false
+      sources:
+      - channel: 13
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 12
+      mute: false
+      sources:
+      - channel: 12
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 13
+      mute: false
+      sources:
+      - channel: 13
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 14
+      mute: false
+      sources:
+      - channel: 12
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 15
+      mute: false
+      sources:
+      - channel: 13
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 16
+      mute: false
+      sources:
+      - channel: 12
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 17
+      mute: false
+      sources:
+      - channel: 13
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 18
+      mute: false
+      sources:
+      - channel: 12
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 19
+      mute: false
+      sources:
+      - channel: 13
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 20
+      mute: false
+      sources:
+      - channel: 12
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 21
+      mute: false
+      sources:
+      - channel: 13
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+pipeline:
+- bypassed: false
+  channels:
+  - 12
+  - 13
+  description: null
+  names:
+  - Bass
+  - Treble
+  type: Filter
+- bypassed: false
+  description: null
+  name: 20x22
+  type: Mixer
+processors: {}
+title: TOSLINK

@@ -259,7 +259,7 @@ On a computer that is on the same network as the RPi, navigate browser to http:/
 
 Navigate to Files tab of GUI and upload desired configuration using the up arrow in the Configs section. Set this configuration as active by pressing the "star" next to the configuration. From now on CamillaDSP and the GUI will start with this configuration loaded. Click the "Apply and Save" button in the lower left to load the configuration to DSP.
 
-<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/configs.png" alt="configs" width="600"/>
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/files.png" alt="files" width="600"/>
 
 Congratulations, CamillaDSP is now up and running!
 
@@ -669,7 +669,9 @@ A new addition with CamillaDSP V2 is the Processors tab. I haven't used this per
 
 The Pipeline tab is where everything comes together. Filters, mixers and processors created in the previous tabs are applied here. The entire pipeline can be plotted to show how the mixer and filters are applied as well as the combined magnitude / phase / group delay on each channel.
 
-<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/pipeline.png" alt="pipeline" width="800"/>
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/pipeline1.png" alt="pipeline1" width="800"/>
+
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/pipeline2.png" alt="pipeline2" width="800"/>
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/pipelinemap.png" alt="pipeline_map" width="800"/>
 

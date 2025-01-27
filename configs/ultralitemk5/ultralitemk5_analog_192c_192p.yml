@@ -1,0 +1,153 @@
+description: null
+devices:
+  adjust_period: 10
+  capture:
+    channels: 10
+    device: hw:UltraLitemk5
+    format: S24LE3
+    labels: null
+    link_mute_control: null
+    link_volume_control: null
+    stop_on_inactive: null
+    type: Alsa
+  capture_samplerate: 192000
+  chunksize: 256
+  enable_rate_adjust: false
+  multithreaded: null
+  playback:
+    channels: 10
+    device: hw:UltraLitemk5
+    format: S24LE3
+    type: Alsa
+  queuelimit: 4
+  rate_measure_interval: 1
+  resampler: null
+  samplerate: 192000
+  silence_threshold: -100
+  silence_timeout: 5
+  stop_on_rate_change: false
+  target_level: 768
+  volume_limit: null
+  volume_ramp_time: null
+  worker_threads: null
+filters:
+  Bass:
+    description: null
+    parameters:
+      freq: 85
+      gain: 0
+      q: 0.9
+      type: Lowshelf
+    type: Biquad
+  Treble:
+    description: null
+    parameters:
+      freq: 6500
+      gain: 0
+      q: 0.7
+      type: Highshelf
+    type: Biquad
+mixers:
+  10x10:
+    channels:
+      in: 10
+      out: 10
+    description: null
+    labels: null
+    mapping:
+    - dest: 0
+      mute: false
+      sources:
+      - channel: 2
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 1
+      mute: false
+      sources:
+      - channel: 3
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 2
+      mute: false
+      sources:
+      - channel: 2
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 3
+      mute: false
+      sources:
+      - channel: 3
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 4
+      mute: false
+      sources:
+      - channel: 2
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 5
+      mute: false
+      sources:
+      - channel: 3
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 6
+      mute: false
+      sources:
+      - channel: 2
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 7
+      mute: false
+      sources:
+      - channel: 3
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 8
+      mute: false
+      sources:
+      - channel: 2
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 9
+      mute: false
+      sources:
+      - channel: 3
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+pipeline:
+- bypassed: null
+  channels:
+  - 2
+  - 3
+  description: null
+  names:
+  - Bass
+  - Treble
+  type: Filter
+- bypassed: false
+  description: null
+  name: 10x10
+  type: Mixer
+processors: {}
+title: Analog
