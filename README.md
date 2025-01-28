@@ -650,7 +650,7 @@ The Devices tab defines general parameters like capture device, playback device,
 
 It is very important that sample format and channel count are supported by the device. If using configurations from this tutorial this will not be an issue, but if creating new configurations it is something to be aware of. 
 
-With V3 there are now labels that can be applied to capture device channels, if a list of labels is provided they will appear in the Mixers and Pipeline tabs, as well as the channel meters.
+With V3 there are now labels that can be applied to capture device channels, if a list of labels is provided they will appear in the Mixers and Pipeline tabs, as well as level meters.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/devices.png" alt="devices" width="600"/>
 
@@ -666,17 +666,21 @@ The Mixers tab defines channel routing, in addition, gain and polarity can be de
 
 As in the Devices tab, it is very important that mixer channel counts exactly match the channel counts of the device. For configurations from this tutorial this will not be an issue. It is not required to use all channels in the mixer, but the correct channel counts need to specified in the "in" and "out" section. For example in the screenshot below 8 input and 8 output channels are specified although only 2 input channels (0 and 1) are used in the mixer definition.
 
+With V3 there are now labels that can be applied to playback device channels, if a list of labels is provided they will appear in the Mixers and Pipeline tabs, as well as level meters.
+
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/mixers.png" alt="mixers" width="600"/>
 
 #### Processors
 
-A new addition with CamillaDSP V2 is the Processors tab. I haven't used this personally, but it can be used to implement a compressor.
+I haven't used this personally, but it can be used to implement a compressor.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/processors.png" alt="processors" width="600"/>
 
 #### Pipeline
 
 The Pipeline tab is where everything comes together. Filters, mixers and processors created in the previous tabs are applied here. The entire pipeline can be plotted to show how the mixer and filters are applied as well as the combined magnitude / phase / group delay on each channel.
+
+With V3 filter steps can now be applied to multiple channels, eliminating the need to repeat filter steps for left / right channels as an example.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/pipeline1.png" alt="pipeline1" width="800"/>
 
@@ -734,7 +738,7 @@ However, will not switch to ultralitemk5_streamer.yml because it does not start 
 
 Pressing KEY_LEFT will mute CamillaDSP, if configurations are switched this mute will stay set. Volume can be changed while muted. The mute will be removed by either pressing KEY_LEFT again or unmuting in the GUI.
 
-Install evdev and flirc.py
+Install evdev and flirc.py. If upgrading from V2 to V3, re-run the step below as pycamilladsp is now installed in a virtual environment and nomenclature has changed.
 
 ```
 source ~/camilladsp/.venv/bin/activate
@@ -793,7 +797,7 @@ If needed, change the flirc=evdev.InputDevice line near the top to reflect the F
 flirc=evdev.InputDevice('/dev/input/by-id/usb-flirc.tv_flirc-if01-event-kbd')
 ```
 
-Install FLIRC service.
+Install FLIRC service. If upgrading from V2 to V3, download a new version of flirc.service as pycamilladsp is now installed in a virtual environment.
 
 ```
 sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/flirc.service -O /lib/systemd/system/flirc.service
@@ -824,7 +828,7 @@ The base setup turns the display off after 10 seconds of no volume changes to av
 
 Previous versions of this tutorial offered python routines based on lgpio and rpi-gpio. However, going forward only the lgpio routine will be provided. Updates to the lgpio routine implementing group pin writing have significantly improved performance and using Raspberry Pi OS instead of Ubuntu Server improves performance even further. In addition, the RPi5 does not support rpi-gpio.
 
-Install lgpio and oled.py.
+Install lgpio and oled.py. If upgrading from V2 to V3, re-run the step below as pycamilladsp is now installed in a virtual environment and nomenclature has changed.
 
 ```
 source ~/camilladsp/.venv/bin/activate
@@ -833,7 +837,7 @@ deactivate
 wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.py -O ~/oled.py
 ```
 
-Install OLED service.
+Install OLED service. If upgrading from V2 to V3, download a new version of oled.service as pycamilladsp is now installed in a virtual environment.
 
 ```
 sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.service -O /lib/systemd/system/oled.service
