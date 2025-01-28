@@ -276,6 +276,7 @@ Upgrading the GUI is a similar process.
 
 ```
 wget https://github.com/HEnquist/camillagui-backend/releases/download/v3.0.0/camillagui.zip -O ~/camilladsp/camillagui.zip
+sudo rm -r ~/camilladsp/camillagui
 unzip ~/camilladsp/camillagui.zip -d ~/camilladsp/camillagui
 sudo service camilladsp restart
 sudo service camillagui restart
