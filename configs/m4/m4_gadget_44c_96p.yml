@@ -1,0 +1,106 @@
+description: null
+devices:
+  adjust_period: 10
+  capture:
+    channels: 2
+    device: hw:UAC2Gadget
+    format: S32LE
+    labels: null
+    link_mute_control: null
+    link_volume_control: null
+    stop_on_inactive: null
+    type: Alsa
+  capture_samplerate: 44100
+  chunksize: 512
+  enable_rate_adjust: true
+  multithreaded: null
+  playback:
+    channels: 4
+    device: hw:M4
+    format: S32LE
+    type: Alsa
+  queuelimit: 4
+  rate_measure_interval: 1
+  resampler:
+    type: Synchronous
+  samplerate: 96000
+  silence_threshold: -100
+  silence_timeout: 5
+  stop_on_rate_change: false
+  target_level: 1536
+  volume_limit: null
+  volume_ramp_time: null
+  worker_threads: null
+filters:
+  Bass:
+    description: null
+    parameters:
+      freq: 85
+      gain: 0
+      q: 0.9
+      type: Lowshelf
+    type: Biquad
+  Treble:
+    description: null
+    parameters:
+      freq: 6500
+      gain: 0
+      q: 0.7
+      type: Highshelf
+    type: Biquad
+mixers:
+  2x4:
+    channels:
+      in: 2
+      out: 4
+    description: null
+    labels: null
+    mapping:
+    - dest: 0
+      mute: false
+      sources:
+      - channel: 0
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 1
+      mute: false
+      sources:
+      - channel: 1
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 2
+      mute: false
+      sources:
+      - channel: 0
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+    - dest: 3
+      mute: false
+      sources:
+      - channel: 1
+        gain: 0
+        inverted: false
+        mute: false
+        scale: dB
+pipeline:
+- bypassed: false
+  channels:
+  - 0
+  - 1
+  description: null
+  names:
+  - Bass
+  - Treble
+  type: Filter
+- bypassed: false
+  description: null
+  name: 2x4
+  type: Mixer
+processors: {}
+title: Gadget
