@@ -648,7 +648,9 @@ There isn't much to do in this tab, but the title and description fields can be 
 
 The Devices tab defines general parameters like capture device, playback device, sample rate, rate adjust, resampling and chunk size.
 
-It is very important that sample format and channel count are supported by the device. If using configurations from this tutorial this will not be an issue, but if creating new configurations it is something to be aware of. As of V3 there are now labels that can be applied to capture device channels, if a list of labels is provided they will appear in the Mixers and Pipeline tabs, as well as the channel meters.
+It is very important that sample format and channel count are supported by the device. If using configurations from this tutorial this will not be an issue, but if creating new configurations it is something to be aware of. 
+
+With V3 there are now labels that can be applied to capture device channels, if a list of labels is provided they will appear in the Mixers and Pipeline tabs, as well as the channel meters.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/devices.png" alt="devices" width="600"/>
 
