@@ -359,7 +359,11 @@ The naming convention configuration files in this tutorial is dac_input_capturer
 
 ### Converting Configurations from V2 to V3
 
-CamillaDSP V3 uses different nomenclature than V2, therefore if you have an existing V2 configuration file that you would like to use in V3 it needs to be converted. To do this, go to the Files tab of the GUI and click New blank configuration to apply a blank configuration in the GUI. Next click Import config and select CamillaDSP Config. Select your V2 configuration and click the box next to the configuration name and scroll to the bottom and select import, this loads the configuration to the GUI. You should see message saying the import was successful. Review the configuration and make any changes needed, I've noticed that resampling appears to be applied to configurations where it was not previously. To save the configuration, enter a configuration name where it says New config.yml and click the adjacent disk. After this the configuration should show as valid and list version as 3.
+CamillaDSP V3 uses different nomenclature than V2, therefore if you have an existing V2 configuration file that you would like to use in V3 it needs to be converted. 
+
+Go to the Files tab of the GUI and click New blank configuration to apply a blank configuration in the GUI. Next click Import config and select CamillaDSP Config. Select your V2 configuration and click the box next to the configuration name and scroll to the bottom and select import, this loads the configuration to the GUI. You should see message saying the import was successful. 
+
+Review the configuration and make any changes needed, I've noticed that resampling appears to be applied to configurations where it was not previously. To save the configuration, enter a configuration name where it says New config.yml and click the adjacent disk. After this the configuration should show as valid and list version as 3.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/v3_import_7.png" alt="v3_import_7" width="500"/>
 
