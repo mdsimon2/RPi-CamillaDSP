@@ -127,7 +127,6 @@ Update / upgrade RPi and install necessary tools and dependencies. This will ins
 ```
 sudo apt update
 sudo apt full-upgrade
-sudo apt install git python3-dev
 ```
 
 Say yes to any upgrade prompts. If prompted about restarting services, hit enter.
@@ -181,6 +180,7 @@ See below for a brief explanation of the CamillaDSP flags applied in ExecStart o
 Install python virtual environment and CamillaDSP python libraries.
 
 ```
+sudo apt install git python3-dev
 python -m venv ~/camilladsp/.venv
 source ~/camilladsp/.venv/bin/activate
 pip3 install git+https://github.com/HEnquist/pycamilladsp.git
