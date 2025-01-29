@@ -122,7 +122,7 @@ Wait a minute or two for RPi to start for the first time, then open terminal and
 ssh username@hostname
 ```
 
-Update / upgrade RPi and install necessary tools and dependencies. This will install pycamilladsp and pycamilladsp-plot in a virtual environment, this is a change from previous versions of this tutorial and requires updates to camillagui.service, oled.service and flirc.service.
+Update / upgrade RPi.
 
 ```
 sudo apt update
@@ -177,7 +177,7 @@ See below for a brief explanation of the CamillaDSP flags applied in ExecStart o
 
 ### 5) Install GUI
 
-Install python virtual environment and CamillaDSP python libraries.
+Install python virtual environment and CamillaDSP python libraries. Installing the python libraries in a virtual environment is a change from previous versions of this tutorial and requires updates to camillagui.service, oled.service and flirc.service.
 
 ```
 sudo apt install git python3-dev
