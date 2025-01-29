@@ -272,7 +272,7 @@ Congratulations, CamillaDSP is now up and running!
 
 ### 10) Upgrading to future versions
 
-These upgrade instructions assume you are running python from a virtual environment. Running python from a virtual environment was implemented in this tutorial on 28-Jan-2025 with the update for CamillaDSP V3. If you are NOT running python from a virtual environment, see [CamillaGUI](#5-install-gui) section.
+These upgrade instructions assume you are running python from a virtual environment. Running python from a virtual environment was implemented in this tutorial on 28-Jan-2025 with the update for CamillaDSP V3. If you are NOT running python from a virtual environment, see [CamillaGUI](#5-install-gui) section for installation instructions.
 
 To upgrade to a new version of CamillaDSP, simply download and extract the new binary.
 ```
