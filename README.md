@@ -128,12 +128,6 @@ Update / upgrade RPi and install necessary tools and dependencies. This will ins
 sudo apt update
 sudo apt full-upgrade
 sudo apt install git python3-dev
-python -m venv ~/camilladsp/.venv
-source ~/camilladsp/.venv/bin/activate
-pip3 install git+https://github.com/HEnquist/pycamilladsp.git
-pip3 install git+https://github.com/HEnquist/pycamilladsp-plot.git
-pip3 install aiohttp
-deactivate
 ```
 
 Say yes to any upgrade prompts. If prompted about restarting services, hit enter.
@@ -183,6 +177,19 @@ See below for a brief explanation of the CamillaDSP flags applied in ExecStart o
 "-o camilladsp/camilladsp.log" creates a log file that can be viewed in the GUI for troubleshooting. Verbosity of this log can be increased by adding "-l debug".
 
 ### 5) Install GUI
+
+Install python virtual environment and CamillaDSP python libraries.
+
+```
+python -m venv ~/camilladsp/.venv
+source ~/camilladsp/.venv/bin/activate
+pip3 install git+https://github.com/HEnquist/pycamilladsp.git
+pip3 install git+https://github.com/HEnquist/pycamilladsp-plot.git
+pip3 install aiohttp
+deactivate
+```
+
+Download and unzip GUI.
 
 ```
 wget https://github.com/HEnquist/camillagui-backend/releases/download/v3.0.0/camillagui.zip -O ~/camilladsp/camillagui.zip
