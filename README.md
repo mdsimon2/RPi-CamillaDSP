@@ -749,9 +749,7 @@ Pressing KEY_LEFT will mute CamillaDSP, if configurations are switched this mute
 Install evdev and flirc.py. If upgrading from V2 to V3, re-run the step below as pycamilladsp is now installed in a virtual environment and nomenclature has changed.
 
 ```
-source ~/camilladsp/.venv/bin/activate
-pip3 install evdev
-deactivate
+sudo apt install python3-evdev
 wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/flirc.py -O ~/flirc.py
 ```
 
@@ -836,12 +834,9 @@ The base setup turns the display off after 10 seconds of no volume changes to av
 
 Previous versions of this tutorial offered python routines based on lgpio and rpi-gpio. However, going forward only the lgpio routine will be provided. Updates to the lgpio routine implementing group pin writing have significantly improved performance and using Raspberry Pi OS instead of Ubuntu Server improves performance even further. In addition, the RPi5 does not support rpi-gpio.
 
-Install lgpio and oled.py. If upgrading from V2 to V3, re-run the step below as pycamilladsp is now installed in a virtual environment and nomenclature has changed.
+Install oled.py. If upgrading from V2 to V3, re-run the step below as pycamilladsp is now installed in a virtual environment and nomenclature has changed.
 
 ```
-source ~/camilladsp/.venv/bin/activate
-pip3 install lgpio
-deactivate
 wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.py -O ~/oled.py
 ```
 
