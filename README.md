@@ -180,12 +180,11 @@ See below for a brief explanation of the CamillaDSP flags applied in ExecStart o
 Install python virtual environment and CamillaDSP python libraries. Installing python libraries in a virtual environment is a change from previous versions of this tutorial and requires updates to camillagui.service, oled.service and flirc.service.
 
 ```
-sudo apt install git python3-dev
-python -m venv ~/camilladsp/.venv
+sudo apt install git python3-dev python3-aiohttp
+python -m venv --system-site-packages ~/camilladsp/.venv
 source ~/camilladsp/.venv/bin/activate
 pip3 install git+https://github.com/HEnquist/pycamilladsp.git
 pip3 install git+https://github.com/HEnquist/pycamilladsp-plot.git
-pip3 install aiohttp
 deactivate
 ```
 
