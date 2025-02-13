@@ -181,7 +181,7 @@ Download and extract GUI bundle.
 
 ```
 wget https://github.com/HEnquist/camillagui-backend/releases/download/v3.0.1/bundle_linux_aarch64.tar.gz -O ~/camilladsp/bundle_linux_aarch64.tar.gz
-tar -xvf ~/camilladsp/camilladsp/bundle_linux_aarch64.tar.gz
+tar -xvf ~/camilladsp/bundle_linux_aarch64.tar.gz
 ```
 
 ### 6) Install GUI service
