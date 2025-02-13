@@ -820,7 +820,7 @@ The base setup turns the display off after 10 seconds of no volume changes to av
 
 Previous versions of this tutorial offered python routines based on lgpio and rpi-gpio. However, going forward only the lgpio routine will be provided. Updates to the lgpio routine implementing group pin writing have significantly improved performance and using Raspberry Pi OS instead of Ubuntu Server improves performance even further. In addition, the RPi5 does not support rpi-gpio.
 
-Install python virtual environment and pycamilladsp. Note, you may have already completed this step in the (#FLIRC USB IR Receiver)[flirc-usb-ir-receiver) section. Installing pycamilladsp in a virtual environment is a change with V3 and requires an update to oled.service if upgrading from an older version.
+Install python virtual environment and pycamilladsp. Note, you may have already completed this step in the (FLIRC USB IR Receiver)[#flirc-usb-ir-receiver) section. Installing pycamilladsp in a virtual environment is a change with V3 and requires an update to oled.service if upgrading from an older version.
 
 ```
 sudo apt install git python3-dev python3-aiohttp
