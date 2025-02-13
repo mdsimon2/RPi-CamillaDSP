@@ -177,22 +177,11 @@ See below for a brief explanation of the CamillaDSP flags applied in ExecStart o
 
 ### 5) Install GUI
 
-Install python virtual environment and CamillaDSP python libraries. Installing python libraries in a virtual environment is a change from previous versions of this tutorial and requires updates to camillagui.service, oled.service and flirc.service.
+Download and extract GUI bundle.
 
 ```
-sudo apt install git python3-dev python3-aiohttp
-python -m venv --system-site-packages ~/camilladsp/.venv
-source ~/camilladsp/.venv/bin/activate
-pip3 install git+https://github.com/HEnquist/pycamilladsp.git
-pip3 install git+https://github.com/HEnquist/pycamilladsp-plot.git
-deactivate
-```
-
-Download and unzip GUI.
-
-```
-wget https://github.com/HEnquist/camillagui-backend/releases/download/v3.0.0/camillagui.zip -O ~/camilladsp/camillagui.zip
-unzip ~/camilladsp/camillagui.zip -d ~/camilladsp/camillagui
+wget https://github.com/HEnquist/camillagui-backend/releases/download/v3.0.1/bundle_linux_aarch64.tar.gz -O ~/camilladsp/bundle_linux_aarch64.tar.gz
+tar -xvf ~/camilladsp/camilladsp-linux-aarch64.tar.gz
 ```
 
 ### 6) Install GUI service
@@ -271,8 +260,6 @@ Congratulations, CamillaDSP is now up and running!
 
 ### 10) Upgrading to future versions
 
-These upgrade instructions assume you are running python from a virtual environment. Running python from a virtual environment was implemented in this tutorial on 28-Jan-2025 with the update for CamillaDSP V3. If you are NOT running python from a virtual environment, see [CamillaGUI](#5-install-gui) section for installation instructions.
-
 To upgrade to a new version of CamillaDSP, simply download and extract the new binary.
 ```
 wget https://github.com/HEnquist/camilladsp/releases/download/v3.0.0/camilladsp-linux-aarch64.tar.gz -O ~/camilladsp-linux-aarch.tar.gz
@@ -280,23 +267,12 @@ sudo tar -xvf ~/camilladsp/camilladsp-linux-aarch64.tar.gz -C /usr/local/bin/
 sudo service camilladsp restart
 ```
 
-Upgrading the GUI is a similar process.
+Upgrading the GUI is a similar process. If you are upgrading from a GUI prior to V3.0.1, please install a new [GUI service](#install-gui-service).
 
 ```
-wget https://github.com/HEnquist/camillagui-backend/releases/download/v3.0.0/camillagui.zip -O ~/camilladsp/camillagui.zip
-sudo rm -r ~/camilladsp/camillagui
-unzip ~/camilladsp/camillagui.zip -d ~/camilladsp/camillagui
+wget https://github.com/HEnquist/camillagui-backend/releases/download/v3.0.1/bundle_linux_aarch64.tar.gz -O ~/camilladsp/bundle_linux_aarch64.tar.gz
+tar -xvf ~/camilladsp/bundle_linux_aarch64.tar.gz
 sudo service camilladsp restart
-sudo service camillagui restart
-```
-
-For upgrades to pycamilladsp and pycamilladsp-plot, re-run the original install commands to get the new versions. 
-
-```
-source ~/camilladsp/.venv/bin/activate
-pip3 install git+https://github.com/HEnquist/pycamilladsp.git
-pip3 install git+https://github.com/HEnquist/pycamilladsp-plot.git
-deactivate
 sudo service camillagui restart
 ```
 
@@ -746,6 +722,16 @@ However, will not switch to ultralitemk5_streamer.yml because it does not start 
 
 Pressing KEY_LEFT will mute CamillaDSP, if configurations are switched this mute will stay set. Volume can be changed while muted. The mute will be removed by either pressing KEY_LEFT again or unmuting in the GUI.
 
+Install python virtual environment and pycamilladsp. Installing pycamilladsp in a virtual environment is a change with V3 and requires an update to flirc.service if upgrading from an older version.
+
+```
+sudo apt install git python3-dev python3-aiohttp
+python -m venv --system-site-packages ~/camilladsp/.venv
+source ~/camilladsp/.venv/bin/activate
+pip3 install git+https://github.com/HEnquist/pycamilladsp.git
+deactivate
+```
+
 Install evdev and flirc.py. If upgrading from V2 to V3, re-run the step below as pycamilladsp is now installed in a virtual environment and nomenclature has changed.
 
 ```
@@ -833,6 +819,16 @@ RPis have GPIO pins which can be used to interface with a variety of displays. A
 The base setup turns the display off after 10 seconds of no volume changes to avoid OLED burn in. It will turn back on if the volume, status or configuration are changed. 
 
 Previous versions of this tutorial offered python routines based on lgpio and rpi-gpio. However, going forward only the lgpio routine will be provided. Updates to the lgpio routine implementing group pin writing have significantly improved performance and using Raspberry Pi OS instead of Ubuntu Server improves performance even further. In addition, the RPi5 does not support rpi-gpio.
+
+Install python virtual environment and pycamilladsp. Note, you may have already completed this step in the (FLIRC USB IR Receiver)[flirc-usb-ir-receiver) section. Installing pycamilladsp in a virtual environment is a change with V3 and requires an update to oled.service if upgrading from an older version.
+
+```
+sudo apt install git python3-dev python3-aiohttp
+python -m venv --system-site-packages ~/camilladsp/.venv
+source ~/camilladsp/.venv/bin/activate
+pip3 install git+https://github.com/HEnquist/pycamilladsp.git
+deactivate
+```
 
 Install oled.py. If upgrading from V2 to V3, re-run the step below as pycamilladsp is now installed in a virtual environment and nomenclature has changed.
 
