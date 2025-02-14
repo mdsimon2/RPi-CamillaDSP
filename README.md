@@ -379,9 +379,9 @@ CamillaDSP V1 used a buffer size of 2 x chunksize, CamillaDSP V2 and V3 use a bu
 
 All physical input capture device configurations now use the following chunksize depending on playback sample rate.
 
-- 44.1 / 48 kHz: 64
-- 88.2 / 96 kHz: 128
-- 176.4 / 192 kHz: 256
+- 44.1 / 48 kHz: 128
+- 88.2 / 96 kHz: 256
+- 176.4 / 192 kHz: 512
 
 All ALSA Loopback / USB gadget capture device configurations now use the following chunksize depending on playback sample rate.
 
@@ -389,9 +389,9 @@ All ALSA Loopback / USB gadget capture device configurations now use the followi
 - 88.2 / 96 kHz: 512
 - 176.4 / 192 kHz: 1024
 
-All configurations use target level of 3X chunk size.
+All configurations use target level of 3X chunk size. Configurations without rate adjust can use lower target levels if lower latency is desired.
 
-For physical input capture device configurations latency is ~10 ms, for ALSA Loopback / USB gadget capture device configurations latency is ~20 ms.
+For physical input capture device configurations latency is ~15 ms, for ALSA Loopback / USB gadget capture device configurations latency is ~25 ms.
 
 If dropouts are experienced, try doubling chunksize / target_level, and please let me know.
 
