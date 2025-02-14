@@ -180,7 +180,7 @@ See below for a brief explanation of the CamillaDSP flags applied in ExecStart o
 Download and extract GUI bundle.
 
 ```
-wget https://github.com/HEnquist/camillagui-backend/releases/download/v3.0.1/bundle_linux_aarch64.tar.gz -O ~/camilladsp/bundle_linux_aarch64.tar.gz
+wget https://github.com/HEnquist/camillagui-backend/releases/download/v3.0.2/bundle_linux_aarch64.tar.gz -O ~/camilladsp/bundle_linux_aarch64.tar.gz
 tar -xvf ~/camilladsp/bundle_linux_aarch64.tar.gz
 ```
 
@@ -270,7 +270,7 @@ sudo service camilladsp restart
 Upgrading the GUI is a similar process. If you are upgrading from a GUI prior to V3.0.1, please install a new [GUI service](#6-install-gui-service).
 
 ```
-wget https://github.com/HEnquist/camillagui-backend/releases/download/v3.0.1/bundle_linux_aarch64.tar.gz -O ~/camilladsp/bundle_linux_aarch64.tar.gz
+wget https://github.com/HEnquist/camillagui-backend/releases/download/v3.0.2/bundle_linux_aarch64.tar.gz -O ~/camilladsp/bundle_linux_aarch64.tar.gz
 tar -xvf ~/camilladsp/bundle_linux_aarch64.tar.gz
 sudo service camilladsp restart
 sudo service camillagui restart
