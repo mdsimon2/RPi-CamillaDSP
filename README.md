@@ -181,7 +181,7 @@ Download and extract GUI bundle.
 
 ```
 wget https://github.com/HEnquist/camillagui-backend/releases/download/v3.0.2/bundle_linux_aarch64.tar.gz -O ~/camilladsp/bundle_linux_aarch64.tar.gz
-tar -xvf ~/camilladsp/bundle_linux_aarch64.tar.gz
+tar -xvf ~/camilladsp/bundle_linux_aarch64.tar.gz -C ~/camilladsp/
 ```
 
 ### 6) Install GUI service
@@ -271,7 +271,7 @@ Upgrading the GUI is a similar process. If you are upgrading from a GUI prior to
 
 ```
 wget https://github.com/HEnquist/camillagui-backend/releases/download/v3.0.2/bundle_linux_aarch64.tar.gz -O ~/camilladsp/bundle_linux_aarch64.tar.gz
-tar -xvf ~/camilladsp/bundle_linux_aarch64.tar.gz
+tar -xvf ~/camilladsp/bundle_linux_aarch64.tar.gz -C ~/camilladsp/
 sudo service camilladsp restart
 sudo service camillagui restart
 ```
