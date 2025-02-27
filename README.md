@@ -144,9 +144,22 @@ sudo tar -xvf ~/camilladsp/camilladsp-linux-aarch64.tar.gz -C /usr/local/bin/
 ### 4) Install CamillaDSP service
 
 ```
-sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/camilladsp.service -O /lib/systemd/user/camilladsp.service
-systemctl --user enable camilladsp
-systemctl --user start camilladsp
+sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/camilladsp.service -O /lib/systemd/system/camilladsp.service
+```
+
+Open CamillaDSP service in nano and update username to reflect your username.
+
+```
+sudo nano /lib/systemd/system/camilladsp.service
+```
+
+When done, enter ctrl + x to exit nano, when prompted with 'Save modified buffer?' enter Y and when prompted with 'File Name to Write: /lib/systemd/system/camilladsp.service' hit Enter key. This same technique will be used elsewhere in this tutorial when editing files in nano.
+
+Enable and start camilladsp service.
+
+```
+sudo systemctl enable camilladsp
+sudo service camilladsp start
 ```
 
 See below for a brief explanation of the CamillaDSP flags applied in ExecStart of the service.
@@ -174,9 +187,20 @@ sudo tar -xvf ~/camilladsp/bundle_linux_aarch64.tar.gz -C /opt/
 ### 6) Install GUI service
 
 ```
-sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/camillagui.service -O /lib/systemd/user/camillagui.service
-systemctl --user enable camillagui
-systemctl --user start camillagui
+sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/camillagui.service -O /lib/systemd/system/camillagui.service
+```
+
+Open GUI service in nano and update username to reflect your username.
+
+```
+sudo nano /lib/systemd/system/camillagui.service
+```
+
+Enable and start camillagui service.
+
+```
+sudo systemctl enable camillagui
+sudo systemctl camillagui start
 ```
 
 ### 7) Enable ALSA loopback (optional)
@@ -236,30 +260,21 @@ Congratulations, CamillaDSP is now up and running!
 
 ### 10) Upgrading to future versions
 
-To upgrade to a new version of CamillaDSP, simply download and extract the new binary. These instructions also remove any old instances of camilladsp.service and install the most recent system --user camilladsp.service.
+To upgrade to a new version of CamillaDSP, simply download and extract the new binary.
 
 ```
 wget https://github.com/HEnquist/camilladsp/releases/download/v3.0.0/camilladsp-linux-aarch64.tar.gz -O ~/camilladsp-linux-aarch.tar.gz
 sudo tar -xvf ~/camilladsp/camilladsp-linux-aarch64.tar.gz -C /usr/local/bin/
-sudo systemctl stop camilladsp
-sudo systemctl disable camilladsp
-sudo rm /lib/systemd/system/camilladsp.service
-sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/camilladsp.service -O /lib/systemd/user/camilladsp.service
-systemctl --user enable camilladsp
-systemctl --user start camilladsp
+sudo service camilladsp restart
 ```
 
-Upgrading the GUI is a similar process.
+Upgrading the GUI is a similar process. If you are upgrading from a GUI prior to V3.0.1, please install a new [GUI service](#6-install-gui-service).
 
 ```
 wget https://github.com/HEnquist/camillagui-backend/releases/download/v3.0.2/bundle_linux_aarch64.tar.gz -O ~/camilladsp/bundle_linux_aarch64.tar.gz
 sudo tar -xvf ~/camilladsp/bundle_linux_aarch64.tar.gz -C /opt/
-sudo systemctl stop camillagui
-sudo systemctl disable camillagui
-sudo rm /lib/systemd/system/camillagui.service
-sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/camillagui.service -O /lib/systemd/user/camillagui.service
-systemctl --user enable camillagui
-systemctl --user start camillagui
+sudo service camilladsp restart
+sudo service camillagui restart
 ```
 
 ## Streamer Applications
@@ -778,9 +793,19 @@ flirc=evdev.InputDevice('/dev/input/by-id/usb-flirc.tv_flirc-if01-event-kbd')
 Install FLIRC service. If upgrading from V2 to V3, download a new version of flirc.service as pycamilladsp is now installed in a virtual environment.
 
 ```
-sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/flirc.service -O /lib/systemd/user/flirc.service
-systemctl --user enable flirc
-systemctl --user start flirc
+sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/flirc.service -O /lib/systemd/system/flirc.service
+```
+
+Open FLIRC service in nano and update username to reflect your username.
+```
+sudo nano /lib/systemd/system/flirc.service
+```
+
+Enable and start FLIRC service.
+
+```
+sudo systemctl enable flirc
+sudo service flirc start
 ```
 
 ### Trigger Output
@@ -814,9 +839,20 @@ wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.py -O ~
 Install OLED service. If upgrading from V2 to V3, download a new version of oled.service as pycamilladsp is now installed in a virtual environment.
 
 ```
-sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.service -O /lib/systemd/user/oled.service
-systemctl --user enable oled
-systemctl --user start oled
+sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.service -O /lib/systemd/system/oled.service
+```
+
+Open OLED service in nano and update username to reflect your username.
+
+```
+sudo nano /lib/systemd/system/oled.service
+```
+
+Enable and start OLED service.
+
+```
+sudo systemctl enable oled
+sudo service oled start
 ```
 
 The python script has the ability to show user defined text on the first line of the display based on loaded configuration file. With CamillaDSP V2, this will show the title field under the Title tab of the GUI. If this field is blank, "CamillaDSP" will be displayed.

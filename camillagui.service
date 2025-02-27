@@ -4,6 +4,7 @@ After=default.target
 
 [Service]
 Type=idle
+User=username
 ExecStart=/opt/camillagui_backend/camillagui_backend
 
 [Install]
