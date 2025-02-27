@@ -200,7 +200,7 @@ Enable and start camillagui service.
 
 ```
 sudo systemctl enable camillagui
-sudo systemctl camillagui start
+sudo service camillagui start
 ```
 
 ### 7) Enable ALSA loopback (optional)
