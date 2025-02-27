@@ -144,22 +144,9 @@ sudo tar -xvf ~/camilladsp/camilladsp-linux-aarch64.tar.gz -C /usr/local/bin/
 ### 4) Install CamillaDSP service
 
 ```
-sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/camilladsp.service -O /lib/systemd/system/camilladsp.service
-```
-
-Open CamillaDSP service in nano and update username to reflect your username.
-
-```
-sudo nano /lib/systemd/system/camilladsp.service
-```
-
-When done, enter ctrl + x to exit nano, when prompted with 'Save modified buffer?' enter Y and when prompted with 'File Name to Write: /lib/systemd/system/camilladsp.service' hit Enter key. This same technique will be used elsewhere in this tutorial when editing files in nano.
-
-Enable and start camilladsp service.
-
-```
-sudo systemctl enable camilladsp
-sudo service camilladsp start
+sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/camilladsp.service -O /lib/systemd/user/camilladsp.service
+systemctl --user enable camilladsp
+systemctl --user start camilladsp
 ```
 
 See below for a brief explanation of the CamillaDSP flags applied in ExecStart of the service.
@@ -187,20 +174,9 @@ tar -xvf ~/camilladsp/bundle_linux_aarch64.tar.gz -C ~/camilladsp/
 ### 6) Install GUI service
 
 ```
-sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/camillagui.service -O /lib/systemd/system/camillagui.service
-```
-
-Open GUI service in nano and update username and ExecStart to reflect your username.
-
-```
-sudo nano /lib/systemd/system/camillagui.service
-```
-
-Enable and start camillagui service.
-
-```
-sudo systemctl enable camillagui
-sudo service camillagui start
+sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/camillagui.service -O /lib/systemd/user/camillagui.service
+systemctl --user enable camillagui
+systemctl --user start camillagui
 ```
 
 ### 7) Enable ALSA loopback (optional)
@@ -264,16 +240,15 @@ To upgrade to a new version of CamillaDSP, simply download and extract the new b
 ```
 wget https://github.com/HEnquist/camilladsp/releases/download/v3.0.0/camilladsp-linux-aarch64.tar.gz -O ~/camilladsp-linux-aarch.tar.gz
 sudo tar -xvf ~/camilladsp/camilladsp-linux-aarch64.tar.gz -C /usr/local/bin/
-sudo service camilladsp restart
+systemctl --user restart camilladsp
 ```
 
-Upgrading the GUI is a similar process. If you are upgrading from a GUI prior to V3.0.1, please install a new [GUI service](#6-install-gui-service).
+Upgrading the GUI is a similar process.
 
 ```
 wget https://github.com/HEnquist/camillagui-backend/releases/download/v3.0.2/bundle_linux_aarch64.tar.gz -O ~/camilladsp/bundle_linux_aarch64.tar.gz
 tar -xvf ~/camilladsp/bundle_linux_aarch64.tar.gz -C ~/camilladsp/
-sudo service camilladsp restart
-sudo service camillagui restart
+systemctl --user restart camillagui
 ```
 
 ## Streamer Applications
@@ -726,8 +701,8 @@ Install python virtual environment and pycamilladsp. Installing pycamilladsp in 
 
 ```
 sudo apt install git python3-dev python3-aiohttp
-python -m venv --system-site-packages ~/camilladsp/.venv
-source ~/camilladsp/.venv/bin/activate
+sudo python -m venv --system-site-packages /opt/venv
+source /opt/venv/bin/activate
 pip3 install git+https://github.com/HEnquist/pycamilladsp.git
 deactivate
 ```
@@ -792,20 +767,9 @@ flirc=evdev.InputDevice('/dev/input/by-id/usb-flirc.tv_flirc-if01-event-kbd')
 Install FLIRC service. If upgrading from V2 to V3, download a new version of flirc.service as pycamilladsp is now installed in a virtual environment.
 
 ```
-sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/flirc.service -O /lib/systemd/system/flirc.service
-```
-
-Open FLIRC service in nano and update username and ExecStart to reflect your username.
-
-```
-sudo nano /lib/systemd/system/flirc.service
-```
-
-Enable and start FLIRC service.
-
-```
-sudo systemctl enable flirc
-sudo service flirc start
+sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/flirc.service -O /lib/systemd/user/flirc.service
+systemctl --user enable flirc
+systemctl --user start flirc
 ```
 
 ### Trigger Output
@@ -824,8 +788,8 @@ Install python virtual environment and pycamilladsp. Note, you may have already 
 
 ```
 sudo apt install git python3-dev python3-aiohttp
-python -m venv --system-site-packages ~/camilladsp/.venv
-source ~/camilladsp/.venv/bin/activate
+sudo python -m venv --system-site-packages /opt/venv
+source /opt/venv/bin/activate
 pip3 install git+https://github.com/HEnquist/pycamilladsp.git
 deactivate
 ```

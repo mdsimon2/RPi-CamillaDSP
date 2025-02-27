@@ -4,9 +4,7 @@ After=default.target
 
 [Service]
 Type=idle
-User=username
-WorkingDirectory=~
-ExecStart=/home/username/camilladsp/camillagui_backend/camillagui_backend
+ExecStart=/opt/camillagui_backend/camillagui_backend
 
 [Install]
 WantedBy=default.target
