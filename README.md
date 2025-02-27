@@ -237,10 +237,11 @@ Congratulations, CamillaDSP is now up and running!
 ### 10) Upgrading to future versions
 
 To upgrade to a new version of CamillaDSP, simply download and extract the new binary. These instructions also remove any old instances of camilladsp.service and install the most recent system --user camilladsp.service.
-```
 
+```
 wget https://github.com/HEnquist/camilladsp/releases/download/v3.0.0/camilladsp-linux-aarch64.tar.gz -O ~/camilladsp-linux-aarch.tar.gz
 sudo tar -xvf ~/camilladsp/camilladsp-linux-aarch64.tar.gz -C /usr/local/bin/
+sudo systemctl stop camilladsp
 sudo systemctl disable camilladsp
 sudo rm /lib/systemd/system/camilladsp.service
 sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/camilladsp.service -O /lib/systemd/user/camilladsp.service
@@ -251,12 +252,14 @@ systemctl --user start camilladsp
 Upgrading the GUI is a similar process.
 
 ```
-wget https://github.com/HEnquist/camillagui-backend/releases/download/v3.0.2/bundle_linux_aarch64.tar.gz -O ~/camilladsp/bundle_linux_aarch64.tar.gzsudo tar -xvf ~/camilladsp/bundle_linux_aarch64.tar.gz -C /opt/
+wget https://github.com/HEnquist/camillagui-backend/releases/download/v3.0.2/bundle_linux_aarch64.tar.gz -O ~/camilladsp/bundle_linux_aarch64.tar.gz
+sudo tar -xvf ~/camilladsp/bundle_linux_aarch64.tar.gz -C /opt/
+sudo systemctl stop camillagui
 sudo systemctl disable camillagui
 sudo rm /lib/systemd/system/camillagui.service
 sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/camillagui.service -O /lib/systemd/user/camillagui.service
 systemctl --user enable camillagui
-systemctl --user start camilladsp
+systemctl --user start camillagui
 ```
 
 ## Streamer Applications
