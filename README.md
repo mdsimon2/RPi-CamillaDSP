@@ -376,23 +376,17 @@ For constant sample rate digital sources the following devices work well. Compar
 
 ### chunksize / target_level
 
-CamillaDSP V1 used a buffer size of 2 x chunksize, CamillaDSP V2 and V3 use a buffer size of 4 x chunksize. In previous versions of this tutorial a rather long chunksize was specified (44.1/48 = 1024, 88.2/96 = 2048, 176.4/192 = 4096) resulting in long latency. After some experimentation, it was found that much lower chunksizes are stable when using physical input (SPDIF, TOSLINK, analog, etc) capture devices.
+CamillaDSP V1 used a buffer size of 2 x chunksize, CamillaDSP V2 and V3 use a buffer size of 4 x chunksize. In previous versions of this tutorial a rather long chunksize was specified (44.1/48 = 1024, 88.2/96 = 2048, 176.4/192 = 4096) resulting in long latency. After some experimentation, it was found that much lower chunksizes are stable and result in reasonable latency for audio / video applications.
 
-All physical input capture device configurations now use the following chunksize depending on playback sample rate.
-
-- 44.1 / 48 kHz: 128
-- 88.2 / 96 kHz: 256
-- 176.4 / 192 kHz: 512
-
-All ALSA Loopback / USB gadget capture device configurations now use the following chunksize depending on playback sample rate.
+All configurations now use the following chunksize depending on playback sample rate.
 
 - 44.1 / 48 kHz: 256
 - 88.2 / 96 kHz: 512
 - 176.4 / 192 kHz: 1024
 
-All configurations use target level of 3X chunk size. Configurations without rate adjust can use lower target levels if lower latency is desired.
+All configurations use target level of 3 x chunk size. 
 
-For physical input capture device configurations latency is ~15 ms, for ALSA Loopback / USB gadget capture device configurations latency is ~25 ms.
+These chunksize / target level settings result in ~25 ms latency. If lower latency is desired, considering reducing chunksize / target level by factors of two. For configurations without rate adjust, consider lowering target level to 1 x chunksize. If latency is a concern, the Okto dac8 PRO in USB/AES mode is recommended as it can comfortably run with very low chunksizes / target levels.
 
 If dropouts are experienced, try doubling chunksize / target_level, and please let me know.
 
