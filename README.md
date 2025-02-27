@@ -803,20 +803,9 @@ wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.py -O ~
 Install OLED service. If upgrading from V2 to V3, download a new version of oled.service as pycamilladsp is now installed in a virtual environment.
 
 ```
-sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.service -O /lib/systemd/system/oled.service
-```
-
-Open OLED service in nano and update username and ExecStart to reflect your username.
-
-```
-sudo nano /lib/systemd/system/oled.service
-```
-
-Enable and start OLED service.
-
-```
-sudo systemctl enable oled
-sudo service oled start
+sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.service -O /lib/systemd/user/oled.service
+systemctl --user enable oled
+systemctl --user start oled
 ```
 
 The python script has the ability to show user defined text on the first line of the display based on loaded configuration file. With CamillaDSP V2, this will show the title field under the Title tab of the GUI. If this field is blank, "CamillaDSP" will be displayed.
