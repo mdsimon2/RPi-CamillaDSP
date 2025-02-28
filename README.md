@@ -720,7 +720,7 @@ Pressing KEY_LEFT will mute CamillaDSP, if configurations are switched this mute
 Install python virtual environment and pycamilladsp. Installing pycamilladsp in a virtual environment is a change with V3 and requires an update to flirc.service if upgrading from an older version.
 
 ```
-sudo apt install git python3-dev python3-aiohttp
+sudo apt install git
 sudo python -m venv --system-site-packages /opt/venv
 source /opt/venv/bin/activate
 pip3 install git+https://github.com/HEnquist/pycamilladsp.git
