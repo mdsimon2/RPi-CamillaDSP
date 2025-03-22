@@ -133,7 +133,7 @@ Say yes to any upgrade prompts. If prompted about restarting services, hit enter
 
 ### 3) Install CamillaDSP
 
-Make a camilladsp folder, as well as folders for CamillaDSP to reference stored FIR filters and configurations. Download and unpack CamillaDSP binary. The commands below will install V3.0.1 in /usr/local/bin/.
+Make a camilladsp folder, as well as folders for CamillaDSP to reference stored FIR filters and configurations. Download and unpack CamillaDSP binary.
 
 ```
 mkdir ~/camilladsp ~/camilladsp/coeffs ~/camilladsp/configs
@@ -180,7 +180,7 @@ See below for a brief explanation of the CamillaDSP flags applied in ExecStart o
 Download and extract GUI bundle.
 
 ```
-wget https://github.com/HEnquist/camillagui-backend/releases/download/v3.0.3/bundle_linux_aarch64.tar.gz -O ~/camilladsp/bundle_linux_aarch64.tar.gz
+wget https://github.com/HEnquist/camillagui-backend/releases/download/v3.0.2/bundle_linux_aarch64.tar.gz -O ~/camilladsp/bundle_linux_aarch64.tar.gz
 sudo tar -xvf ~/camilladsp/bundle_linux_aarch64.tar.gz -C /opt/
 ```
 
