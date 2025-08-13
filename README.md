@@ -180,7 +180,7 @@ See below for a brief explanation of the CamillaDSP flags applied in ExecStart o
 Download and extract GUI bundle.
 
 ```
-wget https://github.com/HEnquist/camillagui-backend/releases/download/v3.0.2/bundle_linux_aarch64.tar.gz -O ~/camilladsp/bundle_linux_aarch64.tar.gz
+wget https://github.com/HEnquist/camillagui-backend/releases/download/v3.0.3/bundle_linux_aarch64.tar.gz -O ~/camilladsp/bundle_linux_aarch64.tar.gz
 sudo tar -xvf ~/camilladsp/bundle_linux_aarch64.tar.gz -C /opt/
 ```
 
