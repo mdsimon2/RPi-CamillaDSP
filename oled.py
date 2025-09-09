@@ -30,11 +30,11 @@ except IOError as e:
 OLED_D0 = 15        #26 OLED pin 4
 OLED_D1 = 13        #   OLED pin 5
 OLED_D2 = 6         #   OLED pin 6
-OLED_D3 = 5         #   OLED pin 7
+OLED_D3 = 11         #   OLED pin 7
 OLED_D4 = 9         #22 OLED pin 8
-OLED_D5 = 2         #27 OLED pin 9
+OLED_D5 = 7         #27, then changed to 2 OLED pin 9
 OLED_D6 = 17        #   OLED pin 10
-OLED_D7 = 3         #18 OLED pin 11
+OLED_D7 = 8         #18, then changed to 3 OLED pin 11
 OLED_E = 14         #23 OLED pin 12
 #OLED_RW = GND      #   OLED pin 13
 OLED_DC = 16        #   OLED pin 14

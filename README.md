@@ -851,7 +851,7 @@ sudo service oled start
 
 The python script has the ability to show user defined text on the first line of the display based on loaded configuration file. With CamillaDSP V2, this will show the title field under the Title tab of the GUI. If this field is blank, "CamillaDSP" will be displayed.
 
-Wiring configuration from the display to the RPi GPIO header is listed below. Note, these pins can be changed as desired, see here for more information on RPi pinout -> https://www.tomshardware.com/reviews/raspberry-pi-gpio-pinout,6122.html. Please note the wiring configuration has been changed from earlier versions of this tutorial to accommodate the HifiBerry DAC8x, the old pin configurations are shown in parenthesis for the pins that have changed.
+Wiring configuration from the display to the RPi GPIO header is listed below. Note, these pins can be changed as desired, see here for more information on RPi pinout -> https://www.tomshardware.com/reviews/raspberry-pi-gpio-pinout,6122.html. **Please note the wiring configuration has been changed from earlier versions of this tutorial to accommodate the HifiBerry DAC8x, the old pin configurations are shown in parenthesis for the pins that have changed**.
 
 1) (ground) -> ground
 2) (supply voltage) -> 3.3 V
@@ -859,11 +859,11 @@ Wiring configuration from the display to the RPi GPIO header is listed below. No
 4) (data bus 0) -> GPIO 15 (GPIO 26)
 5) (data bus 1) -> GPIO 13
 6) (data bus 2) -> GPIO 6
-7) (data bus 3) -> GPIO 5
+7) (data bus 3) -> GPIO 11 (GPIO 5)
 8) (data bus 4) -> GPIO 9 (GPIO 22)
-9) (data bus 5) -> GPIO 2 (GPIO 27)
+9) (data bus 5) -> GPIO 7 (GPIO 27, then changed to GPIO 2)
 10) (data bus 6) -> GPIO 17
-11) (data bus 7) -> GPIO 3 (GPIO 18)
+11) (data bus 7) -> GPIO 8 (GPIO 18, then changed to GPIO 3)
 12) (enable) -> GPIO 14 (GPIO 23)
 13) (read/write) -> ground
 14) (data/command) -> GPIO 16
