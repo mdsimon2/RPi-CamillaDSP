@@ -721,7 +721,7 @@ Install python virtual environment and pycamilladsp. Installing pycamilladsp in 
 
 ```
 sudo apt install git
-sudo python -m venv --system-site-packages /opt/venv
+sudo python3 -m venv --system-site-packages /opt/venv
 source /opt/venv/bin/activate
 pip3 install git+https://github.com/HEnquist/pycamilladsp.git
 deactivate
@@ -818,7 +818,7 @@ Install python virtual environment and pycamilladsp. Note, you may have already 
 
 ```
 sudo apt install git
-sudo python -m venv --system-site-packages /opt/venv
+sudo python3 -m venv --system-site-packages /opt/venv
 source /opt/venv/bin/activate
 pip3 install git+https://github.com/HEnquist/pycamilladsp.git
 deactivate
