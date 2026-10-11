@@ -653,11 +653,11 @@ Filter steps can be applied to multiple channels, eliminating need to repeat fil
 
 #### Files
 
-The Files tab stores configurations and convolution filters. It will show configuration files located in ~/camilladsp/configs/ and convolution filters located in ~/camilladsp/coeffs/. Configurations and convolution filters can be downloaded / uploaded to/from via this tab. 
+Files tab stores configurations and convolution filters. It will show configuration files located in ~/camilladsp/configs/ and convolution filters located in ~/camilladsp/coeffs/. Configurations and convolution filters can be downloaded / uploaded via this tab. 
 
-To load a configuration in the GUI, press the clockwise arrow button next to the desired configuration. Once this is done, the configuration name appear in the lower left under "Config", in the screenshot below, a configuration called lxminibsc.yml is loaded in the GUI.
+To load a configuration in GUI, press upward arrow button next to desired configuration. Once this is done, configuration name appear in lower left under "Config", in screenshot below, a configuration called lxminibsc.yml is loaded in the GUI.
 
-Just because a configuration is loaded in the GUI does NOT mean it is actually applied to the DSP. To apply a configuration to the DSP, click the "Apply to DSP" button. This will apply the configuration in the GUI to the DSP but it will NOT save any changes made via the GUI. To save changes, click the "Save to File" button. To implement both of these operations at the same time, click the "Apply and save" button. Alternatively, use the "Apply automatically" and "Save automatically" check boxes to do these operations automatically after a change is made in the GUI.
+Just because a configuration is loaded in GUI does NOT mean it is applied to DSP. To apply a configuration to DSP, clicks "Apply to DSP" button. This will apply configuration in GUI to DSP but will NOT save any changes made via GUI. To save changes, click "Save to File" button. To implement both of these operations at same time, click "Apply and save" button. Alternatively, use "Apply automatically" and "Save automatically" check boxes to do these operations automatically after a change is made in GUI.
 
 To see what settings are currently applied to the DSP, click the "Fetch from DSP" button and to load the GUI with the current DSP settings. Note, it only pulls the settings and does NOT change the configuration name in the lower left.
 
