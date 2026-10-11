@@ -613,13 +613,13 @@ Devices tab defines general parameters like capture device, playback device, sam
 
 It is very important that sample format and channel count are supported by the device. If using configurations from this tutorial this will not be an issue, but if creating new configurations it is something to be aware of. 
 
-With V3 there are now labels that can be applied to capture device channels, if a list of labels is provided they will appear in the Mixers and Pipeline tabs, as well as level meters.
+Labels can be applied to capture device channels, if a list of labels is provided they will appear in Mixers and Pipeline tabs, as well as level meters. Note, playback device labels is done in Mixers tab.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/devices.png" alt="devices" width="600"/>
 
 #### Filters
 
-In the Filters tab a variety of filters can be created. A big advantage of using the GUI over a manual configuration file is that it will prompt for the necessary information for a given filter type. Once a filter is created, magnitude / phase / group delay can be viewed. For questions about specific filter implementation, see the [CamillaDSP GitHub](https://github.com/HEnquist/camilladsp). Creating a filter in the Filters tab does not apply it to the pipeline, it just creates a filter that will be available to apply in the pipeline.
+In Filters tab a variety of filters can be created. A big advantage of using GUI over a manual configuration file is that it will prompt for necessary information for a given filter type. Once a filter is created, magnitude / phase / group delay can be viewed. For questions about specific filter implementation, see [CamillaDSP GitHub](https://github.com/HEnquist/camilladsp). Creating a filter in Filters tab does NOT apply it to the pipeline, it just creates a filter that will be available to apply in the pipeline.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/filters.png" alt="filters" width="600"/>
 
