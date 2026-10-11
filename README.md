@@ -339,13 +339,13 @@ Review configuration in GUI and make any changes needed. To save updated configu
 ### ASRC Options
 CamillaDSP expects a constant capture sample rate and cannot accommodate rate changes without a restart. For variable sample rate physical digital sources like TOSLINK, AES or SPDIF or multiple physical digital sources with different rates, a good option is to add a device that has an ASRC to convert to a consistent rate. miniDSP offer many devices with this capability which are summarized below.
 
-- [nanoDIGI](https://www.minidsp.com/images/documents/nanoDIGI%202x8%20User%20Manual.pdf) - $170, discontinued in 2021 but possible to find used, SPDIF / TOSLINK input, SPDIF output, 96 kHz
-- [2x4HD](https://www.minidsp.com/products/minidsp-in-a-box/minidsp-2x4-hd) - $225, TOSLINK / analog input, USB output, 96 kHz
-- [miniDSP OpenDRC-DI](https://www.minidsp.com/products/opendrc-series/opendrc-di) - $325, AES / SPDIF / TOSLINK input and output, 48 or 96 kHz
-- [Flex Digital](https://www.minidsp.com/products/minidsp-in-a-box/flex) - $495, SPDIF / TOSLINK / USB / analog / bluetooth input, SPDIF / TOSLINK / USB output, 96 kHz
-- [Flex Analog](https://www.minidsp.com/products/minidsp-in-a-box/flex) $495-470, SPDIF / TOSLINK / analog / bluetooth input, USB Output, 96 kHz
-- [SHD Studio](https://www.minidsp.com/products/streaming-hd-series/shd-studio) - $900, AES / SPDIF / TOSLINK / USB / streamer input, SPDIF / AES / USB output, 96 kHz
-- [SHD](https://www.minidsp.com/products/streaming-hd-series/shd) - $1250, AES / SPDIF / TOSLINK / USB / streamer / analog input, SPDIF / AES / USB output, 96 kHz
+- [nanoDIGI](https://www.minidsp.com/images/documents/nanoDIGI%202x8%20User%20Manual.pdf), discontinued in 2021 but possible to find used, SPDIF / TOSLINK input, SPDIF output, 96 kHz
+- [2x4HD](https://www.minidsp.com/products/minidsp-in-a-box/minidsp-2x4-hd), TOSLINK / analog input, USB output, 96 kHz
+- [miniDSP OpenDRC-DI](https://www.minidsp.com/products/opendrc-series/opendrc-di), AES / SPDIF / TOSLINK input and output, 48 or 96 kHz
+- [Flex Digital](https://www.minidsp.com/products/minidsp-in-a-box/flex), SPDIF / TOSLINK / USB / analog / bluetooth input, SPDIF / TOSLINK / USB output, 96 kHz
+- [Flex Analog](https://www.minidsp.com/products/minidsp-in-a-box/flex), SPDIF / TOSLINK / analog / bluetooth input, USB Output, 96 kHz
+- [SHD Studio](https://www.minidsp.com/products/streaming-hd-series/shd-studio), AES / SPDIF / TOSLINK / USB / streamer input, SPDIF / AES / USB output, 96 kHz
+- [SHD](https://www.minidsp.com/products/streaming-hd-series/shd), AES / SPDIF / TOSLINK / USB / streamer / analog input, SPDIF / AES / USB output, 96 kHz
 
 These devices can do IR volume control, although not all have displays for volume / input identification.
 
