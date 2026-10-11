@@ -619,7 +619,7 @@ Labels can be applied to capture device channels, if a list of labels is provide
 
 #### Filters
 
-In Filters tab a variety of filters can be created. A big advantage of using GUI over a manual configuration file is that it will prompt for necessary information for a given filter type. Once a filter is created, magnitude / phase / group delay can be viewed. For questions about specific filter implementation, see [CamillaDSP GitHub](https://github.com/HEnquist/camilladsp). Creating a filter in Filters tab does NOT apply it to the pipeline, it just creates a filter that will be available to apply in the pipeline.
+In Filters tab a variety of filters can be created. A big advantage of using GUI over a manual configuration file is that it will prompt for necessary information for a given filter type. Once a filter is created, magnitude / phase / group delay can be viewed. For questions about specific filter implementation, see [CamillaDSP GitHub](https://github.com/HEnquist/camilladsp). Creating a filter in Filters tab does NOT apply it to pipeline, it just creates a filter that will be available to apply in pipeline.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/filters.png" alt="filters" width="600"/>
 
