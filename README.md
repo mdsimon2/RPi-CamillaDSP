@@ -625,11 +625,11 @@ In Filters tab a variety of filters can be created. A big advantage of using GUI
 
 #### Mixers
 
-The Mixers tab defines channel routing, in addition, gain and polarity can be defined for each channel. Like filters, mixers will not be in effect until applied in the pipeline.
+Mixers tab defines channel routing, in addition, gain and polarity can be defined for each channel. Like filters, mixers will not be in effect until applied in pipeline.
 
-As in the Devices tab, it is very important that mixer channel counts exactly match the channel counts of the device. For configurations from this tutorial this will not be an issue. It is not required to use all channels in the mixer, but the correct channel counts need to specified in the "in" and "out" section. For example in the screenshot below 8 input and 8 output channels are specified although only 2 input channels (0 and 1) are used in the mixer definition.
+As in Devices tab, it is very important that mixer channel counts exactly match device channel counts. For configurations from this tutorial this will not be an issue. It is not required to use all channels in mixer, but correct channel counts need to specified in "in" and "out" section. For example in screenshot below 8 input and 8 output channels are specified although only 2 input channels (0 and 1) are used in mixer definition.
 
-With V3 there are now labels that can be applied to playback device channels, if a list of labels is provided they will appear in the Mixers and Pipeline tabs, as well as level meters.
+Input channel labels carryover from Devices tab, output channel labels are defined here.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/mixers.png" alt="mixers" width="600"/>
 
