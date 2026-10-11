@@ -70,31 +70,13 @@ This part describes how to get a working CamillaDSP setup. For reference, a comp
 
 ### 1) Write OS to micro SD card
 
-Download and install Raspberry Pi Imager from the links below for Raspberry Pi OS Lite 64 bit Bookworm.
+Download and install Raspberry Pi Imager from the links below.
 
 - [Raspberry Pi Imager for Ubuntu](https://downloads.raspberrypi.org/imager/imager_latest_amd64.deb)
 - [Raspberry Pi Imager for Windows](https://downloads.raspberrypi.org/imager/imager_latest.exe)
 - [Raspberry Pi Imager for macOS](https://downloads.raspberrypi.org/imager/imager_latest.dmg)
 
-Open Raspberry Pi Imager, select the desired RPi, OS and micro SD card. When done, click Next.
-
-<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/rpi_imager.png" alt="rpi_imager" width="300"/>
-
-When prompted, click Edit Settings.
-
-<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/rpi_imager_2.png" alt="rpi_imager_2" width="300"/>
-
-Under General tab, set hostname, username, password and wifi settings. When done, click Services tab.
-
-<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/rpi_imager_3.png" alt="rpi_imager_3" width="300"/>
-
-Under Services tab, enable SSH and password authentication. When done, click Save.
-
-<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/rpi_imager_4.png" alt="rpi_imager_4" width="300"/>
-
-Click Yes to write OS to micro SD card.
-
-<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/rpi_imager_5.png" alt="rpi_imager_5" width="300"/>
+Open Raspberry Pi Imager, in Device tab select desired RPi, in OS tab navigate to Raspberry Pi OS (other) and select most recent version of Raspberry Pi OS Lite (64-bit), in Storage tab select micro SD card and in Customisation tab set hostname, username, password, wifi settings and enable SSH with password authentication. Finally in Writing tab click Write. 
 
 When done writing, insert micro SD card into RPi and connect power supply.
 
@@ -133,11 +115,11 @@ Say yes to any upgrade prompts. If prompted about restarting services, hit enter
 
 ### 3) Install CamillaDSP
 
-Make a camilladsp folder, as well as folders for CamillaDSP to reference stored FIR filters and configurations. Download and unpack CamillaDSP binary.
+Make camilladsp folder, as well as folders for CamillaDSP to reference stored FIR filters and configurations. Download and unpack CamillaDSP binary.
 
 ```
 mkdir ~/camilladsp ~/camilladsp/coeffs ~/camilladsp/configs
-wget https://github.com/HEnquist/camilladsp/releases/download/v3.0.1/camilladsp-linux-aarch64.tar.gz -O ~/camilladsp/camilladsp-linux-aarch64.tar.gz
+wget https://github.com/HEnquist/camilladsp/releases/download/v4.1.3/camilladsp-linux-aarch64.tar.gz -O ~/camilladsp/camilladsp-linux-aarch64.tar.gz
 sudo tar -xvf ~/camilladsp/camilladsp-linux-aarch64.tar.gz -C /usr/local/bin/
 ```
 
@@ -180,7 +162,7 @@ See below for a brief explanation of the CamillaDSP flags applied in ExecStart o
 Download and extract GUI bundle.
 
 ```
-wget https://github.com/HEnquist/camillagui-backend/releases/download/v3.0.3/bundle_linux_aarch64.tar.gz -O ~/camilladsp/bundle_linux_aarch64.tar.gz
+wget https://github.com/HEnquist/camillagui-backend/releases/download/v4.1.0/bundle_linux_aarch64.tar.gz -O ~/camilladsp/bundle_linux_aarch64.tar.gz
 sudo tar -xvf ~/camilladsp/bundle_linux_aarch64.tar.gz -C /opt/
 ```
 
@@ -263,7 +245,7 @@ Congratulations, CamillaDSP is now up and running!
 To upgrade to a new version of CamillaDSP, simply download and extract the new binary.
 
 ```
-wget https://github.com/HEnquist/camilladsp/releases/download/v3.0.1/camilladsp-linux-aarch64.tar.gz -O ~/camilladsp/camilladsp-linux-aarch64.tar.gz
+wget https://github.com/HEnquist/camillagui-backend/releases/download/v4.1.0/bundle_linux_aarch64.tar.gz -O ~/camilladsp/camilladsp-linux-aarch64.tar.gz
 sudo tar -xvf ~/camilladsp/camilladsp-linux-aarch64.tar.gz -C /usr/local/bin/
 sudo service camilladsp restart
 ```
@@ -271,7 +253,7 @@ sudo service camilladsp restart
 Upgrading the GUI is a similar process. If you are upgrading from a GUI prior to V3.0.1, please install a new [GUI service](#6-install-gui-service).
 
 ```
-wget https://github.com/HEnquist/camillagui-backend/releases/download/v3.0.3/bundle_linux_aarch64.tar.gz -O ~/camilladsp/bundle_linux_aarch64.tar.gz
+wget https://github.com/HEnquist/camillagui-backend/releases/download/v4.1.0/bundle_linux_aarch64.tar.gz -O ~/camilladsp/bundle_linux_aarch64.tar.gz
 sudo tar -xvf ~/camilladsp/bundle_linux_aarch64.tar.gz -C /opt/
 sudo service camilladsp restart
 sudo service camillagui restart
