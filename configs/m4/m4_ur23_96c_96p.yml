@@ -4,7 +4,7 @@ devices:
   capture:
     channels: 2
     device: hw:Rx
-    format: S24LE3
+    format: S24_3_LE
     labels: null
     link_mute_control: null
     link_volume_control: null
@@ -17,7 +17,7 @@ devices:
   playback:
     channels: 4
     device: hw:M4
-    format: S32LE
+    format: S32_LE
     type: Alsa
   queuelimit: 4
   rate_measure_interval: 1

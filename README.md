@@ -360,7 +360,7 @@ For constant sample rate digital sources the following devices work well. Compar
 
 ### chunksize / target_level
 
-CamillaDSP V1 used a buffer size of 2 x chunksize, CamillaDSP V2 and V3 use a buffer size of 4 x chunksize. In previous versions of this tutorial a rather long chunksize was specified (44.1/48 = 1024, 88.2/96 = 2048, 176.4/192 = 4096) resulting in long latency. After some experimentation, it was found that much lower chunksizes are stable and result in reasonable latency for audio / video applications.
+CamillaDSP V1 used a buffer size of 2 x chunksize, later versions use a buffer size of 4 x chunksize. In previous versions of this tutorial a rather long chunksize was specified (44.1/48 = 1024, 88.2/96 = 2048, 176.4/192 = 4096) resulting in long latency. After some experimentation, it was found that much lower chunksizes are stable and result in reasonable latency for audio / video applications.
 
 All configurations now use the following chunksize depending on playback sample rate.
 
@@ -659,17 +659,17 @@ To load a configuration in GUI, press upward arrow button next to desired config
 
 Just because a configuration is loaded in GUI does NOT mean it is applied to DSP. To apply a configuration to DSP, clicks "Apply to DSP" button. This will apply configuration in GUI to DSP but will NOT save any changes made via GUI. To save changes, click "Save to File" button. To implement both of these operations at same time, click "Apply and save" button. Alternatively, use "Apply automatically" and "Save automatically" check boxes to do these operations automatically after a change is made in GUI.
 
-To see what settings are currently applied to the DSP, click the "Fetch from DSP" button and to load the GUI with the current DSP settings. Note, it only pulls the settings and does NOT change the configuration name in the lower left.
+To see what settings are currently applied to DSP, click "Fetch from DSP" button and to load GUI with current DSP settings. Note, it only pulls settings and does NOT change configuration name in the lower left.
 
-In order to set a configuration as default (i.e. the configuration that will be loaded when CamillaDSP starts), click the star button next to the desired configuration. After this is done, the star button will now be green next to the default configuration.
+In order to set a configuration as default (i.e. configuration that will be loaded when CamillaDSP starts), click star button next to desired configuration. After this is done, star button will now be green next to default configuration.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/files.png" alt="files" width="600"/>
 
 #### Compact View
 
-The Compact View is great for changing volume or configurations from a smartphone or tablet. It can be accessed by clicking the "Change to compact view" button just to the right of the CamillaDSP logo.
+Compact View is great for changing volume or configurations from a smartphone or tablet. It can be accessed by clicking "Change to compact view" button just to the right of CamillaDSP logo.
 
-If filters named "Bass" and "Treble" are created and applied, the sliders in this view can be used as bass / treble tone controls. Recommended parameters for bass and treble tone control are lowshelf, f=85 Hz, q=0.9 and highshelf, f=6500 Hz, q=0.7 respectively.
+If filters named "Bass" and "Treble" are created and applied, sliders in this view can be used as bass / treble tone controls. Recommended parameters for bass and treble tone control are lowshelf, f=85 Hz, q=0.9 and highshelf, f=6500 Hz, q=0.7 respectively.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/compact_view.png" alt="files" width="300"/>
 
@@ -711,7 +711,7 @@ pip3 install git+https://github.com/HEnquist/pycamilladsp.git
 deactivate
 ```
 
-Install evdev and flirc.py. If upgrading from V2 to V3, re-run the step below as pycamilladsp is now installed in a virtual environment and nomenclature has changed.
+Install evdev and flirc.py. If upgrading from V1 or V2, re-run step below as pycamilladsp is now installed in a virtual environment and nomenclature has changed.
 
 ```
 sudo apt install python3-evdev
@@ -768,7 +768,7 @@ If needed, change the flirc=evdev.InputDevice line near the top to reflect the F
 flirc=evdev.InputDevice('/dev/input/by-id/usb-flirc.tv_flirc-if01-event-kbd')
 ```
 
-Install FLIRC service. If upgrading from V2 to V3, download a new version of flirc.service as pycamilladsp is now installed in a virtual environment.
+Install FLIRC service. If upgrading from V1 or V2, download a new version of flirc.service as pycamilladsp is now installed in a virtual environment.
 
 ```
 sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/flirc.service -O /lib/systemd/system/flirc.service
@@ -808,13 +808,13 @@ pip3 install git+https://github.com/HEnquist/pycamilladsp.git
 deactivate
 ```
 
-Install oled.py. If upgrading from V2 to V3, re-run the step below as pycamilladsp is now installed in a virtual environment and nomenclature has changed.
+Install oled.py. If upgrading from V1 or V2, re-run the step below as pycamilladsp is now installed in a virtual environment and nomenclature has changed.
 
 ```
 wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.py -O ~/oled.py
 ```
 
-Install OLED service. If upgrading from V2 to V3, download a new version of oled.service as pycamilladsp is now installed in a virtual environment.
+Install OLED service. If upgrading from V1 or V2, download a new version of oled.service as pycamilladsp is now installed in a virtual environment.
 
 ```
 sudo wget https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/oled.service -O /lib/systemd/system/oled.service
@@ -833,7 +833,7 @@ sudo systemctl enable oled
 sudo service oled start
 ```
 
-The python script has the ability to show user defined text on the first line of the display based on loaded configuration file. With CamillaDSP V2, this will show the title field under the Title tab of the GUI. If this field is blank, "CamillaDSP" will be displayed.
+The python script has ability to show user defined text on first line of display based on loaded configuration file. Default is title field under Title tab of GUI. If this field is blank, "CamillaDSP" will be displayed.
 
 Wiring configuration from the display to the RPi GPIO header is listed below. Note, these pins can be changed as desired, see here for more information on RPi pinout -> https://www.tomshardware.com/reviews/raspberry-pi-gpio-pinout,6122.html. **Please note the wiring configuration has been changed from earlier versions of this tutorial to accommodate the HifiBerry DAC8x, the old pin configurations are shown in parenthesis for the pins that have changed**.
 
