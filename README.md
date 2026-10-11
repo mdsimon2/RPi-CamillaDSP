@@ -78,6 +78,8 @@ Download and install Raspberry Pi Imager from the links below.
 
 Open Raspberry Pi Imager, in Device tab select desired RPi, in OS tab navigate to Raspberry Pi OS (other) and select most recent version of Raspberry Pi OS Lite (64-bit), in Storage tab select micro SD card and in Customisation tab set hostname, username, password, wifi settings and enable SSH with password authentication. Finally in Writing tab click Write. 
 
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/rpi_imager.png" alt="rpi_imager" width="500"/>
+
 When done writing, insert micro SD card into RPi and connect power supply.
 
 This install assumes the RPi will be managed remotely via SSH from a separate computer. With Mac or Linux, terminal will installed by default and commands in subsequent steps of this tutorial can be run in terminal without issue.
