@@ -330,7 +330,7 @@ The naming convention configuration files in this tutorial is dac_input_capturer
 
 Each major CamillaDSP version has implemented slightly different nomenclature, therefore if you have an existing configuration you would like to use in a newer CamillaDSP version it needs to be converted.
 
-Go to Files tab in GUI and click New blank configuration to apply a blank configuration in GUI. Next click Import config and select CamillaDSP Config. Select your old configuration, click the box next to configuration name, scroll to bottom and select import, this loads updated configuration to GUI. You should see message saying the import was successful. 
+Go to Files tab in GUI and click New blank configuration to apply a blank configuration in GUI. Next click Import config and select CamillaDSP Config. Select your old configuration, click box next to configuration name, scroll to bottom and select import, this loads updated configuration to GUI. You should see message saying the import was successful. 
 
 Review configuration in GUI and make any changes needed. To save updated configuration, enter a configuration name where it says New config.yml and click adjacent disk. After this configuration should show as valid and list version as 4.
 
@@ -599,17 +599,17 @@ After a RPi reboot, it should be recognized.
 
 ### GUI
 
-Access the GUI via any computer on the same network as the RPi by navigating a browser to http://hostname:5005.
+Access GUI via any computer on the same network as RPi by navigating a browser to http://hostname:5005.
 
 #### Title
 
-There isn't much to do in this tab, but the title and description fields can be populated. The title field is displayed on the first line of the [OLED display](#oled-display) described later in this tutorial.
+There isn't much to do in this tab, but title and description fields can be populated. Title field is displayed on first line of [OLED display](#oled-display) described later in this tutorial.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/title.png" alt="title" width="600"/>
 
 #### Devices
 
-The Devices tab defines general parameters like capture device, playback device, sample rate, rate adjust, resampling and chunk size.
+Devices tab defines general parameters like capture device, playback device, sample rate, rate adjust, resampling and chunk size.
 
 It is very important that sample format and channel count are supported by the device. If using configurations from this tutorial this will not be an issue, but if creating new configurations it is something to be aware of. 
 
