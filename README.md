@@ -324,17 +324,17 @@ These changes set ALSA loopback device 1 as squeezelite playback device, resampl
 
 All configurations use maximum amount of output channels for a given playback device. Bass and Treble filters are provided on input channels, see [Compact View](#compact-view) for more information. If an output channel is not needed remove it from the mixer as each extra channel requires additional processing resources. Configuration files can be found in the [configs](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/configs) folder.
 
-The naming convention configuration files in this tutorial is dac_input_capturerate_playbackrate. For example, a configuration for a MOTU Ultralite Mk5, TOSLINK input with 96 kHz capture and 96 kHz playback rates is [ultralitemk5_toslink_96c_96p.yml](https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/configs/ultralitemk5/ultralitemk5_toslink_96c_96p.yml). All configurations are intended for use with CamillaDSP V3.
+The naming convention configuration files in this tutorial is dac_input_capturerate_playbackrate. For example, a configuration for a MOTU Ultralite Mk5, TOSLINK input with 96 kHz capture and 96 kHz playback rates is [ultralitemk5_toslink_96c_96p.yml](https://raw.githubusercontent.com/mdsimon2/RPi-CamillaDSP/main/configs/ultralitemk5/ultralitemk5_toslink_96c_96p.yml). All configurations are intended for use with CamillaDSP V4.
 
-### Converting Configurations from V2 to V3
+### Converting Old Configurations
 
-CamillaDSP V3 uses different nomenclature than V2, therefore if you have an existing V2 configuration file that you would like to use in V3 it needs to be converted. 
+Each major CamillaDSP version has implemented slightly different nomenclature, therefore if you have an existing configuration you would like to use in a newer CamillaDSP version it needs to be converted.
 
-Go to the Files tab of the GUI and click New blank configuration to apply a blank configuration in the GUI. Next click Import config and select CamillaDSP Config. Select your V2 configuration and click the box next to the configuration name and scroll to the bottom and select import, this loads the configuration to the GUI. You should see message saying the import was successful. 
+Go to Files tab in GUI and click New blank configuration to apply a blank configuration in GUI. Next click Import config and select CamillaDSP Config. Select your old configuration, click the box next to configuration name, scroll to bottom and select import, this loads updated configuration to GUI. You should see message saying the import was successful. 
 
-Review the configuration and make any changes needed, I've noticed that resampling appears to be applied to configurations where it was not previously. To save the configuration, enter a configuration name where it says New config.yml and click the adjacent disk. After this the configuration should show as valid and list version as 3.
+Review configuration in GUI and make any changes needed. To save updated configuration, enter a configuration name where it says New config.yml and click adjacent disk. After this configuration should show as valid and list version as 4.
 
-<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/v3_import_7.png" alt="v3_import_7" width="500"/>
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/v4_import.png" alt="v4_import" width="500"/>
 
 ### ASRC Options
 CamillaDSP expects a constant capture sample rate and cannot accommodate rate changes without a restart. For variable sample rate physical digital sources like TOSLINK, AES or SPDIF or multiple physical digital sources with different rates, a good option is to add a device that has an ASRC to convert to a consistent rate. miniDSP offer many devices with this capability which are summarized below.
