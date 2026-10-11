@@ -635,15 +635,15 @@ Input channel labels carryover from Devices tab, output channel labels are defin
 
 #### Processors
 
-I haven't used this personally, but it can be used to implement a compressor.
+I haven't used this personally, but it can be used to implement a compressor, noise gate and/or Recursive Ambiophonic Crosstalk Elimination (RACE).
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/processors.png" alt="processors" width="600"/>
 
 #### Pipeline
 
-The Pipeline tab is where everything comes together. Filters, mixers and processors created in the previous tabs are applied here. The entire pipeline can be plotted to show how the mixer and filters are applied as well as the combined magnitude / phase / group delay on each channel.
+Pipeline tab is where everything comes together. Filters, mixers and processors created in previous tabs are applied here. Entire pipeline can be plotted to show how mixer and filters are applied, as well as combined magnitude / phase / group delay on each channel.
 
-With V3 filter steps can now be applied to multiple channels, eliminating the need to repeat filter steps for left / right channels as an example.
+Filter steps can be applied to multiple channels, eliminating need to repeat filter steps for left / right channels as an example.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/pipeline1.png" alt="pipeline1" width="800"/>
 
