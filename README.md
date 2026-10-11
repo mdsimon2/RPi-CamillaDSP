@@ -88,7 +88,7 @@ With Windows 10 or 11 it is recommended to install Windows Subsystem for Linux (
 
 Open PowerShell as administrator as shown below.
 
-<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/powershell.png" alt="powershell" width="300"/>
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/powershell.png" alt="powershell" width="500"/>
 
 Run wsl --install in PowerShell and restart.
 
