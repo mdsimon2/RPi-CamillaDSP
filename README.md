@@ -1,9 +1,9 @@
 # RPi-CamillaDSP
 
 ## Introduction
-Intent of this project is to provide guidance on implementing [CamillaDSP](https://github.com/HEnquist/camilladsp) on a RPi4/5. There is a lot of good information on [ASR](https://www.audiosciencereview.com/forum/index.php?threads/rpi4-camilladsp-tutorial.29656/), [DIYAudio](https://www.diyaudio.com/community/threads/camilladsp-cross-platform-iir-and-fir-engine-for-crossovers-room-correction-etc.349818/) and the [CamillaDSP GitHub](https://github.com/HEnquist/camilladsp), but there also appears to be a lot of apprehension. My goal is to give concrete examples of how to use CamillaDSP with a variety of hardware to ease some of that apprehension. This tutorial originally lived at ASR, but in May 2024 I decided to migrate it to GitHub to make version management easier and provide a more universal location.
+Intent of this project is to provide guidance on implementing [CamillaDSP](https://github.com/HEnquist/camilladsp) on a RPi4/5. There is a lot of good information on [ASR](https://www.audiosciencereview.com/forum/index.php?threads/rpi4-camilladsp-tutorial.29656/), [DIYAudio](https://www.diyaudio.com/community/threads/camilladsp-cross-platform-iir-and-fir-engine-for-crossovers-room-correction-etc.349818/) and the [CamillaDSP GitHub](https://github.com/HEnquist/camilladsp), but there also appears to be a lot of apprehension. My goal is to give concrete examples of how to use CamillaDSP with a variety of hardware to ease some of that apprehension. This tutorial originally lived at ASR, but in May 2024 I decided to migrate to GitHub to make version management easier and provide a more universal location.
 
-I would like to especially thank [@HEnquist](https://github.com/HEnquist) for developing CamillaDSP. I’ve long been skeptical of computer-based DSP but CamillaDSP is a game changer. It runs on minimal hardware, is easy to interface with a variety of devices and is exceptionally well designed. I’ve replaced all of my miniDSP systems with RPi4s running CamillaDSP and could not be happier.
+I would like to especially thank [@HEnquist](https://github.com/HEnquist) for developing CamillaDSP. I’ve long been skeptical of computer-based DSP but CamillaDSP is a game changer. It runs on minimal hardware, is easy to interface with a variety of devices and is exceptionally well designed. I’ve replaced all my miniDSP systems with RPi4s running CamillaDSP and could not be happier.
 
 I am not a programmer or DSP expert, my primary motivation is finding better ways to implement DIY active speakers. If you see a better way of doing something or want further explanation please speak up! These instructions have been developed as I learned how to implement CamillaDSP and found better ways to set it up, but I am always learning.
 
@@ -21,11 +21,11 @@ This tutorial is geared towards 2 channel audio as it is somewhat difficult to g
 
 ### How does it work?
 
-Starting point is a RPi4 or RPi5 running either Raspberry Pi OS Lite 64 bit. RPi4 is recommended over RPi5 due to lower cost and better thermal performance. However, RPi5 is required for multichannel I2S applications such as the HifiBerry DAC8x.
+Starting point is a RPi4 or RPi5 running Raspberry Pi OS Lite 64 bit. RPi4 is recommended over RPi5 due to lower cost and better thermal performance. However, RPi5 is required for multichannel I2S applications such as the HifiBerry DAC8x.
 
 CamillaDSP will be installed such that it is always running on the RPi as a service. A web browser based GUI is available to configure CamillaDSP after initial setup.
 
-CamillaDSP requires a capture device and playback device, the capture device is the input and playback device is the output. 
+CamillaDSP requires a capture device and playback device, capture device is the input and playback device is the output. 
 
 The capture device can be a variety of things, it can be the RPi itself with software audio players such as squeezelite or shairport-sync playing to an ALSA loopback, the same device as the playback device in the case of an audio interface with analog/digital inputs, or a separate device such as a TOSLINK to USB card. The main point is that CamillaDSP is NOT limited to applications that use a RPi as a source.
 
@@ -33,15 +33,15 @@ The playback device is either a USB DAC/DDC, HDMI output of the RPi or HAT DAC/D
 
 ### What DACs are recommended?
 
-1) [Okto dac8 PRO](https://www.oktoresearch.com/dac8pro.htm) - €1289, 8 channel balanced analog output, 8 channel AES digital input, 2 channel AES digital output, 1RU full-rack, volume knob, IR remote control, 5 V trigger, large display, excellent analog performance and overall design. [Okto dac8 PRO ASR Review](https://www.audiosciencereview.com/forum/index.php?threads/review-and-measurements-of-okto-dac8-8ch-dac-amp.7064/).
+1) [Okto dac8 PRO](https://www.oktoresearch.com/dac8pro.htm), 8 channel balanced analog output, 8 channel AES digital input, 2 channel AES digital output, 1RU full-rack, volume knob, IR remote control, 5 V trigger, large display, excellent analog performance and overall design. [Okto dac8 PRO ASR Review](https://www.audiosciencereview.com/forum/index.php?threads/review-and-measurements-of-okto-dac8-8ch-dac-amp.7064/).
 
-2) [MOTU Ultralite Mk5](https://motu.com/en-us/products/gen5/ultralite-mk5/) - $650, 10 channel balanced analog output, 8 channel balanced analog input, TOSLINK input / output (also supports ADAT), SPDIF input / output, volume knob capable of controlling all analog outputs, 1RU half-rack, overall good analog performance.  [MOTU Ultralite Mk5 ASR Review](https://www.audiosciencereview.com/forum/index.php?threads/motu-ultralite-mk5-review-audio-interface.24777/).
+2) [MOTU Ultralite Mk5](https://motu.com/en-us/products/gen5/ultralite-mk5/), 10 channel balanced analog output, 8 channel balanced analog input, TOSLINK input / output (also supports ADAT), SPDIF input / output, volume knob capable of controlling all analog outputs, 1RU half-rack, overall good analog performance.  [MOTU Ultralite Mk5 ASR Review](https://www.audiosciencereview.com/forum/index.php?threads/motu-ultralite-mk5-review-audio-interface.24777/).
 
-3) [MOTU M4](https://motu.com/en-us/products/m-series/m4/) - $250, 4 channel unbalanced/balanced analog output, 4 channel balanced analog input, good analog performance, USB powered. Good budget option for 2.1/2.2 or 2 way active systems, I/O functionality is rather limited. [MOTU M4 ASR Review](https://www.audiosciencereview.com/forum/index.php?threads/motu-m4-audio-interface-review.15757/).
+3) [MOTU M4](https://motu.com/en-us/products/m-series/m4/), 4 channel unbalanced/balanced analog output, 4 channel balanced analog input, good analog performance, USB powered. Good budget option for 2.1/2.2 or 2 way active systems, I/O functionality is rather limited. [MOTU M4 ASR Review](https://www.audiosciencereview.com/forum/index.php?threads/motu-m4-audio-interface-review.15757/).
 
-5) [HifiBerry DAC8x](https://www.hifiberry.com/shop/boards/hifiberry-dac8x/) - $65, requires a RPi5, HAT, 8 channel unbalanced analog output, good analog noise performance, acceptable distortion performance, 1/8" headphone outputs are rather flimsy. [HifiBerry DAC8x Measurements](https://www.audiosciencereview.com/forum/index.php?threads/8ch-hifiberry-hat-dac-for-rpi5.53672/post-1966410).
+5) [HifiBerry DAC8x](https://www.hifiberry.com/shop/boards/hifiberry-dac8x/), requires a RPi5, HAT, 8 channel unbalanced analog output, good analog noise performance, acceptable distortion performance, 1/8" headphone outputs are rather flimsy. [HifiBerry DAC8x Measurements](https://www.audiosciencereview.com/forum/index.php?threads/8ch-hifiberry-hat-dac-for-rpi5.53672/post-1966410).
 
-6) Whatever is on have on hand! Part of the beauty of a CamillaDSP / RPi setup is that it is cheap and easy try with almost any USB device. 
+6) Whatever you have on hand! Part of the beauty of a CamillaDSP / RPi setup is that it is cheap and easy try with almost any USB device. 
 
 Although configurations are not provided for the following devices, they have been used successfully with CamillaDSP on a RPi4. In particular the MCHstreamer / USBstreamer are useful with ADAT input pro audio interfaces to achieve 8 channels of output at 44.1/48 kHz.
 
@@ -70,7 +70,7 @@ This part describes how to get a working CamillaDSP setup. For reference, a comp
 
 ### 1) Write OS to micro SD card
 
-Download and install Raspberry Pi Imager from the links below.
+Download and install Raspberry Pi Imager from links below.
 
 - [Raspberry Pi Imager for Ubuntu](https://downloads.raspberrypi.org/imager/imager_latest_amd64.deb)
 - [Raspberry Pi Imager for Windows](https://downloads.raspberrypi.org/imager/imager_latest.exe)
@@ -82,7 +82,7 @@ Open Raspberry Pi Imager, in Device tab select desired RPi, in OS tab navigate t
 
 When done writing, insert micro SD card into RPi and connect power supply.
 
-This install assumes the RPi will be managed remotely via SSH from a separate computer. With Mac or Linux, terminal will installed by default and commands in subsequent steps of this tutorial can be run in terminal without issue.
+This install assumes RPi will be managed remotely via SSH from a separate computer. With Mac or Linux, terminal will installed by default and commands in subsequent steps of this tutorial can be run in terminal without issue.
 
 With Windows 10 or 11 it is recommended to install Windows Subsystem for Linux (WSL). Instruction below are condensed version of this -> https://docs.microsoft.com/en-us/windows/wsl/install.
 
@@ -146,7 +146,7 @@ sudo systemctl enable camilladsp
 sudo service camilladsp start
 ```
 
-See below for a brief explanation of the CamillaDSP flags applied in ExecStart of the service.
+See below for a brief explanation of CamillaDSP flags applied in ExecStart of the service.
 
 
 "-s camilladsp/statefile.yml" tells CamillaDSP a configuration will be specified via the GUI.
@@ -214,13 +214,13 @@ echo 'dtoverlay=dwc2' | sudo tee -a /boot/firmware/config.txt > /dev/null
 echo -e 'dwc2\ng_audio' | sudo tee -a /etc/modules > /dev/null
 echo 'options g_audio c_srate=44100 c_ssize=4 c_chmask=3 p_chmask=0' | sudo tee -a /etc/modprobe.d/usb_g_audio.conf > /dev/null 
 ```
-"c_srate" sets the capture rates that will be offered to the USB host. To add rates use commas, for example, c_srate=44100,48000,88200,96000. It is important to note the USB host must be set to the same rate as the CamillaDSP capture rate, this is why the above command only gives the 44100 Hz option. There are tools that can automatically switch the CamillaDSP capture rate such as [gaudio_ctl](https://github.com/pavhofman/gaudio_ctl) and [camilladsp-setrate](https://github.com/marcoevang/camilladsp-setrate) but they are outside the scope of this tutorial.
+"c_srate" sets capture rates that will be offered to USB host. To add rates use commas, for example, c_srate=44100,48000,88200,96000. It is important to note USB host must be set to same rate as CamillaDSP capture rate, this is why above command only gives 44100 Hz option. There are tools that can automatically switch CamillaDSP capture rate such as [camilladsp-controller](https://github.com/HEnquist/camilladsp-controller) and [gaudio_ctl](https://github.com/pavhofman/gaudio_ctl) but they are outside the scope of this tutorial.
 
-"c_ssize" sets the capture rate format offered to the USB host. 4 = S32_LE.
+"c_ssize" sets capture rate format offered to USB host. 4 = S32_LE.
 
-"c_chmask" sets the number of capture channels. Format is 2^(number of channels) - 1. Therefore, 3 = 2 channels, 63 = 6 channels and 255 = 8 channels.
+"c_chmask" sets number of capture channels. Format is 2^(number of channels) - 1. Therefore, 3 = 2 channels, 63 = 6 channels and 255 = 8 channels.
 
-"p_chmask" sets the number of playback channels offered to the RPi. This is set to 0 as as the gadget is typically only used as a capture device.
+"p_chmask" sets number of playback channels offered to RPi. This is set to 0 as as gadget is typically only used as a capture device.
 
 Restart RPi for the change to take effect.
 
@@ -228,15 +228,15 @@ Restart RPi for the change to take effect.
 sudo reboot now
 ```
 
-If using the RPi as a USB gadget, connect the RPi to the USB host via the USB-C port. By default, this will power the RPi from the USB host. Purchase a [USB-C power/data splitter](https://www.tindie.com/products/8086net/usb-cpwr-splitter/) to power the RPi from a separate power supply.
+If using RPi as a USB gadget, connect RPi to USB host via USB-C port. By default, this will power RPi from USB host which is not recommended. It is recommended to purchase a [USB-C power/data splitter](https://www.tindie.com/products/8086net/usb-cpwr-splitter/) to power RPi from a separate power supply.
 
 ### 9) Assign active configuration in GUI
 
-Configurations are explained in more detail in the [CamillaDSP Configurations](#camilladsp-configurations) section of this tutorial. Pre-made configurations for the DACs in this tutorial can be downloaded by navigating to the [configs](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/configs) folder. Alternatively, download the entire repository by clicking [here](https://github.com/mdsimon2/RPi-CamillaDSP/archive/refs/heads/main.zip) or using git clone.
+Configurations are explained in more detail in [CamillaDSP Configurations](#camilladsp-configurations) section of this tutorial. Pre-made configurations for DACs in this tutorial can be downloaded by navigating to the [configs](https://github.com/mdsimon2/RPi-CamillaDSP/tree/main/configs) folder. Alternatively, download entire repository by clicking [here](https://github.com/mdsimon2/RPi-CamillaDSP/archive/refs/heads/main.zip) or using git clone.
 
-On a computer that is on the same network as the RPi, navigate browser to http://hostname:5005.
+On a computer that is on same network as RPi, navigate browser to http://hostname:5005.
 
-Navigate to Files tab of GUI and upload desired configuration using the up arrow in the Configs section. Set this configuration as active by pressing the "star" next to the configuration. From now on CamillaDSP and the GUI will start with this configuration loaded. Click the "Apply and Save" button in the lower left to load the configuration to DSP.
+Navigate to Files tab of GUI and upload desired configuration using up arrow in Configs section. Set this configuration as active by pressing "star" next to configuration. From now on CamillaDSP and GUI will start with this configuration loaded. Click "Apply and Save" button in lower left to load configuration to DSP.
 
 <img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/files.png" alt="files" width="600"/>
 
