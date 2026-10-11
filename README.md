@@ -631,13 +631,13 @@ As in Devices tab, it is very important that mixer channel counts exactly match 
 
 Input channel labels carryover from Devices tab, output channel labels are defined here.
 
-<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/mixers.png" alt="mixers" width="800"/>
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/mixers.png" alt="mixers" width="600"/>
 
 #### Processors
 
 I haven't used this personally, but it can be used to implement a compressor, noise gate and/or Recursive Ambiophonic Crosstalk Elimination (RACE).
 
-<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/processors.png" alt="processors" width="800"/>
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/processors.png" alt="processors" width="600"/>
 
 #### Pipeline
 
@@ -663,7 +663,7 @@ To see what settings are currently applied to the DSP, click the "Fetch from DSP
 
 In order to set a configuration as default (i.e. the configuration that will be loaded when CamillaDSP starts), click the star button next to the desired configuration. After this is done, the star button will now be green next to the default configuration.
 
-<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/files.png" alt="files" width="800"/>
+<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/files.png" alt="files" width="600"/>
 
 #### Compact View
 
