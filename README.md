@@ -663,8 +663,6 @@ To see what settings are currently applied to the DSP, click the "Fetch from DSP
 
 In order to set a configuration as default (i.e. the configuration that will be loaded when CamillaDSP starts), click the star button next to the desired configuration. After this is done, the star button will now be green next to the default configuration.
 
-<img src="https://github.com/mdsimon2/RPi-CamillaDSP/blob/main/screenshots/files.png" alt="files" width="600"/>
-
 #### Compact View
 
 The Compact View is great for changing volume or configurations from a smartphone or tablet. It can be accessed by clicking the "Change to compact view" button just to the right of the CamillaDSP logo.
