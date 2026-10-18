@@ -247,8 +247,7 @@ Congratulations, CamillaDSP is now up and running!
 To upgrade to a new version of CamillaDSP, simply download and extract the new binary.
 
 ```
-wget https://github.com/HEnquist/camillagui-backend/releases/download/v4.1.0/bundle_linux_aarch64.tar.gz -O ~/camilladsp/camilladsp-linux-aarch64.tar.gz
-sudo tar -xvf ~/camilladsp/camilladsp-linux-aarch64.tar.gz -C /usr/local/bin/
+wget https://github.com/HEnquist/camilladsp/releases/download/v4.1.3/camilladsp-linux-aarch64.tar.gz -O ~/camilladsp/camilladsp-linux-aarch64.tar.gzsudo tar -xvf ~/camilladsp/camilladsp-linux-aarch64.tar.gz -C /usr/local/bin/
 sudo service camilladsp restart
 ```
 
